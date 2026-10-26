@@ -91,7 +91,7 @@ leave decorations
 protagonist: О? Похоже, тут ещё и записка. #id:31a
 jump sounds/PAGE_FLIP
 join decorations center [extra_data="set Items/Letter"]
-[color=e5be3e]Dear {GameVariables.player_name}.[/color] #id:f86
+[color=e5be3e]Дорогой(ая) {GameVariables.player_name}.[/color] #id:f86
 [color=e5be3e]К сожалению, из-за недавних изменений в правилах мы вынуждены сообщить...[/color] #id:31c
 [color=e5be3e]...что ты больше не подходишь под программу студенческих субсидий на жильё.[/color] #id:31d
 [color=e5be3e]С этого момента еженедельные выплаты на счёт прекращаются.[/color] #id:31e

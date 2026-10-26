@@ -5,7 +5,7 @@ protagonist: ...А. #id:278
 protagonist: Сегодня день аренды. #id:279
 [sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
 join decorations center [extra_data="set Items/Phone"]
-[color=e5be3e]Dear {GameVariables.player_name}.[/color] #id:f7a
+[color=e5be3e]Дорогой(ая) {GameVariables.player_name}.[/color] #id:f7a
 if {GameVariables.credits} > 10000:
 	[signal arg="lock_poor_lad"]
 	[color=e5be3e]Поздравляем! Оплата за эту неделю принята.[/color] #id:27b
