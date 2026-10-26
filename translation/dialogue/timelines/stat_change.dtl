@@ -91,11 +91,11 @@ if {GameVariables.stamina} <= 0:
 return
 label RELATIONSHIP_DECREASE #id:566
 [sound path="res://audio/se/Powerdown_XP.wav" bus="Cutscene"]
-[color=ff3f49]Отношения: −{GameVariables.decrease_relationship()} опыта.[/color] #id:ba3
+[color=ff3f49]Отношения\: −{GameVariables.decrease_relationship()} опыта.[/color] #id:ba3
 return
 label RELATIONSHIP_INCREASE #id:568
 [sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
-[color=e5be3e]Отношения: +{GameVariables.increase_relationship()} опыта.[/color] #id:ba4
+[color=e5be3e]Отношения\: +{GameVariables.increase_relationship()} опыта.[/color] #id:ba4
 return
 label RELATIONSHIP_DOG_INCREASE
 [sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]

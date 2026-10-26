@@ -287,10 +287,10 @@ roommate: ...может, в следующий раз не будем спать
 jump sounds/GULP
 [wait time="1.0"]
 jump sounds/GOT_LEVEL
-[color=e5be3e]{roommate_name}: отношения на максимуме![/color] #id:e83
-[color=e5be3e]{roommate_name}: теперь её можно будить во время ночной вылазки![/color] #id:e84
+[color=e5be3e]{roommate_name}\: отношения на максимуме![/color] #id:e83
+[color=e5be3e]{roommate_name}\: теперь её можно будить во время ночной вылазки![/color] #id:e84
 [color=e5be3e]Но тогда до конца ночи очки за съёмку начисляться не будут.[/color] #id:e85
-[color=e5be3e]Осторожно: если Кан тебя застукает, игра всё равно закончится![/color] #id:e86
+[color=e5be3e]Осторожно\: если Кан тебя застукает, игра всё равно закончится![/color] #id:e86
 leave --All-- 
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

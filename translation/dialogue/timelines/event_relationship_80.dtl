@@ -367,7 +367,7 @@ roommate: И я обязательно возьму с собой сменную
 jump sounds/GULP
 [wait time="1.0"]
 jump sounds/GOT_LEVEL
-[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:f76
+[color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:f76
 [color=e5be3e]Теперь в некоторых сценах с ней можно зайти ещё дальше![/color] #id:f77
 [color=e5be3e]Теперь во время забегов на чекпоинтах можно «отдохнуть» вдвоём: {roommate_name} не против.[/color] #id:f78
 leave roommate

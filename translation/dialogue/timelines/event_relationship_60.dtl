@@ -123,7 +123,7 @@ roommate: ... #id:273
 update roommate center [extra_data="set Expressions/Confused"]
 roommate: ...куда ты дел мою футболку? #id:274
 [sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
-[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:275
+[color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:275
 [color=e5be3e]Теперь в некоторых сценах с ней можно зайти дальше![/color] #id:276
 [color=e5be3e]А ещё {roommate_name} будет лучше помогать тебе в забегах![/color] #id:277
 leave roommate

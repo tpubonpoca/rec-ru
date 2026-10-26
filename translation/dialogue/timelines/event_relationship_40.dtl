@@ -116,7 +116,7 @@ update roommate center [extra_data="set Expressions/Happy"]
 roommate: ... #id:228
 roommate: Ладно, пойдём обратно? #id:229
 [sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
-[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:22a
+[color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:22a
 [color=e5be3e]Теперь ты можешь звать её на свидания![/color] #id:22b
 [color=e5be3e]Другие виды свиданий, кроме пробежки, откроются по мере прокачки характеристик.[/color] #id:22c
 leave roommate
