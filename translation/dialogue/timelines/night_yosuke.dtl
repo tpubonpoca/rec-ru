@@ -461,12 +461,12 @@ protagonist: И хорошенько выспаться.
 jump z_functions/END_TO_UPGRADE
 
 label MEETING_6
-// wind sounds
+# wind sounds
 protagonist: ...похоже, он не придёт. Может, с Ёсуке что-то случилось?
 protagonist: ...
 protagonist: Я даже не представляю, где его [color=e5be3e]искать[/color]...
 protagonist: ...тем более с этим его плащом-невидимкой или что там у него...
-// dog relationship check
+# dog relationship check
 protagonist: Эх, мне бы [color=e5be3e]нюх получше...[/color]
 jump sounds/BARK_1
 protagonist: А?

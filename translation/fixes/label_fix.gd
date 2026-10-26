@@ -40,6 +40,7 @@ const EXACT := {
 	"stream is offline": "стрим оффлайн",
 	"recent comments": "последние комментарии",
 	"request accepted": "запрос принят",
+	"served nothing!": "Ничего не подано!",
 }
 
 const SUB := {
@@ -88,6 +89,7 @@ const SUB := {
 	"DAY#": "ДЕНЬ #",
 	"Times Upgraded:": "Улучшено:",
 	"Current Bonus:": "Текущий бонус:",
+	"secs": " сек.",
 	" Rating": " Рейтинг",
 	"stars": "звёзд",
 	"request fulfilled!": "запрос выполнен!",
@@ -267,6 +269,7 @@ func _init_dialogic_vars() -> void:
 	if dlg != null and "VAR" in dlg and dlg.VAR != null:
 		if dlg.VAR.has_method("set_variable"):
 			dlg.VAR.set_variable("roommate_name", "Юна")
+			dlg.VAR.set_variable("manager_name", "Кан")
 
 func _repair_saves() -> void:
 	for i in range(12):
@@ -314,6 +317,8 @@ func _process(delta: float) -> void:
 		if dlg.VAR.has_method("get_variable") and dlg.VAR.has_method("set_variable"):
 			if dlg.VAR.get_variable("roommate_name") == "Yuna":
 				dlg.VAR.set_variable("roommate_name", "Юна")
+			if dlg.VAR.get_variable("manager_name") == "Kan":
+				dlg.VAR.set_variable("manager_name", "Кан")
 
 	var stack := [get_tree().root]
 	var n := 0
@@ -351,7 +356,7 @@ func _process(delta: float) -> void:
 			if gv != null and "player_name" in gv:
 				pname = str(gv.player_name)
 			if pname == "" or pname == "{PLAYERNAME}":
-				pname = "Никита"
+				pname = "Нита"
 			nd.text = nd.text.replace("{PLAYERNAME}", pname)
 			txt = str(nd.text)
 

@@ -4,7 +4,7 @@ set {phase} = "MORNING"
 [wait time="1.0"]
 Выбери, как тебя будут звать остальные. #id:2f4
 label Select Name #id:2f5
-[text_input text="Введи имя персонажа:" var="player_name" default="Nita"]
+[text_input text="Введи имя персонажа:" var="player_name" default="Нита"]
 set GameVariables.player_name = {player_name}
 Все будут звать тебя {GameVariables.player_name}. Годится? #id:f7b
 - Да #id:2f7

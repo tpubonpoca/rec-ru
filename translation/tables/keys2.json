@@ -1807,7 +1807,7 @@
     "Ow!": "Ай!",
     "Paparazzi": "Папарацци",
     "Party? What party?": "Вечеринка? Какая вечеринка?",
-    "PeepCam?": "PeepCam?",
+    "PeepCam?": "ПипКам?",
     "Perfect, thanks.": "Отлично, спасибо.",
     "Perhaps stocking on some items would be a good idea...": "Возможно, стоит запастись кое-какими предметами...",
     "Perhaps you could do it if you had more Dexterity.": "Возможно, у тебя получилось бы, будь у тебя больше Ловкости.",
@@ -3486,7 +3486,7 @@
     "With that technique... it's clear now how your lord died.": "С такой техникой... теперь ясно, как погиб твой господин.",
     "Would you like to try my holy water?": "Не хочешь попробовать мою святую воду?",
     "Would you like to wield a different type of... sword?": "Не хочешь взять в руки другой вид... меча?",
-    "X-Ray": "X-Ray",
+    "X-Ray": "Рентген",
     "Yooooo, what's up, dude?": "Йоооу, как дела, чувак?",
     "Yosuke will sometimes help you on your runs!": "Ёсуке иногда будет помогать тебе во время забегов!",
     "You always all say the same thing. You always all die too.": "Вы все всегда говорите одно и то же. И все всегда умираете тоже.",
@@ -4455,9 +4455,16 @@
     "DELETE": "УДАЛИТЬ",
     "CANCEL": "ОТМЕНА",
     "PAGE": "СТР.",
-    "Your [color=a1f3ff]Impression[/color] is currently at [color=a1f3ff]": "Your [color=a1f3ff]Impression[/color] is currently at [color=a1f3ff]",
-    "Your [color=ff6b6b]Drunkenness[/color] is currently at [color=ff6b6b]": "Your [color=ff6b6b]Drunkenness[/color] is currently at [color=ff6b6b]",
-    "Your need to roll a [color=a1f3ff]Difficulty Class[/color] of [color=a1f3ff]": "Your need to roll a [color=a1f3ff]Difficulty Class[/color] of [color=a1f3ff]"
+    "Your [color=a1f3ff]Impression[/color] is currently at [color=a1f3ff]": "Твоё [color=a1f3ff]Впечатление[/color] сейчас на уровне [color=a1f3ff]",
+    "Your [color=ff6b6b]Drunkenness[/color] is currently at [color=ff6b6b]": "Твоё [color=ff6b6b]Опьянение[/color] сейчас на уровне [color=ff6b6b]",
+    "Your need to roll a [color=a1f3ff]Difficulty Class[/color] of [color=a1f3ff]": "Тебе нужно выбросить [color=a1f3ff]Класс сложности[/color] не менее [color=a1f3ff]",
+    "doggy": "раком",
+    "anal": "анал",
+    "thighjob": "секс между бёдер",
+    "4:20PM": "16:20",
+    "Glare": "Блики",
+    "system": "система",
+    "Nut": "Поллюция"
   },
   "ru": {
     "NEW_GAME": "НОВАЯ ИГРА",
@@ -7946,7 +7953,7 @@
     "With that technique... it's clear now how your lord died.": "С такой техникой... теперь ясно, как погиб твой господин.",
     "Would you like to try my holy water?": "Не хочешь попробовать мою святую воду?",
     "Would you like to wield a different type of... sword?": "Не хочешь взять в руки другой вид... меча?",
-    "X-Ray": "X-Ray",
+    "X-Ray": "Рентген",
     "Yooooo, what's up, dude?": "Йоооу, как дела, чувак?",
     "Yosuke will sometimes help you on your runs!": "Ёсуке иногда будет помогать тебе во время забегов!",
     "You always all say the same thing. You always all die too.": "Вы все всегда говорите одно и то же. И все всегда умираете тоже.",
@@ -8917,6 +8924,13 @@
     "PAGE": "СТР.",
     "Your [color=a1f3ff]Impression[/color] is currently at [color=a1f3ff]": "Твоё [color=a1f3ff]Впечатление[/color] сейчас на уровне [color=a1f3ff]",
     "Your [color=ff6b6b]Drunkenness[/color] is currently at [color=ff6b6b]": "Твоё [color=ff6b6b]Опьянение[/color] сейчас на уровне [color=ff6b6b]",
-    "Your need to roll a [color=a1f3ff]Difficulty Class[/color] of [color=a1f3ff]": "Тебе нужно выбросить [color=a1f3ff]Класс сложности[/color] не менее [color=a1f3ff]"
+    "Your need to roll a [color=a1f3ff]Difficulty Class[/color] of [color=a1f3ff]": "Тебе нужно выбросить [color=a1f3ff]Класс сложности[/color] не менее [color=a1f3ff]",
+    "doggy": "раком",
+    "anal": "анал",
+    "thighjob": "секс между бёдер",
+    "4:20PM": "16:20",
+    "Glare": "Блики",
+    "system": "система",
+    "Nut": "Поллюция"
   }
 }
