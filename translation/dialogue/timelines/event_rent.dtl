@@ -1,0 +1,36 @@
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+[wait time="2.0"]
+protagonist: ...А. #id:278
+protagonist: Сегодня день аренды. #id:279
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+join decorations center [extra_data="set Items/Phone"]
+[color=e5be3e]Dear {GameVariables.player_name}.[/color] #id:f7a
+if {GameVariables.credits} > 10000:
+	[signal arg="lock_poor_lad"]
+	[color=e5be3e]Поздравляем! Оплата за эту неделю принята.[/color] #id:27b
+	[color=e5be3e]Благодарим за сотрудничество и надеемся, что ты продолжишь пользоваться нашими услугами.[/color] #id:27c
+	if {GameVariables.has_skill('golden_reel')} == false and {GameVariables.rent_streak} >= 2:
+		[color=e5be3e]Поздравляем со своевременной оплатой аренды![/color] #id:27d
+		[color=e5be3e]Мы решили добавить небольшой бонус к выплатам за съёмки.[/color] #id:27e
+		jump sounds/GOT_SKILL
+		Ты получил особый навык\: [color=e5be3e]Золотая катушка[/color]! #id:27f
+		[signal arg="unlock_golden_reel"]
+	set GameVariables.rent_streak += 1
+else:
+	[signal arg="unlock_poor_lad"]
+	[color=e5be3e]К сожалению, на счету не хватило средств для оплаты этой недели.[/color] #id:280
+	[color=e5be3e]Недостачу удержат из следующих выплат за съёмки.[/color] #id:281
+	[color=e5be3e]Приносим извинения за неудобства и надеемся, что ты останешься с нами.[/color] #id:282
+	[color=e5be3e]Спасибо и хорошего дня.[/color] #id:283
+	[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+	leave decorations
+	[sound bus="Cutscene" path="res://audio/se/Powerdown_XP.wav"]
+	До следующей оплаты аренды ты будешь получать [color=ff3f49]меньше монет со съёмочных сессий[/color]. #id:284
+	if {GameVariables.has_skill('golden_reel')} == true
+		[sound bus="Cutscene" path="res://audio/se/Powerup_Skill.wav"]
+		Ты потерял особый навык\: [color=e5be3e]Золотая катушка[/color]! #id:285
+		[signal arg="lock_golden_reel"]
+	set GameVariables.rent_streak = 0
+set GameVariables.credits = {GameVariables.change_credits(-10000)}
+jump z_functions/END_TO_NEXT_CUTSCENE

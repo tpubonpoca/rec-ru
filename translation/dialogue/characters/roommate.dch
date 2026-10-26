@@ -1,0 +1,29 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "544",
+&"color": Color(1, 0.74902, 0.756863, 1),
+&"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "DefaultStyle"
+},
+&"default_portrait": "Default",
+&"description": "",
+&"display_name": "Юна",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Default": {
+"export_overrides": {
+"image": "\"res://assets/Cutscene/Sister.png\""
+},
+"mirror": false,
+"offset": Vector2(0, -160),
+"scale": 1,
+"scene": "res://dialogue/custom_styles/layered_portrait_sister.tscn"
+}
+},
+&"scale": 1.0
+}

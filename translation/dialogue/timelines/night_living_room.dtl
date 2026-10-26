@@ -1,0 +1,235 @@
+label START #id:fb8
+jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
+[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
+if {Calendar.IsDayOff()}:
+	protagonist: Хм...
+	protagonist: ...здесь никого нет.
+	- Вернуться в комнату
+		jump night/RETURN
+Тебе удаётся застать свою соседку перед сном. #id:190
+join roommate center
+if {GameVariables.relationship} >= 20 && {GameVariables.suspicion} < 50:
+	roommate: Эй! Чем я могу помочь? #id:197
+else:
+	roommate: Что это? #id:198
+label MAIN #id:88f
+- Подарить подарок #id:d14
+	jump GIVE_GIFT
+- Отдать предмет #id:890
+	jump GIVE_ITEM
+- Отдать аксессуар #id:891
+	jump ACCESSORY
+- Вернуться в комнату #id:10da
+	leave roommate
+	jump night/RETURN
+label GIVE_GIFT #id:d15
+- Поболтать #id:d16
+	protagonist: С тобой в последнее время не случилось ничего интересного? #id:d17
+	roommate: А? Ах... #id:d18
+	if {GameVariables.is_relationship_locked()} && {GameVariables.relationship} == 20:
+		roommate: В последнее время я слишком часто ем не дома... #id:d19
+		protagonist: О? #id:d1a
+		roommate: Да, хотелось бы мне иметь больше времени утром для себя... #id:d1b
+		roommate: ...но у меня проблемы с тем, чтобы просыпаться вовремя. #id:d1c
+		roommate: Особенно с учёбой и всем прочим... #id:d1d
+		protagonist: (Хм... может, приготовить ей как-нибудь еду...) #id:d1e
+		jump GIVE_GIFT
+	if {GameVariables.is_relationship_locked()} && {GameVariables.relationship} == 40:
+		roommate: Кажется, я в последнее время набрала в весе... #id:d1f
+		protagonist: О? Мне так не кажется. #id:d20
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: О, прекрати. Лесть тебе ничего не даст. #id:d21
+		roommate: Как бы то ни было, да. В последнее время я подумываю заняться бегом! #id:d22
+		protagonist: Отличная идея! #id:d23
+		roommate: Верно? #id:d24
+		update roommate [extra_data="set Expressions/Confused"]
+		roommate: Мне только нужно забрать [color=e5be3e]беговые кроссовки[/color]... #id:d25
+		jump GIVE_GIFT
+	roommate: Сейчас в голову ничего не приходит. #id:d26
+	protagonist: Понятно... #id:d27
+	jump GIVE_GIFT
+- Подарить подарок | [if {Items.GetQuantity('gift')} > 0] #id:19a
+	set GameVariables.quantity = {Items.Decrement('gift')}	
+	set GameVariables.suspicion -= 5
+	if {GameVariables.suspicion} < 0:
+		set GameVariables.suspicion = 0
+	roommate: ...что это такое? #id:19b
+	roommate: Ты приготовил мне подарок? #id:19c
+	if {GameVariables.relationship} > 20:
+		jump sounds/VOICE_THANK_YOU
+		Спасибо. Ценю это. #id:19d
+	else:
+		Спасибо, наверное. #id:19e
+	set GameVariables.relationship_change = 3
+	jump stat_change/RELATIONSHIP_INCREASE
+	if {GameVariables.is_relationship_locked()}:
+		protagonist: (У меня такое чувство, что наши отношения достигли предела...) #id:d28
+		protagonist: (Может, стоит поговорить с ней об этом?) #id:d29
+	jump GIVE_GIFT
+- Отдать кроссовки | [if {Items.GetQuantity('running_shoes')} > 0 && {Cutscenes.IsSceneLocked("event_relationship_40")}] #id:d2a
+	jump POSSIBLE_SUSPICION
+	set GameVariables.scene_unlocked = {Cutscenes.UnlockCutscene("event_relationship_40")}
+	set GameVariables.quantity = {Items.Decrement('running_shoes')}
+	roommate: Беговые кроссовки? #id:d2b
+	jump sounds/VOICE_THANK_YOU
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: Спасибо! Мне очень нравится! #id:d2c
+	roommate: Обязательно примерю их при первой возможности. #id:d2d
+	update roommate [extra_data="set Decorations/Blush"]
+	roommate: ...может, сбегаем как-нибудь вместе? #id:d2e
+	jump GIVE_GIFT
+- Назад #id:d2f
+	jump MAIN
+label GIVE_ITEM #id:199
+- Отдать зелёный чай | [if {Items.GetQuantity('green_tea')} > 0 && {GameVariables.applied_green_tea} == false] #id:19f
+	roommate: Напиток? Мне? #id:1a0
+	jump POSSIBLE_SUSPICION
+	if {GameVariables.relationship} >= 20:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.quantity = {Items.Decrement('green_tea')}
+		roommate: Спасибо! #id:1a1
+		set GameVariables.applied_green_tea = true
+		jump GIVE_ITEM
+	else:
+		roommate: Можешь взять, я не хочу пить. #id:1a2
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:1a3
+		jump GIVE_ITEM
+- Отдать обезболивающий бальзам | [if {Items.GetQuantity('numbing_chapstick')} > 0 && {GameVariables.applied_numbing_chapstick} == false] #id:1a4
+	roommate: Это бальзам для губ? #id:1a5
+	jump POSSIBLE_SUSPICION
+	if {GameVariables.relationship} >= 40:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.quantity = {Items.Decrement('numbing_chapstick')}
+		roommate: Спасибо! У меня в последнее время ночью губы сохнут. #id:1a6
+		set GameVariables.applied_numbing_chapstick = true
+		jump GIVE_ITEM
+	else:
+		roommate: Можешь оставить себе. У меня свой набор, которым я люблю пользоваться. #id:1a7
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:1a8
+		jump GIVE_ITEM
+- Отдать подозрительный лосьон | [if {Items.GetQuantity('suspicious_lotion')} > 0 && {GameVariables.applied_suspicious_lotion} == false] #id:1a9
+	roommate: Это увлажняющий лосьон? #id:1aa
+	jump POSSIBLE_SUSPICION
+	if {GameVariables.relationship} >= 40:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.quantity = {Items.Decrement('suspicious_lotion')}
+		roommate: Спасибо! Использую это перед сном. #id:1ab
+		set GameVariables.applied_suspicious_lotion = true
+		jump GIVE_ITEM
+	else:
+		roommate: Можешь оставить себе. У меня своя бутылка. #id:1ac
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:1ad
+		jump GIVE_ITEM
+- Отдать колючую траву | [if {Items.GetQuantity('prickly_herb')} > 0 && {GameVariables.applied_prickly_herb} == false] #id:d30
+	roommate: Что это за трава? #id:d31
+	jump POSSIBLE_SUSPICION
+	if {GameVariables.relationship} >= 60:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.quantity = {Items.Decrement('prickly_herb')}
+		roommate: Спасибо! Я попробую! #id:d32
+		set GameVariables.applied_prickly_herb = true
+		jump GIVE_ITEM
+	else:
+		roommate: Нет, спасибо, я только почистила зубы. #id:d33
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:1ad
+		jump GIVE_ITEM
+- Назад #id:89e
+	jump MAIN
+label ACCESSORY #id:892
+- Отдать повязку | [if {GameVariables.has_skill('blindfold')} && {GameVariables.blindfold_given} == false]
+	jump POSSIBLE_SUSPICION
+	roommate: Маска для сна?
+	if {GameVariables.relationship} >= 20:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.blindfold_given = true
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Спасибо! Мне нравится!
+		jump MAIN
+	else:
+		roommate: Можешь оставить себе. #id:896
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:897
+		jump MAIN
+- Отдать кошачьи ушки | [if {GameVariables.has_skill('cat_ears')} && {GameVariables.ears_given} == false]
+	jump POSSIBLE_SUSPICION
+	roommate: Ободок?
+	if {GameVariables.relationship} >= 80:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.ears_given = true
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Это так мило!
+		jump MAIN
+	else:
+		roommate: Можешь оставить себе. #id:896
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:897
+		jump MAIN
+- Отдать чокер | [if {GameVariables.has_skill('choker')} && {GameVariables.choker_given} == false] #id:893
+	jump POSSIBLE_SUSPICION
+	roommate: Чокер? Серьёзно? #id:894
+	if {GameVariables.relationship} >= 80:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.choker_given = true
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Мне очень нравится! #id:895
+		jump MAIN
+	else:
+		roommate: Можешь оставить себе. #id:896
+		set GameVariables.relationship_change = 2
+		jump stat_change/RELATIONSHIP_DECREASE
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:897
+		jump MAIN
+- Отдать кляп | [if {GameVariables.has_skill('ball_gag')} && {GameVariables.gag_given} == false]
+	jump POSSIBLE_SUSPICION
+	roommate: Шарик-кляп?
+	if {GameVariables.relationship} >= 80:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.gag_given = true
+		update roommate [extra_data="set Expressions/Default"]
+		roommate: Спа... сибо? Наверное?
+		jump MAIN
+	else:
+		update roommate [extra_data="set Expressions/Default"]
+		roommate: Э-э... нет, спасибо...
+		set GameVariables.relationship_change = 4
+		jump stat_change/RELATIONSHIP_DECREASE
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:897
+		jump MAIN
+- Отдать носки | [if {GameVariables.has_skill('socks')} && {GameVariables.socks_given} == false] #id:898
+	jump POSSIBLE_SUSPICION
+	roommate: Это носки? #id:899
+	if {GameVariables.relationship} >= 40:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.socks_given = true
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Спасибо! У меня в последнее время очень мёрзли ноги. #id:89a
+		jump MAIN
+	else:
+		roommate: Можешь оставить себе. #id:89b
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:89c
+		jump MAIN
+- Отдать свитер | [if {GameVariables.has_skill('sweater')} && {GameVariables.sweater_given} == false]
+	jump POSSIBLE_SUSPICION
+	roommate: Это... интересный свитер...
+	if {GameVariables.relationship} >= 100:
+		jump sounds/VOICE_THANK_YOU
+		set GameVariables.sweater_given = true
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Пожалуй, надо будет как-нибудь попробовать...
+		jump MAIN
+	else:
+		roommate: Ты правда ожидаешь, что я это надену?
+		protagonist: (Похоже, мои отношения ещё недостаточно высоки для этого.) #id:89c
+		jump MAIN
+- Назад #id:89d
+	jump MAIN
+label POSSIBLE_SUSPICION #id:1af
+if {GameVariables.suspicion} >= 50:
+	update roommate [extra_data="set Expressions/Confused"]
+	[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+	roommate: Хмм... #id:1b0
+	roommate: Думаю, мне это не нужно, извини. #id:1b1
+	protagonist: (Похоже, она [color=ff3f49]подозрительна[/color] ко мне.) #id:1b2
+	protagonist: (Ночью стоит быть осторожнее.) #id:1b3
+	update roommate [extra_data="set Expressions/Default"]
+	jump MAIN
+return

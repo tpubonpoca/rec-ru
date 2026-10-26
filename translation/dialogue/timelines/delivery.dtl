@@ -1,0 +1,47 @@
+label START
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+jump sounds/BARK_MUFFLED
+Ты слышишь лай у входной двери квартиры.
+protagonist: Я иду!
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.6"]
+[wait time="0.5"]
+jump sounds/DOOR_OPEN
+[wait time="1.0"]
+join pup
+Пёс сидит у твоего порога с сумкой в зубах.
+if {GameVariables.met_pup} == false:
+	protagonist: Э-э... привет?
+	protagonist: Могу я... э-э... помочь?
+leave pup
+jump sounds/BOX
+Он бросает сумку к твоим ногам.
+join pup [extra_data="set Style/Normal"]
+jump sounds/BARK_2
+pup: Гав!
+Пёс выжидающе смотрит на тебя.
+- Дать ему еду | [if {Items.GetQuantity('leftovers')} > 0]
+	set GameVariables.relationship_change = 5
+	jump stat_change/RELATIONSHIP_DOG_INCREASE
+- Погладить его | [if {GameVariables.get_dexterity()} > 2]
+	set GameVariables.relationship_change = 1
+	jump stat_change/RELATIONSHIP_DOG_INCREASE
+- Ничего не делать
+jump sounds/BARK_1
+pup: Гав!
+leave pup
+jump sounds/GOT_ITEM
+if {Items.GetDeliveryCount()} == 1:
+	Получен [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color]!
+elif {Items.GetDeliveryCount()} == 2:
+	Получены [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color] и [color=ffce65]{Items.GetDeliveryItems()[1].Name}[/color]!
+elif {Items.GetDeliveryCount()} == 3:
+	Получены [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color], [color=ffce65]{Items.GetDeliveryItems()[1].Name}[/color] и [color=ffce65]{Items.GetDeliveryItems()[2].Name}[/color]!
+else:
+	Получены предметы с [color=ffce65]PeepTube[/color]!
+[signal arg="delivery"]
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
+set GameVariables.met_pup = true
+return

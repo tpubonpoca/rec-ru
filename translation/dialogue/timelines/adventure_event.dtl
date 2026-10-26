@@ -1,0 +1,112 @@
+label START #id:119
+set GameVariables.running_event = {GameVariables.load_random_running_event()}
+if {GameVariables.running_event} == "nothing":
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: {GameVariables.get_area_yuna_comment()}
+	else:
+		{GameVariables.get_area_description()}
+	jump adventure/LOOP
+if {GameVariables.running_event} == "found_credits":
+	if {BattleVariables.level} == 1:
+		set {dice} = range(50, 200).pick_random()
+	if {BattleVariables.level} == 2:
+		set {dice} = range(200, 500).pick_random()
+	if {BattleVariables.level} == 3:
+		set {dice} = range(500, 1000).pick_random()
+	if {BattleVariables.level} == 4:
+		set {dice} = range(1000, 5000).pick_random()
+	Краем глаза ты замечаешь что-то блестящее. #id:11a
+	jump sounds/GOT_CREDITS
+	Ты нашёл [color=e5be3e]{dice} кредитов[/color]! #id:bff
+	set GameVariables.credits = {GameVariables.change_credits({dice})}
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Ого! Отличная находка! #id:120
+	jump adventure/LOOP
+if {GameVariables.running_event} == "freezing":
+	[sound path="res://audio/battle/Wind.ogg" bus="Cutscene" volume="0.0"]
+	Порыв ветра пробирает тебя до костей.
+	protagonist: Это... мороз...
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Tired"]
+		roommate: Надо было взять свитер...
+	set GameVariables.stamina = {GameVariables.change_stamina(-5)}
+	jump stat_change/STAMINA_DECREASE
+	jump adventure/LOOP
+if {GameVariables.running_event} == "overheating":
+	[sound path="res://audio/battle/Fire.ogg" bus="Cutscene" volume="0.0"]
+	Солнце сегодня будто светит на тебя особенно сильно. #id:125
+	protagonist: Надо было нанести больше солнцезащитного крема. #id:126
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Tired"]
+		roommate: Уф. Отстой. #id:127
+	set GameVariables.stamina = {GameVariables.change_stamina(-10)}
+	jump stat_change/STAMINA_DECREASE
+	jump adventure/LOOP
+if {GameVariables.running_event} == "resting":
+	Ты находишь скамейку под небольшим клочком тени. #id:121
+	protagonist: Это место кажется неплохим, чтобы отдохнуть...
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Ура! Тень! #id:123
+	set GameVariables.stamina = {GameVariables.change_stamina(3)}
+	jump stat_change/STAMINA_INCREASE
+	jump adventure/LOOP
+if {GameVariables.running_event} == "shortcut":
+	Ты нашёл альтернативный путь к своей цели!
+	[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+	Пропущен дополнительный [color=e5be3e]этап[/color]!
+	if {GameVariables.yuna_partnered}:
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Ого, срезка!
+	set {BattleVariables.stage} += 1
+	jump adventure/LOOP
+if {GameVariables.running_event} == "vending":
+	join decorations [extra_data="set Items/VendingMachine" mirrored="true"]
+	Ты оказываешься перед торговым автоматом. #id:c00
+	protagonist: Может, прихватить чего-нибудь на вынос... #id:c01
+	if {GameVariables.yuna_partnered}:
+		roommate: О! Что ты будешь брать? #id:c02
+	jump VENDING_MACHINE
+label VENDING_MACHINE #id:c03
+[signal arg="load_vending_machine"]
+label OPTIONS
+- {GameVariables.vending_machine_items[0].Name} ({GameVariables.vending_machine_items[0].Cost / 2})
+	if {GameVariables.vending_machine_items[0].Cost / 2} > GameVariables.credits:
+		jump CAN_NOT_AFFORD
+	[signal arg="buy_item_0"]
+	jump sounds/VENDING
+	[wait time="5.0"]
+	jump sounds/GOT_ITEM
+	Ты купил [color=e5be3e]{GameVariables.vending_machine_items[0].Name}[/color]!
+	jump FINISHED_BUYING
+- {GameVariables.vending_machine_items[1].Name} ({GameVariables.vending_machine_items[1].Cost / 2})
+	if {GameVariables.vending_machine_items[1].Cost / 2} > GameVariables.credits:
+		jump CAN_NOT_AFFORD
+	[signal arg="buy_item_1"]
+	jump sounds/VENDING
+	[wait time="5.0"]
+	jump sounds/GOT_ITEM
+	Ты купил [color=e5be3e]{GameVariables.vending_machine_items[1].Name}[/color]!
+	jump FINISHED_BUYING
+- {GameVariables.vending_machine_items[2].Name} ({GameVariables.vending_machine_items[2].Cost / 2})
+	if {GameVariables.vending_machine_items[2].Cost / 2} > GameVariables.credits:
+		jump CAN_NOT_AFFORD
+	[signal arg="buy_item_2"]
+	jump sounds/VENDING
+	[wait time="5.0"]
+	jump sounds/GOT_ITEM
+	Ты купил [color=e5be3e]{GameVariables.vending_machine_items[2].Name}[/color]!
+	jump FINISHED_BUYING
+- Уйти #id:c0c
+	Ты решаешь ничего не брать. #id:c0d
+	leave decorations
+	jump adventure/LOOP
+label CAN_NOT_AFFORD
+protagonist: Мне это не по карману...
+jump OPTIONS
+label FINISHED_BUYING #id:c0e
+leave decorations
+Ты забираешь свои вещи и уходишь. #id:c0f
+jump adventure/LOOP

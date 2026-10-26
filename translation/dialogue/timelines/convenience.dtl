@@ -1,0 +1,118 @@
+label SHIFT_START
+set GameVariables.random_name = "Кассир"
+[music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-24.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/se/StoreAmbience.ogg" channel="2" fade="1.0" volume="0.0" bus="Cutscene"]
+[background arg="res://assets/Cutscene/Backgrounds/Convenience_Store.png" fade="0.6"]
+jump sounds/BELL_CONVENIENCE
+elif {GameVariables.is_shift_ended} == false and {GameVariables.is_first_shift} == true:
+	jump SHIFT_BEGINNING_FIRST_TIME
+elif {GameVariables.is_shift_ended} == false and {GameVariables.is_first_shift} == false:
+	jump SHIFT_BEGINNING
+elif {GameVariables.is_shift_ended} == true:
+	jump SHIFT_ENDING
+label SHIFT_BEGINNING_FIRST_TIME
+join random [extra_data="set Style/Female"]
+random: О, привет! Ты на ночную смену?
+random: Отлично, надевай это...
+jump sounds/CLOTH
+Она передаёт тебе форму.
+random: Сегодня вечером ты будешь за кассой...
+random: Всё, что нужно — принимать оплату от покупателей и давать правильную сдачу...
+random: Я оставил небольшую [color=e5be3e]записку у кассы[/color], она должна помочь.
+protagonist: О... ты тоже не будешь в смене?
+random: Нет, только ты! Я сейчас пойду на перерыв.
+random: Но ты справишься — это довольно просто... и я вернусь до конца твоей смены.
+protagonist: Ах... ладно...
+random: Удачи!
+leave random
+jump z_functions/END_TO_CONVENIENCE
+
+label SHIFT_BEGINNING
+join random [extra_data="set Style/Female"]
+random: О, привет! Ты на ночную смену?
+random: Отлично! Тогда вернусь через пару часов!
+leave random
+jump z_functions/END_TO_CONVENIENCE
+
+label SHIFT_ENDING
+Ты заканчиваешь смену.
+join random [extra_data="set Style/Female"]
+random: Эй, как прошло?
+jump sounds/CASH
+Управляющий проверяет кассу и чеки.
+if {GameVariables.shift_rating} <= 1:
+	random: Хмм... похоже, тебе нужно больше тренировок.
+if {GameVariables.shift_rating} == 2:
+	random: Что ж, это не худшее, что я видел...
+if {GameVariables.shift_rating} == 3:
+	random: Неплохо...
+if {GameVariables.shift_rating} == 4:
+	random: Отличная работа!
+if {GameVariables.shift_rating} == 5:
+	random: Ого... идеально!
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=ff934d]+{GameVariables.shift_charisma_xp} опыта харизмы![/color]
+set GameVariables.charisma_total_xp += {GameVariables.shift_charisma_xp}
+jump sounds/GOT_CREDITS
+set GameVariables.credits += {GameVariables.shift_wage}
+Заработано [color=e5be3e]{GameVariables.shift_wage} кредитов[/color]!
+jump z_functions/END_TO_UPGRADE
+
+label APPLICATION
+if {BattleVariables.is_night_run()} == true:
+	return
+if {GameVariables.has_skill('convenience_store')} == true:
+	return
+jump sounds/MUSIC_FADEOUT
+jump sounds/STOMACH
+protagonist: Ах... мой желудок...
+if {GameVariables.yuna_partnered}:
+	roommate: Ты в порядке?
+	protagonist: Да... думаю, мне просто нужно быстро заскочить в уборную.
+	roommate: Конечно!
+	leave roommate
+Ты заходишь в ближайший магазин у дома.
+set GameVariables.random_name = "Кассир"
+[music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-24.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/se/StoreAmbience.ogg" channel="2" fade="1.0" volume="0.0" bus="Cutscene"]
+[background arg="res://assets/Cutscene/Backgrounds/Convenience_Store.png" fade="0.6"]
+jump sounds/BELL_CONVENIENCE
+[wait time="2.0"]
+[sound bus="Cutscene" path="res://audio/se/Toilet.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Washing.ogg"]
+[wait time="3.0"]
+protagonist: Фух... кризис миновал.
+По пути ты решаешь купить бутылку воды у стойки.
+join random [extra_data="set Style/Female"]
+jump sounds/CASH
+random: Вот ваша сдача, сэр.
+random: Кстати...
+random: Не интересует ли тебя подработка?
+protagonist: Трудоустройство? В смысле... работа?
+random: Ага! Мы ищем кого-то, кто заполнит некоторые ранние ночные смены...
+random: Смена довольно короткая... и платят тоже вполне щедро!
+protagonist: Эх...
+protagonist: ...Я не знаю...
+jump sounds/PAGE_FLIP
+Она передаёт тебе бумагу с кучей деталей.
+random: Слушай, никто не заставляет решать сразу...
+random: Только взгляни на эту фотографию, когда будет время.
+leave random
+Ты бросаешь взгляд на бумагу, которую только что вручил кассир.
+jump sounds/PAGE_FLIP
+join decorations center [extra_data="set Items/Letter"]
+protagonist: (Хм... должно быть, они совсем отчаялись.)
+protagonist: (...)
+protagonist: (Похоже, мне даже подавать заявку не нужно.)
+protagonist: (Может, взять пару смен, если нужны деньги?)
+[signal arg="unlock_convenience_store"]
+[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+[color=e5be3e]Теперь ты можешь работать в магазине![/color]
+[color=e5be3e]Вечером теперь можно пропустить ночную смену и поработать в магазине.[/color]
+leave decorations
+if {GameVariables.yuna_partnered}:
+	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
+	roommate: Пойдём?
+return

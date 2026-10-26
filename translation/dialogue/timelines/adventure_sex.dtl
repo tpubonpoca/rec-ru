@@ -1,0 +1,71 @@
+label START
+[signal arg="default_style"]
+protagonist: {roommate_name} не со мной... возможно, у меня есть шанс.
+- Сексуальная психопатка | [if {BattleVariables.is_enemy_sexable_by_id("psycho")}]
+	jump sounds/MUSIC_FADEOUT
+	jump PSYCHO
+- Отмена
+	jump adventure/LOOP
+label PSYCHO
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_psycho"]
+Пытаясь нащупать другие предметы, ты внезапно чувствуешь, как руку хватает чья-то рука.
+jump sounds/SURPRISE
+Огромная сила прижимает тебя к земле.
+Прежде чем ты успеваешь среагировать, ты чувствуешь, как кто-то садится тебе на бёдра.
+join enemy center [extra_data="set Container/Type/Psycho"]
+enemy: Лежи смирно, щегол, и попробуй только кончить за секунду.
+jump sounds/CLOTH
+Ты чувствуешь тепло руки на своём члене.
+Ощущение кончиков пальцев щекочет, когда они скользят по твоему стволу.
+leave enemy
+Внезапно ты чувствуешь, как твой стержень обволакивает иное, но знакомое тепло.
+join scene [extra_data="set Enemy/Psycho"]
+enemy: Не рыпайся, тебе понравится, сучонок.
+label PSYCHO_SLOW
+[signal arg="play_slow"]
+Она медленно начинает двигаться туда-сюда.
+protagonist: ...ах!
+[wait time="3.0"]
+- Так же
+	jump PSYCHO_SLOW
+- Быстрее
+	jump PSYCHO_MEDIUM
+label PSYCHO_MEDIUM
+[signal arg="play_medium"]
+protagonist: Продолжай... ещё...!
+[wait time="3.0"]
+- Медленнее
+	jump PSYCHO_SLOW
+- Быстрее
+	jump PSYCHO_FAST
+label PSYCHO_FAST
+[signal arg="play_fast"]
+protagonist: ...да!
+[wait time="3.0"]
+- Медленнее
+	jump PSYCHO_MEDIUM
+- Кончить
+	jump PSYCHO_FINISH
+label PSYCHO_FINISH
+protagonist: Я... почти...
+protagonist: ...ах!
+[signal arg="play_climax"]
+set GameVariables.lust = 0
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+[wait time="2.0"]
+Ты чувствуешь, как с каждым толчком пульсация постепенно ослабевает.
+После последней судороги она ослабляет хватку и встаёт.
+leave scene
+join enemy center [extra_data="set Container/Type/Psycho"]
+enemy: До скорого, красавчик.
+leave enemy
+jump adventure/LOOP

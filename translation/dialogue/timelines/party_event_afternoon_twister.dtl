@@ -1,0 +1,102 @@
+set {GameVariables.party_stage} = 2
+jump sounds/INDOOR_APARTMENT_PARTY
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+Каким-то образом тебе удаётся оказаться в игре в твистер с {roommate_name}. #id:7f1
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_psycho"]
+join enemy [extra_data="set Container/Type/Psycho" mirrored="true"]
+join roommate
+jump sounds/FLICK
+Дама с повязкой на глазу щёлкает по колесу. #id:981
+enemy: Ладно... правая рука на жёлтый! #id:7f3
+roommate: Жёлтый... посмотрим. #id:7f4
+roommate: Ага! #id:7f5
+leave roommate
+{roommate_name} наклоняется, чтобы поставить руку на коврик для игры. #id:982
+leave enemy
+join scene [extra_data="set Scene/DoggystyleClothed"]
+[signal arg="play_clothed"]
+protagonist: (Она в очень... шатком положении.) #id:983
+join enemy [extra_data="set Container/Type/Psycho" mirrored="true"]
+enemy: Ладно. #id:7f8
+enemy: Ты готов, {GameVariables.player_name}? Я снова раскручу колесо. #id:fcb
+protagonist: Ага, готов! #id:7fa
+jump sounds/FLICK
+enemy: Посмотрим... #id:7fc
+enemy: Левая нога... на синий! #id:984
+protagonist: (Похоже, мне придётся встать прямо за {roommate_name}.) #id:fcc
+protagonist: (Была не была.) #id:7ff
+set GameVariables.difficulty_class = 9
+jump stat_change/ROLL_DEXTERITY
+leave enemy
+Ты пытаешься обойти {roommate_name}. #id:986
+if {GameVariables.successful_roll} == false:
+	К сожалению, недостаток Ловкости тебя подводит. #id:987
+	jump sounds/SURPRISE
+	leave scene
+	protagonist: Уф! #id:802
+	join scene [extra_data="set Scene/ProneBoneClothed"]
+	roommate: Ай! #id:804
+	protagonist: ...! #id:805
+	protagonist: (Ого... как приятно.) #id:806
+	protagonist: (Может, проигрыш был не так уж плох?) #id:807
+	roommate: ... #id:808
+	roommate: ...ладно, можешь уже слезть с меня. #id:809
+	protagonist: О, извини! #id:80a
+	leave scene
+	join enemy [extra_data="set Container/Type/Psycho" mirrored="true"]
+	join roommate
+	enemy: Ладно, игра окончена! #id:80b
+	enemy: Ты проиграл, {GameVariables.player_name}. #id:fcd
+	enemy: Пора выпить, как и обещал! #id:80d
+	protagonist: Уф. Ладно. #id:80e
+	jump sounds/GULP
+	[wait time="1.0"]
+	jump sounds/GULP
+	[wait time="1.0"]
+	jump sounds/GULP
+	[wait time="1.0"]
+	jump stat_change/DRUNK_INCREASE
+	jump passout/CHECK_PASSOUT
+	jump stat_change/DRUNK_INCREASE
+	jump passout/CHECK_PASSOUT
+	roommate: Мне надоедает эта игра. #id:80f
+	roommate: Давай сыграем во что-нибудь другое... #id:810
+else:
+	[signal arg="play_clothed_rubbing"]
+	Твоя впечатляющая Ловкость позволяет легко достать ногой до синей точки. #id:988
+	protagonist: (Ого. Приятное чувство.) #id:812
+	roommate: ... #id:813
+	roommate: ...алло? #id:814
+	join enemy [extra_data="set Container/Type/Psycho" mirrored="true"]
+	enemy: О, да! Пора крутить. Извини. #id:815
+	roommate: Быстрее... пожалуйста... я не могу больше держаться в этой позе... #id:816
+	jump sounds/FLICK
+	enemy: Посмотрим... #id:989
+	roommate: Я соскальзываю... #id:819
+	leave enemy
+	jump sounds/SURPRISE
+	leave scene
+	{roommate_name} поскальзывается и падает вперёд, утягивая тебя за собой. #id:98a
+	join scene [extra_data="set Scene/ProneBoneClothed"]
+	roommate: Ай... #id:81a
+	protagonist: (...это приятно.) #id:98b
+	roommate: ...ладно, можешь уже слезть с меня. #id:809
+	protagonist: Сейчас, извини! #id:98c
+	leave scene
+	join enemy [extra_data="set Container/Type/Psycho" mirrored="true"]
+	join roommate
+	enemy: Ладно, игра окончена! #id:81b
+	enemy: Ты проиграла, {roommate_name}. #id:81c
+	enemy: Пора выпить, как и обещала! #id:81d
+	roommate: Блин. #id:81e
+	enemy: И ты! #id:81f
+	enemy: Это были впечатляющие... движения. #id:820
+	enemy: ... #id:821
+	enemy: Какая у тебя рутина, чтобы стать более... гибким? #id:98d
+	jump sounds/GULP
+	Ты стараешься не сглотнуть ком в горле, отвечая. #id:98e
+	protagonist: Что ж... #id:98f
+	[signal arg="unlock_party_cutscene"]
+	jump stat_change/IMPRESSION_INCREASE
+jump party_checkpoints/ADVANCE_PARTY

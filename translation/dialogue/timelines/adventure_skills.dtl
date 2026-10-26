@@ -1,0 +1,172 @@
+label START #id:14b
+[signal arg="skill_activate"]
+[signal arg="skill_prep_sound"]
+[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]{BattleVariables.acting_enemy.LoadedSkill.Description}
+if {BattleVariables.enemy_turn_index} == 0 && {BattleVariables.acting_enemy.LoadedSkill.PrepQuote} != "":
+	enemy: {BattleVariables.acting_enemy.LoadedSkill.PrepQuote} #id:10a0
+if {BattleVariables.enemy_turn_index} == 1 && {BattleVariables.acting_enemy.LoadedSkill.PrepQuote} != "":
+	enemy_2: {BattleVariables.acting_enemy.LoadedSkill.PrepQuote} #id:10a1
+if {BattleVariables.acting_enemy.LoadedSkill.IsPreparing()}:
+	jump adventure_functions/END_ENEMY_TURN
+if {BattleVariables.acting_enemy.LoadedSkill.ShouldDelay()}:
+	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 0:
+		enemy: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color] теперь загружен.
+	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 1:
+		enemy_2: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color] теперь загружен.
+	jump adventure_functions/END_ENEMY_TURN
+[signal arg="skill_use_sound"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().DelayBeforeEffect}:
+	if {BattleVariables.acting_enemy.GetLoadedSkill().DelayLongerEffect}:
+		[wait time="3.0"]
+	else:
+		[wait time="0.6"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().UsageGreenEffect}:
+	[signal arg="vision_green"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().UsageRedEffect}:
+	[signal arg="vision_red"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().UsageWhiteEffect}:
+	[signal arg="screenshot"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().UsageShakeEffect}:
+	[signal arg="shake"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().UsageShakeEffectIncludeSound}:
+	[sound bus="Cutscene" volume="-3.0" path="res://audio/se/Hit1.ogg"]
+[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] использует [color=ff3f49]{BattleVariables.acting_enemy.GetLoadedSkill().Name}[/color]!
+if {BattleVariables.enemy_turn_index} == 0 && {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} != "":
+	enemy: {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} #id:10a3
+if {BattleVariables.enemy_turn_index} == 1 && {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} != "":
+	enemy_2: {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} #id:10a4
+if {BattleVariables.acting_enemy.GetLoadedSkill().PowerUpSound}:
+	[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+if {BattleVariables.acting_enemy.GetLoadedSkill().PowerUpDescription} != "":
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]{BattleVariables.acting_enemy.GetLoadedSkill().PowerUpDescription}
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().DoesDamage}:
+	jump adventure_functions/GUARD_MESSAGE
+	Ты потерял [color=ff3f49]{BattleVariables.take_damage(BattleVariables.acting_enemy.GetLoadedSkill().DamageMultiplier)}[/color] выносливости. #id:10a6
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().CreditPercentageStolen} > 0:
+	jump sounds/BATTLE_STUN
+	[signal arg="shake"]
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] украл(а) у тебя [color=e5be3e]{BattleVariables.steal_money()}[/color] кредитов!
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Stun} > 0:
+	if {BattleVariables.player_is_defending}:
+		Ты избежал оглушения! #id:10a8
+	else:
+		jump sounds/BATTLE_STUN
+		[signal arg="shake"]
+		Теперь ты оглушён! #id:14f
+		set BattleVariables.player_is_stunned = true
+		set BattleVariables.player_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().Stun}
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().StunPartner} > 0 && {GameVariables.yuna_partnered}:
+	jump sounds/BATTLE_STUN
+	[signal arg="shake"]
+	update roommate [extra_data="set Expressions/Tired, show Decorations/Sweat"]
+	Юна теперь оглушена!
+	set BattleVariables.yuna_is_stunned = true
+	set BattleVariables.yuna_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().StunPartner}
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().PoisonTickDamage} > 0:
+	jump sounds/BATTLE_POISON
+	[signal arg="shake"]
+	Теперь ты отравлен! #id:153
+	set BattleVariables.poison_tick_damage += {BattleVariables.acting_enemy.GetLoadedSkill().PoisonTickDamage}
+	set BattleVariables.poison_turns += {BattleVariables.acting_enemy.GetLoadedSkill().PoisonDuration}
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Healing} > 0:
+	[signal arg="skill_healing"]
+	[signal arg="heal_enemy"]
+	[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+	if {BattleVariables.acting_enemy.GetLoadedSkill().HealsAll} && {BattleVariables.are_multiple_enemies_alive()}:
+		[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] исцелил(а) себя и свою команду!
+	else:
+		[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] исцелил(а) себя!
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Flee} == true:
+	set BattleVariables.acting_enemy.RanAway = true
+	if {BattleVariables.enemy_turn_index} == 0
+		leave enemy
+	if {BattleVariables.enemy_turn_index} == 1
+		leave enemy_2
+	if {BattleVariables.are_enemies_alive()} == false:
+		jump adventure_functions/REWARDS
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Confusion} > 0:
+	if {BattleVariables.player_is_defending} == false:
+		set BattleVariables.player_is_confused = true
+		set BattleVariables.player_is_confused_duration = {BattleVariables.acting_enemy.GetLoadedSkill().Confusion}
+		Теперь ты в замешательстве!
+	else:
+		jump adventure_functions/GUARD_MESSAGE
+		Ты избежал замешательства!
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Jammed} > 0:
+	[signal arg="jam_abilities"]
+	set BattleVariables.player_is_jammed = true
+	set BattleVariables.player_is_jammed_duration = {BattleVariables.acting_enemy.GetLoadedSkill().Jammed}
+	Твоя способность использовать [color=e5be3e]{BattleVariables.get_jammed_ability()}[/color] теперь заблокирована!
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().Madness} == true:
+	if {BattleVariables.player_is_defending} == false:
+		set BattleVariables.player_is_mad = true
+		Теперь ты в безумии! #id:10ab
+	else:
+		jump adventure_functions/GUARD_MESSAGE
+		Ты избежал безумия! #id:10ac
+
+if {BattleVariables.acting_enemy.GetLoadedSkill().SummonEnemies.size()} > 0:
+	jump adventure_functions/SUMMON_ENEMY
+
+jump adventure_functions/END_ENEMY_TURN
+
+label PLAYER #id:164
+- Папарацци #id:165
+	if {BattleVariables.player_is_confused}:
+		jump adventure_functions/RANDOM_ABILITY
+	label PAPARAZZI
+	[sound bus="Cutscene" path="res://audio/se/Focusing1.ogg" volume="0.0"]
+	protagonist: Держи! #id:166
+	[sound bus="Cutscene" path="res://audio/se/Focusing2.ogg" volume="0.0"]
+	[wait time="0.5"]
+	[sound bus="Cutscene" path="res://audio/se/CameraFlash.ogg" volume="0.0"]
+	[signal arg="screenshot"]
+	if {BattleVariables.is_enemy_alive(0)}:
+		if {BattleVariables.enemies[0].IsPaparazziEffective()}:
+			enemy: {BattleVariables.enemies[0].PaparazziResponse} #id:10ad
+			jump sounds/BATTLE_STUN
+			set BattleVariables.target_index = 0
+			[signal arg="enemy_shake"]
+			[signal arg="stun_enemy"]
+			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] теперь оглушён(а)!
+		else:
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] не поддаётся оглушению!
+		if {BattleVariables.enemies[0].EmpoweredByPaparazzi}:
+			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] усиливается!
+		if {BattleVariables.enemies[0].EmpowermentHeals} > 0:
+			[signal arg="skill_healing"]
+			[signal arg="heal_enemy_empowerment"]
+	
+	if {BattleVariables.is_enemy_alive(1)}:
+		if {BattleVariables.enemies[1].IsPaparazziEffective()}:
+			enemy_2: {BattleVariables.enemies[1].PaparazziResponse} #id:10b1
+			jump sounds/BATTLE_STUN
+			set BattleVariables.target_index = 1
+			[signal arg="enemy_shake"]
+			[signal arg="stun_enemy"]
+			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] теперь оглушён(а)!
+		else:
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] не поддаётся оглушению!
+		if {BattleVariables.enemies[1].EmpoweredByPaparazzi}:
+			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] усиливается!
+		if {BattleVariables.enemies[1].EmpowermentHeals} > 0:
+			[signal arg="skill_healing"]
+			[signal arg="heal_enemy_empowerment"]
+	set BattleVariables.player_skill_charge = 0
+	jump adventure_battle/ENEMY_TURN
+- Назад #id:16a
+	jump adventure_battle/PLAYER_OPTIONS

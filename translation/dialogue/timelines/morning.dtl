@@ -1,0 +1,91 @@
+if {Items.GetDeliveryCount()} > 0 && {Items.IsDeliveryDay()}:
+	jump delivery/START
+label START #id:fb8
+set {GameVariables.yuna_partnered} = false
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+label READY
+protagonist: Кажется, этим утром у меня есть немного свободного времени. #id:377
+label CHOICES #id:378
+protagonist: Интересно, что мне делать... #id:379
+- Пойти на пробежку #id:37a
+	protagonist: Пожалуй, схожу на пробежку. #id:37b
+	set GameVariables.times_jogged += 1
+	if {Cutscenes.IsSceneSeen("event_relationship_40")}:
+		- Пригласить {roommate_name} #id:37c
+			set GameVariables.times_ran_together += 1
+			Ты решаешь сходить на пробежку со своей соседкой {roommate_name}. #id:37d
+			set {GameVariables.yuna_partnered} = true
+			jump sounds/DOOR_OPEN
+			[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+			join roommate center [extra_data="set Expressions/Happy"]
+			protagonist: Хочешь сходить на пробежку? #id:37e
+			roommate: Да, конечно! #id:37f
+			roommate: Дай мне секунду, я переоденусь. #id:380
+			leave roommate
+			join roommate center [extra_data="set Body/Workout"]
+			update roommate center [extra_data="set Expressions/Happy"]
+			roommate: Ладно, я готова! #id:381
+			leave roommate
+		- Бежать одному #id:382
+			Ты решаешь бежать одному. #id:383
+		- Отмена #id:10c4
+			jump CHOICES
+	jump adventure/START
+- Использовать предмет #id:89f
+	jump USE
+- Пройти на кухню #id:fb9
+	protagonist: Пожалуй, приготовлю себе что-нибудь поесть... #id:fba
+	jump kitchen/START
+- Отдых
+	jump REST
+label USE #id:8a0
+- Учёба #id:384
+	jump STUDY
+- Дождевая палочка | [if {Items.GetQuantity('rain_stick')} > 0] #id:8a1
+	set GameVariables.force_weather = {Weather.SetWeather('rain')}
+	set GameVariables.quantity = {Items.Decrement('rain_stick')}
+	jump sounds/SHAKER
+	Ты достаёшь дождевую палочку и начинаешь танцевать. #id:8a2
+	protagonist: Очень надеюсь, что это сработает... #id:8a3
+	jump z_functions/END_TO_UPGRADE
+- Назад #id:8a4
+	jump CHOICES
+label STUDY #id:388
+- Изучать Харизму | [if {Items.GetQuantity('book_of_charisma')} > 0] #id:389
+	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	join decorations center [extra_data="set Items/Book"]
+	Ты решаешь почитать книгу о навыках общения. #id:38a
+	Она даёт полезный список тем для разговора, чтобы удерживать интерес собеседника. #id:38b
+	set GameVariables.quantity = {Items.Decrement('book_of_charisma')}
+	jump stat_change/CHARISMA_STUDY
+	jump z_functions/END_TO_UPGRADE
+- Изучать Ловкость | [if {Items.GetQuantity('book_of_dexterity')} > 0] #id:38f
+	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	join decorations center [extra_data="set Items/Book"]
+	Ты решаешь почитать книгу по искусству и ремёслам. #id:390
+	В разделе оригами тебя учат складывать журавлика, кошку и слона. #id:391
+	set GameVariables.quantity = {Items.Decrement('book_of_dexterity')}
+	jump stat_change/DEXTERITY_STUDY
+	jump z_functions/END_TO_UPGRADE
+- Изучать Интеллект | [if {Items.GetQuantity('book_of_intelligence')} > 0] #id:395
+	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	join decorations center [extra_data="set Items/Book"]
+	Ты решаешь почитать книгу о приёмах учёбы. #id:396
+	Некоторые из предложенных в книге советов могут пригодиться в следующий раз, когда решишь позаниматься. #id:397
+	set GameVariables.quantity = {Items.Decrement('book_of_intelligence')}
+	jump stat_change/INTELLIGENCE_STUDY
+	jump z_functions/END_TO_UPGRADE
+- Вернуться #id:39b
+	jump USE
+label REST
+- Поспать подольше
+	protagonist: Пожалуй, посплю ещё немного... #id:10c6
+	set GameVariables.stamina = {StateVariables.RecoverStaminaFromNap()}
+	jump stat_change/STAMINA_INCREASE
+	jump z_functions/END_TO_UPGRADE
+- Подрочить
+	protagonist: Я чувствую некоторое напряжение...
+	jump morning_jerk/START
+- Назад
+	jump CHOICES

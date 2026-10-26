@@ -1,0 +1,131 @@
+set GameVariables.party_stage = 0
+[signal arg="reset_enemies"]
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+Сейчас утро пятницы. #id:b52
+if GameVariables.day > 5:
+	jump SKIP
+jump sounds/DOORBELL
+[wait time="0.5"]
+protagonist: ...? #id:b53
+protagonist: Кто бы это мог быть? #id:825
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+join crowd [extra_data="set Size/Small"]
+Войдя в гостиную, ты замечаешь нескольких незнакомых людей. #id:b54
+protagonist: ...А? #id:b55
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.6"]
+[wait time="0.5"]
+join manager [mirrored="true"]
+protagonist: Привет, {manager_name}. #id:b56
+protagonist: Что-то происходит? В чём дело? #id:b57
+manager: О, привет, {GameVariables.player_name}! #id:fdb
+manager: Некоторые приходят пораньше, чтобы помочь подготовить вечеринку. #id:828
+protagonist: Вечеринка? Какая вечеринка? #id:b59
+{manager_name} на миг странно смотрит на тебя. #id:b5a
+manager: Ты не знал? #id:b5b
+manager: Странно. Готов поклясться, что рассказывал тебе об этом на прошлой неделе. #id:b5c
+protagonist: (...Ах, чёрт.) #id:b5d
+protagonist: (Вообще-то, я припоминаю, как {manager_name} говорил что-то подобное.) #id:b5e
+protagonist: (...Я особо не слушал, потому что он опять завёл свою шарманку про мыло.) #id:b5f
+jump sounds/DOOR_OPEN
+[wait time="1.0"]
+[signal arg="load_enemy_bro"]
+join enemy [extra_data="set Container/Type/Dude"]
+[wait time="0.5"]
+enemy: Йооооу, как дела, пацаны? #id:830
+protagonist: ... #id:831
+protagonist: ...! #id:832
+jump sounds/ADVENTURE_MUSIC
+[wait time="1.5"]
+[music path="" channel="3" fade="0.5" volume="-18.0"]
+enemy: Успокойся, чувак. Я здесь не драться. #id:833
+enemy: Я здесь, чтобы ТУСОВАТЬ! #id:b60
+protagonist: ... #id:836
+manager: Эм, вы двое знакомы? #id:837
+protagonist: Только мимоходом. #id:838
+jump sounds/KEG
+join decorations [extra_data="set Items/Keg"]
+enemy: Как бы то ни было, вот бочонок, который ты хотел, {manager_name}. #id:b61
+enemy: Внизу у меня есть ещё несколько, так что я сейчас вернусь, братишки. #id:83b
+jump sounds/MOVE_INDOORS
+leave decorations
+leave enemy
+protagonist: ... #id:83c
+protagonist: ...чем я могу помочь? #id:83d
+manager: Обязательно! Сейчас подойду за тобой. #id:fdc
+{manager_name} кричит в коридор качку. #id:b63
+manager: Погоди! Я помогу занести бочонки наверх. #id:840
+jump sounds/MOVE_INDOORS
+leave manager
+jump sounds/DOOR_CLOSE
+{manager_name} выходит из комнаты. #id:b64
+protagonist: ... #id:844
+protagonist: ...Наверное, стоит помочь убрать гостиную. #id:b65
+Прежде чем ты успеваешь пошевелиться, ты замечаешь, как в квартиру входит молодой человек. #id:846
+jump sounds/DOOR_OPEN
+join yosuke
+[wait time="0.5"]
+protagonist: (Что это за куртка такая?) #id:b66
+protagonist: (Этот парень одевается так, будто он из другой эпохи.) #id:b67
+Молодой человек быстро оглядывает комнату, будто кого-то ищет. #id:b68
+Похоже, он пришёл без других гостей. #id:b69
+protagonist: Эм... #id:84a
+protagonist: ...добро пожаловать? #id:84b
+yosuke: ...! #id:84d
+yosuke: Ты {GameVariables.player_name}? #id:fdd
+protagonist: Да, это я. Мы знакомы? #id:b6a
+yosuke: Нет. #id:b6b
+yosuke: ...вообще-то, я уже давно искал возможность с тобой познакомиться. #id:853
+yosuke: Было трудно, я ведь не знала, как ты выглядишь... но... #id:854
+Он на мгновение замолкает, будто тщательно обдумывая слова. #id:855
+yosuke: Знаю, это может показаться странным, но мне нужно поговорить с тобой наедине. #id:856
+protagonist: Эм... конечно? Хочешь поговорить в гостиной? #id:859
+yosuke: Нет. Не здесь. #id:85a
+protagonist: Если дело в людях вокруг, мы всегда можем поговорить в коридоре. #id:b6c
+yosuke: Извини, я неясно выразился. #id:b6d
+yosuke: Я имел в виду не «здесь» в смысле квартиры. Я имел в виду «здесь» в смысле самого здания. #id:b6e
+yosuke: Встреться со мной в парке вечером, когда в следующий раз будешь свободен. #id:fde
+protagonist: Э-э... конечно, пожалуй? #id:85e
+yosuke: Ладно. Тогда я пойду. #id:860
+Мгновение он странно смотрит на тебя, будто изучая твоё лицо. #id:862
+yosuke: Тогда было приятно познакомиться. #id:863
+protagonist: Эм... взаимно? #id:864
+jump sounds/DOOR_CLOSE
+leave yosuke
+protagonist: ...что за чёрт? #id:b6f
+protagonist: Похоже, у парня серьёзные проблемы с доверием. #id:b70
+protagonist: По крайней мере, лучше, что он хочет встретиться в парке. #id:b71
+protagonist: ...не какой-нибудь тёмный переулок. #id:b72
+Ты ещё немного думаешь об этом странном взаимодействии. #id:b73
+protagonist: ..что ж, нет смысла слоняться без дела. #id:869
+protagonist: Наверное, стоит готовиться к вечеринке. #id:86a
+jump TUTORIAL
+label SKIP #id:b74
+protagonist: Сегодня день вечеринки! #id:b75
+protagonist: Наверное, стоит сходить за напитками. #id:b76
+label TUTORIAL #id:b77
+Хочешь прочитать руководство по вечеринке? #id:86b
+- Да #id:86c
+- Нет #id:86d
+	jump party_checkpoints/ADVANCE_PARTY
+Каждую первую пятницу у тебя будет возможность посетить вечеринку в квартире. #id:86e
+Твоя главная цель — дожить до конца ночи, не исчерпав выносливость. #id:86f
+Твоя вторая цель — оставить хорошее Впечатление у гостей. #id:870
+Две основные характеристики, определяющие твой успех, — это Опьянение и Впечатление. #id:871
+Успешные взаимодействия могут повышать общее Впечатление. #id:872
+Самой частой проверкой характеристик для этих взаимодействий обычно будет Харизма. #id:873
+У опьянения есть три основных качества\: #id:874
+Во-первых, это повысит твою Харизму, если ты лишь слегка пьян. #id:875
+Это также снизит твою Ловкость/Харизму/Интеллект, если ты слишком пьян. #id:876
+Во-вторых, будучи пьяным, можно произвести лучшее Впечатление в некоторых ситуациях. #id:877
+В других ситуациях это может дать обратный эффект. #id:878
+В-третьих, каждый выпитый напиток стоит тебе выносливости! Чем больше ты пьян, тем больше выносливости тратится на каждый следующий! #id:879
+Итак, подытожим\: #id:87a
+1) Постарайся дожить до конца ночи, не вырубившись. #id:87b
+2) Постарайся оставить хорошее Впечатление у гостей. #id:87c
+3) Постарайся управлять своим Опьянением, чтобы выжать максимум из способностей и не получить слишком много штрафов. #id:87d
+И наконец, если ты дотянешь до конца ночи с хорошим Впечатлением, тебя могут ждать уникальные награды. #id:87e
+Удачи! #id:87f
+jump party_checkpoints/ADVANCE_PARTY

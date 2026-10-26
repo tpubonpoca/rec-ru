@@ -1,0 +1,9 @@
+[background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.0"]
+Спасибо, что играл в демо! #id:18b
+К сожалению, ни одна из концовок пока не завершена. #id:18c
+Надеемся, ты продолжишь следить за игрой по мере её разработки. #id:18d
+Буду очень признателен, если ты подпишешься на мои соцсети. #id:18e
+Спасибо! -moondev #id:18f
+[signal arg="end_game"]
+[wait time="1.0"]
+[end_timeline]

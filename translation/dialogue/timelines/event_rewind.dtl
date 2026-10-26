@@ -1,0 +1,180 @@
+set GameVariables.phase = "EVENING"
+jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.0"]
+[wait time="1.0"]
+protagonist: Поверить не могу, что завтра снова школа. #id:286
+protagonist: ...отвратительно. #id:287
+join decorations center [extra_data="set Items/Camera"]
+protagonist: У меня едва было время поиграть с новой игрушкой. #id:288
+protagonist: Вообще-то... #id:289
+protagonist: Даже иметь такую камеру немного странно. #id:28a
+protagonist: Разве эта технология не очень продвинутая? #id:28b
+protagonist: Я никогда не слышал о камере, которая автоматически загружает свои записи. #id:28c
+protagonist: ...не говоря уже о камере, которая тебе ещё и платит. #id:28d
+leave decorations
+protagonist: Я пробовал поискать в интернете про эту камеру, но ничего толком не нашёл. #id:28e
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+join decorations center [extra_data="set Items/Phone"]
+protagonist: И про PeepTube тоже ни слова. #id:28f
+protagonist: Откуда возьмутся деньги? #id:290
+protagonist: И кто вообще прислал мне камеру? #id:291
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+leave decorations
+protagonist: ... #id:292
+protagonist: ...? #id:293
+join decorations center [extra_data="set Items/CameraBlinking"]
+protagonist: Что это? #id:294
+protagonist: На камере мигает кнопка. #id:295
+protagonist: ...мне нажать? #id:296
+- Нажать кнопку #id:297
+	Ты нажимаешь кнопку. #id:298
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]...*бип*[/color] #id:299
+camera: [color=e5be3e]Запрос на перемотку инициирован.[/color] #id:29a
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]*бип*[/color] #id:29b
+camera: [color=e5be3e]...запрос подтверждён.[/color] #id:29c
+protagonist: А? #id:29d
+[music path="res://audio/se/Warning.ogg" channel="3" fade="0.0" volume="-18.0"]
+camera: [color=e5be3e]Пожалуйста, оставайтесь в комнате следующие несколько секунд.[/color] #id:29e
+camera: [color=e5be3e]Выход из комнаты может привести к нежелательной потере конечностей.[/color] #id:29f
+protagonist: ...потеря конечностей? #id:2a0
+protagonist: Что это за шум, чёрт возьми? #id:2a1
+protagonist: Что, чёрт возьми, происходит?!? #id:2a2
+camera: [color=e5be3e]Последовательность начнётся через 5.[/color] #id:2a3
+protagonist: Эй, погоди секунду— #id:2a4
+camera: [color=e5be3e]4... 3...[/color] #id:2a5
+protagonist: Где у этой штуки кнопка «стоп»? #id:2a6
+camera: [color=e5be3e]2...[/color] #id:2a7
+protagonist: Как это остановить? ПОМОГИТЕ! #id:2a8
+camera: [color=e5be3e]1...[/color] #id:2a9
+[signal arg="start_rewind"]
+[music channel="3" fade="0.0"]
+[music path="res://audio/se/Rewind.ogg" fade="0.6"]
+[music channel="1" fade="0.0"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+set GameVariables.phase = "MORNING"
+[wait time="1.0"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.8"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "СБ."
+[wait time="0.8"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.8"]
+set GameVariables.phase = "MORNING"
+[wait time="0.8"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.6"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ПТ."
+[wait time="0.6"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
+set GameVariables.phase = "MORNING"
+[wait time="0.6"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.4"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ЧТ."
+[wait time="0.4"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.4"]
+set GameVariables.phase = "MORNING"
+[wait time="0.4"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.2"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "СР."
+[wait time="0.2"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.2"]
+set GameVariables.phase = "MORNING"
+[wait time="0.2"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.1"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ВТ."
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
+set GameVariables.phase = "MORNING"
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.1"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ПН."
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
+[signal arg="stop_rewind"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+set GameVariables.phase = "MORNING"
+[music path="res://audio/bgs/cicadas.ogg" fade="0.6" volume="-12.0"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="0.6"]
+[wait time="2.0"]
+update camera [extra_data="hide Blinking"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]Последовательность перемотки завершена.[/color] #id:2aa
+camera: [color=e5be3e]Теперь вы можете покинуть комнату.[/color] #id:2ab
+camera: [color=e5be3e]Следующая перемотка будет готова примерно через 13 дней 12 часов.[/color] #id:2ac
+camera: [color=e5be3e]Надеемся на ваше дальнейшее сотрудничество.[/color] #id:2ad
+leave decorations
+protagonist: ... #id:2ae
+protagonist: ...а? #id:2af
+protagonist: Уже светло? #id:2b0
+protagonist: Это мне только что снилось? #id:2b1
+[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+[wait time="2.0"]
+[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+join roommate center [length="2.0" wait="true"]
+protagonist: ...да? #id:2b2
+[sound bus="Cutscene" path="res://audio/voice/konbanwa5_good_evening.mp3"]
+roommate: Йо. #id:2b3
+roommate: Курьер принёс тебе посылку. #id:2b4
+roommate: Пока. #id:2b5
+protagonist: Одну секунду! #id:2b6
+Она останавливается и озадаченно смотрит на тебя. #id:2b7
+protagonist: Эм, вопрос, возможно, странный, но... #id:2b8
+protagonist: У нас ведь сегодня занятия, верно? #id:2b9
+{roommate_name} на секунду замирает. #id:2ba
+roommate: Ты что, упал с кровати во сне? Или это какой-то странный розыгрыш? #id:2bb
+protagonist: Нет, просто подыграй мне, пожалуйста. #id:2bc
+roommate: Это первый будний день каникул. #id:2bd
+Прежде чем уйти, {roommate_name} бросает на тебя ещё один встревоженный взгляд. #id:2be
+roommate: Тебе, пожалуй, стоит больше спать, это может пригодиться. #id:2bf
+leave roommate
+protagonist: ... #id:2c0
+[sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
+protagonist: Никак... #id:2c1
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+join decorations center [extra_data="set Items/Phone"]
+protagonist: ...я что, вернулся в прошлое? #id:2c2
+protagonist: Это всё ещё первый день каникул. #id:2c3
+protagonist: ...как? #id:2c4
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+leave decorations
+[wait time="1.0"]
+[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+protagonist: Э-э, входи. #id:2c5
+[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+join manager center [length="2.0" wait="true"]
+manager: Йо. #id:2c6
+manager: Просто проверяю, как у тебя дела — как идёт? #id:2c7
+protagonist: Утро выдалось немного... странным. #id:2c8
+manager: В хорошем смысле или в плохом? #id:2c9
+protagonist: Пока не уверен. #id:2ca
+manager: А, я ещё слышал об отменах студенческих выплат. #id:2cb
+manager: Облом, чувак. #id:2cc
+manager: Извини, если лезу не в своё дело, но если тебе нужна какая-то... #id:2cd
+protagonist: ...любая поддержка, просто дай знать. #id:2ce
+{manager_name} странно смотрит на тебя. #id:2cf
+protagonist: Я понял, спасибо. Думаю, мне сейчас просто нужно немного побыть одному. #id:2d0
+manager: Тогда ладно. #id:2d1
+manager: Что ж, моя дверь всегда открыта, если понадобится. #id:2d2
+leave manager
+[sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
+protagonist: Поверить не могу. #id:2d3
+protagonist: Камера перемотала для меня всю неделю назад. #id:2d4
+protagonist: Эти двое говорят в точности то же, что и в начале прошлой недели. #id:2d5
+protagonist: ... #id:2d6
+protagonist: Что ж, я не собираюсь упускать эту возможность! #id:2d7
+[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav"]
+[color=e5be3e]В конце каждой недели ты сможешь откатить неделю назад.[/color] #id:2d8
+[color=e5be3e]Если согласишься — вернёшься в понедельник прошлой недели.[/color] #id:2d9
+[color=e5be3e]Статы и деньги сохранятся.[/color] #id:2da
+[color=e5be3e]Другие параметры, например отношения, тоже можно сохранить особыми навыками.[/color] #id:2db
+[color=e5be3e]Также можно не откатываться и перейти к финалу.[/color] #id:2dc
+[color=e5be3e]Не забудь сохраниться перед этим![/color] #id:2dd
+[color=e5be3e]Удачи! И главное\:[/color] #id:2de
+[color=e5be3e]Приятного отдыха![/color] #id:2df
+jump z_functions/END_TO_NEXT_CUTSCENE

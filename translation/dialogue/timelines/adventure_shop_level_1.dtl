@@ -1,0 +1,116 @@
+label START #id:c2f
+if {BattleVariables.is_night_run()} == false:
+	return
+if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')} && {Items.HasItem('running_shoes')}:
+	return
+set GameVariables.trigger = false
+if {BattleVariables.is_night_run()} == false:
+	[background arg="res://assets/Cutscene/Backgrounds/City_Running_3.png" fade="0.6"]
+else:
+	[background arg="res://assets/Cutscene/Backgrounds/City_Night_Running_1.png" fade="0.6"]
+jump sounds/MUSIC_FADEOUT
+jump sounds/OUTDOOR_CITY
+jump sounds/MOVEMENT_ADVENTURE
+Ты оказываешься посреди городского парка. #id:c30
+Пробегая по местности, ты слышишь, как кто-то кричит тебе вслед. #id:c31
+set GameVariables.name_revealed = false
+syn: Йо, Гурт! #id:c32
+protagonist: ...э? #id:c33
+join syn [extra_data="set Style/SynShop"]
+Ты поворачиваешься к даме, сидящей на пледе для пикника. #id:c34
+syn: Привет, незнакомец! #id:c35
+syn: Добро пожаловать в лавку Син — или, как мне нравится это называть, СИНПОРИУМ! #id:c36
+set GameVariables.name_revealed = true
+Ты замечаешь, что на пледе перед ней разложены разные вещицы и безделушки. #id:c37
+syn: Интересуешься безделушками для своих рюкзаков? #id:c38
+syn: Взгляни, пожалуйста! Уверен, ты найдёшь что-то интересное! #id:c39
+protagonist: Э-э... мы раньше встречались? #id:c3a
+syn: Наверное! Ты, скорее всего, видел меня в городе. #id:c3b
+syn: Я тут работаю на нескольких разных работах. #id:c3c
+protagonist: О? #id:c3d
+syn: Да. Я пытаюсь накопить на ноутбук. #id:c3e
+syn: Технологии сейчас чертовски дорогие 🐉. #id:c3f
+protagonist: ...как ты это делаешь? #id:c40
+syn: Делать что? #id:c41
+protagonist: То, что ты делаешь... со своей манерой говорить... #id:c42
+syn: Понятия не имею, о чём ты... #id:c43
+syn: ...🐉🦖🐲. #id:c44
+protagonist: (...) #id:c45
+protagonist: (Наверное, лучше не копать глубже.) #id:c46
+syn: Ну что, интересует что-нибудь из сегодняшних товаров? #id:c47
+protagonist: Конечно, давай посмотрим. #id:c48
+jump BUY
+label BOUGHT #id:c49
+syn: Отлично! Держи. #id:c4a
+jump BUY
+label NOT_INTERESTED #id:c4b
+syn: <Не интересно? Ну и ладно./О? Присмотрел что-то другое?/Что ж, оно всегда там, если захочешь!> #id:c4c
+label BUY #id:c4d
+leave decorations
+- Сырный кирпич | [if {GameVariables.has_skill('cheese_brick')} == false] #id:c4e
+	join decorations center [extra_data="set Items/CheeseBrick"]
+	syn: О, тебя интересует [color=e5be3e]сырный кирпич[/color]? #id:c4f
+	syn: Гарантирую, такого ты больше нигде не найдёшь. #id:c50
+	syn: Изготовлено из лучшего сыра пяти районов! #id:c51
+	protagonist: Понятно... #id:c52
+	syn: Всё за [color=e5be3e]15 000 кредитов[/color]. Что скажешь? #id:c53
+	- Да | [if {GameVariables.credits} >= 15000] #id:c54
+		jump sounds/CASH
+		set GameVariables.credits = {GameVariables.change_credits(-15000)}
+		[signal arg="unlock_cheese_brick"]
+		jump BOUGHT
+	- Нет #id:c55
+		jump NOT_INTERESTED
+- Чулки | [if {GameVariables.has_skill('socks')} == false] #id:c56
+	join decorations center [extra_data="set Items/Socks"]
+	syn: [color=e5be3e]Чулки[/color]? Отличный выбор. Прекрасный подарок для любого партнёра. #id:c57
+	syn: Но будь осторожен! Дарить их тому, кому не интересно, может быть сложно. #id:c58
+	syn: Эта пара продаётся за [color=e5be3e]12 500 кредитов[/color]. Что скажешь? #id:c59
+	- Да | [if {GameVariables.credits} >= 12500] #id:c5a
+		jump sounds/CASH
+		set GameVariables.credits = {GameVariables.change_credits(-12500)}
+		[signal arg="unlock_socks"]
+		jump BOUGHT
+	- Нет #id:c5b
+		jump NOT_INTERESTED
+- Беговые кроссовки | [if {Items.HasItem('running_shoes')} == false] #id:c5c
+	join decorations center [extra_data="set Items/Shoes"]
+	syn: А, [color=e5be3e]беговые кроссовки[/color]. #id:c5d
+	syn: Такой цвет больше не продаётся в магазинах. #id:c5e
+	syn: По-видимому, животные, из которых делали розовый краситель, уже вымерли! #id:c5f
+	syn: Это отличный подарок, чтобы уговорить кого-то бегать с тобой. #id:c60
+	syn: Всё за [color=e5be3e]10 000 кредитов[/color]! По такой цене — сущее воровство. #id:c61
+	- Да | [if {GameVariables.credits} >= 10000] #id:c62
+		jump sounds/CASH
+		set GameVariables.credits = {GameVariables.change_credits(-10000)}
+		set GameVariables.quantity = {Items.Increment('running_shoes')}
+		jump BOUGHT
+	- Нет #id:c63
+		jump NOT_INTERESTED
+- Трусики | [if {GameVariables.trigger} == false] #id:c64
+	set GameVariables.trigger = true
+	join decorations center [extra_data="set Items/Panties"]
+	Ты тянешься за тем, что, кажется, является парой трусиков. #id:c65
+	Похоже, их уже использовали. #id:c66
+	protagonist: Сколько это стоит? #id:c67
+	syn: О, те?... Кажется, это... #id:c68
+	jump sounds/SURPRISE
+	syn: ...а? #id:c69
+	syn: Их там быть не должно! #id:c6a
+	leave decorations
+	Очевидно потрясённая, она тянется и забирает трусики у тебя из рук. #id:c6b
+	syn: Э-э... п-п-пожалуйста, сделай вид, что не видел этого. #id:c6c
+	jump BUY
+- Уйти #id:c6d
+	jump LEAVE
+label LEAVE #id:c6e
+protagonist: Думаю, мне пока хватит. #id:c6f
+syn: Отлично! Что ж, я всегда здесь, если захочешь вернуться! #id:c70
+if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')} && {Items.HasItem('running_shoes')}:
+	syn: Вообще-то, похоже, ты скупил всё, что было... #id:c71
+	syn: Большое спасибо! #id:c72
+	syn: Похоже, придётся пополнить запасы и вернуться позже. #id:c73
+	syn: Присматривай за меня! #id:c74
+	syn: Пока! #id:c75
+leave syn
+jump adventure/LOOP

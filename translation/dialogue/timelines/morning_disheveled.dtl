@@ -1,0 +1,51 @@
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+[wait time="0.6"]
+jump sounds/DOOR_KNOCK
+protagonist: Да, входи. #id:41e
+jump sounds/DOOR_OPEN
+join roommate center
+[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+roommate: Эй... #id:41f
+set GameVariables.disheveled_times += 1
+if {GameVariables.disheveled_times} == 1:
+	roommate: Можно тебя кое о чём спросить?
+	protagonist: Да, что такое? #id:421
+	roommate: Что ж... как бы это сказать...
+	roommate: Моя одежда... кажется, я постоянно её куда-то теряю...
+	protagonist: (Чёрт.)
+	roommate: Ты случайно не видел ничего подозрительного... верно?
+	roommate: Вроде Кана или кого-то ещё, входящего в мою комнату?
+	protagonist: Нет... ничего такого не было.
+	update roommate [extra_data="set Expressions/Confused"]
+	roommate: Хмм...
+	roommate: Ладно.
+elif {GameVariables.disheveled_times} == 2:
+	roommate: Это продолжается.
+	protagonist: Что всё время происходит?
+	roommate: Мою одежду точно кто-то перекладывает...
+	protagonist: (Чёрт.)
+	protagonist: Ты пробовал поговорить с Каном?
+	roommate: Нет, ещё нет.
+	protagonist: Уверен, у него есть разумное объяснение происходящему...
+	protagonist: ...иначе я вообще не понимаю, что происходит.
+	update roommate [extra_data="set Expressions/Confused"]
+	roommate: Хмм...
+	roommate: Ладно.
+else:
+	update roommate [extra_data="set Expressions/Annoyed"]
+	roommate: Я знаю, что это ты.
+	roommate: Перестань заходить в мою комнату, извращенец.
+leave roommate
+jump sounds/DOOR_CLOSE
+if {GameVariables.disheveled_times} == 1:
+	set GameVariables.relationship_change = 2
+elif {GameVariables.disheveled_times} == 2:
+	set GameVariables.relationship_change = 5
+else:
+	set GameVariables.relationship_change = 10
+jump stat_change/RELATIONSHIP_DECREASE
+protagonist: (Ночью в комнате Юны стоит быть осторожнее.)
+protagonist: Если правильно надеть на неё одежду обратно, это поможет снизить её [color=ff3f49]подозрение[/color].
+set GameVariables.disheveled = false
+jump z_functions/END_TO_NEXT_CUTSCENE

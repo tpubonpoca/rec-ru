@@ -1,0 +1,27 @@
+label END_TO_CONVENIENCE
+[signal arg="transition_out_convenience"]
+[end_timeline]
+
+label END_TO_KITCHEN #id:1009
+[signal arg="transition_out_kitchen"]
+[end_timeline]
+
+label END_TO_NEXT_CUTSCENE #id:100a
+[signal arg="transition_next_scene"]
+[end_timeline]
+
+label END_TO_NEXT_MORNING #id:10df
+[signal arg="transition_out_next_morning"]
+[end_timeline]
+
+label END_TO_NIGHT_SEQUENCE #id:bb5
+[signal arg="transition_out_game"]
+[end_timeline]
+
+label UNLOCK_GALLERY_CUTSCENE
+[signal arg="unlock_gallery_cutscene"]
+return
+
+label END_TO_UPGRADE #id:56a
+[signal arg="transition_out_upgrade"]
+[end_timeline]

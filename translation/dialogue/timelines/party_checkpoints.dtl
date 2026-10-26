@@ -1,0 +1,95 @@
+label ADVANCE_PARTY #id:664
+if {GameVariables.is_gallery}:
+	jump z_functions/END_TO_UPGRADE
+set {GameVariables.party_stage} += 1
+leave --All--
+jump sounds/CUCKOO
+Вечеринка продолжается... #id:665
+if {GameVariables.party_stage} == 1:
+	set {phase} = "MORNING"
+	jump sounds/INDOOR_APARTMENT_PARTY
+	[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+	join crowd [extra_data="set Size/Small"]
+	Сейчас утро вечеринки. #id:666
+	Несколько человек уже пришли помочь с подготовкой, но в остальном квартира пока пуста. #id:667
+elif {GameVariables.party_stage} == 2:
+	set {phase} = "NOON"
+	jump sounds/INDOOR_APARTMENT_PARTY
+	[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+	join crowd [extra_data="set Size/Medium"]
+	Сейчас день вечеринки. #id:668
+	Количество людей в гостиной возросло. #id:669
+	Становится немного шумно. #id:66a
+else:
+	set {phase} = "EVENING"
+	jump sounds/INDOOR_APARTMENT_PARTY
+	[background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
+	join crowd [extra_data="set Size/Large"]
+	Сейчас вечер вечеринки. #id:66b
+	Гостиная забита людьми. #id:66c
+	Даже двигаться трудно. #id:66d
+{GameVariables.get_impression_text()} #id:8a5
+{GameVariables.get_drunkenness_text()} #id:8a6
+jump sounds/BELL
+[wait time="1.0"]
+join manager center
+manager: Так, ребята, время вышло. #id:670
+manager: Всем выпить! #id:8a7
+Все присутствующие поднимают бокалы в воздух. #id:8a8
+При достаточной Ловкости ты мог бы притвориться, что пьёшь, если бы захотел. #id:8a9
+- Притвориться, что пьёшь #id:8aa
+	set GameVariables.difficulty_class = 9
+	jump stat_change/ROLL_DEXTERITY
+	С помощью Ловкости ты поднимаешь бокал, будто делаешь глоток... #id:8ab
+	if {GameVariables.successful_roll} == false:
+		...и в итоге разливаешь жидкость на себя. #id:8ac
+		set GameVariables.random_name = "???"
+		random: Эй! {GameVariables.player_name} только притворяется, что пьёт! #id:fc5
+		jump stat_change/IMPRESSION_DECREASE
+		manager: Это против правил, {GameVariables.player_name}. #id:fc6
+		protagonist: *вздох* #id:8af
+		protagonist: Ладно... #id:8b0
+	else:
+		...и подносишь бокал к лицу, на самом деле ничего не выпивая! #id:8b1
+		leave manager
+		jump SKIP_DRINK
+- Пить как обычно #id:8b2
+label DRINK #id:8b3
+leave manager
+jump sounds/CLINK
+[wait time="0.5"]
+jump sounds/GULP
+[wait time="0.5"]
+jump stat_change/DRUNK_INCREASE
+jump passout/CHECK_PASSOUT
+label SKIP_DRINK #id:8b4
+Вечеринка продолжается... #id:8b5
+if {GameVariables.party_stage} == 1:
+	set {number} = {GameVariables.get_morning_event()}
+	if {number} == 0:
+		jump party_event_morning_pizza/
+	elif {number} == 1:
+		jump party_event_morning_alcohol/
+	else:
+		jump party_event_morning_shots/
+elif {GameVariables.party_stage} == 2:
+	set {number} = {GameVariables.get_afternoon_event()}
+	if {number} == 0:
+		jump party_event_afternoon_cop/
+	elif {number} == 1:
+		jump party_event_afternoon_punch/
+	else:
+		jump party_event_afternoon_twister/
+else:
+	if {Cutscenes.IsSceneSeen("yosuke_4")} and {Items.GetQuantity('laboratory_key')} < 1:
+    jump party_event_evening_kan_room/
+	set {number} = {GameVariables.get_evening_event()}
+	if {number} == 0:
+		jump party_event_evening_beer_pong/
+	elif {number} == 1:
+		jump party_event_evening_strip_games/
+	else:
+		jump party_event_evening_kan_room/
+label ENDING_EARLY #id:8bb
+К сожалению, вечеринка закончилась рано из-за некоторых проблем... #id:8bc
+jump z_functions/END_TO_NEXT_MORNING

@@ -1,0 +1,41 @@
+label CHECK_PASSOUT
+if {GameVariables.stamina} <= 0:
+	jump START
+return
+label START
+Всё начинает кружиться вокруг тебя.
+protagonist: Мне что-то нехорошо... #id:8b7
+leave --All--
+jump sounds/SURPRISE
+jump sounds/MUSIC_FADEOUT_ALL
+[background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.5"]
+[wait time="2.0"]
+if {BattleVariables.is_night_run()}:
+	jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
+	[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="1.0"]
+else:
+	jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+Ты просыпаешься в своей кровати.
+protagonist: ...тьфу...
+protagonist: Что случилось?
+Похоже, пока ты был без сознания, кто-то обшарил твои карманы.
+jump sounds/GOT_CREDITS
+[color=e5be3e]Потеряно {GameVariables.get_credit_loss()} кредитов.[/color]
+set GameVariables.credits = {GameVariables.change_credits(GameVariables.get_credit_loss() * -1)}
+if {GameVariables.yuna_partnered}:
+	join roommate center [extra_data="set Expressions/Default"]
+	roommate: Ты в порядке? #id:5d
+	roommate: Мне пришлось самой тащить тебя сюда наверх. #id:bc2
+	protagonist: Прости... #id:5f
+	roommate: Не переживай об этом... #id:60
+	roommate: ...просто постарайся в следующий раз быть осторожнее. #id:61
+	leave roommate
+protagonist: В следующий раз мне стоит внимательнее следить за своей выносливостью.
+Ты решаешь поспать некоторое время.
+if {GameVariables.is_rewind_day}:
+	set GameVariables.stamina = 10
+	jump z_functions/END_TO_UPGRADE
+else:
+	set GameVariables.stamina = 10
+	jump z_functions/END_TO_NEXT_MORNING

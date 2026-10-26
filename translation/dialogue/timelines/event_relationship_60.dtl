@@ -1,0 +1,131 @@
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.0"]
+[wait time="0.6"]
+jump sounds/DOOR_CLOSE
+protagonist: Блин, всё тело болит. #id:22d
+[sound bus="Cutscene" path="res://audio/se/Sniff1.ogg"]
+protagonist: ... #id:22e
+protagonist: ...и мне сейчас очень не помешал бы душ. #id:22f
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+[wait time="0.6"]
+jump sounds/BREATH
+Проходя через гостиную, ты слышишь чьё-то тихое дыхание. #id:230
+jump sounds/BREATH
+join roommate center [extra_data="set Expressions/Sleeping, set Body/Blouse, set Decorations/Headband"]
+protagonist: О? #id:231
+protagonist: Она крепко спит на диване. #id:232
+protagonist: (...) #id:233
+protagonist: (Мне действительно не стоит её беспокоить...) #id:234
+leave roommate
+jump sounds/BREATH
+join scene center [extra_data="set Scene/SleepingCouch"]
+Ты пытаешься быстро уйти... #id:e87
+...но вид {roommate_name} на диване что-то в тебе будит. #id:e88
+jump sounds/GULP
+protagonist: (...) #id:e89
+protagonist: (Если просто на мгновение коснуться... ничего страшного не случится.) #id:236
+protagonist: (Чего я нервничаю? Я же делаю это каждую ночь...) #id:237
+Ты осторожно протягиваешь руку и касаешься её груди. #id:e8a
+[signal arg="play_grope_dressed"]
+protagonist: (Ох...) #id:238
+protagonist: (При дневном свете это ощущается совсем иначе...) #id:239
+protagonist: (Она даже не шелохнулась.) #id:23a
+protagonist: (Ладно... пора остановиться.) #id:23b
+protagonist: (...) #id:23c
+protagonist: (Ещё разок...) #id:23d
+protagonist: (...) #id:23e
+protagonist: (И зачем я трогаю ткань?) #id:23f
+protagonist: (Хочется ощутить её тёплую, нежную кожу... прямо под топом.) #id:240
+[signal arg="play_undress"]
+Ты осторожно приподнимаешь её топ. #id:e8b
+protagonist: (О да... совсем другое дело.) #id:241
+protagonist: (Чёрт, у {roommate_name} невероятно соблазнительное тело...) #id:245
+protagonist: (При свете дня она выглядит просто потрясающе.) #id:246
+[signal arg="play_grope_undressed"]
+protagonist: (Поверить не могу, что она так сладко спит.) #id:242
+protagonist: (...похоже, {manager_name} тоже нет дома.) #id:243
+protagonist: (...) #id:e8c
+protagonist: (Я мог бы ласкать её вечно...) #id:247
+protagonist: (...) #id:e8d
+protagonist: (Ладно, ещё одно нежное прикосновение.) #id:e8e
+[signal arg="play_default_undressed"]
+Твои пальцы напоследок мягко ласкают податливую плоть, прежде чем ты заставляешь себя остановиться. #id:e8f
+protagonist: (Надо поправить на ней одежду, пока она не открыла глаза.) #id:24a
+jump sounds/DOOR_OPEN
+protagonist: (О, чёрт!) #id:24b
+leave scene
+join roommate center [extra_data="set Expressions/Tired, set Body/Naked"]
+[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+roommate: ...а? #id:24c
+manager: Есть кто дома? #id:24d
+protagonist: (Чёрт, мне отвечать?) #id:24e
+manager: Алло, здесь кто-нибудь есть? #id:24f
+protagonist: (Мне нужно что-то сказать...) #id:250
+protagonist: Эй, да! Я в гостиной. #id:251
+manager: Вообще-то это идеально! #id:252
+manager: Можешь передать мне мои ключи? #id:253
+manager: Я опоздаю на встречу, а снимать обувь не хочу! #id:254
+protagonist: ...ключи? #id:255
+manager: Они должны быть на журнальном столике. #id:256
+jump sounds/KEY
+join decorations center [extra_data="set Items/Key"]
+protagonist: А. Нашёл. #id:257
+protagonist: (Забавный брелок...) #id:258
+jump sounds/MOVE_INDOORS
+leave roommate
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.0"]
+join manager center
+jump sounds/KEY
+leave decorations
+protagonist: Держи. #id:259
+manager: Спасибо! #id:25a
+manager: Извини, мне сейчас нужно уходить. Я действительно опаздываю. #id:25b
+protagonist: Без проблем! До встречи. #id:25c
+leave manager
+jump sounds/DOOR_CLOSE
+protagonist: ... #id:25d
+protagonist: ...ах, чёрт. #id:25e
+protagonist: Что я скажу? #id:25f
+protagonist: ...может, просто сделать вид, что ничего не было? #id:260
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+join roommate center [animation="Fade In" length="1.0" wait="true" extra_data="set Expressions/Confused, set Body/Naked, set Decorations/Headband"]
+roommate: ... #id:261
+jump sounds/VOICE_IDIOT
+roommate: Тебе есть что сказать в своё оправдание? #id:262
+protagonist: (Чёрт, попался...) #id:263
+protagonist: Эм... да... я... #id:264
+update roommate center [extra_data="set Expressions/Default"]
+jump sounds/VOICE_UM
+roommate: Если тебе так хотелось коснуться меня... мог бы просто попросить... #id:265
+protagonist: ...О? #id:266
+protagonist: (Такого ответа я точно не ожидал.) #id:267
+update roommate center [extra_data="set Expressions/Tired"]
+roommate: Всё-таки жутковато, когда ты трогаешь меня тайком... #id:268
+roommate: Но если бы ты подошёл ко мне прямо... #id:269
+[sound bus="Cutscene" path="res://audio/voice/mo6_Cant_help_it.ogg" volume="-6.0"]
+roommate: ...я была бы совсем не против... #id:26a
+protagonist: Правда? #id:26b
+protagonist: Эм... так... #id:26c
+protagonist: Тогда продолжим? #id:26d
+jump sounds/DOOR_CLOSE
+update roommate center [extra_data="set Expressions/Surprise"]
+manager: Эй, {GameVariables.player_name}, я вообще-то забыл ещё одну вещь. #id:e90
+update roommate center [extra_data="set Expressions/Default"]
+manager: Не мог бы ты принести кое-что из моей комнаты? #id:26f
+protagonist: (Только не снова!) #id:270
+protagonist: Э-э, да, дай мне секунду! #id:271
+update roommate center [extra_data="set Expressions/Happy"]
+jump sounds/VOICE_LAUGH
+roommate: Давай продолжим в другой раз, хорошо? #id:272
+roommate: ... #id:273
+update roommate center [extra_data="set Expressions/Confused"]
+roommate: ...куда ты дел мою рубашку? #id:274
+[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+[color=e5be3e]Твои отношения с {roommate_name} улучшились.[/color] #id:275
+[color=e5be3e]Теперь в некоторых сценах с ней можно зайти дальше![/color] #id:276
+[color=e5be3e]{roommate_name} будет лучше помогать тебе в забегах![/color] #id:277
+leave roommate
+jump z_functions/UNLOCK_GALLERY_CUTSCENE
+jump z_functions/END_TO_UPGRADE

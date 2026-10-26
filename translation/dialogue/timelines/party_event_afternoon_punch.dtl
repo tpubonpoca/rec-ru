@@ -1,0 +1,124 @@
+set {GameVariables.party_stage} = 2
+jump sounds/INDOOR_APARTMENT_PARTY
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+Посреди вечеринки ты оказываешься в гостиной за разговором. #id:708
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_student"]
+join enemy [extra_data="set Container/Type/Student"]
+enemy: ...и вот тогда я застал профессора и ассистента в пустой аудитории! #id:96b
+join roommate [mirrored="true" extra_data="set Expressions/Surprise"]
+enemy: Скажем так: поза, в которой я их застал, не способствовала размножению. #id:96c
+roommate: Поверить не могу, что ты зашёл так далеко... #id:96d
+update roommate [extra_data="set Expressions/Confused"]
+roommate: Если так... я бы определённо попросила оценку повыше. #id:70c
+update roommate [extra_data="set Expressions/Default"]
+Учёная задумчиво подносит руку к подбородку. #id:96e
+enemy: Ты абсолютно права! #id:96f
+enemy: Мне определённо стоило лучше использовать своё положение. #id:970
+Она расплывается в улыбке. #id:971
+enemy: Посещение этой вечеринки поистине стало для меня откровением! #id:70e
+enemy: ...но мне нужно собрать больше данных. #id:972
+update roommate [extra_data="set Expressions/Confused"]
+roommate: Эм... ладно? #id:710
+update roommate [extra_data="set Expressions/Default"]
+enemy: Так, и где эта вожделенная «чаша для пунша»? #id:973
+enemy: Так... где мои записи? #id:974
+jump sounds/PAGE_FLIP
+Дама в очках достаёт блокнот из лабораторного халата. #id:975
+enemy: Ах... вот и всё. #id:713
+jump sounds/PAGE_FLIP
+enemy: «Большая миска, традиционно состоящая из нескольких неопознаваемых жидкостей...» #id:714
+jump sounds/PAGE_FLIP
+enemy: «...смешанные вместе, растворённые в сахаре, образуют восхитительный растворитель...» #id:715
+jump sounds/PAGE_FLIP
+enemy: «...гарантированно вызывает веселье!» #id:716
+jump sounds/BOOK_CLOSE
+[wait time="0.6"]
+enemy: Какая занятная концепция... эти наблюдения точны? #id:717
+protagonist: То есть, думаю, это почти в точку. #id:976
+enemy: Отлично! Где же мне найти эту «чашу для пунша»? #id:719
+protagonist: Раньше я видел, как на кухне кто-то готовил чашу для пунша. #id:977
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Тогда пойдём посмотрим! #id:978
+update roommate [extra_data="set Expressions/Default"]
+Все трое подходите к столу с напитками на кухне. #id:979
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.6"]
+[wait time="0.6"]
+join decorations [extra_data="set Items/Punch"]
+roommate: Он такой... красный. #id:71d
+enemy: Пора брать пробу! #id:97a
+Учёная на мгновение замолкает. #id:97b
+enemy: ...Боюсь, я не знаю процедуры. Кто-нибудь из вас может налить мне бокал? #id:71f
+protagonist: Конечно. Я справлюсь. #id:720
+jump sounds/DISHES
+Ты берёшь стакан и половник. #id:97c
+Перед тобой стоит чаша для пунша, наполненная прозрачной красной жидкостью. #id:722
+- Проанализировать пунш #id:723
+	Используя свой Интеллект и научные способности, ты пытаешься проанализировать напиток. #id:724
+	set GameVariables.difficulty_class = 10
+	jump stat_change/ROLL_INTELLIGENCE
+	if {GameVariables.successful_roll} == false:
+		Глядя на чашу для пунша, ты, похоже, ничего не можешь понять. #id:97d
+		protagonist: Ну что ж. #id:726
+		jump DRINK
+	jump sounds/SNIFF
+	Ты наклоняешь лицо чуть ближе к чаше и принюхиваешься. #id:727
+	protagonist: Хм. #id:728
+	leave decorations
+	enemy: Что ты наблюдаешь? #id:729
+	protagonist: Что ж... вообще-то, я ничего не чувствую. #id:72a
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: Отлично, тогда давай выпьем! #id:72b
+	protagonist: Нет... вообще нет никакого запаха алкоголя. #id:72c
+	protagonist: Разве это не странно? #id:72d
+	enemy: И почему это наблюдение странное, милостивый государь? #id:72e
+	protagonist: Что ж... в нём же должен быть алкоголь. Верно? #id:72f
+	protagonist: Будто кто-то нарочно сделал его без запаха спиртного... #id:97e
+	protagonist: Может, чтобы не привлекать внимания к тому, что НА САМОМ ДЕЛЕ в чаше? #id:97f
+	update roommate [extra_data="set Expressions/Confused"]
+	roommate: Значит, ты хочешь сказать... #id:732
+	update roommate [extra_data="set Expressions/Default"]
+	protagonist: Думаю, нам не стоит это пить. #id:733
+	protagonist: В холодильнике есть пиво, давай лучше возьмём его. #id:734
+	enemy: Это за пределами моих знаний... #id:736
+	enemy: Но я доверяю твоему опыту! #id:737
+	enemy: За нас! #id:738
+	[signal arg="unlock_party_cutscene"]
+	jump sounds/CLINK
+	jump stat_change/IMPRESSION_INCREASE
+	jump party_checkpoints/ADVANCE_PARTY
+- Налить пунш #id:739
+	jump DRINK
+label DRINK #id:73b
+jump sounds/GLUG
+Ты наливаешь всем напитки. #id:73a
+leave decorations
+jump sounds/CLINK
+protagonist: За нас! #id:73c
+jump sounds/GULP
+[wait time="1.0"]
+jump sounds/GULP
+[wait time="1.0"]
+jump sounds/GULP
+[wait time="1.0"]
+jump stat_change/DRUNK_INCREASE
+jump passout/CHECK_PASSOUT
+roommate: ...вау. #id:73d
+roommate: Это оказалось куда крепче, чем я ожидала. #id:73e
+enemy: В самом деле! #id:73f
+enemy: Я не ожидала такой поведенческой реакции... #id:740
+enemy: ...кожа... покалывает? #id:741
+protagonist: (Зрение начинает плыть.) #id:742
+protagonist: (Кто-то подмешал что-то в пунш?) #id:743
+jump stat_change/DRUNK_INCREASE
+jump passout/CHECK_PASSOUT
+roommate: Я пойду ненадолго присяду... #id:744
+protagonist: Почему-то становится даже хуже... #id:980
+jump stat_change/DRUNK_INCREASE
+jump passout/CHECK_PASSOUT
+leave roommate
+enemy: Погоди! Опиши, пожалуйста, свои текущие ощущения — мы сможем сравнить записи! #id:745
+leave enemy
+roommate: ... #id:746
+jump party_checkpoints/ADVANCE_PARTY

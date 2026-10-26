@@ -1,0 +1,346 @@
+set GameVariables.party_stage = 3
+jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
+join roommate [mirrored="true"]
+Вокруг тебя в гостиной много всего происходит. #id:9e6
+roommate: Хмммм... я давно не видела {manager_name}. #id:9e7
+roommate: Ты его не видел? #id:9e8
+protagonist: Кстати, раз уж ты упомянула об этом... #id:9e9
+protagonist: Кажется, я не видел {manager_name} с начала вечеринки. #id:9ea
+roommate: Как думаешь, куда он делся? #id:9eb
+protagonist: Если мне нужно угадать, то, может, его комната? #id:9ec
+roommate: Его комната... #id:9ed
+Она на мгновение замирает, будто что-то обдумывая. #id:9ee
+protagonist: Хочешь проверить это? #id:9ef
+roommate: Ты уверен? #id:9f0
+update roommate [extra_data="set Expressions/Confused"]
+roommate: Что, если он там... чем-то занимается? #id:9f1
+protagonist: Давай... будет весело! #id:9f2
+roommate: ... #id:9f3
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Ладно. Давай сделаем это. #id:9f4
+jump sounds/MOVE_INDOORS
+Вы идёте к комнате {manager_name}. #id:9f5
+[background arg="res://assets/Cutscene/Backgrounds/Hallway_Night.png" fade="0.6"]
+Коридор заполнен беседующими гостями. #id:9f6
+Подходя к комнате {manager_name}, ты замечаешь перед дверью знакомую парочку. #id:9f7
+Каэда разговаривает с тем здоровяком с пляжа. #id:9f8
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_bro"]
+join enemy [extra_data="set Container/Type/Dude"]
+join friend
+enemy: ...и ты ни за что не угадаешь, чем в меня кинули! #id:9f9
+friend: Что это было? #id:9fa
+enemy: Это был кирпич! #id:9fb
+friend: Серьёзно? #id:9fc
+friend: ...это звучит очень опасно! #id:9fd
+enemy: Не, я в порядке, бро. #id:9fe
+enemy: То есть, ты только посмотри на эти руки! #id:9ff
+Мускулистый мужчина начинает напрягать мышцы рук. #id:a00
+enemy: Ничто не пробьётся сквозь эти бицепсы. #id:a01
+friend: ...вот как? #id:a02
+friend: О! Привет, ребята! #id:a03
+Судя по твоим наблюдениям, Каэда, похоже, лишь снисходительно поддерживает этот разговор. #id:a04
+protagonist: (Мне нужно заставить их подвинуться.) #id:a05
+protagonist: (Однако парень выглядит довольно пьяным — убедить его будет сложно.) #id:a06
+- Наебашить ему #id:a07
+	Ты сразу поднимаешь руки, готовясь к драке. #id:a08
+	enemy: Что за чертовщина?!? #id:a09
+	Люди в коридоре замечают твою стойку и расступаются. #id:a0a
+	leave friend
+	leave roommate
+	enemy: Я думал, мы друзья, приятель! #id:a0b
+	jump sounds/GULP
+	{BattleVariables.enemies[0].GetName()} допивает остаток напитка.
+	jump sounds/CRUSH
+	Он сминает банку... #id:a0d
+	[signal arg="enemy_attack"]
+	jump sounds/WHOOSH
+	...затем швыряет её в тебя на полной скорости. #id:a0e
+	set GameVariables.difficulty_class = 11
+	jump stat_change/ROLL_DEXTERITY
+	if {GameVariables.successful_roll} == false:
+		jump sounds/SURPRISE
+		Банка отскакивает от твоей макушки. #id:a0f
+		protagonist: Ай! #id:a10
+		Ты чувствуешь осуждение всех в комнате. #id:a11
+		jump stat_change/IMPRESSION_DECREASE
+	else:
+		jump sounds/WHOOSH
+		В впечатляющем проявлении ловкости ты тянешься и выхватываешь банку из воздуха. #id:a12
+		Все в толпе смотрят с недоверием на твой невероятный ловкий приём. #id:a13
+		jump stat_change/IMPRESSION_INCREASE
+	enemy: Как хочешь, мужик. #id:a14
+	leave enemy
+	jump ENEMY_LEAVE
+- Убедить его #id:a15
+	Ты решаешь попробовать уговорить их подвинуться. #id:a16
+	leave friend
+	leave roommate
+	protagonist: Эй! Как думаешь, мы сможем протиснуться к комнате за тобой? #id:a17
+	protagonist: Мы просто хотим забрать наши... э-э... куртки. #id:a18
+	set GameVariables.difficulty_class = 11
+	jump stat_change/ROLL_CHARISMA
+	if {GameVariables.successful_roll}:
+		enemy: Оооооо! Что у нас здесь? #id:a19
+		enemy: Кто-то пытается подкатить? Я бы никогда не стал мешать братишке. #id:a1a
+		enemy: Тогда давай. #id:a1b
+		jump stat_change/IMPRESSION_INCREASE
+	else:
+		enemy: Ты не видишь, я пытаюсь поговорить с дамой, приятель? #id:a1c
+		friend: Что ж... почему бы нам просто не пропустить их? #id:a1d
+		Он на мгновение замирает от просьбы Каэды. #id:a1e
+		enemy: Ладно... #id:a1f
+		enemy: ...Тогда я подвинусь... ради ПРЕРЫВАТЕЛЯ. #id:a20
+		Мускулистый мужчина почти выкрикивает последние слова, чтобы все услышали. #id:a21
+		jump stat_change/IMPRESSION_DECREASE
+	enemy: Тогда я схожу за добавкой. #id:a22
+	leave enemy
+	jump ENEMY_LEAVE
+label ENEMY_LEAVE #id:a23
+protagonist: (Фух.) #id:a24
+protagonist: (Хорошо, что это закончилось.) #id:a25
+join roommate
+join friend
+Ты понимаешь, что Каэда всё ещё медлит. #id:a26
+friend: Так... #id:a27
+friend: ...чем займёмся? #id:a28
+roommate: Что ж... #id:a29
+roommate: Мы заметили, что {manager_name} отсутствует на вечеринке. #id:fcf
+roommate: ...а затем решили проверить его комнату, чтобы узнать, там ли он. #id:a2b
+friend: Звучит весело! Значит, обыскиваем его комнату? #id:a2c
+update roommate [extra_data="set Expressions/Annoyed"]
+roommate: Мы не шпионим! #id:a2d
+friend: О? #id:a2e
+update roommate [extra_data="set Expressions/Confused"]
+roommate: Мы... э-э... #id:a2f
+protagonist: ...проверяешь нашего друга? #id:a30
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Да! Точно! #id:a31
+protagonist: (Ты никого здесь не убеждаешь, {roommate_name}.) #id:a32
+Каэда усмехается. #id:a33
+friend: Конечно. Тогда как скажешь. #id:a34
+friend: ... #id:a35
+Все трое поворачиваетесь к комнате {manager_name}. #id:a36
+friend: ...думаешь, он там с кем-то? #id:a37
+roommate: ...! #id:a38
+roommate: {manager_name}... с подругой? #id:fd0
+jump sounds/SHINE
+update roommate [extra_data="set Expressions/Excited"]
+roommate: Никак... правда? #id:a3a
+protagonist: Может, оставить его в покое... #id:a3b
+jump sounds/SURPRISE
+update roommate [extra_data="set Expressions/Annoyed"]
+roommate: НЕТ! #id:a3c
+{roommate_name} прочищает горло. #id:a3d
+update roommate [extra_data="set Expressions/Happy"]
+roommate: В смысле... э-э... нет, надо убедиться, что с ним всё в порядке, прежде чем уходить! #id:a3e
+roommate: Может, он слишком пьян... и, э-э... заперся там! #id:a3f
+protagonist: (Это ясно видно по её глазам.) #id:a40
+protagonist: (Она и правда хочет сунуть нос в этот выдуманный роман.) #id:a41
+protagonist: (Я и не подозревал, что {roommate_name} так переживает за романтические интересы {manager_name}.) #id:a42
+protagonist: Ну что ж. #id:a43
+protagonist: Не то чтобы мне было не любопытно. #id:a44
+protagonist: Но сначала нам стоит постучать. #id:a45
+roommate: ... #id:a46
+roommate: ...хорошо.. #id:a47
+jump sounds/DOOR_KNOCK
+{roommate_name} начинает стучать в дверь. #id:a48
+roommate: {manager_name}, ты там? #id:a49
+jump sounds/DOOR_KNOCK
+roommate: Алло? Есть кто внутри? #id:a4a
+Ты прикладываешь ухо к двери. #id:a4b
+roommate: Ты что-нибудь слышишь? #id:a4c
+protagonist: ...нет. #id:a4d
+roommate: Даже голоса нет? #id:a4e
+Ты сосредотачиваешься и слушаешь внимательнее. #id:a4f
+protagonist: Звучит как... когда оставляешь компьютер включённым? #id:a50
+roommate: Ладно, если он не отвечает... #id:a51
+roommate: ...есть только один выход! #id:a52
+protagonist: Секунду... может быть... #id:a53
+roommate: Извините меня! #id:a54
+{roommate_name} тянется к дверной ручке. #id:a55
+roommate: ... #id:a56
+roommate: ...что это? #id:a57
+Все трое переводите взгляд на дверную ручку. #id:a58
+friend: Это...? #id:a59
+join decorations [extra_data="set Items/DoorLock"]
+Раньше ты не замечал, но дверная ручка комнаты {manager_name} оснащена цифровым замком. #id:a5a
+roommate: Теперь нам никак не попасть внутрь... верно? #id:a5b
+Ты обдумываешь это секунду. #id:a5c
+set GameVariables.difficulty_class = 10
+jump stat_change/ROLL_INTELLIGENCE
+leave decorations
+if {GameVariables.successful_roll} == false:
+	К сожалению, тебе не приходит в голову ни одной идеи. #id:a5d
+	jump WAIT_TO_END
+Благодаря обширному Интеллекту ты придумываешь способ открыть дверь. #id:a5e
+leave roommate
+leave friend
+Ты оглядываешь коридор и находишь идеальную цель. #id:a5f
+protagonist: Эй, ты, там! #id:a60
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_psycho"]
+join enemy [extra_data="set Container/Type/Psycho"]
+enemy: Я? #id:a61
+protagonist: Да, ты! #id:a62
+protagonist: Передай мне ту маленькую сумку, которая у тебя там. #id:a63
+enemy: Что, мой мешок с мелом? #id:a64
+protagonist: (...это не мел.) #id:a65
+protagonist: (Как бы то ни было, оно мне нужно, если я хочу всё это провернуть.) #id:a66
+enemy: Зачем мне это? Мел дорогой. #id:a67
+enemy: Возьми СВОЙ мел. #id:a68
+- Забрать силой #id:a69
+	Ты забираешь у неё мел. #id:a6a
+	enemy: Эй! #id:a6b
+	leave enemy
+	jump stat_change/IMPRESSION_DECREASE
+- Спросить вежливо #id:a6c
+	protagonist: Пожалуйста? #id:a6d
+	set GameVariables.difficulty_class = 10
+	jump stat_change/ROLL_CHARISMA
+	if {GameVariables.successful_roll} == false:
+		enemy: Нет. Уходи и оставь меня в покое. #id:a6e
+		Она выходит из коридора обратно на главную вечеринку. #id:a6f
+		leave enemy
+		protagonist: Что ж. Тогда у меня закончились идеи. #id:a70
+		jump WAIT_TO_END
+	else:
+		Она оглядывает тебя сверху донизу, затем твоё умоляющее лицо. #id:a71
+		Наконец она вздыхает. #id:a72
+		enemy: Ладно... вот. #id:a73
+		enemy: Но я хочу получить её обратно, когда закончишь! #id:a74
+		enemy: Мы можем... поделиться, если хочешь. #id:a75
+		jump sounds/WIGGLE
+		Дама с повязкой подмигивает и улыбается тебе. #id:a76
+		leave enemy
+С пакетом белого порошка в руках ты подходишь к цифровому замку. #id:a77
+Ты осторожно посыпаешь немного «мела» на клавиатуру. #id:a78
+join roommate
+join friend
+roommate: Что ты делаешь? #id:a79
+protagonist: Дай мне минуту, и увидишь. #id:a7a
+Ты даёшь «мелу» немного постоять, а затем, через мгновение, осторожно сдуваешь его. #id:a7b
+roommate: ... #id:a7c
+roommate: ...О! #id:a7d
+Большая часть пудры исчезла, кроме пятна в том месте, где отпечатки пальцев {manager_name} касались подушечки. #id:a7e
+protagonist: Похоже, это всего четыре цифры. #id:a7f
+join decorations [extra_data="set Items/DoorLock"]
+Ты начинаешь вводить возможные комбинации в кодовый замок. #id:a80
+jump sounds/BEEP
+[wait time="0.6"]
+jump sounds/BEEP
+[wait time="0.6"]
+jump sounds/BEEP
+[wait time="0.6"]
+jump sounds/BEEP
+[wait time="0.6"]
+jump sounds/DOOR_UNLOCK
+После нескольких попыток дверь пикает и открывается. #id:a81
+leave decorations
+friend: ...умно. #id:a82
+[signal arg="unlock_party_cutscene"]
+jump stat_change/IMPRESSION_INCREASE
+protagonist: Тогда посмотрим? #id:a83
+jump sounds/DOOR_OPEN
+Все трое киваете друг другу и медленно входите в комнату. #id:a84
+leave crowd
+jump sounds/MOVE_INDOORS
+jump sounds/INDOOR_KANS_ROOM
+[background arg="res://assets/Cutscene/Backgrounds/Kans_Room.png" fade="0.6"]
+Ты быстро понимаешь, что ни один свет в комнате не горит. #id:a85
+Однако комната явно освещена. #id:a86
+protagonist: Это... сплошные экраны? #id:a87
+По одну сторону комнаты вся стена уставлена экранами. #id:a88
+На каждом экране светится вид на разные уголки квартиры. #id:a89
+roommate: Отсюда ты можешь наблюдать за всей вечеринкой! #id:a8a
+protagonist: Не только квартира... похоже, всё здание под наблюдением. #id:a8b
+friend: Может, это связано с его работой управляющего зданием? #id:a8c
+protagonist: Может... #id:a8d
+Встревожившись, ты просматриваешь разные экраны, чтобы понять, не наблюдает ли кто-то за тобой. #id:a8e
+Однако ни одна из показанных записей, похоже, не сделана в чьей-либо спальне или ванной. #id:a8f
+roommate: Разве это не кажется незаконным? #id:a90
+friend: Ни одна из записей, похоже, не из приватных комнат, так что... #id:a91
+friend: Не знаю, незаконно ли это. Но всё равно это ОЧЕНЬ подозрительно. #id:a92
+friend: Даже если следить за зданием — работа {manager_name}... это кажется перебором. #id:a93
+protagonist: Думаю, нам пора выбираться отсюда. #id:a94
+friend: Хорошая идея. #id:a95
+roommate: Да... мне здесь тоже не нравится. #id:a96
+if {Cutscenes.IsSceneSeen("yosuke_4")} and {Items.GetQuantity('laboratory_key')} < 1:
+	leave roommate
+	leave friend
+	set GameVariables.quantity = {Items.Increment('laboratory_key')}
+	Перед уходом ты быстро окидываешь комнату в поисках нужного.
+	На столе ты замечаешь знакомый на вид ключ.
+	jump sounds/KEY
+	join decorations center [extra_data="set Items/Key"]
+	protagonist: Это должен быть тот самый [color=e5be3e]ключ[/color], о котором говорил [color=e5be3e]Ёсуке[/color].
+	leave decorations
+	Ты берёшь [color=e5be3e]ключ[/color] и кладёшь его в карман.
+	protagonist: Мне стоит навестить [color=e5be3e]Ёсуке[/color] как можно скорее.
+	join roommate
+	join friend
+jump sounds/MOVE_INDOORS
+jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
+[background arg="res://assets/Cutscene/Backgrounds/Hallway_Night.png" fade="0.6"]
+Все трое выходите из комнаты в коридор. #id:a97
+jump sounds/DOOR_CLOSE
+Ты оборачиваешься и быстро закрываешь дверь. #id:a98
+roommate: Так что нам теперь делать? #id:a99
+protagonist: Думаю, нам не стоит никому об этом говорить. #id:a9a
+roommate: Но, но... #id:a9b
+roommate: ...экраны! Тебе не кажется это жутким? #id:a9c
+roommate: Нам стоит найти {manager_name} и вытянуть из него правду. #id:a9d
+friend: Это ДЕЙСТВИТЕЛЬНО жутко... #id:a9e
+friend: ...но если мы это поднимем, придётся объяснять, зачем мы вообще были в его комнате. #id:a9f
+protagonist: Согласен. Даже если он наблюдает за всеми общественными местами... #id:aa0
+protagonist: ...то, что он делает, тоже, кажется, формально не незаконно. #id:aa1
+protagonist: Я не видел записей из наших комнат... #id:aa2
+roommate: Но... #id:aa3
+protagonist: То, как мы выглядим в этой комнате, тоже не очень. Я думаю— #id:aa4
+Ты почти договариваешь фразу, как тебя перебивает знакомый голос. #id:aa5
+join manager [mirrored="true"]
+manager: Эй, {GameVariables.player_name}! #id:fd1
+Он смотрит на остальных из вашей компании. #id:aa7
+manager: И компания тоже! #id:aa8
+manager: Я слышал, ты меня искал? #id:aa9
+protagonist: {manager_name}! Какой... эм... сюрприз тебя видеть! #id:aaa
+manager: Вот как? #id:aab
+manager: Что ж... пожалуй, я уже какое-то время занимаюсь своим делом. #id:aac
+manager: Так что именно тебе от меня нужно? #id:aad
+protagonist: О... эм... #id:aae
+Несмотря на свои способности, ты с трудом придумываешь оправдание в последний момент. #id:aaf
+К счастью, Каэда вмешивается за тебя. #id:ab0
+friend: Мы искали тебя, чтобы сказать... #id:ab1
+roommate: ...что эта вечеринка классная! Ты отлично справился. #id:ab2
+manager: О, правда? #id:ab3
+Он на мгновение замолкает. #id:ab4
+jump sounds/GULP
+Ты стараешься не сглотнуть огромный ком в горле. #id:ab5
+manager: Приятно слышать. Рад, что ты хорошо проводишь время. #id:ab6
+protagonist: Так... эм... #id:ab7
+protagonist: {roommate_name}, ты говорила, что хочешь взять ещё напитков, верно? #id:ab8
+roommate: Э-э... да! Точно. #id:ab9
+roommate: Уже поздно... надо идти, пока не кончилось! #id:aba
+manager: Неужели? #id:abb
+Все трое напрягаетесь. #id:abc
+manager: Что ж, тогда не буду тебя задерживать! #id:abd
+Услышав его замечание, все трое быстро покидаете это место. #id:abe
+jump sounds/MOVE_INDOORS
+leave roommate
+leave friend
+manager: Увидимся, ребята! #id:abf
+manager: ... #id:ac0
+manager: ...... #id:ac1
+leave manager
+jump party_ending/
+label WAIT_TO_END #id:ac2
+friend: Ну что ж. #id:ac3
+friend: Может, взять выпивку и подождать? #id:ac4
+roommate: Да! Давай так и сделаем! #id:ac5
+protagonist: Звучит как отличная идея. #id:ac6
+protagonist: (Тьфу. Скучная идея.) #id:ac7
+protagonist: (Что ж, кажется, {roommate_name} я больше ни в чём не убежу.) #id:ac8
+Все трое решаете подождать следующий час, чтобы увидеть, выйдет ли кто-нибудь из комнаты. #id:ac9
+К сожалению, до конца ночи ты так и не находишь {manager_name}. #id:aca
+jump party_ending/

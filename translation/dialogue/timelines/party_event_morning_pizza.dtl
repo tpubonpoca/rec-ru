@@ -1,0 +1,137 @@
+set {GameVariables.party_stage} = 1
+set GameVariables.got_mega_pizza = false
+jump sounds/INDOOR_APARTMENT_PARTY
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+Ты неловко стоишь посреди гостиной. #id:adf
+jump sounds/DOOR_CLOSE
+join manager
+manager: Извини, это заняло чуть больше времени, чем я ожидал. #id:ae0
+manager: Раньше ты говорил, что хочешь помочь, верно? #id:ae1
+protagonist: Да, видел. #id:ae2
+manager: Отлично! Мне нужен кто-то, кто заберёт пиццу для вечеринки. #id:ae3
+manager: Вот адрес и немного денег. #id:6c4
+jump sounds/GOT_CREDITS
+set GameVariables.credits = {GameVariables.change_credits(1000)}
+{manager_name} протягивает тебе 1000 кредитов. #id:fd6
+manager: Ладно, мне надо помочь с другими делами. #id:ae5
+manager: Я ещё зайду к тебе чуть позже, хорошо? #id:ae6
+protagonist: Звучит неплохо! #id:ae7
+protagonist: Тогда до встречи. #id:ae8
+jump sounds/MOVE_INDOORS
+leave manager
+{manager_name} скрывается в другой комнате. #id:fd7
+protagonist: Ладно, дай проверю, где это место. #id:6c8
+jump sounds/PHONE_UNLOCK
+[wait time="0.5"]
+update decorations [extra_data="set Items/Phone"]
+jump sounds/SURPRISE
+protagonist: ...! #id:6c9
+protagonist: Это место на другом конце города! #id:6ca
+jump sounds/PHONE_UNLOCK
+update decorations [extra_data="hide Items/Phone"]
+protagonist: До начала вечеринки почти не осталось времени. #id:6cb
+protagonist: Мне придётся бежать, если я хочу вернуться вовремя. #id:aea
+Ты быстро бежишь в свою комнату за кроссовками, затем также быстро выскакиваешь за дверь. #id:aeb
+leave decorations
+jump sounds/MOVE_OUTDOORS_URBAN
+jump sounds/OUTDOOR_STORE
+[background arg="res://assets/Cutscene/Backgrounds/Pizzeria.png" fade="0.6"]
+После нескольких кварталов напряжённого бега ты добираешься до пиццерии. #id:aec
+set GameVariables.stamina = {GameVariables.change_stamina(-50)}
+jump stat_change/STAMINA_DECREASE
+jump passout/CHECK_PASSOUT
+if {GameVariables.stamina} <= 100
+	protagonist: *пых*... *пых* #id:6ce
+	protagonist: Каким-то чудом... я... добрался... #id:6cf
+	protagonist: (Успею ли я вернуться вовремя?) #id:6d0
+else:
+	protagonist: Ого, этот забег и правда оказался куда быстрее, чем я думал. #id:6d1
+	protagonist: Как хорошо, что я поработал над выносливостью. #id:6d2
+set GameVariables.name_revealed = false
+join syn
+syn: Добро пожаловать в «Сырный город»! #id:6d3
+syn: Меня зовут Син. Чем я могу помочь сегодня? #id:6d4
+set GameVariables.name_revealed = true
+Ты ещё минуту просматриваешь меню. #id:aed
+Ничего не бросается в глаза, кроме названия одной пиццы. #id:aee
+syn: О, ты рассматриваешь Мега-мясной Пузо-Уничтожитель? #id:6d8
+protagonist: Это... Мега... что? #id:6d9
+syn: Мега-мясной Пузо-Уничтожитель. #id:6da
+syn: Наша всемирно известная, рекордная сырная пицца, доступная лишь в отдельных точках! #id:6db
+syn: Гарантированно произведёт хорошее Впечатление даже на самого голодного. #id:6dc
+protagonist: Оставляешь хорошее Впечатление, говоришь? #id:6dd
+syn: Ага! И доступно по низкой-низкой цене всего... #id:6de
+syn: ...20000 кредитов! #id:6e0
+jump sounds/SURPRISE
+protagonist: 20000 КРЕДИТОВ!?! #id:6e1
+protagonist: Ты с ума сошёл? #id:6e2
+protagonist: (20000 кредитов за одну пиццу?) #id:aef
+protagonist: (Как бы то ни было, эту штуку ещё придётся нести обратно.) #id:af0
+if {GameVariables.credits} >= 20000:
+	- Купить мега-пиццу #id:6e7
+		set GameVariables.credits = {GameVariables.change_credits(-20000)}
+		set GameVariables.got_mega_pizza = true
+		protagonist: Знаешь что? Я возьму. #id:6e8
+	- Не покупать мега-пиццу #id:6e9
+		set GameVariables.credits = {GameVariables.change_credits(-1000)}
+		protagonist: Пожалуй, возьму обычную пиццу. #id:6ea
+else:
+	set GameVariables.credits = {GameVariables.change_credits(-1000)}
+	protagonist: Что ж, мне всё равно это не по карману. #id:6eb
+	protagonist: Мне, пожалуйста, обычную пиццу. #id:6ed
+syn: Отлично! #id:6ee
+jump sounds/CASH
+syn: Твоя пицца будет готова через несколько минут. #id:6f1
+protagonist: (Ладно, этого времени мне должно хватить, чтобы вернуться.) #id:af1
+Проходит несколько мгновений... #id:6f3
+jump sounds/BELL
+if {GameVariables.got_mega_pizza} == true:
+	syn: Один Мега-мясной Пузо-Уничтожитель! #id:6f5
+	join decorations [extra_data="set Items/PizzaLarge"]
+else:
+	syn: Одну обычную пиццу! #id:6f6
+	join decorations [extra_data="set Items/Pizza"]
+if {GameVariables.got_mega_pizza} == true:
+	protagonist: Боже мой. Эта штука огромна. #id:6f8
+	protagonist: И как я вообще побегу с этим? #id:6f9
+jump sounds/BOX
+leave decorations
+syn: Благодарим за покупку! Надеемся вскоре увидеть вас снова. #id:af2
+Ты начинаешь обратный путь. #id:af3
+leave syn
+if {GameVariables.got_mega_pizza} == true:
+	set GameVariables.stamina = {GameVariables.change_stamina(-50)}
+set GameVariables.stamina = {GameVariables.change_stamina(-50)}
+jump sounds/MOVE_OUTDOORS_URBAN
+[background arg="res://assets/Cutscene/Backgrounds/Lobby.png" fade="0.6"]
+jump stat_change/STAMINA_DECREASE
+jump passout/CHECK_PASSOUT
+После долгой дороги в изнуряющей жаре ты кое-как добираешься до квартиры. #id:af4
+protagonist: ...Поверить не могу, что дошёл. #id:af5
+jump sounds/DOOR_OPEN
+jump sounds/INDOOR_APARTMENT_PARTY
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+join crowd [extra_data="set Size/Small"]
+Начинают подходить новые люди. #id:6fc
+protagonist: ... #id:6fd
+protagonist: ...Фух. И похоже, я вернулся вовремя. #id:af6
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_bro"]
+enemy: Бро, это что, пиццей пахнет? #id:af7
+join enemy [extra_data="set Container/Type/Dude"]
+[wait time="0.5"]
+enemy: Йооооу, все! {GameVariables.player_name} принёс пиццу! #id:fd8
+Ты чувствуешь на себе взгляды всех присутствующих. #id:701
+jump stat_change/IMPRESSION_INCREASE
+if {GameVariables.got_mega_pizza} == true:
+	enemy: Ты принёс Мега-мясной Пузо-Уничтожитель? #id:702
+	enemy: Броооо... я их даже не заказывал! Их невозможно нести одному. #id:703
+	enemy: Как, чёрт возьми, ты это сделал? #id:704
+	jump stat_change/IMPRESSION_INCREASE
+protagonist: Просто рад, что добрался целым. #id:705
+Качок одобрительно хлопает тебя по спине. #id:af8
+jump sounds/BOX
+Затем он открывает коробку с пиццей. #id:af9
+enemy: Держи. Первый кусочек тебе! #id:afa
+[signal arg="unlock_party_cutscene"]
+jump party_checkpoints/ADVANCE_PARTY

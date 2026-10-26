@@ -1,0 +1,143 @@
+set {GameVariables.party_stage} = 2
+jump sounds/INDOOR_APARTMENT_PARTY
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+jump sounds/DOOR_KNOCK
+Ты слышишь шум у двери. #id:90b
+set GameVariables.random_name = "???"
+[signal arg="reset_enemies"]
+[signal arg="load_enemy_cop"]
+random: Быстро! Прячься в ванную! #id:90c
+jump sounds/MOVE_INDOORS
+Несколько расстроенных людей быстро проходят мимо тебя в квартиру. #id:90d
+protagonist: Что здесь происходит? Там кто-то у двери? #id:90e
+protagonist: (Я нигде не вижу {manager_name}...) #id:fc7
+protagonist: (Наверное, стоит самому пойти и проверить.) #id:910
+leave decorations
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.6"]
+join random [extra_data="set Style/Female"]
+Расстроенная студентка стоит посреди входа и мечется туда-сюда. #id:911
+Она разговаривает сама с собой. #id:912
+random: Что нам делать? Что нам делать? #id:913
+jump sounds/DOOR_KNOCK
+random: Я слишком молода, чтобы меня арестовывали! #id:914
+protagonist: Что здесь происходит? #id:915
+Услышав твой голос, студентка сразу поворачивается к тебе. #id:916
+random: У двери коп! #id:917
+random: Кто-то увидел его в глазок... а потом все остальные побежали... #id:918
+protagonist: Почему? #id:919
+protagonist: Мы не сделали ничего плохого. #id:91a
+random: Наверное, по привычке! И... #id:91b
+protagonist: И? #id:91c
+random: ...и я не думаю, что все они совершеннолетние. #id:91d
+protagonist: (Ах, дерьмо.) #id:91e
+Студентка чешет затылок и слегка кланяется тебе. #id:91f
+random: Ты... думаешь, ты сможешь с ним поговорить? #id:fc8
+protagonist: (Похоже, выбора у меня не так много.) #id:921
+protagonist: (Думаю, она не убежала только потому, что ноги у неё трясутся слишком сильно, чтобы куда-то идти.) #id:922
+protagonist: Ладно, ладно. #id:923
+protagonist: Тогда подвинься. #id:924
+random: Спасибо! #id:925
+leave random
+jump sounds/MOVE_INDOORS
+Ты подходишь к двери. #id:926
+jump sounds/DOOR_KNOCK
+[wait time="0.5"]
+enemy: Эй, открывай! #id:927
+jump sounds/DOOR_KNOCK
+[wait time="0.5"]
+enemy: Я знаю, что вы там устраиваете вечеринку! #id:928
+enemy: Лучше открой дверь, иначе мне придётся вызвать подкрепление! #id:929
+protagonist: Погоди! #id:92a
+protagonist: Я открываю дверь! Погоди. #id:92b
+jump sounds/DOOR_OPEN
+[wait time="1.0"]
+join enemy center [extra_data="set Container/Type/Cop"]
+enemy: ... #id:fc9
+Коп осматривает вход. #id:92d
+protagonist: Эм... #id:92e
+protagonist: ...Я могу чем-то помочь? #id:92f
+enemy: Смотря как. #id:930
+enemy: Это ты устраиваешь вечеринку? #id:931
+protagonist: Ну, я здесь вообще-то живу... #id:932
+enemy: Это всё, что мне нужно знать. #id:933
+enemy: Ты же знаешь, что препятствование офицеру — основание для задержания? #id:934
+protagonist: Но я даже не... #id:935
+enemy: Что помешает мне надеть на тебя наручники прямо сейчас, приятель? #id:936
+protagonist: Если ты просто дашь мне сказать, то... #id:937
+enemy: Ладно! У тебя есть минута, чтобы объясниться. #id:938
+protagonist: (Мне нужно что-то, что заткнёт его раз и навсегда.) #id:939
+- Подкупить его (20000) | [if {GameVariables.credits} >= 20000] #id:93a
+	protagonist: Держи. #id:93b
+	enemy: Что это? #id:93c
+	set GameVariables.credits = {GameVariables.change_credits(-20000)}
+	jump sounds/GOT_CREDITS
+	protagonist: Забери это и больше нас не беспокой. #id:93d
+	enemy: ... #id:93e
+	enemy: Думаешь, коп возьмёт такую взятку? #id:93f
+	Он смотрит на деньги в своей руке. #id:940
+	enemy: ...тогда приятной тебе вечеринки. #id:941
+	Он одаривает тебя сальной улыбкой и уходит. #id:942
+	jump sounds/DOOR_CLOSE
+	leave enemy
+	jump COP_LEFT
+- Ответить тем же #id:943
+	Ты пытаешься использовать Интеллект, чтобы дать отпор копу. #id:944
+	protagonist: Вообще-то, это совершенно законная вечеринка, и вы нас пристаёте. #id:945
+	enemy: А? #id:946
+	set GameVariables.difficulty_class = 9
+	jump stat_change/ROLL_INTELLIGENCE
+	if {GameVariables.successful_roll} == false:
+		protagonist: Да... э-э... школьные правила, раздел... 69? #id:947
+		jump PARTY_OVER
+	protagonist: Эта вечеринка организована управляющим зданием — значит, она подчиняется протоколу статьи 16 для событий в кампусе. #id:948
+	enemy: Э? #id:949
+	protagonist: Таким образом, вы пристаёте к нам в нашем личном пространстве без причины и ордера. #id:94a
+	protagonist: На самом деле, каков твой номер жетона? #id:94b
+	enemy: ...эй, погоди минутку... #id:94c
+	Он прочищает горло. #id:94d
+	enemy: Прошу прощения. #id:94e
+	enemy: Пожалуйста, нам не нужно заходить так далеко. #id:94f
+	enemy: Извините за беспокойство, сэр. Я уже ухожу. #id:950
+	jump sounds/DOOR_CLOSE
+	leave enemy
+	jump COP_LEFT
+- Запугать его #id:951
+	Ты собираешь всю свою Харизму, чтобы выглядеть как можно более устрашающим. #id:952
+	protagonist: Тебе нужно уходить. Сейчас же. #id:953
+	enemy: А? #id:954
+	set GameVariables.difficulty_class = 9
+	jump stat_change/ROLL_CHARISMA
+	if {GameVariables.successful_roll} == false:
+		Ты пытаешься выпятить грудь. #id:955
+		В комнате так тихо, что слышно кондиционер. #id:956
+		jump PARTY_OVER
+	enemy: Эй, ты знаешь, с кем разговариваешь? #id:957
+	jump sounds/MOVE_INDOORS
+	Ты делаешь шаг вперёд. #id:958
+	Коп делает шаг назад. #id:959
+	protagonist: Я сказала, тебе нужно уйти. #id:95a
+	enemy: ... #id:95b
+	Вы оба стоите там мгновение, взвешивая все варианты. #id:95c
+	После нескольких напряжённых секунд он уступает. #id:95d
+	enemy: Ладно, ты победил. #id:95e
+	enemy: Я пойду. #id:95f
+	jump sounds/DOOR_CLOSE
+	leave enemy
+	jump COP_LEFT
+label COP_LEFT #id:960
+join random [extra_data="set Style/Female"]
+random: Ого! Ты и правда прогнал его! #id:961
+random: Это было круто! #id:962
+Она перегибается мимо тебя и кричит в гостиную. #id:963
+random: Все! {GameVariables.player_name} заставил копа уйти! #id:fca
+Комната отвечает ликованием. #id:965
+[signal arg="unlock_party_cutscene"]
+jump stat_change/IMPRESSION_INCREASE
+random: Давай выпьем в честь праздника! Позволь мне налить тебе! #id:966
+jump party_checkpoints/ADVANCE_PARTY
+label PARTY_OVER #id:967
+enemy: Так. Вечеринка окончена. #id:968
+protagonist: А? #id:969
+enemy: Всем надо разойтись, извините. #id:96a
+jump party_checkpoints/ENDING_EARLY

@@ -1,0 +1,420 @@
+label DISPLAY_TARGETS #id:1077
+if {BattleVariables.are_multiple_enemies_alive()}:
+	[signal arg="default_style"]
+	- {BattleVariables.enemies[0].GetName()} | [if {BattleVariables.enemies[0].IsDead()} == false]
+		[signal arg="battle_style"]
+		set BattleVariables.target_index = 0
+	- {BattleVariables.enemies[1].GetName()} | [if {BattleVariables.enemies[1].IsDead()} == false]
+		[signal arg="battle_style"]
+		set BattleVariables.target_index = 1
+	- Отмена #id:107a
+		jump adventure_battle/PLAYER_OPTIONS
+else:
+	set BattleVariables.target_index = {BattleVariables.auto_target_index()}
+return
+
+label RANDOM_ABILITY
+set BattleVariables.target_index = {BattleVariables.auto_target_index()}
+[signal arg="make_confused_choice"]
+if {BattleVariables.player_confused_decision} == "attack":
+	jump adventure_battle/ATTACK
+elif {BattleVariables.player_confused_decision} == "defend":
+	jump adventure_battle/DEFEND
+elif {BattleVariables.player_confused_decision} == "charm":
+	jump adventure_battle/CHARM
+elif {BattleVariables.player_confused_decision} == "enrage":
+	jump adventure_battle/ENRAGE
+elif {BattleVariables.player_confused_decision} == "fear":
+	jump adventure_battle/FEAR
+elif {BattleVariables.player_confused_decision} == "paparazzi":
+	jump adventure_skills/PAPARAZZI
+
+label END_ENEMY_TURN #id:107b
+if {BattleVariables.enemy_turn_index} < {BattleVariables.enemies.size() - 1}:
+	set BattleVariables.enemy_turn_index += 1
+	jump adventure_battle/ENEMY_TURN
+else:
+	set BattleVariables.enemy_turn_index = 0
+	jump adventure_battle/PLAYER_TURN
+return
+
+label GUARD_MESSAGE #id:c10
+if {BattleVariables.player_is_defending}:
+	[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+	Твоя защита поднята! Все входящие эффекты снижены. #id:107c
+return
+
+label LOAD_ENEMY #id:c12
+[signal arg="load_random_enemy"]
+if {BattleVariables.enemies.size()} > 1:
+	Ты встретил [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] и [color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color]!
+	if {BattleVariables.enemies[1].EnemyId} == "bro":
+		join enemy_2 center [extra_data="set Container/Type/Dude"]
+	if {BattleVariables.enemies[1].EnemyId} == "cop":
+		join enemy_2 center [extra_data="set Container/Type/Cop"]
+	if {BattleVariables.enemies[1].EnemyId} == "doctor":
+		join enemy_2 center [extra_data="set Container/Type/Doctor"]
+	if {BattleVariables.enemies[1].EnemyId} == "diver":
+		join enemy_2 center [extra_data="set Container/Type/Diver"]
+	if {BattleVariables.enemies[1].EnemyId} == "hamster":
+		join enemy_2 center [extra_data="set Container/Type/Hamster"]
+	if {BattleVariables.enemies[1].EnemyId} == "hobo":
+		join enemy_2 center [extra_data="set Container/Type/Hobo"]
+	if {BattleVariables.enemies[1].EnemyId} == "hunter":
+		join enemy_2 center [extra_data="set Container/Type/Hunter"]
+	if {BattleVariables.enemies[1].EnemyId} == "lifeguard":
+		join enemy_2 center [extra_data="set Container/Type/Lifeguard"]
+	if {BattleVariables.enemies[1].EnemyId} == "lumberjane":
+		join enemy_2 center [extra_data="set Container/Type/Lumberjane"]
+	if {BattleVariables.enemies[1].EnemyId} == "maiden":
+		join enemy_2 center [extra_data="set Container/Type/Maiden"]
+	if {BattleVariables.enemies[1].EnemyId} == "nun":
+		join enemy_2 center [extra_data="set Container/Type/Nun"]
+	if {BattleVariables.enemies[1].EnemyId} == "psycho":
+		join enemy_2 center [extra_data="set Container/Type/Psycho"]
+	if {BattleVariables.enemies[1].EnemyId} == "robot":
+		join enemy_2 center [extra_data="set Container/Type/Robot"]
+	if {BattleVariables.enemies[1].EnemyId} == "ronin":
+		join enemy_2 center [extra_data="set Container/Type/Ronin"]
+	if {BattleVariables.enemies[1].EnemyId} == "slime":
+		join enemy_2 center [extra_data="set Container/Type/Slime"]
+	if {BattleVariables.enemies[1].EnemyId} == "student":
+		join enemy_2 center [extra_data="set Container/Type/Student"]
+else:
+	Ты встретил [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color]!
+if {BattleVariables.enemies[0].EnemyId} == "bro":
+	join enemy center [z_index="1" extra_data="set Container/Type/Dude"]
+if {BattleVariables.enemies[0].EnemyId} == "cop":
+	join enemy center [z_index="1" extra_data="set Container/Type/Cop"]
+if {BattleVariables.enemies[0].EnemyId} == "doctor":
+	join enemy center [z_index="1" extra_data="set Container/Type/Doctor"]
+if {BattleVariables.enemies[0].EnemyId} == "diver":
+	join enemy center [z_index="1" extra_data="set Container/Type/Diver"]
+if {BattleVariables.enemies[0].EnemyId} == "hamster":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hamster"]
+if {BattleVariables.enemies[0].EnemyId} == "hobo":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hobo"]
+if {BattleVariables.enemies[0].EnemyId} == "hunter":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hunter"]
+if {BattleVariables.enemies[0].EnemyId} == "lifeguard":
+	join enemy center [z_index="1" extra_data="set Container/Type/Lifeguard"]
+if {BattleVariables.enemies[0].EnemyId} == "lumberjane":
+	join enemy center [z_index="1" extra_data="set Container/Type/Lumberjane"]
+if {BattleVariables.enemies[0].EnemyId} == "maiden":
+	join enemy center [z_index="1" extra_data="set Container/Type/Maiden"]
+if {BattleVariables.enemies[0].EnemyId} == "nun":
+	join enemy center [z_index="1" extra_data="set Container/Type/Nun"]
+if {BattleVariables.enemies[0].EnemyId} == "psycho":
+	join enemy center [z_index="1" extra_data="set Container/Type/Psycho"]
+if {BattleVariables.enemies[0].EnemyId} == "robot":
+	join enemy center [z_index="1" extra_data="set Container/Type/Robot"]
+if {BattleVariables.enemies[0].EnemyId} == "ronin":
+	join enemy center [z_index="1" extra_data="set Container/Type/Ronin"]
+if {BattleVariables.enemies[0].EnemyId} == "slime":
+	join enemy center [z_index="1" extra_data="set Container/Type/Slime"]
+if {BattleVariables.enemies[0].EnemyId} == "student":
+	join enemy center [z_index="1" extra_data="set Container/Type/Student"]
+enemy: {BattleVariables.enemies[0].IntroText} #id:107f
+[signal arg="begin_battle"]
+return
+
+label SUMMON_ENEMY #id:1080
+[signal arg="summon_enemy"]
+if {BattleVariables.summon_index} == -1:
+	[wait time="1.0"]
+	[sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
+	Никто не пришёл! #id:1081
+	return
+[color=ff3f49]{BattleVariables.enemies[BattleVariables.summon_index].GetName()}[/color] появляется!
+jump sounds/MOVEMENT_ADVENTURE
+if {BattleVariables.summon_index} == 0:
+	if {BattleVariables.enemies[0].EnemyId} == "bro":
+		join enemy center [z_index="1" extra_data="set Container/Type/Dude"]
+	if {BattleVariables.enemies[0].EnemyId} == "cop":
+		join enemy center [z_index="1" extra_data="set Container/Type/Cop"]
+	if {BattleVariables.enemies[0].EnemyId} == "doctor":
+		join enemy center [z_index="1" extra_data="set Container/Type/Doctor"]
+	if {BattleVariables.enemies[0].EnemyId} == "diver":
+		join enemy center [z_index="1" extra_data="set Container/Type/Diver"]
+	if {BattleVariables.enemies[0].EnemyId} == "hamster":
+		join enemy center [z_index="1" extra_data="set Container/Type/Hamster"]
+	if {BattleVariables.enemies[0].EnemyId} == "hobo":
+		join enemy center [z_index="1" extra_data="set Container/Type/Hobo"]
+	if {BattleVariables.enemies[0].EnemyId} == "hunter":
+		join enemy center [z_index="1" extra_data="set Container/Type/Hunter"]
+	if {BattleVariables.enemies[0].EnemyId} == "lifeguard":
+		join enemy center [z_index="1" extra_data="set Container/Type/Lifeguard"]
+	if {BattleVariables.enemies[0].EnemyId} == "lumberjane":
+		join enemy center [z_index="1" extra_data="set Container/Type/Lumberjane"]
+	if {BattleVariables.enemies[0].EnemyId} == "maiden":
+		join enemy center [z_index="1" extra_data="set Container/Type/Maiden"]
+	if {BattleVariables.enemies[0].EnemyId} == "nun":
+		join enemy center [z_index="1" extra_data="set Container/Type/Nun"]
+	if {BattleVariables.enemies[0].EnemyId} == "psycho":
+		join enemy center [z_index="1" extra_data="set Container/Type/Psycho"]
+	if {BattleVariables.enemies[0].EnemyId} == "robot":
+		join enemy center [z_index="1" extra_data="set Container/Type/Robot"]
+	if {BattleVariables.enemies[0].EnemyId} == "ronin":
+		join enemy center [z_index="1" extra_data="set Container/Type/Ronin"]
+	if {BattleVariables.enemies[0].EnemyId} == "slime":
+		join enemy center [z_index="1" extra_data="set Container/Type/Slime"]
+	if {BattleVariables.enemies[0].EnemyId} == "student":
+		join enemy center [z_index="1" extra_data="set Container/Type/Student"]
+if {BattleVariables.summon_index} == 1:
+	if {BattleVariables.enemies[1].EnemyId} == "bro":
+		join enemy_2 center [extra_data="set Container/Type/Dude"]
+	if {BattleVariables.enemies[1].EnemyId} == "cop":
+		join enemy_2 center [extra_data="set Container/Type/Cop"]
+	if {BattleVariables.enemies[1].EnemyId} == "doctor":
+		join enemy_2 center [extra_data="set Container/Type/Doctor"]
+	if {BattleVariables.enemies[1].EnemyId} == "diver":
+		join enemy_2 center [extra_data="set Container/Type/Diver"]
+	if {BattleVariables.enemies[1].EnemyId} == "hamster":
+		join enemy_2 center [extra_data="set Container/Type/Hamster"]
+	if {BattleVariables.enemies[1].EnemyId} == "hobo":
+		join enemy_2 center [extra_data="set Container/Type/Hobo"]
+	if {BattleVariables.enemies[1].EnemyId} == "hunter":
+		join enemy_2 center [extra_data="set Container/Type/Hunter"]
+	if {BattleVariables.enemies[1].EnemyId} == "lifeguard":
+		join enemy_2 center [extra_data="set Container/Type/Lifeguard"]
+	if {BattleVariables.enemies[1].EnemyId} == "lumberjane":
+		join enemy_2 center [extra_data="set Container/Type/Lumberjane"]
+	if {BattleVariables.enemies[1].EnemyId} == "maiden":
+		join enemy_2 center [extra_data="set Container/Type/Maiden"]
+	if {BattleVariables.enemies[1].EnemyId} == "nun":
+		join enemy_2 center [extra_data="set Container/Type/Nun"]
+	if {BattleVariables.enemies[1].EnemyId} == "psycho":
+		join enemy_2 center [extra_data="set Container/Type/Psycho"]
+	if {BattleVariables.enemies[1].EnemyId} == "robot":
+		join enemy_2 center [extra_data="set Container/Type/Robot"]
+	if {BattleVariables.enemies[1].EnemyId} == "ronin":
+		join enemy_2 center [extra_data="set Container/Type/Ronin"]
+	if {BattleVariables.enemies[1].EnemyId} == "slime":
+		join enemy_2 center [extra_data="set Container/Type/Slime"]
+	if {BattleVariables.enemies[1].EnemyId} == "student":
+		join enemy_2 center [extra_data="set Container/Type/Student"]
+return
+
+label CHECK_ENEMY_DEFEAT #id:c15
+if {BattleVariables.get_target().CurrentHealth} <= 0:
+	[signal arg="enemy_death"]
+	jump sounds/BATTLE_ATTACK_HIT
+	if {BattleVariables.target_index} == 0:
+		leave enemy
+	if {BattleVariables.target_index} == 1:
+		leave enemy_2
+	jump sounds/BATTLE_SUCCESS
+	[color=ff3f49]{BattleVariables.get_target_name()}[/color] теряет сознание!
+	if {BattleVariables.are_enemies_alive()} == false:
+		jump REWARDS
+return
+
+label PLAYER_DEBUFF_TICKS #id:f9
+[signal arg="begin_player_turn"]
+if {BattleVariables.player_is_confused} && {BattleVariables.player_is_confused_duration} <= 0:
+	set {BattleVariables.player_is_confused} = false
+	Ты больше не в замешательстве.
+if {BattleVariables.player_is_jammed} && {BattleVariables.player_is_jammed_duration} <= 0:
+	set {BattleVariables.player_is_jammed} = false
+	Ты больше не заблокирован.
+if {BattleVariables.player_is_charmed} && {BattleVariables.player_is_charmed_duration} <= 0:
+	set {BattleVariables.player_is_charmed} = false
+	Ты больше не очарован. #id:c17
+if {BattleVariables.player_is_feared} && {BattleVariables.player_is_feared_duration} <= 0:
+	set {BattleVariables.player_is_feared} = false
+	Ты больше не в страхе. #id:c18
+if {BattleVariables.player_is_enraged} && {BattleVariables.player_is_enraged_duration} <= 0:
+	set {BattleVariables.player_is_enraged} = false
+	Ты больше не в ярости. #id:c19
+jump adventure_calculations/POISON_TICK
+if {BattleVariables.player_is_stunned} && {BattleVariables.player_is_stunned_duration} > 0:
+	[signal arg="vision_red"]
+	[signal arg="shake"]
+	jump sounds/BATTLE_STUN
+	Ты оглушён! #id:100
+	protagonist: Я... не могу... двигаться... #id:101
+	set {BattleVariables.player_is_stunned_duration} -= 1
+	jump adventure_battle/ENEMY_TURN
+elif {BattleVariables.player_is_stunned} && {BattleVariables.player_is_stunned_duration} == 0:
+	Ты больше не оглушён. #id:102
+	set {BattleVariables.player_is_stunned} = false
+if {GameVariables.stamina} <= 0:
+	jump adventure/COLLAPSE
+return
+
+label ENEMY_DEBUFF_TICKS #id:103
+[signal arg="begin_enemy_turn"]
+if {BattleVariables.acting_enemy.IsDead()}:
+	jump END_ENEMY_TURN
+if {BattleVariables.acting_enemy.CharmJustWornOff} :
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] больше не под очарованием.
+if {BattleVariables.acting_enemy.FearJustWornOff}:
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] больше не в страхе.
+if {BattleVariables.acting_enemy.EnrageJustWornOff}:
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] больше не в ярости.
+if {BattleVariables.acting_enemy.IsStunned()}:
+	set BattleVariables.target_index = {BattleVariables.enemy_turn_index}
+	[signal arg="enemy_shake"]
+	jump sounds/BATTLE_STUN
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] оглушён(а)!
+	if {BattleVariables.enemy_turn_index} == 0:
+		enemy: {BattleVariables.acting_enemy.StunDialogue} #id:1088
+	if {BattleVariables.enemy_turn_index} == 1:
+		enemy_2: {BattleVariables.acting_enemy.StunDialogue} #id:1089
+	jump END_ENEMY_TURN
+elif {BattleVariables.acting_enemy.StunnedJustWornOff}:
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] больше не оглушён(а).
+return
+
+label YUNA_TURN #id:c1f
+if {BattleVariables.yuna_is_stunned} && {BattleVariables.yuna_is_stunned_duration} > 0:
+	[signal arg="shake"]
+	jump sounds/BATTLE_STUN
+	Юна оглушена!
+	roommate: Не могу... двигаться...
+	set {BattleVariables.yuna_is_stunned_duration} -= 1
+	return
+elif {BattleVariables.yuna_is_stunned} && {BattleVariables.yuna_is_stunned_duration} == 0:
+	update roommate [extra_data="hide Decorations/Sweat"]
+	Юна больше не оглушена.
+	set {BattleVariables.yuna_is_stunned} = false
+set BattleVariables.yuna_decision = {BattleVariables.decide_yuna_action()}
+if {BattleVariables.yuna_decision} == "none"
+	return
+if {BattleVariables.yuna_decision} == "heal_small":
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: На, используй это! #id:70
+	[signal arg="yuna_give"]
+	jump sounds/BRANDISH
+	{roommate_name} протягивает тебе бутылку воды. #id:71
+	[signal arg="yuna_healing"]
+	[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+	jump stat_change/STAMINA_INCREASE
+	if {GameVariables.relationship} >= 60:
+		set GameVariables.stamina = {GameVariables.change_stamina(4)}
+	else:
+		set GameVariables.stamina = {GameVariables.change_stamina(2)}
+if {BattleVariables.yuna_decision} == "throw_brick":
+	set BattleVariables.brick_selected = {BattleVariables.randomize_brick()}
+	set BattleVariables.target_index = {BattleVariables.auto_target_index()}
+	update roommate [extra_data="set Expressions/Annoyed"]
+	roommate: С дороги, {GameVariables.player_name}! #id:c20
+	jump sounds/WHOOSH
+	[signal arg="yuna_throw"]
+	roommate: Держи! #id:75
+	{roommate_name} бросает кирпич в [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:108b
+	[sound bus="Cutscene" path="res://audio/se/Brick.ogg"]
+	[signal arg="enemy_shake"]
+	if {BattleVariables.target_index} == 0:
+		enemy: {BattleVariables.get_target().BrickDialogue} #id:108c
+	if {BattleVariables.target_index} == 1:
+		enemy_2: {BattleVariables.get_target().BrickDialogue} #id:108d
+	set BattleVariables.target_enemy.CurrentHealth = {BattleVariables.target_enemy.TakeDamage(BattleVariables.get_brick_damage())}
+	Юна наносит [color=ff3f49]{BattleVariables.get_target_name()}[/color] урон в [color=ff3f49]{BattleVariables.last_player_damage}[/color]! #id:108e
+	if {BattleVariables.brick_selected} == "cheese_brick":
+		jump stat_change/STAMINA_INCREASE
+		set GameVariables.stamina = {GameVariables.change_stamina(2)}
+if {BattleVariables.yuna_decision} == "remove_debuff":
+	update roommate [extra_data="set Expressions/Annoyed"]
+	roommate: Очнись, {GameVariables.player_name}! #id:c23
+	[signal arg="yuna_give"]
+	jump sounds/SLAP_CARTOON
+	{roommate_name} даёт тебе пощёчину, приводя в себя! #id:c24
+	if {BattleVariables.player_is_confused}:
+		Ты больше не в замешательстве!
+		set BattleVariables.player_is_confused = false
+		set BattleVariables.player_is_confused_duration = 0
+	if {BattleVariables.player_is_jammed}:
+		Ты больше не в замешательстве!
+		set BattleVariables.player_is_jammed = false
+		set BattleVariables.player_is_jammed_duration = 0
+	if {BattleVariables.player_is_charmed}:
+		Ты больше не очарован! #id:c25
+		set BattleVariables.player_is_charmed = false
+		set BattleVariables.player_is_charmed_duration = 0
+	if {BattleVariables.player_is_enraged}:
+		Ты больше не в ярости! #id:c26
+		set BattleVariables.player_is_enraged = false
+		set BattleVariables.player_is_enraged_duration = 0
+	if {BattleVariables.player_is_feared}:
+		Ты больше не в страхе! #id:c27
+		set BattleVariables.player_is_feared = false
+		set BattleVariables.player_is_feared_duration = 0
+	if {BattleVariables.player_is_mad}:
+		Ты больше не в безумии!
+		set BattleVariables.player_is_mad = false
+	if {BattleVariables.player_is_stunned}:
+		Ты больше не оглушён! #id:c28
+		set BattleVariables.player_is_stunned = false
+		set BattleVariables.player_is_stunned_duration = 0
+jump adventure_functions/CHECK_ENEMY_DEFEAT
+return
+
+label YOSUKE_TURN #id:108f
+set {dice} = {range(0, 100).pick_random()}
+if {dice} > 5:
+	return
+set BattleVariables.target_index = {BattleVariables.auto_target_index()}
+[sound path="res://audio/battle/GunCock.ogg" bus="Cutscene" volume="3.0"]
+[wait time="0.3"]
+yosuke: <Моя очередь./Нужна помощь?/Йо.> #id:1090
+if {GameVariables.yuna_partnered}:
+	leave roommate
+jump sounds/CLOAKING
+join yosuke [extra_data="set Style/Partner"]
+[wait time="0.3"]
+[signal arg="shoot"]
+[wait time="1.0"]
+[signal arg="enemy_shake"]
+Ёсуке наносит по [color=ff3f49]{BattleVariables.get_target_name()}[/color] урон в [color=ff3f49]{BattleVariables.yosuke_shot()}[/color]! #id:1091
+leave yosuke
+if {GameVariables.yuna_partnered} and {BattleVariables.yuna_is_stunned}:
+	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Tired, show Decorations/Sweat"]
+if {GameVariables.yuna_partnered} and {BattleVariables.yuna_is_stunned} == false:
+	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
+jump adventure_functions/CHECK_ENEMY_DEFEAT
+return
+
+label REWARDS #id:c29
+if {GameVariables.yuna_partnered}:
+	update roommate [extra_data="set Expressions/Happy, hide Decorations/Sweat"]
+	roommate: <Фух. Отлично!/Хех. Я ни секунды в тебе не сомневалась./Я устала просто смотреть!> #id:12a
+jump sounds/GOT_CREDITS
+Ты нашёл [color=e5be3e]{BattleVariables.get_credit_rewards()} кредитов[/color]! #id:1092
+protagonist: Хммм, что это? #id:65e
+if {BattleVariables.enemies.size()} >= 1:
+	if {BattleVariables.enemies[0].RanAway} == false:
+		set GameVariables.enemies_defeated += 1
+		jump sounds/GOT_ITEM
+		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(0)}[/color]! #id:1093
+		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
+			protagonist: На обороте есть описание... #id:1094
+			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1095
+		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
+			update roommate [extra_data="set Expressions/Happy"]
+			roommate: {BattleVariables.item_reward.YunaComment} #id:1096
+if {BattleVariables.enemies.size()} >= 2:
+	if {BattleVariables.enemies[1].RanAway} == false:
+		set GameVariables.enemies_defeated += 1
+		jump sounds/GOT_ITEM
+		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(1)}[/color]! #id:1097
+		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
+			protagonist: На обороте есть описание... #id:1098
+			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1099
+		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
+			update roommate [extra_data="set Expressions/Happy"]
+			roommate: {BattleVariables.item_reward.YunaComment} #id:109a
+if {BattleVariables.enemies.size()} >= 3:
+	if {BattleVariables.enemies[2].RanAway} == false:
+		set GameVariables.enemies_defeated += 1
+		jump sounds/GOT_ITEM
+		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(2)}[/color]! #id:109b
+		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
+			protagonist: На обороте есть описание... #id:109c
+			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:109d
+		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
+			update roommate [extra_data="set Expressions/Happy"]
+			roommate: {BattleVariables.item_reward.YunaComment} #id:109e
+if {BattleVariables.is_enemy_sexable()}:
+	jump adventure_sex/START
+jump adventure/LOOP

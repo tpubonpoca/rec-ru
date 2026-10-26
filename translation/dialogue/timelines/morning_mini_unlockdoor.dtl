@@ -1,0 +1,127 @@
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+[wait time="0.6"]
+jump sounds/DOOR_KNOCK
+protagonist: Да, входи. #id:41e
+jump sounds/DOOR_OPEN
+join roommate center
+[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+if {GameVariables.relationship} >= 20:
+	update roommate [extra_data="set Expressions/Happy"]
+roommate: Эй... #id:41f
+roommate: Мне нужна твоя помощь с кое-чем? #id:420
+protagonist: Да, что такое? #id:421
+roommate: Я случайно захлопнула дверь своей комнаты, а ключи остались внутри. #id:422
+roommate: Можешь взглянуть на это? #id:423
+- Сказать «да» #id:424
+- Сказать «нет» #id:425
+	update roommate [extra_data="set Expressions/Sad"]
+	roommate: Ладно, тогда, пожалуй, придётся спросить {manager_name}. #id:426
+	leave roommate
+	jump sounds/DOOR_CLOSE
+	set GameVariables.relationship_change = 5
+	jump stat_change/RELATIONSHIP_DECREASE
+	protagonist: Уф. #id:428
+	protagonist: Кажется, она сильно расстроилась. #id:429
+	jump z_functions/END_TO_UPGRADE
+protagonist: Конечно, я могу взглянуть. #id:42a
+[sound bus="Cutscene" path="res://audio/voice/arigato4_Thank_you.ogg"]
+roommate: Спасибо. #id:42b
+leave roommate
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Hallway_Day.png" fade="0.6"]
+join roommate
+protagonist: Так, посмотрим. #id:42c
+[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" volume="-6.0"]
+protagonist: Да, похоже, заперто изнутри. #id:42d
+protagonist: К счастью, эти двери можно открыть, просто вдавив штифт внутри ручки. #id:42e
+roommate: О? #id:42f
+[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" vovolume="-6.0"]
+protagonist: Замок даже взламывать не нужно, на самом деле это очень легко. #id:430
+[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" vovolume="-6.0"]
+protagonist: Почти... получилось... #id:431
+jump sounds/DOOR_OPEN
+protagonist: Так-то лучше. #id:432
+update roommate [extra_data="set Expressions/Confused"]
+roommate: И это всё? #id:433
+roommate: Это показалось... слишком легко... #id:434
+protagonist: (Блять, кажется, я спалился.) #id:435
+if {GameVariables.is_scene_seen('event_relationship_100')}:
+	update roommate [extra_data="set Expressions/Confused"]
+	roommate: Так вот как ты пробирался в мою комнату... #id:10c7
+	update roommate [extra_data="set Expressions/Default"]
+	roommate: ...извращенец. #id:10c8
+	jump SUCCESS
+- Объяснись #id:436
+	if {GameVariables.get_intelligence()} >= 4:
+		Благодаря Интеллекту ты быстро придумываешь логичную причину, почему умеешь открывать двери. #id:437
+		protagonist: {manager_name} на самом деле показал мне, как это делать. #id:438
+		protagonist: Я, кстати, тоже запер себя в комнате. #id:439
+		update roommate [extra_data="set Expressions/Default"]
+		roommate: О. Понятно. #id:43a
+		jump stat_change/INTELLIGENCE
+		jump SUCCESS
+	else:
+		К сожалению, тебе не хватает Интеллекта, чтобы придумать отговорку, почему ты умеешь открывать двери. #id:43e
+		protagonist: Э-э... #id:43f
+		protagonist: Я однажды видел это по телевизору? #id:440
+- Не делать #id:441
+roommate: Не знаю, но, кажется, ты сделал это чертовски быстро... #id:442
+protagonist: (Что мне делать?) #id:443
+- Пошутить #id:444
+	С помощью Харизмы ты пытаешься выдать это за шутку. #id:445
+	protagonist: Вообще-то, я пробирался в твою комнату по ночам. #id:446
+	roommate: А? #id:447
+	if {GameVariables.get_charisma()} >= 2:
+		update roommate [extra_data="set Expressions/Laughing"]
+		roommate: Ха-ха, это хорошая! #id:448
+		update roommate [extra_data="set Expressions/Happy"]
+		roommate: Пф, вот ты шутник. #id:449
+		jump stat_change/CHARISMA
+		jump SUCCESS
+	else:
+		update roommate [extra_data="set Expressions/Default"]
+		roommate: Это что, шутка? #id:44d
+		К сожалению, твоей Харизмы слишком мало, чтобы твой блеф приняли за шутку. #id:44e
+		set GameVariables.relationship_change = 5
+		jump stat_change/RELATIONSHIP_DECREASE
+		protagonist: ...извини. #id:450
+		roommate: Что ж, спасибо, наверное. #id:451
+		leave roommate
+		jump sounds/DOOR_CLOSE
+		protagonist: Уф. #id:452
+		protagonist: М-да, испанский стыд, пиздец... #id:453
+		protagonist: ...Мне стоит поработать над речью. #id:454
+		protagonist: Может, книга поможет? #id:455
+		jump z_functions/END_TO_UPGRADE
+- Не делать #id:456
+	roommate: Ты ведь не пробирался в мою комнату, а? #id:457
+	protagonist: Конечно нет! #id:458
+	protagonist: Ха-ха. #id:459
+	roommate: ... #id:45a
+	set GameVariables.relationship_change = 5
+	jump stat_change/RELATIONSHIP_DECREASE
+	roommate: Что ж, спасибо, наверное. #id:45c
+	leave roommate
+	jump sounds/DOOR_CLOSE
+	protagonist: Уф. #id:45d
+	protagonist: М-да, испанский стыд, пиздец... #id:45e
+	protagonist: Некоторое время мне стоит быть осторожнее в поступках рядом с ней. #id:45f
+	protagonist: ... #id:460
+	protagonist: ...Думаю, могло быть и куда хуже. #id:461
+	jump z_functions/END_TO_UPGRADE
+label SUCCESS #id:462
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Что ж, ещё раз спасибо за помощь! #id:463
+if {GameVariables.is_scene_seen('event_relationship_100')}:
+	update roommate [extra_data="set Expressions/Confused"]
+	roommate: ...ты извращенец. #id:10c9
+set GameVariables.relationship_change = 5
+jump stat_change/RELATIONSHIP_INCREASE
+leave roommate
+protagonist: (Фух.) #id:465
+protagonist: Всё чуть не закончилось очень плохо. #id:466
+protagonist: ... #id:467
+protagonist: Так, возвращаемся к работе. #id:468
+jump z_functions/UNLOCK_GALLERY_CUTSCENE
+jump z_functions/END_TO_UPGRADE

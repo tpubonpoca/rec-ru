@@ -1,0 +1,117 @@
+set GameVariables.random_name = "???"
+jump sounds/OUTDOOR_BEACH
+[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_1.png" fade="0.6"]
+protagonist: ...
+random: {GameVariables.player_name}...
+protagonist: ...а?
+random: {GameVariables.player_name}!
+protagonist: Что?
+Ты оборачиваешься на голос.
+[background arg="res://assets/Cutscene/Backgrounds/Beach_Closeup.png" fade="0.6"]
+join scene [extra_data="set Scene/Dream"]
+{roommate_name} лежит перед тобой на одеяле в бикини.
+roommate: Намажешь меня солнцезащитным кремом?
+protagonist: О...
+protagonist: ...э-э... конечно.
+leave scene
+join scene [extra_data="set Scene/DreamSunscreen"]
+jump sounds/SUNSCREEN
+Ты начинаешь наносить солнцезащитный крем на спину {roommate_name}.
+jump sounds/SUNSCREEN
+Её упругая кожа почти эластична под твоими ладонями.
+jump sounds/SUNSCREEN
+Двигая пальцами, ты время от времени задеваешь завязку купальника {roommate_name}.
+Похоже, она замечает, что лямка мешает.
+roommate: Можешь развязать, если хочешь.
+roommate: Я имею в виду бикини.
+protagonist: О... эм... конечно...
+Ты пытаешься развязать завязку топа {roommate_name}.
+set GameVariables.difficulty_class = 4
+jump stat_change/ROLL_DEXTERITY
+if {GameVariables.successful_roll} == false:
+	Почему-то ты не можешь заставить пальцы двигаться правильно.
+	jump sounds/HEARTBEAT
+	Твоя нервозность растёт от собственной неумелости.
+	jump sounds/HEARTBEAT
+	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	jump DREAM_END_FAIL
+[signal arg="play_sunscreen_2"]
+jump sounds/ELASTIC
+Тебе успешно удаётся снять завязки топа бикини.
+jump sounds/VOICE_MMM
+roommate: Так лучше.
+protagonist: А как насчёт нижней части?
+roommate: ...а?
+protagonist: Я не могу добраться до области вокруг твоих бёдер — стринги мешают.
+jump sounds/VOICE_UM
+roommate: Хммм...
+roommate: Конечно, это нормально.
+Ты начинаешь развязывать завязку нижней части бикини.
+set GameVariables.difficulty_class = 6
+jump stat_change/ROLL_DEXTERITY
+if {GameVariables.successful_roll} == false:
+	Почему-то ты не можешь заставить пальцы двигаться правильно.
+	jump sounds/HEARTBEAT
+	Твоя нервозность растёт от собственной неумелости.
+	jump sounds/HEARTBEAT
+	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	jump DREAM_END_FAIL
+[signal arg="play_sunscreen_3"]
+jump sounds/ELASTIC
+Тебе успешно удаётся развязать нижнюю часть бикини.
+jump sounds/VOICE_MMM
+roommate: ...спасибо.
+jump sounds/SUNSCREEN
+Ты выдавливаешь ещё немного солнцезащитного крема на {roommate_name}.
+jump sounds/SUNSCREEN
+Продолжая втирать лосьон, ты чувствуешь растущее беспокойство.
+protagonist: (...это?)
+set GameVariables.difficulty_class = 8
+jump stat_change/ROLL_INTELLIGENCE
+if {GameVariables.successful_roll} == false:
+	Неприятное чувство гложет тебя, но ты не можешь понять почему.
+	jump sounds/HEARTBEAT
+	Твоя нервозность растёт вместе с дискомфортом.
+	jump sounds/HEARTBEAT
+	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	jump DREAM_END_FAIL
+jump sounds/THINKING
+protagonist: (...погоди-ка...)
+protagonist: (...это сон!)
+Осознав это, ты чувствуешь, как извращённые мысли наводняют мозг.
+Ты сразу же пробуешь первую пришедшую в голову идею.
+Мгновенно ты вытаскиваешь свой член и вонзаешь его в {roommate_name}.
+leave scene
+join scene [extra_data="set Scene/DreamPenetration"]
+roommate: Эй!
+roommate: Погоди... мгновение!
+[signal arg="play_sex_fast"]
+Ты яростно вбиваешься в неё.
+protagonist: (Быстрее... пока я... не проснулся...!)
+roommate: Что... ты... делаешь?!
+leave scene
+jump sounds/MUSIC_FADEOUT_ALL
+[background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
+set GameVariables.lust = 0
+[wait time="1.0"]
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+protagonist: ...
+jump sounds/RUSTLE
+Ты заглядываешь под одеяло.
+protagonist: ...Наверное, стоит сменить простыни.
+jump z_functions/UNLOCK_GALLERY_CUTSCENE
+jump z_functions/END_TO_UPGRADE
+label DREAM_END_FAIL
+set GameVariables.lust += 30
+leave scene
+jump sounds/MUSIC_FADEOUT_ALL
+[background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
+[wait time="2.0"]
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+protagonist: ...
+protagonist: ...какой сон...
+protagonist: ...Интересно, смогу ли я зайти дальше в следующий раз?
+jump stat_change/LUST_INCREASE
+jump z_functions/END_TO_UPGRADE

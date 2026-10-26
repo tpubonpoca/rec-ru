@@ -1,0 +1,90 @@
+set GameVariables.phase = "EVENING"
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.0"]
+[wait time="1.0"]
+Сейчас вечер воскресенья. #id:2e0
+join decorations center [extra_data="set Items/CameraBlinking"]
+label choice #id:2e1
+Кнопка на передней панели камеры мигает. #id:2e2
+- Перемотать к понедельнику #id:2e3
+	Ты нажимаешь кнопку. #id:2e4
+- Завершить игру #id:2e5
+	Ты уверен, что хочешь завершить игру? (Примечание\: эта часть игры не завершена!) #id:2e6
+	- Да #id:2e7
+	- Нет #id:2e8
+		jump choice
+	jump sounds/MUSIC_FADEOUT_ALL
+	[background arg="res://assets/Cutscene/Backgrounds/Black.png"]
+	leave decorations
+	Вместо этого ты решаешь лечь спать. #id:2e9
+	jump ending/
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]...*бип*[/color] #id:2ea
+camera: [color=e5be3e]Запрос на перемотку инициирован.[/color] #id:2eb
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]*бип*[/color] #id:2ec
+camera: [color=e5be3e]...запрос подтверждён.[/color] #id:2ed
+[signal arg="start_rewind"]
+[music channel="3" fade="0.0" volume="0.0"]
+[music path="res://audio/se/Rewind.ogg" fade="0.6" volume="0.0"]
+[music channel="1" fade="0.0" volume="0.0"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+set GameVariables.phase = "MORNING"
+[wait time="1.0"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.8"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "СБ."
+[wait time="0.8"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.8"]
+set GameVariables.phase = "MORNING"
+[wait time="0.8"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.6"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ПТ."
+[wait time="0.6"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
+set GameVariables.phase = "MORNING"
+[wait time="0.6"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.4"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ЧТ."
+[wait time="0.4"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.4"]
+set GameVariables.phase = "MORNING"
+[wait time="0.4"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.2"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "СР."
+[wait time="0.2"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.2"]
+set GameVariables.phase = "MORNING"
+[wait time="0.2"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.1"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ВТ."
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
+set GameVariables.phase = "MORNING"
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.1"]
+set GameVariables.phase = "EVENING"
+set GameVariables.day_name = "ПН."
+[wait time="0.1"]
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
+[signal arg="stop_rewind"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+set GameVariables.phase = "MORNING"
+[music path="res://audio/bgs/cicadas.ogg" fade="0.6" volume="-12.0"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="0.6"]
+[wait time="2.0"]
+update decorations center [extra_data="set Items/Camera"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+camera: [color=e5be3e]Последовательность перемотки завершена.[/color] #id:2ee
+camera: [color=e5be3e]Теперь вы можете покинуть комнату.[/color] #id:2ef
+camera: [color=e5be3e]Следующая перемотка будет готова примерно через 13 дней 12 часов.[/color] #id:2f0
+camera: [color=e5be3e]Надеемся на ваше дальнейшее сотрудничество.[/color] #id:2f1
+leave decorations
+protagonist: Сегодня понедельник! #id:2f2
+protagonist: Давай вернёмся к делу. #id:2f3
+jump z_functions/END_TO_NEXT_CUTSCENE

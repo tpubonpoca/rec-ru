@@ -1,0 +1,119 @@
+label START
+jump sounds/TISSUES
+[wait time="1.0"]
+[sound bus="Cutscene" path="res://audio/se/Slosh1.ogg" volume="9.0"]
+[wait time="1.0"]
+[sound bus="Cutscene" path="res://audio/se/Slosh4.ogg" volume="9.0"]
+[wait time="1.0"]
+[sound bus="Cutscene" path="res://audio/se/Slosh1.ogg" volume="9.0"]
+[wait time="1.0"]
+set {dice} = {range(0, 100).pick_random()}
+if {dice} > 25:
+	jump ENDING
+jump sounds/DOOR_KNOCK
+[wait time="0.5"]
+protagonist: А?
+protagonist: Погоди минутку!
+Не успеваешь ты заправить стояк обратно в трусы, как в комнату входит {roommate_name}.
+join roommate [extra_data="set Body/Default"]
+jump sounds/VOICE_GOOD_MORNING
+roommate: Эй, ты не видел мой учебник? Кажется, я его...
+update roommate [extra_data="set Expressions/Surprise"]
+jump sounds/SURPRISE
+roommate: Упс!
+roommate: Ты что... прямо сейчас дрочишь?...
+protagonist: [pause=0.5].[pause=0.5].[pause=0.5].[pause=0.5]ну да. Как видишь.
+if {GameVariables.relationship} < 80:
+	set GameVariables.difficulty_class = 7
+	jump stat_change/ROLL_CHARISMA
+	if {GameVariables.successful_roll} == false:
+		update roommate [extra_data="set Expressions/Sad"]
+		roommate: Фу. Отвратительно.
+		leave roommate
+		jump sounds/DOOR_CLOSE
+		protagonist: ...
+		set GameVariables.relationship_change = 5
+		jump stat_change/RELATIONSHIP_DECREASE
+	else:
+		protagonist: В смысле... я же сказал подождать минутку...
+		update roommate [extra_data="set Expressions/Confused"]
+		roommate: ...
+		update roommate [extra_data="set Expressions/Sad"]
+		roommate: ...извини.
+		leave roommate
+		jump sounds/DOOR_CLOSE
+	protagonist: Что ж, вернёмся к делу, пожалуй...
+	jump ENDING
+update roommate [extra_data="set Expressions/Default"]
+roommate: Эм... так...
+update roommate [extra_data="set Expressions/TiredHappy"]
+roommate: Тебе... помочь с этим стояком?~
+leave roommate
+jump sounds/BED
+{roommate_name} толкает тебя на кровать.
+jump sounds/CLOTH
+join scene [extra_data="set Scene/HandjobExposingHome"]
+Ты на мгновение ошеломлён напористостью {roommate_name}.
+roommate: Хочешь, чтобы я остановилась?
+jump sounds/GULP
+[wait time="1.0"]
+roommate: Сиди смирно и кайфуй, я сама всё сделаю~
+leave scene
+join scene [extra_data="set Scene/HandjobClothedHome"]
+protagonist: Ого...
+label HANDJOB_SLOW
+roommate: Ну как, приятно, когда я так сжимаю твой ствол?~
+[wait time="3.0"]
+- Так же
+	jump HANDJOB_SLOW
+- Быстрее
+	jump HANDJOB_MEDIUM
+label HANDJOB_MEDIUM
+[signal arg="play_medium"]
+roommate: Так приятно?
+[wait time="3.0"]
+- Медленнее
+	jump HANDJOB_SLOW
+- Быстрее
+	jump HANDJOB_FAST
+label HANDJOB_FAST
+[signal arg="play_fast"]
+roommate: Уже почти?
+[wait time="3.0"]
+- Медленнее
+	jump HANDJOB_MEDIUM
+- Кончить
+	jump FINISH
+label FINISH
+set GameVariables.lust = 0
+[wait time="1.0"]
+[signal arg="play_finish_1"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+[wait time="1.0"]
+[signal arg="play_finish_2"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+protagonist: А! #id:f19
+[wait time="1.0"]
+[signal arg="play_finish_3"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+[wait time="2.0"]
+leave scene
+join roommate center [extra_data="set Expressions/TiredHappy, set Decorations/Cum"]
+jump sounds/VOICE_LAUGH
+roommate: Ого... сколько же ты настрелял, весь живот мне залил.
+roommate: Мне сейчас нужно принять душ...
+protagonist: Может, я мог бы к тебе присоединиться?
+jump sounds/VOICE_IDIOT
+roommate: Хорошая попытка.
+roommate: ...
+roommate: Может, в следующий раз.
+leave roommate
+jump sounds/DOOR_CLOSE
+[wait time="1.0"]
+label ENDING
+set GameVariables.lust = 0
+jump stat_change/LUST_DECREASE
+jump z_functions/END_TO_UPGRADE

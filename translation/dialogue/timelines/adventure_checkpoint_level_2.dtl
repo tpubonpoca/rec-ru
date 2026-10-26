@@ -1,0 +1,133 @@
+label START #id:ea
+set GameVariables.checkpoint_2_reached = true
+set BattleVariables.level = 3
+set BattleVariables.stage = 0
+jump sounds/OUTDOOR_COUNTRYSIDE
+jump sounds/MUSIC_FADEOUT
+jump adventure_backgrounds/LOAD_BACKGROUND
+Ты добрался до следующей зоны — [color=ffce65]деревни[/color]. #id:eb
+protagonist: Мы что... в деревне? #id:ec
+protagonist: Отсюда я вообще не слышу звуков города. #id:ed
+if {GameVariables.yuna_partnered} && {GameVariables.has_skill('peace_of_mind')} == false:
+	roommate: Здесь так... тихо. #id:ee
+	roommate: Надо бы сфотографировать... не хочу забывать этот вид. #id:ef
+	jump sounds/GOT_SKILL
+	{roommate_name} получила особый навык\: [color=e5be3e]Спокойствие[/color]! #id:f0
+	[signal arg="unlock_peace_of_mind"]
+protagonist: Похоже, здесь автобусная остановка. #id:f1
+protagonist: Я смогу мгновенно вернуться сюда, если воспользуюсь [color=ffce65]автобусным проездным[/color]. #id:f2
+protagonist: Мне стоит пойти домой? #id:e7
+- Отправиться домой #id:bef
+	jump adventure/GO_HOME
+- Взять «перерыв» | [if {GameVariables.yuna_partnered} == true and {Cutscenes.IsSceneSeen("event_relationship_100")}] #id:1055
+	jump SEX
+- Продолжить #id:bf0
+	jump START_ADVENTURE
+label BUS_LOOP #id:bf1
+set BattleVariables.level = 3
+set BattleVariables.stage = 0
+jump adventure_backgrounds/LOAD_BACKGROUND
+jump sounds/OUTDOOR_COUNTRYSIDE
+[sound path="res://audio/se/BusArrival.ogg" volume="-6.0"]
+Через несколько минут ты выходишь на своей остановке. #id:68
+if {GameVariables.yuna_partnered}:
+	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: Здесь так спокойно... #id:bf2
+	update roommate [extra_data="set Expressions/Default"]
+label START_ADVENTURE #id:bf3
+jump adventure/LOOP
+label SEX #id:1056
+update roommate [extra_data="set Expressions/Confused"]
+roommate: О? Хочешь взять «перерыв»? #id:1057
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Конечно... давай найдём место. #id:1058
+jump sounds/MOVEMENT_ADVENTURE
+Вы оба идёте вдоль опушки, пока не находите узкую тропинку в лес.
+if {BattleVariables.is_night_run()} == false:
+	[background arg="res://assets/Cutscene/Backgrounds/Countryside_Rest.png" fade="0.6"]
+else:
+	[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Rest.png" fade="0.6"]
+Небольшой участок открытой травы лежит среди высоких деревьев.
+{roommate_name} оглядывается на секунду, затем ложится на поляне.
+jump sounds/MOVEMENT_ADVENTURE
+leave roommate
+jump sounds/CLOTH
+Лёжа на траве, {roommate_name} медленно стягивает шорты, обнажая зад.
+join scene center [extra_data="set Scene/ProneBoneTease"]
+Ты на мгновение замираешь, любуясь видом.
+protagonist: (...чёрт.)
+jump sounds/VOICE_UM
+roommate: Эм...
+roommate: ...немного неловко вот так просто лежать.
+protagonist: Ах! Извини.
+jump sounds/CLOTH
+leave scene
+Ты быстро снимаешь шорты...
+...затем осторожно забираешься на {roommate_name}.
+join scene center [extra_data="set Scene/ProneBone"]
+Твои руки напрягаются, чтобы не прижаться к ней целиком.
+protagonist: Я же не слишком на тебе наваливаюсь?
+roommate: ...Нет. Всё в порядке.
+Ты медленно вжимаешься в {roommate_name}, дразня её поверхность головкой.
+jump sounds/GULP
+Сейчас трудно не поддаться искушению вставить до конца.
+jump sounds/VOICE_UM
+roommate: ...ну?
+roommate: Ты собираешься подшучивать надо мной вечно?
+label PRONEBONE_SLOW
+[signal arg="play_piston"]
+Поддавшись желаниям, ты начинаешь двигаться туда-сюда.
+roommate: ...ах!
+[wait time="3.0"]
+- Так же #id:1069
+	jump PRONEBONE_SLOW
+- Быстрее #id:106a
+	jump PRONEBONE_MEDIUM
+label PRONEBONE_MEDIUM #id:106b
+[signal arg="play_piston_medium"]
+roommate: Продолжай...ещё...!
+[wait time="3.0"]
+- Медленнее #id:106d
+	jump PRONEBONE_SLOW
+- Быстрее #id:106e
+	jump PRONEBONE_FAST
+label PRONEBONE_FAST #id:106f
+[signal arg="play_piston_fast"]
+roommate: ...да!
+[wait time="3.0"]
+- Медленнее #id:1071
+	jump PRONEBONE_MEDIUM
+- Кончить #id:1072
+	jump FINISH
+label FINISH #id:1073
+protagonist: Я... почти...
+protagonist: ...ах!
+[signal arg="play_climax"]
+set GameVariables.lust = 0
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+[wait time="0.5"]
+[signal arg="screenshot"]
+[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+[wait time="2.0"]
+Ты чувствуешь, как горячая струя изливается глубоко в {roommate_name}...
+Вы оба ещё несколько мгновений упиваетесь блаженством.
+[wait time="1.0"]
+Внезапно ты осознаёшь окружающую обстановку.
+leave scene
+jump sounds/CLOTH
+Через мгновение вы оба встаёте и одеваетесь.
+join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/TiredHappy"]
+protagonist: Это... было кое-что.
+jump sounds/VOICE_LAUGH
+roommate: Это действительно было...
+roommate: ...ну? #id:1076
+roommate: Тогда пойдём? #id:f3d
+set GameVariables.stamina = {GameVariables.change_stamina(100)}
+jump stat_change/STAMINA_INCREASE
+jump START_ADVENTURE

@@ -1,0 +1,13 @@
+[signal arg="nut"]
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+[wait time="0.6"]
+Вставая с кровати, ты чувствуешь, что-то не так.
+jump sounds/RUSTLE
+Ты проверяешь под простынями.
+protagonist: ...
+[sound path="res://audio/se/Thinking.ogg" volume="0.0"]
+[color=e5be3e]У тебя случилась ночная поллюция![/color]
+[color=e5be3e]Если шкала похоти превысит 100%, ты потеряешь выносливость.[/color]
+[color=e5be3e]Разряжайся время от времени — ночью или в других сценах![/color]
+jump z_functions/END_TO_NEXT_CUTSCENE

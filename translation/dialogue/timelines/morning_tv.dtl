@@ -1,0 +1,169 @@
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
+[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+protagonist: ... #id:4c4
+protagonist: ...глаза болят. #id:4c5
+[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+protagonist: ... #id:4c6
+protagonist: Наверное, стоит сделать перерыв. #id:4c7
+protagonist: Может, перекусить? #id:4c8
+[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+[music path="res://audio/bgs/TV_Background.ogg" channel="2" fade="1.0" volume="-18.0"]
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
+protagonist: Ты замечаешь, как твоя соседка смотрит телевизор в гостиной. #id:4c9
+join roommate center
+protagonist: Похоже, она переключает каналы. #id:4ca
+- Поговорить с ней #id:4cb
+	Ты решаешь поговорить со своей соседкой. #id:4cc
+	jump TALK
+- Оставить её в покое #id:4cd
+	Ты решаешь оставить её в покое. #id:4ce
+	protagonist: Лучше, пожалуй, не беспокоить её. #id:4cf
+	jump z_functions/END_TO_UPGRADE
+label TALK #id:4d0
+protagonist: Эй, что ты смотришь? #id:4d1
+if {GameVariables.relationship} >= 20:
+	update roommate [extra_data="set Expressions/Happy"]
+	Твоя соседка приветствует тебя улыбкой. #id:4d2
+else:
+	update roommate [extra_data="set Expressions/Confused"]
+	Твоя соседка, похоже, странно на тебя смотрит. #id:4d3
+	update roommate [extra_data="set Expressions/Default"]
+roommate: Я просто переключаю каналы в поисках чего-нибудь интересного. #id:4d4
+protagonist: А, понятно. #id:4d5
+Ты вспоминаешь новость, которую недавно слышал. #id:4d6
+protagonist: Слушай, ты не слышала про это...? #id:4d7
+Ты говоришь со своей соседкой о том, что недавно слышал. #id:4d8
+if {GameVariables.get_charisma()} >= 3:
+	Своими навыками общения ты удерживаешь её внимание. #id:4d9
+	update roommate [extra_data="set Expressions/Surprise"]
+	roommate: Ого, это правда случилось в соседнем здании? #id:4da
+	roommate: Поверить не могу, что я этого не слышала. Надо будет тщательнее запирать дверь. #id:4db
+	protagonist: Не волнуйся. #id:4dc
+	protagonist: Если кто-то попытается вломиться, я здесь, чтобы защитить тебя. #id:4dd
+	update roommate [extra_data="set Expressions/Default"]
+	roommate: Ах... #id:4de
+	update roommate [extra_data="set Decorations/Blush"]
+	roommate: Понятно. Спасибо. #id:4df
+	set GameVariables.relationship_change = 5
+	jump stat_change/RELATIONSHIP_INCREASE
+	if {GameVariables.relationship} >= 40:
+		update roommate [extra_data="hide Decorations/Blush"]
+		roommate: Так что, э-э, хочешь посмотреть со мной телевизор? #id:4e1
+		- Да #id:4e2
+			protagonist: Конечно, мне не помешает перерыв в учёбе. #id:4e3
+			jump WATCH
+		- Нет #id:4e4
+			protagonist: Извини, сейчас у меня нет времени. #id:4e5
+			roommate: Ах, ладно. #id:4e6
+	protagonist: Наверное, стоит вернуться к учёбе. #id:4e7
+	protagonist: Тогда я оставлю тебя в покое. #id:4e8
+	jump z_functions/END_TO_UPGRADE
+К сожалению, от волнения ты теряешь нить разговора. #id:4e9
+protagonist: Значит, это случилось... а потом... #id:4ea
+update roommate [extra_data="set Expressions/Tired"]
+Она кивает, пока ты говоришь, но очевидно, что она лишь изображает интерес. #id:4eb
+Ты решаешь быстро закончить разговор и уйти. #id:4ec
+protagonist: Э-э, так вот, мне, пожалуй, пора вернуться к учёбе. #id:4ed
+protagonist: Тогда я оставлю тебя в покое. #id:4ee
+protagonist: Пока! #id:4ef
+update roommate [extra_data="set Expressions/Confused"]
+roommate: ... #id:4f0
+roommate: Это было странно. #id:4f1
+leave roommate
+jump stat_change/CHARISMA
+jump z_functions/END_TO_UPGRADE
+label WATCH #id:4f5
+Ты садишься на диван со своей соседкой, чтобы посмотреть телевизор. #id:4f6
+Вы оба останавливаетесь на случайном фильме, который попадается при переключении каналов. #id:4f7
+Через несколько минут ты замечаешь, что вы сидите совсем близко. #id:4f8
+Ваши плечи почти соприкасаются. #id:4f9
+Если бы ты захотел, то мог бы протянуть руку и обнять её за плечи.
+- Приобнять её #id:4fb
+	Ты осторожно приобнимаешь её за плечи, привлекая ближе к себе. #id:4fc
+	[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+	update roommate [extra_data="set Decorations/Blush"]
+	jump WRAP_ARMS
+- Оставить её в покое #id:4fd
+	jump PUSSY_OUT
+label WRAP_ARMS #id:4ff
+if {GameVariables.relationship} < 50:
+	jump UNHAPPY
+Похоже, её не смущают твои прикосновения. #id:500
+Ты, возможно, сможешь пройти дальше. #id:501
+- Прикоснуться ближе #id:502
+	Ты скользишь ладонью ниже, нежно касаясь её разгорячённого тела... #id:503
+	jump GROPE
+- Оставить её в покое #id:504
+	jump PUSSY_OUT
+label GROPE #id:506
+join scene [extra_data="set Scene/Groping"]
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+Ты прижимаешь {roommate_name} к себе и начинаешь чувственно ласкать её грудь. #id:507
+[signal arg="play_default"]
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+if {GameVariables.relationship} < 60:
+	jump UNHAPPY
+[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+Похоже, её не смущают твои ласки. #id:508
+update roommate [extra_data="show Decorations/HotAir, set Expressions/Pleasure"]
+[sound bus="Cutscene" path="res://audio/voice/un5_yes.ogg"]
+Через несколько мгновений её дыхание становится тяжелее. #id:509
+leave scene
+Похоже, ей нравится ощущение твоего прикосновения. #id:50a
+join scene [extra_data="set Scene/Groping"]
+[signal arg="play_fast"]
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+Ты погружаешь пальцы глубже в податливые изгибы её груди. #id:50b
+[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+Она томно выгибается навстречу твоим рукам, пока ты продолжаешь эти сладкие ласки. #id:50c
+jump HAPPY
+label HAPPY #id:50d
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+Ещё через мгновение она осторожно отстраняет твои руки. #id:50e
+leave scene
+update roommate [extra_data="set Expressions/Default"]
+roommate: М-м... думаю, на этом пока хватит. #id:50f
+roommate: Ещё пара таких прикосновений — и мы уже вряд ли сможем остановиться... #id:510
+protagonist: А разве нам нужно останавливаться? #id:511
+update roommate [extra_data="hide Decorations/HotAir"]
+roommate: Не искушай меня, глупый... #id:512
+roommate: Нам обоим надо готовиться к занятиям на следующей неделе. #id:513
+roommate: Может, в следующий раз. #id:514
+protagonist: Ладно... #id:515
+roommate: Наверное, стоит пойти поучиться. #id:516
+update roommate [extra_data="set Expressions/Happy"]
+roommate: Досмотрим этот фильм как-нибудь в другой раз, хорошо? #id:517
+protagonist: Ладно... #id:518
+leave roommate
+Твоя соседка уходит к себе в комнату. #id:519
+set GameVariables.relationship_change = 3
+jump stat_change/RELATIONSHIP_INCREASE
+jump z_functions/UNLOCK_GALLERY_CUTSCENE
+jump z_functions/END_TO_UPGRADE
+label UNHAPPY #id:51b
+leave scene
+update roommate [extra_data="set Expressions/Default, hide Decorations/Blush"]
+Через мгновение она сталкивает тебя с себя. #id:51c
+roommate: Пожалуйста, не делай так... #id:51d
+roommate: Мне не по себе, когда ты так внезапно распускаешь руки. #id:51e
+set GameVariables.relationship_change = 5
+jump stat_change/RELATIONSHIP_DECREASE
+protagonist: Прости. Не знаю, что на меня нашло. #id:520
+roommate: Пожалуй, я вернусь к себе в комнату. #id:521
+roommate: В любом случае мне не стоит так надолго отвлекаться. #id:522
+leave roommate
+protagonist: Уф, надо было действовать тоньше... #id:523
+Похоже, твои [color=e5be3e]отношения[/color] ещё недостаточно высоки для этого. #id:524
+jump z_functions/END_TO_UPGRADE
+label PUSSY_OUT #id:525
+Ты решаешь ничего не предпринимать. #id:663
+Ещё через несколько мгновений... #id:526
+roommate: Ого, отличный был фильм! #id:527
+roommate: Спасибо, что составил компанию! #id:528
+set GameVariables.relationship_change = 3
+jump stat_change/RELATIONSHIP_INCREASE
+roommate: Ой, уже так поздно? #id:52a
+roommate: Этот перерыв затянулся гораздо дольше, чем я планировала. Мне пора бежать! #id:52b
+roommate: Ещё раз спасибо! #id:52c
+jump z_functions/END_TO_UPGRADE

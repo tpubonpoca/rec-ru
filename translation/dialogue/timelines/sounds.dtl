@@ -1,0 +1,384 @@
+label ADVENTURE_MUSIC #id:b78
+if {BattleVariables.is_night_run()} == true or {BattleVariables.level} == 4:
+	[music path="res://audio/bgm/Mesmerizing Galaxy Loop.mp3" bus="Music" channel="3" fade="1.0" volume="-18.0"]
+else:
+	[music path="res://audio/bgm/Voxel Revolution.mp3" bus="Music" channel="3" fade="1.0" volume="-18.0"]
+return
+label BATTLE_MUSIC #id:b79
+[music path="res://audio/bgm/Mega Hyper Ultrastorm.mp3" bus="Music" channel="3" fade="1.0" volume="-18.0"]
+return
+label BATTLE_ATTACK_HIT #id:fdf
+[sound path="res://audio/battle/AttackHit.wav" bus="Cutscene" volume="0.0"]
+return
+label BATTLE_POISON #id:fe0
+[sound bus="Cutscene" path="res://audio/battle/Poisoned.wav" volume="0.0"]
+return
+label BATTLE_STUN #id:fe1
+[sound bus="Cutscene" path="res://audio/battle/Stunned.wav" volume="-3.0"]
+return
+label BATTLE_SUCCESS #id:10de
+[sound bus="Cutscene" path="res://audio/battle/BattleSuccess.wav"]
+return
+label BATTLE_TALK_HIT #id:fe2
+[sound bus="Cutscene" path="res://audio/battle/TalkHit.wav"]
+return
+label MORNING_MUSIC #id:b7a
+[music bus="Music" path="res://audio/bgm/Morning.mp3" channel="2" fade="1.0" volume="-18.0"]
+return
+label MUSIC_FADEOUT #id:b7b
+[music bus="Cutscene" path="" channel="3" fade="1.0" volume="0.0"]
+return
+label MUSIC_FADEOUT_ALL #id:b7c
+[music fade="0.6" volume="0.0"]
+[music channel="1" fade="0.6" volume="0.0"]
+[music channel="2" fade="0.6" volume="0.0"]
+[music channel="3" fade="0.6" volume="0.0"]
+return
+label INDOOR_APARTMENT_ENVIRONMENT #id:547
+[music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+return
+label INDOOR_APARTMENT_PARTY #id:b7d
+[music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgm/Party.mp3" channel="2" fade="1.0" volume="-12.0" bus="Cutscene"]
+[music path="res://audio/bgs/Guests.ogg" channel="3" fade="1.0" volume="-6.0" bus="Cutscene"]
+return
+label INDOOR_APARTMENT_PARTY_NIGHT #id:b7e
+[music path="res://audio/bgs/Crickets.ogg" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgm/Party.mp3" channel="2" fade="1.0" volume="-12.0" bus="Cutscene"]
+[music path="res://audio/bgs/Guests.ogg" channel="3" fade="1.0" volume="-6.0" bus="Cutscene"]
+return
+label INDOOR_APARTMENT_NIGHT_ENVIRONMENT #id:548
+[music path="res://audio/bgs/Crickets.ogg" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+return
+label INDOOR_LABORATORY
+[music path="" fade="1.0" volume="0.0" bus="Cutscene"]
+[music path="res://audio/bgs/LeakyTap.ogg" channel="1" fade="1.0" volume="-9.0" bus="Cutscene"]
+[music path="res://audio/bgs/Laboratory.ogg" channel="2" fade="1.0" volume="-9.0" bus="Cutscene"]
+[music path="res://audio/bgs/Computer.ogg" channel="3" fade="1.0" volume="-36.0" bus="Cutscene"]
+return
+label INDOOR_LABORATORY_ALARM
+[music path="" fade="1.0" volume="0.0" bus="Cutscene"]
+[music path="" channel="1" fade="1.0" volume="-3.0" bus="Cutscene"]
+[music path="res://audio/bgs/Laboratory.ogg" channel="2" fade="1.0" volume="-9.0" bus="Cutscene"]
+[music path="res://audio/bgs/Alarm.ogg" channel="3" fade="1.0" volume="0.0" bus="Cutscene"]
+return
+label INDOOR_KANS_ROOM #id:b7f
+[music path="res://audio/bgs/Crickets.ogg" fade="1.0" volume="-9.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-9.0" bus="Cutscene"]
+[music path="res://audio/bgm/Party.mp3" channel="2" fade="1.0" volume="-18.0" bus="Cutscene"]
+[music path="res://audio/bgs/Computer.ogg" channel="3" fade="1.0" volume="-18.0" bus="Cutscene"]
+return
+label OUTDOOR_BEACH #id:b80
+[music path="res://audio/bgs/Beach.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-30.0" bus="Cutscene"]
+return
+label OUTDOOR_CITY #id:b81
+[music path="res://audio/bgs/Traffic_Unfiltered.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-24.0" bus="Cutscene"]
+[music path="" channel="3" fade="1.0" volume="0.0" bus="Cutscene"]
+return
+label OUTDOOR_CITY_BATHROOM #id:fe3
+[music path="res://audio/bgs/Traffic_Unfiltered.ogg" channel="2" fade="1.0" volume="-15.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="1" fade="1.0" volume="-30.0" bus="Cutscene"]
+[music path="res://audio/bgs/LeakyTap.ogg" channel="3" fade="1.0" volume="0.0" bus="Cutscene"]
+return
+label OUTDOOR_COUNTRYSIDE #id:b82
+[music path="res://audio/bgs/Countryside.ogg" channel="1" fade="1.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-15.0" bus="Cutscene"]
+return
+label OUTDOOR_COUNTRYSIDE_ALARM
+[music path="" fade="1.0" volume="0.0" bus="Cutscene"]
+[music path="res://audio/bgs/Countryside.ogg" channel="1" fade="1.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-15.0" bus="Cutscene"]
+[music path="" channel="3" fade="1.0" volume="-24.0" bus="Cutscene"]
+return
+label OUTDOOR_COUNTRYSIDE_ALARM_QUIET
+[music path="" fade="1.0" volume="0.0" bus="Cutscene"]
+[music path="res://audio/bgs/Countryside.ogg" channel="1" fade="1.0" bus="Cutscene"]
+[music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-15.0" bus="Cutscene"]
+[music path="res://audio/bgs/Alarm.ogg" channel="3" fade="1.0" volume="-12.0" bus="Cutscene"]
+return
+label OUTDOOR_STORE #id:b83
+[music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
+[music path="" channel="2" fade="1.0" bus="Cutscene"]
+return
+label BARK_1
+[sound bus="Cutscene" path="res://audio/se/Bark1.ogg"]
+return
+label BARK_2
+[sound bus="Cutscene" path="res://audio/se/Bark2.ogg"]
+return
+label BARK_MUFFLED
+[sound bus="Cutscene" path="res://audio/se/BarkMuffled1.ogg"]
+return
+label BED
+[sound bus="Cutscene" path="res://audio/se/BedCreakShort3.ogg" volume="9.0"]
+return
+label BEEP #id:b84
+[sound bus="Cutscene" path="res://audio/se/Beep.ogg"]
+return
+label BELL #id:b85
+[sound bus="Cutscene" path="res://audio/se/Bell.ogg"]
+return
+label BELL_CONVENIENCE
+[sound bus="Cutscene" path="res://audio/se/BellEntrance.ogg"]
+return
+label BOOK_CLOSE #id:b86
+[sound bus="Cutscene" path="res://audio/se/BookClose.ogg"]
+return
+label BOX #id:b87
+[sound bus="Cutscene" path="res://audio/se/Box1.ogg"]
+return
+label BOX_2
+[sound bus="Cutscene" path="res://audio/se/Box2.ogg"]
+return
+label BRANDISH #id:fe4
+[sound bus="Cutscene" path="res://audio/battle/Brandish.ogg"]
+return
+label BREATH #id:fe5
+[sound bus="Cutscene" path="res://audio/voice/breath_loop.ogg"]
+return
+label CARD #id:b88
+[sound bus="Cutscene" path="res://audio/se/Card.ogg"]
+return
+label CASH #id:b89
+[sound bus="Cutscene" path="res://audio/se/Cash.ogg"]
+return
+label CHIPS #id:b8a
+[sound bus="Cutscene" path="res://audio/se/Chips.ogg"]
+return
+label CLINK #id:b8b
+[sound bus="Cutscene" path="res://audio/se/Clink.ogg" volume="3.0"]
+return
+label CLOAKING
+[sound path="res://audio/battle/InvisibilityOff.ogg" bus="Cutscene"]
+return
+label CLOTH #id:549
+[sound bus="Cutscene" path="res://audio/se/Cloth.ogg"]
+return
+label CRUSH #id:b8c
+[sound bus="Cutscene" path="res://audio/se/CrushCan.ogg"]
+return
+label CUCKOO #id:b8d
+[sound bus="Cutscene" path="res://audio/se/Cuckoo.ogg" volume="0.0"]
+return
+label DISHES #id:b8e
+[sound bus="Cutscene" path="res://audio/se/Dishes.ogg"]
+return
+label DOORBELL #id:b8f
+[sound bus="Cutscene" path="res://audio/se/Doorbell.ogg" volume="-9.0"]
+return
+label DOOR_CREAK #id:fe6
+[sound bus="Cutscene" path="res://audio/se/CreekingDoorOpen.wav"]
+return
+label DOOR_OPEN #id:54a
+[sound bus="Cutscene" path="res://audio/se/Open5.ogg" volume="-3.0"]
+return
+label DOOR_CLOSE #id:54b
+[sound bus="Cutscene" path="res://audio/se/Open4.ogg" volume="-3.0"]
+return
+label DOOR_CLOSE_QUIET #id:fe7
+[sound bus="Cutscene" path="res://audio/se/Open4.ogg" volume="-9.0"]
+return
+label DOOR_JIGGLE #id:54c
+[sound path="res://audio/se/DoorJiggling.wav" volume="-6.0" bus="Cutscene"]
+return
+label DOOR_KNOCK #id:54d
+[sound bus="Cutscene" path="res://audio/se/Knock.ogg" volume="-3.0"]
+return
+label DOOR_UNLOCK #id:b90
+[sound bus="Cutscene" path="res://audio/se/UnlockDoor.ogg" volume="-3.0"]
+return
+label ELASTIC
+[sound path="res://audio/se/Elastic2.ogg" bus="Cutscene" volume="15.0"]
+return
+label GLASS #id:fe8
+[sound bus="Cutscene" path="res://audio/se/Glass.ogg" volume="3.0"]
+return
+label FLICK #id:b91
+[sound bus="Cutscene" path="res://audio/se/Flick.ogg" volume="-3.0"]
+return
+label GLUG #id:b92
+[sound path="res://audio/se/Glug.ogg" bus="Cutscene"]
+return
+label GOT_CREDITS #id:54e
+[sound bus="Cutscene" path="res://audio/se/Clink1.ogg"]
+return
+label GOT_ITEM #id:54f
+[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav"]
+return
+label GOT_LEVEL #id:fe9
+[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav"]
+return
+label GOT_SKILL #id:550
+[sound bus="Cutscene" path="res://audio/se/Powerup_Skill.wav"]
+return
+label GRAVEL #id:fea
+[sound path="res://audio/se/Gravel.ogg" bus="Cutscene"]
+return
+label GULP #id:551
+[sound path="res://audio/se/Gulp1.ogg" volume="-3.0" bus="Cutscene"]
+return
+label HEARTBEAT #id:b93
+[sound path="res://audio/se/HeartbeatShort.ogg" volume="3.0" bus="Cutscene"]
+return
+label KISS #id:feb
+[sound path="res://audio/se/Kiss.ogg" bus="Cutscene"]
+return
+label MONITOR_ON
+[sound path="res://audio/se/MonitorOn.ogg" bus="Cutscene"]
+return
+label MOVEMENT_ADVENTURE #id:fec
+if {BattleVariables.level} == 1:
+	[sound path="res://audio/se/Movement.ogg" bus="Cutscene"]
+if {BattleVariables.level} == 2:
+	[sound path="res://audio/se/MovementSand.ogg" bus="Cutscene"]
+if {BattleVariables.level} == 3:
+	[sound path="res://audio/se/MovementGrass.ogg" bus="Cutscene" volume="9.0"]
+if {BattleVariables.level} == 4:
+	[sound path="res://audio/se/MovementLaminate.ogg" bus="Cutscene"]
+return
+label MOVE_INDOORS #id:552
+[sound path="res://audio/se/Move1.ogg" volume="0.0" bus="Cutscene"]
+return
+label MOVE_OUTDOORS_URBAN #id:880
+[sound path="res://audio/se/Movement.ogg" bus="Cutscene"]
+return
+label MOVE_OUTDOORS_SAND #id:881
+[sound path="res://audio/se/MovementSand.ogg" bus="Cutscene"]
+return
+label PAGE_FLIP #id:882
+[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+return
+label PHONE_ALARM #id:fed
+[sound bus="Cutscene" path="res://audio/se/Ringtone.ogg" volume="-12.0"]
+return
+label PHONE_BUZZ #id:b94
+[sound bus="Cutscene" path="res://audio/se/Buzz.ogg"]
+return
+label PHONE_UNLOCK #id:883
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+return
+label PHOTO #id:b95
+[sound bus="Cutscene" path="res://audio/se/TakePhoto_Perfect.ogg"]
+return
+label PONG_HIT #id:b96
+[sound bus="Cutscene" path="res://audio/se/PongHit.ogg" volume="6.0"]
+return
+label PONG_MISS #id:b97
+[sound bus="Cutscene" path="res://audio/se/PongMiss.ogg" volume="12.0"]
+return
+label KEG #id:b98
+[sound bus="Cutscene" path="res://audio/se/Keg.ogg"]
+return
+label KEY
+[sound bus="Cutscene" path="res://audio/se/KeysJingle.ogg"]
+return
+label RIFFLE #id:b99
+[sound bus="Cutscene" path="res://audio/se/Riffle.ogg"]
+return
+label RULER #id:fee
+[sound bus="Cutscene" path="res://audio/se/Ruler.ogg" volume="6.0"]
+return
+label RUSTLE #id:fef
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+return
+label SCRATCH
+[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+return
+label SHAKER #id:b9a
+[sound bus="Cutscene" path="res://audio/se/Shaker.ogg" volume="6.0"]
+return
+label SHINE #id:b9b
+[sound path="res://audio/se/Shine.ogg" bus="Cutscene"]
+return
+label SLAP #id:b9c
+[sound path="res://audio/se/Slap.ogg" bus="Cutscene"]
+return
+label SLAP_CARTOON #id:ff0
+[sound path="res://audio/se/SlapCartoon.ogg" bus="Cutscene"]
+return
+label SNIFF #id:884
+[sound bus="Cutscene" path="res://audio/se/Sniff1.ogg"]
+return
+label STOMACH
+[sound bus="Cutscene" path="res://audio/se/StomachGrowl.ogg"]
+return
+label SUNSCREEN
+[sound path="res://audio/se/Slosh4.ogg" bus="Cutscene" volume="9.0"]
+return
+label SURPRISE #id:885
+[sound bus="Cutscene" volume="-3.0" path="res://audio/se/Hit1.ogg"]
+[signal arg="shake"]
+return
+label THINKING #id:ff1
+[sound bus="Cutscene" path="res://audio/se/Thinking.ogg"]
+return
+label TISSUES
+[sound bus="Cutscene" path="res://audio/se/TissuePull.ogg" volume="6.0"]
+return
+label TYPING
+[sound bus="Cutscene" path="res://audio/se/Typing.ogg"]
+return
+label UNBUCKLE #id:ff2
+[sound bus="Cutscene" path="res://audio/se/Unbuckle.ogg"]
+return
+label VENDING #id:ff3
+[sound bus="Cutscene" path="res://audio/se/VendingMachine.ogg" volume="6.0"]
+return
+label WHOOSH #id:b9d
+[sound bus="Cutscene" path="res://audio/battle/Brandish.ogg"]
+return
+label WIGGLE #id:553
+[sound path="res://audio/se/TurnAround.mp3" bus="Cutscene"]
+return
+label ZIP #id:ff4
+[sound path="res://audio/se/Zip2.ogg" bus="Cutscene"]
+return
+label VOICE_AGREE #id:ff5
+[sound bus="Cutscene" path="res://audio/voice/un5_yes.ogg" volume="0.0"]
+return
+label VOICE_AP0LOGIZE #id:ff6
+[sound bus="Cutscene" path="res://audio/voice/gomenne3_sorry.ogg"]
+return
+label VOICE_BYE_UNFRIENDLY #id:ff7
+[sound bus="Cutscene" path="res://audio/voice/sayonara3_Bye.ogg" volume="0.0"]
+return
+label VOICE_GOOD_MORNING #id:ff8
+[sound bus="Cutscene" path="res://audio/voice/ohayo_good_morning.ogg"]
+return
+label VOICE_IDIOT #id:ff9
+[sound bus="Cutscene" path="res://audio/voice/baka4_silly.mp3"]
+return
+label VOICE_LAUGH #id:ffa
+[sound bus="Cutscene" path="res://audio/voice/laughter6.ogg" volume="0.0"]
+return
+label VOICE_LETS_EAT #id:ffb
+[sound bus="Cutscene" path="res://audio/voice/itadakimasu3_Lets_eat.ogg" volume="0.0"]
+return
+label VOICE_MOAN_QUICK #id:ffc
+[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+return
+label VOICE_MMM #id:ffd
+[sound path="res://audio/voice/un4_yes.ogg" bus="Cutscene"]
+return
+label VOICE_SIGH #id:ffe
+[sound path="res://audio/voice/sigh4.mp3" bus="Cutscene"]
+return
+label VOICE_SIGH_DEPRESSED #id:fff
+[sound path="res://audio/voice/sigh.wav" bus="Cutscene"]
+return
+label VOICE_SURPRISE
+[sound path="res://audio/voice/ee2_surprise.wav" bus="Cutscene"]
+return
+label VOICE_THANK_YOU #id:1000
+[sound bus="Cutscene" path="res://audio/voice/arigato4_Thank_you.ogg"]
+return
+label VOICE_UM #id:1001
+[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+return

@@ -1,0 +1,157 @@
+label START #id:6b
+jump adventure_functions/LOAD_ENEMY
+[signal arg="battle_style"]
+if {GameVariables.yuna_partnered}:
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: <Надрать им зад!/Показать, кто здесь главный!/У тебя получится!> #id:bc4
+label PLAYER_TURN #id:6e
+if {GameVariables.yuna_partnered}:
+	jump adventure_functions/YUNA_TURN
+if {GameVariables.yosuke_partnered}:
+	jump adventure_functions/YOSUKE_TURN
+jump adventure_functions/PLAYER_DEBUFF_TICKS
+label PLAYER_OPTIONS #id:7a
+[signal arg="battle_style"]
+- Атака #id:7b
+	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "attack":
+		Эта способность сейчас заблокирована!
+		jump PLAYER_OPTIONS
+	if {BattleVariables.player_is_confused}:
+		jump adventure_functions/RANDOM_ABILITY
+	else:
+		jump adventure_functions/DISPLAY_TARGETS
+	label ATTACK
+	if {BattleVariables.is_mad()}:
+		[sound bus="Cutscene" path="res://audio/battle/SkillWhispers.ogg" volume="3.0"]
+		[signal arg="vision_red"]
+		Голоса шепчут тебе. #id:7c
+		Ты внезапно забываешь, что собирался сделать. #id:7d
+		jump ENEMY_TURN
+	if {BattleVariables.player_is_charmed} && {BattleVariables.is_successful_attack_through_charm()} == false:
+		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+		Ты очарован! #id:bc5
+		jump ENEMY_TURN
+	[sound bus="Cutscene" path="res://audio/battle/AttackAttempt.wav"]
+	Ты атакуешь [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1014
+	[signal arg="enemy_dodge"]
+	[wait time="0.3"]
+	if {BattleVariables.is_successful_hit("player")}:
+		[signal arg="shake"]
+		[signal arg="enemy_shake"]
+		jump sounds/BATTLE_ATTACK_HIT
+		Ты успешно поразил [color=ff3f49]{BattleVariables.get_target_name()}[/color] на [color=ff3f49]{BattleVariables.take_damage_player()}[/color] урона! #id:1015
+		if {BattleVariables.get_target().WeakenedByHitting} && {BattleVariables.get_target().IsWeakened} == false:
+			set BattleVariables.target_enemy.IsWeakened = true
+			[signal arg="show_weakness"]
+			jump sounds/GLASS
+			{BattleVariables.get_target().GetWeakenedLine()} #id:1016
+	else:
+		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+		[color=ff3f49]{BattleVariables.get_target_name()}[/color] уклонился(ась) от твоей атаки! #id:1017
+	jump adventure_functions/CHECK_ENEMY_DEFEAT
+	jump ENEMY_TURN
+- Защита #id:83
+	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "defend":
+		Эта способность сейчас заблокирована!
+		jump PLAYER_OPTIONS
+	if {BattleVariables.player_is_confused}:
+		jump adventure_functions/RANDOM_ABILITY
+	label DEFEND
+	if {GameVariables.stamina} <= 5:
+		У тебя недостаточно выносливости, чтобы поднять защиту. #id:bca
+		jump PLAYER_OPTIONS
+	set BattleVariables.player_is_defending = true
+	set GameVariables.stamina = {GameVariables.change_stamina(-5)}
+	Ты поднимаешь руки, чтобы защититься. #id:84
+	jump ENEMY_TURN
+- Поговорить #id:85
+	if {BattleVariables.is_mad()}:
+		[sound bus="Cutscene" path="res://audio/battle/SkillWhispers.ogg" volume="3.0"]
+		[signal arg="vision_red"]
+		Голоса шепчут тебе. #id:86
+		Ты внезапно забываешь, что собирался сделать. #id:87
+		jump ENEMY_TURN
+	- Очарование #id:8d
+		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "charm":
+			Эта способность сейчас заблокирована!
+			jump PLAYER_OPTIONS
+		if {BattleVariables.player_is_confused}:
+			jump adventure_functions/RANDOM_ABILITY
+		else:
+			jump adventure_functions/DISPLAY_TARGETS
+		label CHARM
+		set BattleVariables.talk_type = "charm"
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		Ты используешь несколько ласковых слов по отношению к [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1019
+		protagonist: {BattleVariables.get_talk_player()}
+		jump adventure_calculations/PLAYER_TALK
+	- Разъярить #id:92
+		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "enrage":
+			Эта способность сейчас заблокирована!
+			jump PLAYER_OPTIONS
+		if {BattleVariables.player_is_confused}:
+			jump adventure_functions/RANDOM_ABILITY
+		else:
+			jump adventure_functions/DISPLAY_TARGETS
+		label ENRAGE
+		set BattleVariables.talk_type = "enrage"
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		Ты оскорбляешь [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:101a
+		protagonist: {BattleVariables.get_talk_player()}
+		jump adventure_calculations/PLAYER_TALK
+	- Страх #id:88
+		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "fear":
+			Эта способность сейчас заблокирована!
+			jump PLAYER_OPTIONS
+		if {BattleVariables.player_is_confused}:
+			jump adventure_functions/RANDOM_ABILITY
+		else:
+			jump adventure_functions/DISPLAY_TARGETS
+		label FEAR
+		set BattleVariables.talk_type = "fear"
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		Ты угрожающе говоришь с [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1018
+		protagonist: {BattleVariables.get_talk_player()}
+		jump adventure_calculations/PLAYER_TALK
+	- Назад #id:97
+		jump PLAYER_OPTIONS
+- Особое #id:98
+	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "skills":
+		Эта способность сейчас заблокирована!
+		jump PLAYER_OPTIONS
+	if {BattleVariables.player_is_enraged}:
+		Ты сейчас в ярости!
+		jump PLAYER_OPTIONS
+	if {BattleVariables.player_skill_charge} >= 20:
+		jump adventure_skills/PLAYER
+	else:
+		У тебя недостаточно зарядов. Требуется [color=d3ff75]{int({BattleVariables.player_skill_charge})}/20[/color]. #id:bd1
+		jump PLAYER_OPTIONS
+- Бежать #id:9a
+	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "run":
+		Эта способность сейчас заблокирована!
+		jump PLAYER_OPTIONS
+	if {BattleVariables.player_is_confused}:
+		jump adventure_functions/RANDOM_ABILITY
+	Ты пытаешься убежать! #id:101b
+	if {BattleVariables.is_successful_runaway()}:
+		Тебе удалось уйти! #id:101c
+		leave enemy
+		leave enemy_2
+		jump adventure/LOOP
+	else:
+		Тебе не удалось уйти! #id:101d
+		jump ENEMY_TURN
+label ENEMY_TURN #id:9b
+jump adventure_functions/ENEMY_DEBUFF_TICKS
+if {BattleVariables.acting_enemy.CanUseSkill()}:
+	jump adventure_skills/START
+[signal arg="make_enemy_decision"]
+if {BattleVariables.enemy_decision} == "talk"
+	jump adventure_calculations/ENEMY_TALK
+else:
+	if {BattleVariables.enemy_turn_index} == 0:
+		enemy: {BattleVariables.pick_random_attack_line()}
+	if {BattleVariables.enemy_turn_index} == 1:
+		enemy_2: {BattleVariables.pick_random_attack_line()}
+	jump adventure_calculations/ENEMY_DEFAULT_ATTACK

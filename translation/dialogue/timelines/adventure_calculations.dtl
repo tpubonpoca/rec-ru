@@ -1,0 +1,101 @@
+label POISON_TICK #id:bd6
+if {BattleVariables.poison_turns} > 0:
+	set {BattleVariables.poison_turns} -= 1
+	[signal arg="vision_green"]
+	[signal arg="shake"]
+	jump sounds/BATTLE_POISON
+	Ты отравлен! #id:bd7
+	jump sounds/BATTLE_ATTACK_HIT
+	[signal arg="shake"]
+	set GameVariables.stamina = {GameVariables.change_stamina(BattleVariables.poison_tick_damage * -1)}
+	Ты потерял [color=ff3f49]{BattleVariables.poison_tick_damage}[/color] [color=ffce65]выносливости[/color]. #id:bd8
+	if {BattleVariables.poison_turns} <= 0:
+		set {BattleVariables.poison_tick_damage} = 0
+		Ты больше не отравлен. #id:37
+	if {GameVariables.stamina} <= 0:
+		jump adventure/COLLAPSE
+return
+
+label PLAYER_TALK #id:a8
+if {BattleVariables.is_successful_talk("player")}:
+	if {BattleVariables.target_index} == 0:
+		enemy: {BattleVariables.get_talk_response(true)} #id:1020
+	if {BattleVariables.target_index} == 1:
+		enemy_2: {BattleVariables.get_talk_response(true)} #id:1021
+	[signal arg="enemy_shake"]
+	[sound bus="Cutscene" path="res://audio/battle/TalkHit.wav"]
+	Ты успешно {BattleVariables.get_talk_type(true)} [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1022
+	[color=ff3f49]{BattleVariables.get_target_name()}[/color]{BattleVariables.get_talk_update()} #id:1023
+	if {BattleVariables.get_target().IsWeakToTalkType(BattleVariables.talk_type)} && {BattleVariables.get_target().IsWeakened} == false:
+		set BattleVariables.target_enemy.IsWeakened = true
+		[signal arg="show_weakness"]
+		jump sounds/GLASS
+		{BattleVariables.get_target().GetWeakenedLine()} #id:1024
+else:
+	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav"]
+	Твоя попытка {BattleVariables.get_talk_type(false)} [color=ff3f49]{BattleVariables.get_target_name()}[/color] оказалась неудачной. #id:1025
+	if {BattleVariables.target_index} == 0:
+		enemy: {BattleVariables.get_talk_response(false)} #id:1026
+	if {BattleVariables.target_index} == 1:
+		enemy_2: {BattleVariables.get_talk_response(true)} #id:1027
+jump adventure_battle/ENEMY_TURN
+
+label ENEMY_DEFAULT_ATTACK #id:bd
+if {BattleVariables.acting_enemy.IsCharmed()} && {BattleVariables.is_successful_attack_through_charm()} == false:
+	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] очарован(а)!
+	jump adventure_functions/END_ENEMY_TURN
+[sound bus="Cutscene" path="res://audio/battle/AttackAttemptEnemy.wav"]
+[signal arg="enemy_attack"]
+{BattleVariables.acting_enemy.GetAttackLine()} #id:1029
+if {BattleVariables.is_successful_hit("enemy")}:
+	jump sounds/BATTLE_ATTACK_HIT
+	[signal arg="shake"]
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] наносит тебе удар!
+	jump adventure_functions/GUARD_MESSAGE
+	Ты потерял [color=ff3f49]{BattleVariables.take_damage()}[/color] выносливости. #id:be2
+	if {BattleVariables.acting_enemy.IsAttackPoisonous()}:
+		if {BattleVariables.poison_turns} == 0:
+			protagonist: Уф. Что вообще было на этом оружии? #id:be3
+		jump sounds/BATTLE_POISON
+		[signal arg="shake"]
+		Теперь ты отравлен! #id:c5
+		set {BattleVariables.poison_tick_damage} += {BattleVariables.acting_enemy.GetPoisonTickDamage()}
+		set {BattleVariables.poison_turns} += {BattleVariables.acting_enemy.GetPoisonTickDuration()}
+else:
+	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+	Ты уклонился от атаки [color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]!
+if {BattleVariables.acting_enemy.WeakenedByDefending} && {BattleVariables.player_is_defending} && {BattleVariables.acting_enemy.IsWeakened} == false:
+	set BattleVariables.acting_enemy.IsWeakened = true
+	set BattleVariables.target_index = {BattleVariables.enemy_turn_index}
+	[signal arg="show_weakness"]
+	jump sounds/GLASS
+	{BattleVariables.acting_enemy.GetWeakenedLine()} #id:102c
+if {BattleVariables.acting_enemy.IsFeared()} == false
+	set BattleVariables.enemy_times_attacked_this_turn += 1
+	if {BattleVariables.enemy_times_attacked_this_turn} < {BattleVariables.acting_enemy.GetAttackTimes()}:
+		[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] атакует снова!
+		jump ENEMY_DEFAULT_ATTACK
+jump adventure_functions/END_ENEMY_TURN
+
+label ENEMY_TALK #id:c8
+set BattleVariables.talk_type_enemy = {BattleVariables.pick_random_talk_choice()}
+[sound bus="Cutscene" path="res://audio/battle/TalkAttemptEnemy.wav"]
+[signal arg="enemy_talk"]
+[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] пытается {BattleVariables.get_talk_type_enemy(false)} тебя!
+
+if {BattleVariables.target_index} == 0:
+	enemy: {BattleVariables.get_talk_attempt_text()} #id:102f
+if {BattleVariables.target_index} == 1:
+	enemy_2: {BattleVariables.get_talk_attempt_text()} #id:1030
+if {BattleVariables.is_successful_talk("enemy")} && {BattleVariables.player_is_defending} == false:
+	jump sounds/BATTLE_TALK_HIT
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] успешно {BattleVariables.get_talk_type_enemy(true)} тебя!
+	{BattleVariables.get_response_enemy_talk_successful()} #id:bea
+	jump adventure_functions/END_ENEMY_TURN
+else:
+	jump adventure_functions/GUARD_MESSAGE
+	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav"]
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]: попытка {BattleVariables.get_talk_type_enemy(false)} тебя провалилась!
+	protagonist: {BattleVariables.get_response_enemy_talk_unsuccessful()} #id:bec
+	jump adventure_functions/END_ENEMY_TURN

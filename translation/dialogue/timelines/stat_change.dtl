@@ -1,0 +1,139 @@
+label CHARISMA #id:554
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=ff934d]Получено {GameVariables.get_xp_gain()} опыта Харизмы![/color] #id:1002
+if {GameVariables.get_xp_gain()} >= {GameVariables.get_charisma_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Харизма повышена! #id:556
+	Теперь ты [color=ff934d]{GameVariables.get_charisma_description(GameVariables.get_base_charisma() + 1)}[/color]. #id:b9e
+set GameVariables.charisma_total_xp += {GameVariables.get_xp_gain()}
+return
+label CHARISMA_STUDY #id:1003
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=ff934d]Получено {GameVariables.get_study_gains()} опыта Харизмы![/color] #id:1004
+if {GameVariables.get_study_gains()} >= {GameVariables.get_charisma_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Харизма повышена! #id:556
+	Теперь ты [color=ff934d]{GameVariables.get_charisma_description(GameVariables.get_base_charisma() + 1)}[/color]. #id:b9e
+set GameVariables.charisma_total_xp += {GameVariables.get_study_gains()}
+return
+label DEXTERITY #id:558
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=1cd5ff]Получено {GameVariables.get_xp_gain()} опыта Ловкости![/color] #id:559
+if {GameVariables.get_xp_gain()} >= {GameVariables.get_dexterity_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Ловкость повышена! #id:55a
+	Теперь ты [color=1cd5ff]{GameVariables.get_dexterity_description(GameVariables.get_base_dexterity() + 1)}[/color]. #id:b9f
+set GameVariables.dexterity_total_xp += {GameVariables.get_xp_gain()}
+return
+label DEXTERITY_STUDY #id:1005
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=1cd5ff]Получено {GameVariables.get_study_gains()} опыта Ловкости![/color] #id:1006
+if {GameVariables.get_study_gains()} >= {GameVariables.get_dexterity_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Ловкость повышена! #id:55a
+	Теперь ты [color=1cd5ff]{GameVariables.get_dexterity_description(GameVariables.get_base_dexterity() + 1)}[/color]. #id:b9f
+set GameVariables.dexterity_total_xp += {GameVariables.get_study_gains()}
+return
+label INTELLIGENCE #id:55c
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=d3ff75]Получено {GameVariables.get_xp_gain()} опыта Интеллекта![/color] #id:55d
+if {GameVariables.get_xp_gain()} >= {GameVariables.get_intelligence_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Интеллект повышен! #id:55e
+	Теперь ты [color=d3ff75]{GameVariables.get_intelligence_description(GameVariables.get_base_intelligence() + 1)}[/color]. #id:ba0
+set GameVariables.intelligence_total_xp += {GameVariables.get_xp_gain()}
+return
+label INTELLIGENCE_STUDY #id:1007
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=d3ff75]Получено {GameVariables.get_study_gains()} опыта Интеллекта![/color] #id:1008
+if {GameVariables.get_study_gains()} >= {GameVariables.get_intelligence_required_xp()}:
+	[sound path="res://audio/se/Powerup_LVL.wav" volume="-6.0" bus="Cutscene"]
+	Интеллект повышен! #id:55e
+	Теперь ты [color=d3ff75]{GameVariables.get_intelligence_description(GameVariables.get_base_intelligence() + 1)}[/color]. #id:ba0
+set GameVariables.intelligence_total_xp += {GameVariables.get_study_gains()}
+return
+label DRUNK_INCREASE #id:886
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+Твоё опьянение возросло.{GameVariables.take_drink()} #id:ba1
+{GameVariables.get_drunkenness_text()} #id:ba2
+return
+label IMPRESSION_INCREASE #id:889
+set GameVariables.impression += 1
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+Твоё Впечатление на других улучшилось! #id:88a
+return
+label IMPRESSION_DECREASE #id:88b
+set GameVariables.impression -= 1
+[sound path="res://audio/se/Powerdown_XP.wav" volume="-6.0" bus="Cutscene"]
+Твоё Впечатление на других ухудшилось. #id:88c
+return
+label LUST_INCREASE
+[sound bus="Cutscene" path="res://audio/se/Thinking.ogg"]
+[color=e5be3e]Похоть выросла![/color]
+return
+label LUST_DECREASE
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+[color=e5be3e]Похоть снизилась![/color]
+return
+label STAMINA_INCREASE #id:560
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+Выносливость восстановлена! #id:561
+return
+label STAMINA_LIMIT_INCREASE #id:562
+[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+Предел выносливости увеличен! #id:563
+return
+label STAMINA_DECREASE #id:564
+[sound path="res://audio/se/Powerdown_XP.wav" volume="-6.0" bus="Cutscene"]
+Выносливость потеряна. #id:565
+if {GameVariables.stamina} <= 0:
+	set GameVariables.stamina = 0
+return
+label RELATIONSHIP_DECREASE #id:566
+[sound path="res://audio/se/Powerdown_XP.wav" bus="Cutscene"]
+[color=ff3f49]Потеряно {GameVariables.decrease_relationship()} опыта отношений.[/color] #id:ba3
+return
+label RELATIONSHIP_INCREASE #id:568
+[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
+[color=e5be3e]Получено {GameVariables.increase_relationship()} опыта отношений.[/color] #id:ba4
+return
+label RELATIONSHIP_DOG_INCREASE
+[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
+[color=e5be3e]Получено {GameVariables.increase_relationship_dog()} опыта дружбы с Псом.[/color]
+return
+label ROLL_CHARISMA #id:ba5
+[sound path="res://audio/se/Dice.ogg" volume="-6.0"]
+[wait time="0.5"]
+Ты выбросил [color=ff934d]{GameVariables.roll_charisma()}[/color]. Твой итог: [color=ff934d]{GameVariables.dice_result_total}[/color]. #id:ba6
+Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:ba7
+if {GameVariables.successful_roll}:
+	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
+	Результат\: [color=ffce65]Успех![/color] #id:ba8
+else:
+	[sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
+	Результат\: [color=ff3f49]Неудача.[/color] #id:ba9
+return
+label ROLL_DEXTERITY #id:baa
+[sound path="res://audio/se/Dice.ogg" volume="-6.0"]
+[wait time="0.5"]
+Ты выбросил [color=1cd5ff]{GameVariables.roll_dexterity()}[/color]. Твой итог: [color=1cd5ff]{GameVariables.dice_result_total}[/color]. #id:bab
+Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:bac
+if {GameVariables.successful_roll}:
+	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
+	Результат\: [color=ffce65]Успех![/color] #id:bad
+else:
+	[sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
+	Результат\: [color=ff3f49]Неудача.[/color] #id:bae
+return
+label ROLL_INTELLIGENCE #id:baf
+[sound path="res://audio/se/Dice.ogg" volume="-6.0"]
+[wait time="0.5"]
+Ты выбросил [color=d3ff75]{GameVariables.roll_intelligence()}[/color]. Твой итог: [color=d3ff75]{GameVariables.dice_result_total}[/color]. #id:bb0
+Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:bb1
+if {GameVariables.successful_roll}:
+	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
+	Результат\: [color=ffce65]Успех![/color] #id:bb2
+else:
+	[sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
+	Результат\: [color=ff3f49]Неудача.[/color] #id:bb3
+return

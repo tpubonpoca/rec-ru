@@ -1,0 +1,110 @@
+label LOAD_BACKGROUND #id:1010
+if {BattleVariables.is_night_run()} == false:
+	if {BattleVariables.level} == 1:
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Running_1.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Running_2.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Running_3.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Running_4.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_1.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_2.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_3.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_4.png" fade="0.6"]
+	if {BattleVariables.level} == 2:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_1.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_4.png" fade="0.6"]
+	if {BattleVariables.level} == 3:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Running_4.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Running_5.png" fade="0.6"]
+	if {BattleVariables.level} == 4:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_1.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_4.png" fade="0.6"]
+if {BattleVariables.is_night_run()}:
+	if {BattleVariables.level} == 1:
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Night_Running_1.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Night_Running_2.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Night_Running_3.png" fade="0.6"]
+		if {BattleVariables.alternate} == false and {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/City_Night_Running_4.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_1.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_2.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_3.png" fade="0.6"]
+		if {BattleVariables.alternate} == true and {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Sewers_Running_4.png" fade="0.6"]
+	if {BattleVariables.level} == 2:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Night_Running_1.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Night_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Night_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Beach_Night_Running_4.png" fade="0.6"]
+	if {BattleVariables.level} == 3:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Running_1.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Running_4.png" fade="0.6"]
+	if {BattleVariables.level} == 4:
+		if {BattleVariables.stage} % 4 == 0:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_1.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 1:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_2.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 2:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_3.png" fade="0.6"]
+		if {BattleVariables.stage} % 4 == 3:
+			[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Running_4.png" fade="0.6"]
+return
+label LOAD_DESCRIPTION #id:1011
+if {BattleVariables.level} == 1:
+	if {BattleVariables.alternate} == true:
+		Ты трусцой направляешься к следующему кварталу.
+		Сейчас ты в [color=ffce65]канализации[/color].
+	else:
+		Ты пробираешься к следующему участку.
+		Сейчас ты в [color=ffce65]городе[/color].
+if {BattleVariables.level} == 2:
+	Ты трусцой направляешься к следующей песчаной дюне. #id:1012
+	Сейчас ты на [color=ffce65]пляже[/color]. #id:6a
+if {BattleVariables.level} == 3:
+	Ты трусцой направляешься к соседним полям. #id:1013
+	Сейчас ты в [color=ffce65]деревне[/color]. #id:bc3
+if {BattleVariables.level} == 4:
+	Ты направляешься к следующему набору комнат.
+	Сейчас ты в [color=ffce65]лаборатории[/color].
+return
