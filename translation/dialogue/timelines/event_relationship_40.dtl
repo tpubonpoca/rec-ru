@@ -1,124 +1,124 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.0"]
-Ты надеваешь обувь и выходишь на утреннюю пробежку. #id:1db
+Ты обуваешься и выходишь на утреннюю пробежку. #id:1db
 jump sounds/DOOR_OPEN
 [background arg="res://assets/Cutscene/Backgrounds/Lobby.png" fade="0.6"]
-Входя в холл квартиры, ты замечаешь знакомое лицо. #id:1dc
+В холле ты замечаешь знакомое лицо. #id:1dc
 join roommate center [extra_data="set Expressions/Happy"]
 [sound bus="Cutscene" path="res://audio/voice/konnichiwa3_Hello.ogg"]
-roommate: Эй! Ты уходишь? #id:1dd
-protagonist: Да, я как раз собирался выйти на короткую пробежку. #id:1de
-roommate: Отлично! Можешь подождать минутку? #id:1df
-roommate: Мне только нужно занести сумку наверх, и я к тебе присоединюсь. #id:1e0
-protagonist: О? Конечно. #id:1e1
-roommate: Отлично! Я вернусь через секунду. #id:1e2
+roommate: Привет! Уходишь? #id:1dd
+protagonist: Ага, как раз собирался немного пробежаться. #id:1de
+roommate: Класс! Подождёшь минутку? #id:1df
+roommate: Только сумку наверх закину и присоединюсь. #id:1e0
+protagonist: А? Конечно. #id:1e1
+roommate: Отлично! Я мигом. #id:1e2
 leave roommate
 protagonist: ... #id:1e3
-protagonist: (Надеюсь, она не какая-нибудь матёрая бегунья.) #id:1e4
-protagonist: (Лучше не позориться.) #id:1e5
+protagonist: (Надеюсь, она не какая-нибудь профи по бегу.) #id:1e4
+protagonist: (Не хотелось бы опозориться.) #id:1e5
 join roommate center [extra_data="set Body/Workout"]
-roommate: Ладно, я готова! #id:1e6
-roommate: Спасибо, что подождал меня. #id:1e7
-protagonist: Э-э, есть пожелания по дистанции или маршруту? #id:1e8
-roommate: О, не обращай на меня внимания. #id:1e9
-roommate: Просто беги по своему обычному маршруту. #id:1ea
-roommate: В твоём обычном темпе. #id:1eb
-protagonist: Конечно. #id:1ec
+roommate: Всё, я готова! #id:1e6
+roommate: Спасибо, что подождал. #id:1e7
+protagonist: Эм, а ты сколько хочешь пробежать? #id:1e8
+roommate: Ой, на меня не смотри. #id:1e9
+roommate: Беги своим обычным маршрутом. #id:1ea
+roommate: В своём обычном темпе. #id:1eb
+protagonist: Без проблем. #id:1ec
 protagonist: Тогда погнали! #id:1ed
 jump sounds/OUTDOOR_CITY
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/City_Running_1.png" fade="0.6"]
 update roommate [extra_data="set Expressions/Tired, show Decorations/Sweat"]
-Вы с {roommate_name} пробегаете пару кругов вокруг квартала. #id:1ee
-Она умудряется держать твой темп, но кажется немного запыхавшейся. #id:1ef
+{roommate_name} бежит рядом: вы делаете пару кругов вокруг квартала. #id:1ee
+Она держит твой темп, но уже заметно запыхалась. #id:1ef
 if {GameVariables.stamina_limit} >= 110:
-	Этот маршрут, который ты уже пробегал несколько раз, теперь даётся легко. #id:1f0
-	roommate: Похоже, ты довольно хорошо знаешь эти места, а? #id:1f1
-	protagonist: Ха-ха, ты так думаешь? #id:1f2
+	Ты бегал тут уже не раз, и маршрут даётся тебе легко. #id:1f0
+	roommate: А ты, смотрю, тут всё знаешь, да? #id:1f1
+	protagonist: Ха-ха, думаешь? #id:1f2
 	jump stat_change/CHARISMA
 if {GameVariables.stamina_limit} >= 140:
-	protagonist: Ладно, готов к следующей части? #id:1f6
-	roommate: Ого, сколько у тебя [color=e5be3e]выносливости[/color]? #id:1f7
-	roommate: Честно говоря, не думаю, что смогу идти дальше. #id:1f8
-roommate: Вообще-то, ты не против, если мы ненадолго присядем на скамейку? #id:1f9
-roommate: Мне нужно ненадолго присесть. #id:1fa
-protagonist: Конечно, без проблем. #id:1fb
+	protagonist: Ну что, бежим дальше? #id:1f6
+	roommate: Блин, откуда у тебя столько [color=e5be3e]выносливости[/color]? #id:1f7
+	roommate: Если честно, я больше не могу. #id:1f8
+roommate: Слушай, может, посидим немного на скамейке? #id:1f9
+roommate: Мне надо передохнуть. #id:1fa
+protagonist: Конечно, давай. #id:1fb
 [sound bus="Cutscene" path="res://audio/se/Movement.ogg" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Park.png" fade="0.6"]
-Вы находите скамейку в ближайшем парке, чтобы присесть. #id:1fc
-Ты решаешь взять напитки из ближайшего торгового автомата. #id:1fd
-protagonist: На, возьми эту воду. #id:1fe
+Вы находите скамейку в ближайшем парке. #id:1fc
+Ты решаешь взять попить в автомате неподалёку. #id:1fd
+protagonist: На, держи воду. #id:1fe
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Спасибо. #id:1ff
-Она пытается открутить крышку бутылки, но вспотевшие руки не находят сцепления. #id:200
-Смущённая, она бросает на тебя взгляд. #id:201
+Она пытается открутить крышку, но потные пальцы просто соскальзывают. #id:200
+Смутившись, она поглядывает на тебя. #id:201
 update roommate [extra_data="set Expressions/Tired"]
-protagonist: Я понял. Держи. #id:202
-Ты скручиваешь крышку с бутылки и передаёшь ей. #id:203
+protagonist: Давай я. Держи. #id:202
+Ты откручиваешь крышку и протягиваешь ей бутылку. #id:203
 [sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
 {roommate_name} делает глоток. #id:204
 [sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
-Затем ещё глоток. #id:205
+Потом ещё один. #id:205
 [sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
-И ещё глоток. #id:206
+И ещё. #id:206
 [sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
-За несколько секунд она умудряется осушить всю бутылку воды. #id:207
+За несколько секунд она осушает бутылку до дна. #id:207
 update roommate [extra_data="set Expressions/TiredHappy"]
-roommate: Ладно, пожалуй, этот забег вымотал меня сильнее, чем хотелось бы признать. #id:208
-protagonist: Не переживай, со мной поначалу было так же. #id:209
+roommate: Ладно, кажется, эта пробежка вымотала меня сильнее, чем мне хотелось бы признавать. #id:208
+protagonist: Не переживай, у меня поначалу было так же. #id:209
 roommate: Ты часто бегаешь? #id:20a
 if {GameVariables.stamina_limit} >= 110:
-	protagonist: Да так, понемногу тут и там. #id:20b
+	protagonist: Да так, время от времени. #id:20b
 elif {GameVariables.stamina_limit} >= 125:
-	protagonist: Я уже не раз бывал в таких переделках. #id:20c
+	protagonist: Ну, кое-какой опыт есть. #id:20c
 elif {GameVariables.stamina_limit} >= 150:
-	protagonist: Да, я довольно часто бегаю с удовольствием. #id:20d
+	protagonist: Ага, очень люблю побегать. #id:20d
 elif {GameVariables.stamina_limit} >= 200:
-	protagonist: Что ж, я уже долгое время регулярно тренируюсь. #id:20e
+	protagonist: Ну, я уже довольно давно регулярно тренируюсь. #id:20e
 else:
 	protagonist: Не, не особо. #id:20f
-	protagonist: Хотя я занимался лёгкой атлетикой в старшей школе. #id:210
+	protagonist: Хотя в школе я занимался лёгкой атлетикой. #id:210
 update roommate [extra_data="show Decorations/Sweat"]
-roommate: Ты, должно быть, считаешь меня каким-то лежебокой. #id:211
-protagonist: Не переживай об этом. #id:212
-protagonist: Всем с чего-то надо начинать. #id:213
-roommate: Хотя бы спасибо за воду. #id:214
-{roommate_name} открывает ещё бутылку воды и начинает пить. #id:215
+roommate: Ты, наверное, думаешь, что я та ещё лежебока. #id:211
+protagonist: Да брось. #id:212
+protagonist: Все с чего-то начинают. #id:213
+roommate: Но за воду спасибо. #id:214
+{roommate_name} открывает вторую бутылку и начинает пить. #id:215
 [sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
 leave roommate
 join scene [extra_data="set Scene/Running"]
-Пока она пьёт, ты небрежно бросаешь взгляд на её наряд. #id:10b5
+Пока она пьёт, ты как бы невзначай опускаешь взгляд на её одежду. #id:10b5
 [music path="res://audio/se/Heartbeat.ogg" channel="3" fade="1.0" volume="-6.0"]
-Внезапно ты очень остро осознаёшь, сколько обнажённой кожи вокруг. #id:10b6
-protagonist: (То есть, я уже видел её голой.) #id:218
-protagonist: (Но почему-то от этого только эротичнее.) #id:219
-protagonist: (Похоже, она тоже не заметила.) #id:21a
+И вдруг очень остро осознаёшь, как много на ней открытой кожи. #id:10b6
+protagonist: (Ну, я её и голой видел.) #id:218
+protagonist: (Но почему-то так даже заводит сильнее.) #id:219
+protagonist: (И она, похоже, ничего не замечает.) #id:21a
 leave scene
-Ты пытаешься отвести взгляд на пейзаж парка, но он снова притягивается к её груди. #id:10b7
+Ты пытаешься смотреть на парк, но взгляд упрямо возвращается к её груди. #id:10b7
 join scene [extra_data="set Scene/Running"]
-protagonist: (Ничего не могу с собой поделать! Это же чёрная дыра из груди!) #id:21c
-Ты не можешь не хотеть потрогать их. #id:21d
-Ты уже готов протянуть руку, как голос возвращает тебя к реальности. #id:21e
-roommate: Это место довольно милое, разве нет? #id:21f
+protagonist: (Ничего не могу поделать! Это какая-то чёрная дыра из сисек!) #id:21c
+Тебе ужасно хочется их потрогать. #id:21d
+Ты уже почти тянешь руку, но её голос возвращает тебя в реальность. #id:21e
+roommate: А тут довольно мило, скажи? #id:21f
 [music path="" channel="3"]
-protagonist: Э? #id:220
+protagonist: А? #id:220
 leave scene
 join roommate center [extra_data="set Body/Workout, set Expressions/Happy"]
-roommate: Я же говорила, это место довольно милое, разве нет? #id:221
-protagonist: О, э-э, да. #id:222
-roommate: Нам стоит ещё раз сюда прийти. #id:223
-roommate: Обязательно пригласи меня в следующий раз на пробежку, хорошо? #id:224
-protagonist: Думаешь, в следующий раз мы сможем зайти немного дальше? #id:225
+roommate: Говорю, тут довольно мило, скажи? #id:221
+protagonist: А, э-э, ага. #id:222
+roommate: Надо будет ещё сюда прийти. #id:223
+roommate: В следующий раз, как пойдёшь бегать, обязательно зови меня, ладно? #id:224
+protagonist: Может, в следующий раз пробежим подальше? #id:225
 update roommate center [extra_data="set Expressions/Default"]
-roommate: Не испытывай удачу. #id:226
-Ты замечаешь у неё лёгкую улыбку. #id:227
+roommate: Не наглей. #id:226
+Ты замечаешь на её губах лёгкую улыбку. #id:227
 update roommate center [extra_data="set Expressions/Happy"]
 roommate: ... #id:228
 roommate: Ладно, пойдём обратно? #id:229
 [sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
-[color=e5be3e]Твои отношения с {roommate_name} улучшились.[/color] #id:22a
-[color=e5be3e]Теперь ты можешь пригласить её на свидание![/color] #id:22b
-[color=e5be3e]Другие виды свиданий (кроме пробежки) откроются по мере прокачки статов.[/color] #id:22c
+[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:22a
+[color=e5be3e]Теперь ты можешь звать её на свидания![/color] #id:22b
+[color=e5be3e]Другие виды свиданий, кроме пробежки, откроются по мере прокачки характеристик.[/color] #id:22c
 leave roommate
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

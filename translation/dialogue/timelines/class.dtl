@@ -16,48 +16,48 @@ jump sounds/PHONE_UNLOCK
 protagonist: ... #id:16b
 protagonist: ...утро. #id:16c
 protagonist: ... #id:16d
-protagonist: Если то, что говорилось на сайте, правда, то мне должны зачислить немного очков на счёт.
+protagonist: Если сайт не врёт, мне на счёт уже должны были капнуть очки.
 jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
 protagonist: ... #id:16f
 protagonist: ...они не врали. #id:170
-protagonist: Этим утром у меня появилась куча [color=e5be3e]очков PeepTube[/color]...
-protagonist: ...и, похоже, я могу обменять их на валюту через их систему.
+protagonist: С утра мне пришла куча [color=e5be3e]очков PeepTube[/color]...
+protagonist: ...и, похоже, их можно обменять на деньги прямо у них в системе.
 jump sounds/SURPRISE
-protagonist: Это безумие! #id:172
-protagonist: Камера, которая тебе платит, звучит как что-то из будущего.
-protagonist: Но если это не окончательное доказательство, то я даже не знаю, что тогда. #id:174
+protagonist: Это же охренеть можно! #id:172
+protagonist: Камера, которая тебе платит. Звучит как что-то из будущего.
+protagonist: Если это не железное доказательство, то я не знаю, что тогда. #id:174
 protagonist: ... #id:175
-protagonist: Пожалуй, я сам не знал, чего ожидал... #id:176
-protagonist: ...но это действительно сон, ставший явью. #id:177
-protagonist: Ещё пара ночей съёмок, и я смогу оплатить [color=e5be3e]следующую пятницу[/color]. #id:178
-protagonist: Может, мне удастся съесть что-то кроме рамена. #id:179
+protagonist: Не знаю, чего я вообще ожидал... #id:176
+protagonist: ...но это прямо мечта, ставшая реальностью. #id:177
+protagonist: Ещё пара ночей съёмок, и к [color=e5be3e]следующей пятнице[/color] я наберу на аренду. #id:178
+protagonist: А может, даже поем что-нибудь, кроме лапши. #id:179
 protagonist: ... #id:17a
 leave decorations
 [sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
 protagonist: (прости, {roommate_name}.) #id:17b
 protagonist: (Надеюсь, ты поймёшь.) #id:17c
 jump sounds/THINKING
-Хочешь прочитать руководство? #id:17d
+Показать обучение? #id:17d
 - Да #id:17e
-	В зависимости от дня у тебя может появиться немного свободного времени. #id:17f
-	Ты можешь тренироваться, спать или даже общаться с соседями. #id:180
-	Каждое из этих действий повышает различные характеристики, которые могут открыть новые действия или улучшения. #id:181
-	Так что по мере прохождения игры тебе будет открываться всё больше. #id:182
-	Обязательно попробуй разные вещи! #id:183
-	По вторникам (сегодня) и четвергам тебе также придётся посещать коррективные занятия. #id:c95
-	Обязательно будь внимателен! Подсказки в контексте помогут ответить на вопросы. #id:c96
-	Но если всё остальное не поможет, сделай обоснованное предположение. За неверные ответы не наказывают! #id:c97
+	В зависимости от дня у тебя может оставаться свободное время. #id:17f
+	Можно тренироваться, спать или даже общаться с соседями. #id:180
+	Каждое занятие прокачивает разные характеристики, а они открывают новые действия и улучшения. #id:181
+	Так что чем дальше по игре, тем больше возможностей. #id:182
+	Пробуй всё подряд! #id:183
+	По вторникам (как сегодня) и четвергам тебе придётся ходить на занятия для отстающих. #id:c95
+	Слушай внимательно! Подсказки в самой лекции помогут ответить на вопросы. #id:c96
+	А если совсем ничего не помогает, отвечай наугад, но с умом. За неправильные ответы не штрафуют! #id:c97
 	И наконец... #id:c98
-	Самое важное на этой неделе — убедиться, что у тебя хватает денег на аренду. #id:184
-	Как только у тебя будет 10000 кредитов к [color=e5be3e]следующей пятнице[/color], сюжет автоматически продвинется. #id:c99
-	(Но даже это скорее рекомендация, чем требование.) #id:186
-	Со временем могут открыться другие цели или требования. Будь внимателен! #id:187
+	Самое важное на этой неделе: накопить денег на аренду. #id:184
+	Если к [color=e5be3e]следующей пятнице[/color] у тебя будет 10000 кредитов, сюжет продвинется сам. #id:c99
+	(Хотя и это скорее рекомендация, чем требование.) #id:186
+	Со временем появятся и другие цели. Будь внимателен! #id:187
 	Удачи! И самое главное\: #id:188
-	Веселись! #id:189
+	Развлекайся! #id:189
 - Нет #id:18a
-protagonist: Ах! Я опоздаю на коррективные занятия! #id:c9a
-protagonist: Мне стоит уйти немедленно. #id:c9b
+protagonist: Блин! Я же опаздываю на занятия! #id:c9a
+protagonist: Надо выходить прямо сейчас. #id:c9b
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
 [sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene"]
@@ -71,101 +71,101 @@ jump sounds/MOVE_OUTDOORS_URBAN
 protagonist: ...фух. #id:c9c
 jump sounds/PHONE_UNLOCK
 join decorations [extra_data="set Items/Phone"]
-protagonist: Справился за пару минут до конца... #id:c9d
+protagonist: Успел, ещё и пара минут в запасе... #id:c9d
 jump sounds/PHONE_UNLOCK
 leave decorations
-protagonist: Даже если это устаревший вид транспорта... #id:c9e
-protagonist: ...Никогда ещё я не был так благодарен автобусу, как сегодня. #id:c9f
-Ты на мгновение осматриваешься. #id:ca0
+protagonist: Может, автобус и пережиток прошлого... #id:c9e
+protagonist: ...но я ещё никогда так ему не радовался. #id:c9f
+Ты на секунду оглядываешься по сторонам. #id:ca0
 jump sounds/THINKING
 protagonist: (Это Университет Eden.) #id:ca1
-protagonist: (Он был основан через 10 лет после колонизации этой планеты, в 2267 году.) #id:ca2
-protagonist: (Название происходит от группы, которая находит и терраформирует колонии по всей галактике.) #id:ca3
-protagonist: (Наверное, есть сотни университетов с похожими названиями, учитывая, как они заняты.) #id:ca4
+protagonist: (Его основали в 2267 году, через десять лет после колонизации этой планеты.) #id:ca2
+protagonist: (Название досталось от организации, которая ищет и терраформирует колонии по всей галактике.) #id:ca3
+protagonist: (Судя по тому, как бодро они работают, университетов с таким названием наберётся не одна сотня.) #id:ca4
 jump sounds/PHONE_UNLOCK
 join decorations [extra_data="set Items/Phone"]
-protagonist: Так... где, говоришь, был класс? #id:ca5
+protagonist: Так... а где у нас аудитория? #id:ca5
 roommate: {GameVariables.player_name}? #id:ca6
 jump sounds/PHONE_UNLOCK
 leave decorations
 join roommate [mirrored="true"]
 protagonist: ...а? {roommate_name}? #id:ca7
-protagonist: Ты тоже здесь? После всего того, что ты мне говорила про факультативы? #id:ca8
+protagonist: Ты тоже здесь? После всего, что ты мне наговорила про мои занятия для отстающих? #id:ca8
 update roommate [extra_data="set Expressions/Confused"]
 jump sounds/VOICE_IDIOT
 roommate: Прошу прощения? #id:ca9
-roommate: Я здесь, потому что САМА решила прийти... #id:caa
-roommate: ...ты здесь, потому что заваливаешь почти все свои предметы. #id:cab
-roommate: Мы НЕ одинаковые. #id:cac
+roommate: Я хожу сюда, потому что САМА так решила... #id:caa
+roommate: ...а ты здесь, потому что заваливаешь почти все предметы. #id:cab
+roommate: Это НЕ одно и то же. #id:cac
 protagonist: ...справедливо. #id:cad
-protagonist: (Сложно смотреть ей прямо в глаза, учитывая, что случилось прошлой ночью...) #id:cae
-protagonist: (К счастью, похоже, она совсем ничего не подозревает.) #id:caf
+protagonist: (После вчерашней ночи мне трудно смотреть ей в глаза...) #id:cae
+protagonist: (Хорошо хоть, что она, похоже, ничего не подозревает.) #id:caf
 [sound bus="Cutscene" path="res://audio/se/BellChurch.ogg"]
 update roommate [extra_data="set Expressions/Surprise"]
 roommate: ...! #id:cb0
-roommate: Это звонок на занятие! Мы опоздаем! #id:cb1
+roommate: Звонок! Мы опаздываем! #id:cb1
 protagonist: Эм... #id:cb2
-protagonist: ...ты знаешь, куда идти? #id:cb3
+protagonist: ...а ты знаешь, куда идти? #id:cb3
 update roommate [extra_data="set Expressions/Confused"]
-Она бросает на тебя забавный взгляд. #id:cb4
+Она смотрит на тебя как на дурачка. #id:cb4
 jump sounds/VOICE_IDIOT
-roommate: ...придурок. Тогда просто иди за мной. #id:cb5
+roommate: ...балбес. Иди за мной. #id:cb5
 update roommate [extra_data="set Expressions/Mad"]
-roommate: Я не позволю никому и ничему испортить мой безупречный рекорд посещаемости! #id:cb6
+roommate: Я не позволю никому и ничему испортить мою идеальную посещаемость! #id:cb6
 update roommate [extra_data="set Expressions/Default"]
-Вы оба быстро добираетесь до лекционного зала. #id:cb7
+Вы вдвоём быстро добираетесь до лекционного зала. #id:cb7
 jump sounds/MOVE_OUTDOORS_URBAN
 [music path="res://audio/bgs/Traffic_Unfiltered.ogg" channel="1" fade="1.0" volume="-24.0" bus="Cutscene"]
 [music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-24.0" bus="Cutscene"]
 [music path="res://audio/bgs/Classroom.ogg" channel="3" fade="2.0" volume="-12.0" bus="Cutscene"]
 [background arg="res://assets/Cutscene/Backgrounds/Classroom.png" fade="0.6"]
-Ты входишь в аудиторию, забитую студентами. #id:cb8
-Все места заняты, кроме двух соседних в задней части аудитории. #id:cb9
-protagonist: Похоже, мы будем сидеть рядом друг с другом... #id:cba
+Аудитория битком набита студентами. #id:cb8
+Свободны только два соседних места в самом последнем ряду. #id:cb9
+protagonist: Похоже, придётся сидеть рядом... #id:cba
 update roommate [extra_data="set Expressions/Default"]
-roommate: Пожалуйста, не говори со мной. #id:cbb
+roommate: Пожалуйста, не разговаривай со мной. #id:cbb
 protagonist: А? #id:cbc
 update roommate [extra_data="set Expressions/Confused"]
 jump sounds/VOICE_IDIOT
-roommate: Боюсь, твоя глупость передастся и мне. #id:cbd
-roommate: К тому же из-за тебя я чуть не опоздала. #id:cbe
-protagonist: Ай. #id:cbf
-protagonist: (Похоже, надо поработать над улучшением этих отношений...) #id:cc0
+roommate: Боюсь, твоя тупость заразна. #id:cbd
+roommate: И вообще, я из-за тебя чуть не опоздала. #id:cbe
+protagonist: Больно. #id:cbf
+protagonist: (Похоже, отношения с ней надо налаживать...) #id:cc0
 update roommate [extra_data="set Expressions/Default"]
 jump sounds/RULER
 alice: Кхм! #id:cc1
 join alice
-alice: Так, все! Успокоились! #id:cc2
+alice: Так, все! Тишина! #id:cc2
 [music path="" channel="3" fade="2.0" volume="-24.0" bus="Cutscene"]
-alice: Меня зовут Элис. В этом году на каникулах я буду вашим основным куратором. #id:cc3
-alice: В обычный год я преподаю пространственную торговлю здесь, в Университете Eden. #id:cc4
-Беловолосая преподавательница строго оглядывает аудиторию. #id:cc5
-alice: Однако из-за некоторых... скажем так, «вспышек»... #id:cc6
-alice: ...факультет счёл важным, чтобы я в этом году курировала коррективный курс. #id:cc7
-alice: [font_size=13]Мол, это сделает меня более «терпеливой».[/font_size] #id:cc8
-protagonist: (Похоже, ей стоит вести курс по управлению гневом...) #id:cc9
-alice: Так. Двигаемся дальше. #id:cca
-alice: За некоторыми исключениями... #id:ccb
-alice: Большинство из вас здесь потому, что вы ПРОВАЛИВАЕТЕ обычные курсы. #id:ccc
-alice: Насколько я понимаю, вы все уже безнадёжны. #id:ccd
+alice: Меня зовут Алиса. На время каникул я ваш куратор. #id:cc3
+alice: В обычное время я преподаю здесь, в Университете Eden, космическую коммерцию. #id:cc4
+Беловолосая преподавательница обводит аудиторию строгим взглядом. #id:cc5
+alice: Однако из-за некоторых... скажем так, «происшествий»... #id:cc6
+alice: ...руководство сочло нужным, чтобы в этом году курс для отстающих вела именно я. #id:cc7
+alice: [font_size=13]Мол, это научит меня «терпению».[/font_size] #id:cc8
+protagonist: (По-моему, ей самой не помешал бы курс управления гневом...) #id:cc9
+alice: Так. Идём дальше. #id:cca
+alice: За редким исключением... #id:ccb
+alice: Большинство из вас здесь потому, что вы ЗАВАЛИВАЕТЕ основные курсы. #id:ccc
+alice: Как по мне, вы все уже безнадёжны. #id:ccd
 update roommate [extra_data="set Expressions/Happy"]
-Ты оборачиваешься и видишь, как {roommate_name} едва заметно согласно кивает. #id:cce
+Краем глаза ты видишь, как {roommate_name} едва заметно кивает. #id:cce
 update roommate [extra_data="set Expressions/Default"]
-alice: Так что то, что я здесь, ВОВСЕ не значит, что я буду водить вас за ручку через весь курс. #id:ccf
-alice: На самом деле даже не появляйся, если не собираешься вкладываться в работу. #id:cd0
-alice: Так мы не будем тратить ничьё время, хорошо? #id:cd1
-alice: [font_size=13]Хотя это уже отняло столько моего драгоценного отпуска...[/font_size] #id:cd2
-alice: Всё понятно? #id:cd3
+alice: Так что если я здесь, это ЕЩЁ НЕ ЗНАЧИТ, что я буду водить вас за ручку. #id:ccf
+alice: Более того, если не собираетесь работать, можете вообще не приходить. #id:cd0
+alice: Так мы не будем тратить время друг друга, ясно? #id:cd1
+alice: [font_size=13]Хотя это и так сожрало кучу моего драгоценного отпуска...[/font_size] #id:cd2
+alice: Вопросы есть? #id:cd3
 [music path="res://audio/bgs/Classroom.ogg" channel="3" fade="1.0" volume="-21.0" bus="Cutscene"]
-Класс наполняется одобрительным гулом. #id:cd4
+По аудитории прокатывается согласный гул. #id:cd4
 alice: ...хорошо. #id:cd5
-alice: Помни, занятия будут проходить по [color=ffce65]вторникам[/color] и [color=ffce65]четвергам[/color]. #id:cd6
-alice: Их будут вести либо я, либо специальный приглашённый лектор. #id:cd7
-alice: И я рассчитываю, что ты будешь оказывать им то же уважение, что и мне. #id:cd8
-alice: [font_size=13]...хотя я бы не отказалась от чуть большего уважения в целом.[/font_size] #id:cd9
-alice: ...какие-нибудь вопросы? #id:cda
-В комнате тихо. #id:cdb
-alice: Ладно. Тогда начнём сегодняшнее занятие! #id:cdc
+alice: Запомните: занятия по [color=ffce65]вторникам[/color] и [color=ffce65]четвергам[/color]. #id:cd6
+alice: Вести их буду либо я, либо приглашённый лектор. #id:cd7
+alice: И я рассчитываю, что к ним вы будете относиться с тем же уважением, что и ко мне. #id:cd8
+alice: [font_size=13]...хотя и меня не мешало бы уважать побольше.[/font_size] #id:cd9
+alice: ...вопросы? #id:cda
+В аудитории тишина. #id:cdb
+alice: Отлично. Тогда начнём! #id:cdc
 label CLASS_START #id:cdd
 set GameVariables.yuna_partnered = false
 if {GameVariables.day} != 2:
@@ -177,7 +177,7 @@ if {GameVariables.day} != 2:
 		[signal arg="load_random_question_science"]
 	else:
 		[signal arg="load_random_question"]
-	Этим утром ты присутствуешь на занятии. #id:cde
+	Сегодня утром у тебя занятия. #id:cde
 	if {GameVariables.get_random_number(100)} < 68:
 		set GameVariables.yuna_partnered = true
 		join roommate [mirrored="true"]
@@ -185,12 +185,12 @@ if {GameVariables.day} != 2:
 			update roommate [extra_data="set Expressions/Happy"]
 			roommate: Доброе утро! #id:cdf
 		elif {GameVariables.relationship} >= 20:
-			roommate: ...доброе утро. #id:ce0
+			roommate: ...утро. #id:ce0
 		{roommate_name} тоже сегодня здесь. #id:ce1
 	jump sounds/RULER
 	[music path="" channel="3" fade="2.0" volume="-24.0" bus="Cutscene"]
 	set GameVariables.random_name = "???"
-	random: Так, класс! Успокоились. #id:ce2
+	random: Так, все! Тишина. #id:ce2
 	if {GameVariables.selected_question.GetCategoryHandle()} == "film":
 		set GameVariables.random_name = "Алиса"
 		join alice
@@ -206,20 +206,20 @@ else:
 	[signal arg="load_random_question_film"]
 	set GameVariables.random_name = "Алиса"
 	set GameVariables.yuna_partnered = true
-	Этим утром ты присутствуешь на занятии. #id:ce3
-Сегодняшний лектор — [color=ffce65]{GameVariables.random_name}[/color]. #id:ce4
-Сегодня ты изучаешь [color=ffce65]{GameVariables.selected_question.GetCategory()}[/color]. #id:ce5
+	Сегодня утром у тебя занятия. #id:ce3
+Сегодня лекцию ведёт [color=ffce65]{GameVariables.random_name}[/color]. #id:ce4
+Тема занятия: [color=ffce65]{GameVariables.selected_question.GetCategory()}[/color]. #id:ce5
 jump sounds/PAGE_FLIP
-random: Пожалуйста, откройте свои учебники! #id:100d
+random: Откройте учебники! #id:100d
 jump sounds/CUCKOO
 Следующий час ты внимательно слушаешь лекцию. #id:ce7
 [wait time="1.0"]
 jump sounds/PAGE_FLIP
-random: ...и на этом лекционная часть заканчивается. #id:ce8
+random: ...на этом теоретическая часть закончена. #id:ce8
 random: ...так, посмотрим... {GameVariables.player_name}! #id:ce9
 protagonist: Я? #id:cea
-random: Да, ты! Я хочу убедиться, что ты слушал внимательно. #id:ceb
-random: Вот вопрос из учебника\: #id:cec
+random: Да, вы! Проверим, как вы слушали. #id:ceb
+random: Вопрос из учебника\: #id:cec
 random: {GameVariables.selected_question.Question} #id:ced
 - {GameVariables.selected_question.Answer1} #id:cee
 	if {GameVariables.selected_question.CorrectAnswerIndex} == 0:
@@ -235,24 +235,24 @@ random: {GameVariables.selected_question.Question} #id:ced
 		jump CORRECT
 label INCORRECT #id:cf2
 set GameVariables.is_correct_answer = false
-Ты отвечаешь тем ответом, который считаешь правильным. #id:cf3
+Ты отвечаешь так, как считаешь правильным. #id:cf3
 [sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
-random: Извини, но это [color=ff3f49]неверно![/color] Похоже, кое-кто не был внимателен! #id:cf4
-random: Обязательно читай учебный материал в свободное время. #id:cf5
+random: Увы, [color=ff3f49]неверно![/color] Кто-то явно витал в облаках! #id:cf4
+random: Обязательно почитайте материал в свободное время. #id:cf5
 if {GameVariables.yuna_partnered}:
 	update roommate [extra_data="set Expressions/Default"]
-	{roommate_name} тоже выглядит немного разочарованной. #id:cf6
+	{roommate_name}, кажется, тоже немного разочарована. #id:cf6
 	set GameVariables.relationship_change = 1
 	jump stat_change/RELATIONSHIP_DECREASE
 jump CLASS_END
 label CORRECT #id:cf7
 set GameVariables.is_correct_answer = true
-Ты отвечаешь тем ответом, который считаешь правильным. #id:cf8
+Ты отвечаешь так, как считаешь правильным. #id:cf8
 [sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
-random: [color=ffce65]Верно![/color] Похоже, ты всё-таки был внимателен. #id:cf9
+random: [color=ffce65]Верно![/color] Значит, всё-таки слушали. #id:cf9
 jump stat_change/INTELLIGENCE
 if {GameVariables.yuna_partnered}:
-	{roommate_name} тоже впечатлена твоим правильным ответом. #id:cfa
+	{roommate_name}, похоже, впечатлена твоим ответом. #id:cfa
 	set GameVariables.relationship_change = 2
 	jump stat_change/RELATIONSHIP_INCREASE
 label CLASS_END #id:cfb
@@ -271,36 +271,36 @@ if {GameVariables.selected_question.Explanation6} != "":
 [sound bus="Cutscene" path="res://audio/se/BellChurch.ogg"]
 [music path="res://audio/bgs/Classroom.ogg" channel="3" fade="2.0" volume="-12.0" bus="Cutscene"]
 [wait time="1.0"]
-random: Ладно, похоже, время вышло. Не забудьте прочитать заданные материалы! #id:cfc
-random: Занятие окончено! #id:cfd
+random: Так, время вышло. Не забудьте прочитать заданное! #id:cfc
+random: Все свободны! #id:cfd
 if {Cutscenes.IsSceneSeen("yosuke_1")} and not {Cutscenes.IsSceneSeen("yosuke_2")} and {Items.GetQuantity('transistors')} < 1:
 	protagonist: (...!) #id:cfe
-	protagonist: (Меня только что осенило.) #id:cff
-	Ты решаешь дождаться, пока класс разойдётся. #id:d00
+	protagonist: (Меня осенило.) #id:cff
+	Ты решаешь дождаться, пока все разойдутся. #id:d00
 	leave roommate
-	protagonist: Извините, мэм? Можно вас на мгновение? #id:d01
+	protagonist: Простите, можно вас на минутку? #id:d01
 	random: Да, {GameVariables.player_name}? #id:d02
-	protagonist: Я хотел спросить, не поможешь ли ты мне найти пару нанотехнологичных [color=e5be3e]транзисторов[/color]? #id:d03
-	random: Нанотехнологичные [color=e5be3e]транзисторы[/color]? Какой необычный запрос. #id:d04
-	Ассистентка преподавателя гладит подбородок. #id:d05
+	protagonist: Вы не поможете мне раздобыть пару нанотехнологичных [color=e5be3e]транзисторов[/color]? #id:d03
+	random: Нанотехнологичных [color=e5be3e]транзисторов[/color]? Какая необычная просьба. #id:d04
+	Ассистентка задумчиво потирает подбородок. #id:d05
 	if {GameVariables.is_correct_answer} == true:
-		random: Я не могу отказать ещё одному товарищу по науке! #id:d06
-		random: Секунду — я сейчас вернусь. #id:d07
+		random: Разве можно отказать коллеге по науке! #id:d06
+		random: Секунду, я сейчас вернусь. #id:d07
 		leave enemy
-		Через несколько минут ассистент возвращается. #id:d08
+		Через пару минут ассистентка возвращается. #id:d08
 		join enemy [extra_data="set Container/Type/Student"]
-		random: Вот ты где. #id:d09
-		random: Обращайся с ними осторожно — они очень дорогие! #id:d0a
+		random: Вот, держите. #id:d09
+		random: Осторожнее с ними, они очень дорогие! #id:d0a
 		jump sounds/GOT_ITEM
 		set GameVariables.quantity = {Items.Increment('transistors')}
-		Ты получил набор [color=e5be3e]транзисторов[/color]! #id:d0b
-		random: Удачи с экспериментом! Пожалуйста, сообщи мне о результатах. #id:d0c
+		Ты получаешь набор [color=e5be3e]транзисторов[/color]! #id:d0b
+		random: Удачи с экспериментом! Обязательно расскажите, что получилось. #id:d0c
 	else:
-		random: К сожалению, я не могу раздавать лабораторное оборудование любому студенту, который попросит. #id:d0d
-		random: Прости, но у меня назначена встреча. Мне пора. #id:d0e
-		random: Желаю удачи в поисках поставщика! #id:d0f
+		random: Увы, я не могу раздавать лабораторное оборудование каждому, кто попросит. #id:d0d
+		random: Простите, у меня встреча. Мне пора. #id:d0e
+		random: Удачи в поисках поставщика! #id:d0f
 		leave enemy
 		protagonist: Блин... #id:d10
-		protagonist: Думаю, она охотнее поможет, если я докажу свои умственные способности... #id:d11
-		protagonist: Может, если бы я ответил на вопрос правильно? #id:d12
+		protagonist: Думаю, она охотнее помогла бы, если бы я показал, что у меня есть мозги... #id:d11
+		protagonist: Может, если бы я правильно ответил на вопрос? #id:d12
 jump z_functions/END_TO_UPGRADE

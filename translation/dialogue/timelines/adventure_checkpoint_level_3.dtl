@@ -9,34 +9,34 @@ if {BattleVariables.is_night_run()} == false:
 	[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Entrance_Day.png" fade="0.6"]
 else:
 	[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Entrance_Night.png" fade="0.6"]
-Ты добираешься до входа в... странно выглядящий объект. #id:bf4
-Единственная табличка над дверью гласит\: [color=ffce65]Лаборатория[/color]. #id:bf5
-protagonist: Почему это здесь?
-protagonist: Оно не похоже ни на одно другое здание здесь... #id:bf7
+Ты подходишь ко входу в какое-то... очень странное здание. #id:bf4
+Над дверью одна-единственная табличка\: [color=ffce65]Лаборатория[/color]. #id:bf5
+protagonist: Откуда это здесь?
+protagonist: Совсем не похоже на остальные здания в округе... #id:bf7
 jump sounds/GRAVEL
-Ты подходишь к двери, чтобы осмотреть её. #id:bf8
-protagonist: Хммм... #id:bf9
-protagonist: Похоже, здесь есть слот для [color=ffce65]ключа[/color]. #id:bfa
+Ты подходишь к двери, чтобы рассмотреть её получше. #id:bf8
+protagonist: Хм-м... #id:bf9
+protagonist: Похоже, тут прорезь под [color=ffce65]ключ[/color]. #id:bfa
 if {GameVariables.yuna_partnered}:
 	update roommate [extra_data="set Expressions/Confused"]
-	roommate: Это место жуткое... #id:bfb
-	roommate: ...давай уйдём как можно скорее! #id:bfc
-protagonist: У подножия холма также есть [color=ffce65]автобусная остановка[/color].
-protagonist: Мне стоит пойти домой? #id:e7
+	roommate: Жуткое место... #id:bfb
+	roommate: ...давай свалим отсюда поскорее! #id:bfc
+protagonist: А у подножия холма есть [color=ffce65]автобусная остановка[/color].
+protagonist: Может, домой? #id:e7
 label OPTIONS
-- Отправиться домой #id:bef
+- Домой #id:bef
 	jump adventure/GO_HOME
-- Попытаться войти
+- Попробовать войти
 	if {Items.GetQuantity('laboratory_key')} <= 0:
-		protagonist: У меня нет способа попасть в здание...
-		protagonist: Здесь есть слот для [color=ffce65]ключа[/color], но дверь кажется слишком сложной для взлома...
-		protagonist: Может, есть какой-нибудь инструмент? Стоит спросить кого-то, кто разбирается в технике...
+		protagonist: Мне никак не попасть в здание...
+		protagonist: Тут прорезь под [color=ffce65]ключ[/color], но дверь слишком навороченная, такой замок мне не вскрыть...
+		protagonist: Может, найдётся какой-то инструмент? Надо спросить кого-нибудь, кто шарит в технике...
 		jump OPTIONS
 	if {Cutscenes.IsSceneSeen("yosuke_5")} == false:
-		protagonist: Мне стоит сначала поговорить с [color=ffce65]Ёсуке[/color]...
+		protagonist: Сначала надо поговорить с [color=ffce65]Ёсуке[/color]...
 		jump OPTIONS
-	Ты вставляешь [color=ffce65]ключ от лаборатории[/color] в замочную скважину.
-	Оно плавно поворачивается с мягким щелчком.
+	Ты вставляешь [color=ffce65]ключ от лаборатории[/color] в замок.
+	Он мягко поворачивается с тихим щелчком.
 	jump sounds/BEEP
 	[wait time="0.3"]
 	jump sounds/BEEP
@@ -44,22 +44,22 @@ label OPTIONS
 	jump sounds/BEEP
 	[wait time="0.3"]
 	jump sounds/DOOR_UNLOCK
-	Дверь с громким стуком отъезжает.
+	Дверь с тяжёлым грохотом отъезжает в сторону.
 	jump sounds/MOVEMENT_ADVENTURE
 	jump sounds/INDOOR_LABORATORY
 	[background arg="res://assets/Cutscene/Backgrounds/Laboratory_Entrance_Hallway.png" fade="0.6"]
 	Ты входишь в длинный тёмный коридор.
-	Твои глаза с трудом привыкают к темноте помещения.
+	Глаза с трудом привыкают к темноте.
 	if {GameVariables.yuna_partnered}:
 		update roommate [extra_data="set Expressions/Confused"]
-		roommate: Ты уверен, что мы хотим идти глубже?
-		roommate: ...ты не боишься?
-		protagonist: Это действительно страшно...
-		protagonist: ...но меня так и тянет к тому, что здесь есть.
-		protagonist: Мы всегда можем уйти, если станет слишком опасно.
+		roommate: Ты уверен, что нам надо идти дальше?
+		roommate: ...тебе что, не страшно?
+		protagonist: Страшно, конечно...
+		protagonist: ...но меня прямо тянет узнать, что тут внутри.
+		protagonist: Если станет слишком опасно, всегда можно уйти.
 		roommate: ...ладно.
-	Ещё секунду ты смотришь в тёмный коридор перед собой.
-	protagonist: Что ж... была не была.
+	Ещё секунду ты всматриваешься в тёмный коридор.
+	protagonist: Ну... была не была.
 	jump adventure/LOOP
 label BUS_LOOP #id:bf1
 set BattleVariables.level = 4
@@ -70,11 +70,11 @@ else:
 	[background arg="res://assets/Cutscene/Backgrounds/Countryside_Night_Running_2.png" fade="0.6"]
 jump sounds/OUTDOOR_COUNTRYSIDE
 [sound path="res://audio/se/BusArrival.ogg" volume="-6.0"]
-Через несколько минут ты выходишь на своей остановке. #id:68
+Через несколько минут вы выходите на нужной остановке. #id:68
 if {GameVariables.yuna_partnered}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
 	update roommate [extra_data="set Expressions/Happy"]
-	roommate: Здесь так спокойно... #id:bf2
+	roommate: Как же тут спокойно... #id:bf2
 	update roommate [extra_data="set Expressions/Default"]
 Ты поднимаешься по холму к бункеру, который видел раньше...
 jump sounds/GRAVEL

@@ -93,18 +93,18 @@ return
 label LOAD_DESCRIPTION #id:1011
 if {BattleVariables.level} == 1:
 	if {BattleVariables.alternate} == true:
-		Ты трусцой направляешься к следующему кварталу.
+		Ты трусцой бежишь к следующему кварталу.
 		Сейчас ты в [color=ffce65]канализации[/color].
 	else:
 		Ты пробираешься к следующему участку.
 		Сейчас ты в [color=ffce65]городе[/color].
 if {BattleVariables.level} == 2:
-	Ты трусцой направляешься к следующей песчаной дюне. #id:1012
+	Ты трусцой бежишь к следующей песчаной дюне. #id:1012
 	Сейчас ты на [color=ffce65]пляже[/color]. #id:6a
 if {BattleVariables.level} == 3:
-	Ты трусцой направляешься к соседним полям. #id:1013
+	Ты трусцой бежишь к соседним полям. #id:1013
 	Сейчас ты в [color=ffce65]деревне[/color]. #id:bc3
 if {BattleVariables.level} == 4:
-	Ты направляешься к следующему набору комнат.
+	Ты пробираешься к следующим помещениям.
 	Сейчас ты в [color=ffce65]лаборатории[/color].
 return

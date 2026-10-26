@@ -11,37 +11,37 @@ else:
 jump sounds/MUSIC_FADEOUT
 jump sounds/OUTDOOR_BEACH
 jump sounds/MOVEMENT_ADVENTURE
-Ты оказываешься перед несколькими пляжными домиками.
-Одинокий торговец сидит вдоль набережной.
+Ты оказываешься у ряда пляжных домиков.
+На набережной в одиночестве сидит торговка.
 set GameVariables.name_revealed = true
 join syn [extra_data="set Style/SynShop"]
-syn: Снова привет!
+syn: И снова привет!
 syn: Добро пожаловать в лавку Син!
-protagonist: .[pause=0.5].[pause=0.5].[pause=0.5]ах!
-protagonist: Продавщица! Что ты здесь делаешь?
+protagonist: .[pause=0.5].[pause=0.5].[pause=0.5]а!
+protagonist: Та продавщица! Ты что тут делаешь?
 Она озадаченно смотрит на тебя.
-syn: Что за вопрос? Зачем? Чтобы продавать свои товары, конечно!
-syn: Как ты ожидаешь, что я выполню план, сидя на одном месте?
+syn: Что за вопрос такой? Продаю, конечно!
+syn: Как, по-твоему, я выполню план, если буду сидеть на одном месте?
 protagonist: Э-э...
-protagonist: (Пожалуй, это имеет смысл...)
-syn: А — но разговаривать не нужно — и, похоже, представляться тебе тоже не требуется...
-syn: Я закупился кое-какими новинками... думаю, тебе будет интересно!
+protagonist: (Ну, в этом есть логика...)
+syn: А впрочем, болтать незачем, да и представляться тебе, похоже, не надо...
+syn: Я закупилась кое-какими новинками... думаю, тебе будет интересно!
 syn: ...🐉🦖🐲. #id:c44
 protagonist: (...какая странная манера говорить...)
-protagonist: Конечно, давай посмотрим. #id:c48
+protagonist: Давай, глянем. #id:c48
 jump BUY
 label BOUGHT #id:c49
 syn: Отлично! Держи. #id:c4a
 jump BUY
 label NOT_INTERESTED #id:c4b
-syn: <Не интересно? Ну и ладно./О? Присмотрел что-то другое?/Что ж, оно всегда там, если захочешь!> #id:c4c
+syn: <Не интересно? Ну и ладно./О? Глаз положил на что-то другое?/Ну, если надумаешь, оно никуда не денется!> #id:c4c
 label BUY #id:c4d
 leave decorations
 - Кошачьи ушки | [if {GameVariables.has_skill('cat_ears')} == false]
 	join decorations center [extra_data="set Items/CatEars"]
 	syn: [color=e5be3e]Ободок с кошачьими ушками[/color]?
-	syn: Отличный выбор! Хотя лично я больше по собакам.
-	syn: Ты можешь забрать это домой за [color=e5be3e]20 000 кредитов[/color].
+	syn: Отличный выбор! Хотя лично я больше собачница.
+	syn: Он может стать твоим за [color=e5be3e]20 000 кредитов[/color].
 	- Да | [if {GameVariables.credits} >= 20000]
 		jump sounds/CASH
 		set GameVariables.credits = {GameVariables.change_credits(-20000)}
@@ -52,9 +52,9 @@ leave decorations
 - Чокер | [if {GameVariables.has_skill('choker')} == false]
 	join decorations center [extra_data="set Items/Choker"]
 	syn: [color=e5be3e]Чокер[/color]?
-	syn: Сделано из переработанной кожи и композитных земных металлов...
-	syn: ...стильно И экологично!
-	syn: Ты можешь забрать это домой за [color=e5be3e]15 000 кредитов[/color].
+	syn: Из переработанной кожи и композитных редкоземельных металлов...
+	syn: ...и стильно, И экологично!
+	syn: Он может стать твоим за [color=e5be3e]15 000 кредитов[/color].
 	- Да | [if {GameVariables.credits} >= 15000]
 		jump sounds/CASH
 		set GameVariables.credits = {GameVariables.change_credits(-15000)}
@@ -64,9 +64,9 @@ leave decorations
 		jump NOT_INTERESTED
 - Свитер | [if {GameVariables.has_skill('sweater')} == false]
 	join decorations center [extra_data="set Items/Sweater"]
-	syn: Фаворит всех девственников, несмотря на своё название...
-	syn: [color=e5be3e]Свитер[/color] «Убийца девственников»! Прекрасное пополнение любого гардероба...
-	syn: Этот предмет обойдётся тебе в [color=e5be3e]25 000 кредитов[/color]. Что скажешь?
+	syn: Любимец всех девственников, несмотря на название...
+	syn: [color=e5be3e]Свитер[/color] «Убийца девственников»! Украсит любой гардероб...
+	syn: Обойдётся тебе в [color=e5be3e]25 000 кредитов[/color]. Что скажешь?
 	- Да | [if {GameVariables.credits} >= 25000] #id:c5a
 		jump sounds/CASH
 		set GameVariables.credits = {GameVariables.change_credits(-25000)}
@@ -77,14 +77,14 @@ leave decorations
 - Уйти #id:c6d
 	jump LEAVE
 label LEAVE #id:c6e
-protagonist: Думаю, мне пока хватит. #id:c6f
-syn: Отлично! Что ж, я всегда здесь, если передумаешь!
+protagonist: Пожалуй, пока ничего не надо. #id:c6f
+syn: Отлично! Если передумаешь, я всегда тут!
 if {GameVariables.has_skill('choker')} && {GameVariables.has_skill('sweater')}:
-	syn: Вообще-то, похоже, ты скупил всё...
+	syn: Слушай, а ты, похоже, опять скупил всё...
 	if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')} && {Items.HasItem('running_shoes')}:
 		syn: ...снова!
-	syn: Придётся пополнить запасы и вернуться в другой день.
-	syn: Спасибо, верный покупатель! Уверен, мы ещё увидимся.
-	syn: Удачных путешествий!
+	syn: Придётся сходить за товаром и вернуться в другой раз.
+	syn: Спасибо, постоянный клиент! Уверена, мы ещё увидимся.
+	syn: Удачи в странствиях!
 leave syn
 jump adventure/LOOP

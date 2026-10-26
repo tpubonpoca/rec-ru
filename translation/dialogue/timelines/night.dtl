@@ -2,7 +2,7 @@ label START #id:fb8
 set {GameVariables.yuna_partnered} = false
 jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.0"]
-protagonist: У меня есть немного свободного времени перед сном... #id:10ca
+protagonist: До сна ещё есть немного времени... #id:10ca
 if {Cutscenes.IsScenePlayable("yosuke_3")} and not {Cutscenes.IsSceneSeen("yosuke_3")} and not {Cutscenes.IsSceneNotified("yosuke_3")}:
 	set {boolean} = {Cutscenes.MarkSceneNotified("yosuke_3")}
 	jump sounds/PHONE_BUZZ
@@ -11,31 +11,31 @@ if {Cutscenes.IsScenePlayable("yosuke_3")} and not {Cutscenes.IsSceneSeen("yosuk
 	[wait time="1.0"]
 	jump sounds/PHONE_UNLOCK
 	join decorations [extra_data="set Items/Phone"]
-	yosuke: Встреться со мной в парке, когда сможешь. Спасибо.
+	yosuke: Приходи в парк, когда сможешь. Спасибо.
 	leave decorations
-	protagonist: Наверное, стоит навестить [color=e5be3e]Ёсуке[/color].
+	protagonist: Надо, наверное, наведаться к [color=e5be3e]Ёсуке[/color].
 jump CHOICES
 label RETURN #id:10cb
 set {GameVariables.yuna_partnered} = false
 jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.6"]
 label CHOICES #id:378
-protagonist: Интересно, что мне делать... #id:379
+protagonist: Чем бы заняться... #id:379
 - Выйти на улицу #id:10cc
-	- Пойти на пробежку #id:10cd
+	- Пробежка #id:10cd
 		if {GameVariables.stamina_limit} < 250:
-			protagonist: Думаю, моей выносливости для этого пока недостаточно...
+			protagonist: Боюсь, на это мне пока не хватит выносливости...
 			jump CHOICES
-		protagonist: Пожалуй, схожу на пробежку. #id:37b
+		protagonist: Пожалуй, сгоняю на пробежку. #id:37b
 		set GameVariables.times_jogged += 1
 		jump adventure/START
-	- Встретить Ёсуке | [if {GameVariables.day} >= 6]
-		protagonist: Ёсуке сказал, что будет в парке... #id:10cf
-		protagonist: Может, пойти поговорить с ним? #id:10d0
+	- Встретиться с Ёсуке | [if {GameVariables.day} >= 6]
+		protagonist: Ёсуке говорил, что будет в парке... #id:10cf
+		protagonist: Может, сходить поболтать с ним? #id:10d0
 		jump night_yosuke/START
-	- Пойти на работу | [if {GameVariables.has_skill('convenience_store')} == true]
+	- На работу | [if {GameVariables.has_skill('convenience_store')} == true]
 		set GameVariables.is_shift_ended = false
-		protagonist: Пожалуй, сегодня возьму смену...
+		protagonist: Возьму-ка сегодня смену...
 		jump convenience/SHIFT_START
 	- Отмена #id:10d1
 		jump CHOICES
@@ -46,11 +46,11 @@ protagonist: Интересно, что мне делать... #id:379
 		[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
 		[background arg="res://assets/Cutscene/Backgrounds/Hallway_Night.png" fade="0.6"]
 		protagonist: Хм...
-		protagonist: ...Не думаю, что она сегодня здесь.
+		protagonist: ...похоже, сегодня её тут нет.
 		[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
 		[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.6"]
 		jump CHOICES
 	jump z_functions/END_TO_NIGHT_SEQUENCE
-- Лечь спать #id:10d8
-	protagonist: Наконец-то... пора спать! #id:10d9
+- Спать #id:10d8
+	protagonist: Наконец-то... спать! #id:10d9
 	jump z_functions/END_TO_NEXT_MORNING

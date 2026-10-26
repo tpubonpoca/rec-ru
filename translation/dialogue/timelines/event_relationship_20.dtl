@@ -2,9 +2,9 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.0"]
 [sound bus="Cutscene" path="res://audio/se/Dishes.ogg" volume="-6.0"]
 protagonist: ... #id:1bd
-Ты смотришь на миску рамена с говяжьим вкусом и размышляешь о жизненных решениях, которые привели тебя сюда. #id:1be
-protagonist: Уф. #id:1bf
-protagonist: Мне так надоело есть лапшу. #id:1c0
+Ты смотришь на миску лапши со вкусом говядины и думаешь, какие жизненные решения тебя к этому привели. #id:1be
+protagonist: Бе-е. #id:1bf
+protagonist: Как же меня задолбала эта лапша. #id:1c0
 protagonist: ... #id:1c1
 jump sounds/DOOR_CLOSE
 protagonist: ...? #id:1c2
@@ -12,36 +12,36 @@ protagonist: ...? #id:1c2
 [wait time="3.0"]
 join roommate center
 [sound bus="Cutscene" path="res://audio/voice/tadaima3_Im_home.ogg" volume="0.0"]
-roommate: Ах, это ты. #id:1c3
-roommate: Опять ешь рамен, как я погляжу? #id:1c4
-protagonist: Да... #id:1c5
-protagonist: ...их распродавали, и это всё, что я мог себе позволить. #id:1c6
-protagonist: Кажется, я ещё и накупил слишком много одного и того же вкуса. #id:1c7
+roommate: А, это ты. #id:1c3
+roommate: Опять лапша, да? #id:1c4
+protagonist: Ага... #id:1c5
+protagonist: ...была скидка, а больше мне ничего не по карману. #id:1c6
+protagonist: И, кажется, я набрал слишком много одного и того же вкуса. #id:1c7
 roommate: ... #id:1c8
-roommate: Эм, если хочешь, можешь взять один из моих бенто. #id:1c9
-roommate: Я выиграла несколько лишних коробок в лотерее магазина. #id:1ca
+roommate: Эм, если хочешь, возьми один из моих бенто. #id:1c9
+roommate: Я выиграла несколько лишних коробок в лотерее в магазине. #id:1ca
 protagonist: Ого, серьёзно? #id:1cb
-protagonist: Огромное тебе спасибо! #id:1cc
-Ты бесстыдно отбрасываешь свой обед и смотришь на протянутый тебе бенто-бокс. #id:1cd
-Не колеблясь, ты вскрываешь коробку и набрасываешься на еду. #id:1ce
-protagonist: ...боже мой. #id:1cf
-protagonist: Не помню, когда в последний раз ел тамаго. #id:1d0
+protagonist: Спасибо тебе огромное! #id:1cc
+Ты без капли стыда отодвигаешь свой обед и смотришь на протянутый бенто. #id:1cd
+Не раздумывая, ты вскрываешь коробку и жадно набрасываешься на еду. #id:1ce
+protagonist: ...господи. #id:1cf
+protagonist: Я уже не помню, когда последний раз ел тамаго. #id:1d0
 roommate: Эм... #id:1d1
-roommate: Ты... плачешь? #id:1d2
-protagonist: Это слёзы радости! #id:1d3
+roommate: Ты что... плачешь? #id:1d2
+protagonist: Это слёзы счастья! #id:1d3
 update roommate [extra_data="set Expressions/Happy"]
 jump sounds/VOICE_LAUGH
-roommate: Знаю, что домашняя еда лучше, но это всяко полезнее лапши быстрого приготовления, верно? #id:1d4
+roommate: Понятно, что лучше готовить самому, но это хоть получше лапши быстрого приготовления, да? #id:1d4
 update roommate [extra_data="set Expressions/Default"]
-protagonist: Что угодно лучше, чем лапша быстрого приготовления... #id:1d5
-protagonist: Я твой должник. #id:1d6
+protagonist: Да что угодно лучше этой лапши... #id:1d5
+protagonist: Я тебе по гроб жизни обязан. #id:1d6
 update roommate [extra_data="set Expressions/Happy"]
 [sound bus="Cutscene" path="res://audio/voice/shinpai2_Theres_nothing_to_worry_about.ogg" volume="0.0"]
-roommate: Не переживай об этом. Ешь! #id:1d7
+roommate: Да брось. Ешь давай! #id:1d7
 [sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
-[color=e5be3e]Твои отношения с {roommate_name} улучшились.[/color] #id:1d8
-[color=e5be3e]Иногда вечером она может принести тебе подарок.[/color] #id:661
-[color=e5be3e]Она также лучше реагирует на твои просьбы и действия.[/color] #id:1da
+[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:1d8
+[color=e5be3e]Иногда по вечерам она может приносить тебе подарки.[/color] #id:661
+[color=e5be3e]А ещё она охотнее откликается на твои просьбы и действия.[/color] #id:1da
 leave roommate
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

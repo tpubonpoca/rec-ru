@@ -10,9 +10,9 @@ if {BattleVariables.acting_enemy.LoadedSkill.IsPreparing()}:
 	jump adventure_functions/END_ENEMY_TURN
 if {BattleVariables.acting_enemy.LoadedSkill.ShouldDelay()}:
 	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 0:
-		enemy: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color] теперь загружен.
+		enemy: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color]: навык заряжен.
 	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 1:
-		enemy_2: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color] теперь загружен.
+		enemy_2: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color]: навык заряжен.
 	jump adventure_functions/END_ENEMY_TURN
 [signal arg="skill_use_sound"]
 if {BattleVariables.acting_enemy.GetLoadedSkill().DelayBeforeEffect}:
@@ -42,7 +42,7 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().PowerUpDescription} != "":
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().DoesDamage}:
 	jump adventure_functions/GUARD_MESSAGE
-	Ты потерял [color=ff3f49]{BattleVariables.take_damage(BattleVariables.acting_enemy.GetLoadedSkill().DamageMultiplier)}[/color] выносливости. #id:10a6
+	Ты теряешь [color=ff3f49]{BattleVariables.take_damage(BattleVariables.acting_enemy.GetLoadedSkill().DamageMultiplier)}[/color] выносливости. #id:10a6
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().CreditPercentageStolen} > 0:
 	jump sounds/BATTLE_STUN
@@ -51,11 +51,11 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().CreditPercentageStolen} > 0:
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().Stun} > 0:
 	if {BattleVariables.player_is_defending}:
-		Ты избежал оглушения! #id:10a8
+		Тебе удалось не попасть под оглушение! #id:10a8
 	else:
 		jump sounds/BATTLE_STUN
 		[signal arg="shake"]
-		Теперь ты оглушён! #id:14f
+		Ты оглушён! #id:14f
 		set BattleVariables.player_is_stunned = true
 		set BattleVariables.player_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().Stun}
 
@@ -63,14 +63,14 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().StunPartner} > 0 && {GameVaria
 	jump sounds/BATTLE_STUN
 	[signal arg="shake"]
 	update roommate [extra_data="set Expressions/Tired, show Decorations/Sweat"]
-	Юна теперь оглушена!
+	Юна оглушена!
 	set BattleVariables.yuna_is_stunned = true
 	set BattleVariables.yuna_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().StunPartner}
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().PoisonTickDamage} > 0:
 	jump sounds/BATTLE_POISON
 	[signal arg="shake"]
-	Теперь ты отравлен! #id:153
+	Тебя отравили! #id:153
 	set BattleVariables.poison_tick_damage += {BattleVariables.acting_enemy.GetLoadedSkill().PoisonTickDamage}
 	set BattleVariables.poison_turns += {BattleVariables.acting_enemy.GetLoadedSkill().PoisonDuration}
 
@@ -96,24 +96,24 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().Confusion} > 0:
 	if {BattleVariables.player_is_defending} == false:
 		set BattleVariables.player_is_confused = true
 		set BattleVariables.player_is_confused_duration = {BattleVariables.acting_enemy.GetLoadedSkill().Confusion}
-		Теперь ты в замешательстве!
+		Ты в замешательстве!
 	else:
 		jump adventure_functions/GUARD_MESSAGE
-		Ты избежал замешательства!
+		Тебе удалось не растеряться!
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().Jammed} > 0:
 	[signal arg="jam_abilities"]
 	set BattleVariables.player_is_jammed = true
 	set BattleVariables.player_is_jammed_duration = {BattleVariables.acting_enemy.GetLoadedSkill().Jammed}
-	Твоя способность использовать [color=e5be3e]{BattleVariables.get_jammed_ability()}[/color] теперь заблокирована!
+	Способность заблокирована: [color=e5be3e]{BattleVariables.get_jammed_ability()}[/color]!
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().Madness} == true:
 	if {BattleVariables.player_is_defending} == false:
 		set BattleVariables.player_is_mad = true
-		Теперь ты в безумии! #id:10ab
+		Ты в бешенстве! #id:10ab
 	else:
 		jump adventure_functions/GUARD_MESSAGE
-		Ты избежал безумия! #id:10ac
+		Тебе удалось не сорваться! #id:10ac
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().SummonEnemies.size()} > 0:
 	jump adventure_functions/SUMMON_ENEMY
@@ -126,7 +126,7 @@ label PLAYER #id:164
 		jump adventure_functions/RANDOM_ABILITY
 	label PAPARAZZI
 	[sound bus="Cutscene" path="res://audio/se/Focusing1.ogg" volume="0.0"]
-	protagonist: Держи! #id:166
+	protagonist: Получай! #id:166
 	[sound bus="Cutscene" path="res://audio/se/Focusing2.ogg" volume="0.0"]
 	[wait time="0.5"]
 	[sound bus="Cutscene" path="res://audio/se/CameraFlash.ogg" volume="0.0"]

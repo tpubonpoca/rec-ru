@@ -14,16 +14,16 @@ elif {GameVariables.is_shift_ended} == true:
 label SHIFT_BEGINNING_FIRST_TIME
 join random [extra_data="set Style/Female"]
 random: О, привет! Ты на ночную смену?
-random: Отлично, надевай это...
+random: Отлично, переодевайся вот в это...
 jump sounds/CLOTH
-Она передаёт тебе форму.
-random: Сегодня вечером ты будешь за кассой...
-random: Всё, что нужно — принимать оплату от покупателей и давать правильную сдачу...
-random: Я оставил небольшую [color=e5be3e]записку у кассы[/color], она должна помочь.
-protagonist: О... ты тоже не будешь в смене?
-random: Нет, только ты! Я сейчас пойду на перерыв.
-random: Но ты справишься — это довольно просто... и я вернусь до конца твоей смены.
-protagonist: Ах... ладно...
+Она протягивает тебе униформу.
+random: Сегодня ты на кассе...
+random: Всё, что нужно: принять оплату и правильно отсчитать сдачу...
+random: Я оставила на кассе [color=e5be3e]стикер с подсказкой[/color], он поможет.
+protagonist: О... а ты разве не на смене?
+random: Не-а, только ты! Я ухожу на перерыв.
+random: Да ты справишься, там всё просто... и я вернусь до конца твоей смены.
+protagonist: А... ладно...
 random: Удачи!
 leave random
 jump z_functions/END_TO_CONVENIENCE
@@ -31,24 +31,24 @@ jump z_functions/END_TO_CONVENIENCE
 label SHIFT_BEGINNING
 join random [extra_data="set Style/Female"]
 random: О, привет! Ты на ночную смену?
-random: Отлично! Тогда вернусь через пару часов!
+random: Отлично! Тогда я вернусь через пару часов!
 leave random
 jump z_functions/END_TO_CONVENIENCE
 
 label SHIFT_ENDING
-Ты заканчиваешь смену.
+Смена окончена.
 join random [extra_data="set Style/Female"]
-random: Эй, как прошло?
+random: Ну как, справился?
 jump sounds/CASH
-Управляющий проверяет кассу и чеки.
+Управляющая проверяет кассу и чеки.
 if {GameVariables.shift_rating} <= 1:
-	random: Хмм... похоже, тебе нужно больше тренировок.
+	random: Хм-м... похоже, тебе ещё учиться и учиться.
 if {GameVariables.shift_rating} == 2:
-	random: Что ж, это не худшее, что я видел...
+	random: Ну, бывало и хуже...
 if {GameVariables.shift_rating} == 3:
 	random: Неплохо...
 if {GameVariables.shift_rating} == 4:
-	random: Отличная работа!
+	random: Молодец!
 if {GameVariables.shift_rating} == 5:
 	random: Ого... идеально!
 [sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
@@ -66,13 +66,13 @@ if {GameVariables.has_skill('convenience_store')} == true:
 	return
 jump sounds/MUSIC_FADEOUT
 jump sounds/STOMACH
-protagonist: Ах... мой желудок...
+protagonist: Ох... живот...
 if {GameVariables.yuna_partnered}:
-	roommate: Ты в порядке?
-	protagonist: Да... думаю, мне просто нужно быстро заскочить в уборную.
+	roommate: Ты как?
+	protagonist: Нормально... мне бы только в туалет быстренько заскочить.
 	roommate: Конечно!
 	leave roommate
-Ты заходишь в ближайший магазин у дома.
+Ты заходишь в ближайший круглосуточный магазин.
 set GameVariables.random_name = "Кассир"
 [music path="res://audio/bgs/cicadas.ogg" fade="1.0" volume="-24.0" bus="Cutscene"]
 [music path="res://audio/bgs/Traffic.ogg" channel="1" fade="1.0" volume="-6.0" bus="Cutscene"]
@@ -84,29 +84,29 @@ jump sounds/BELL_CONVENIENCE
 [sound bus="Cutscene" path="res://audio/se/Washing.ogg"]
 [wait time="3.0"]
 protagonist: Фух... кризис миновал.
-По пути ты решаешь купить бутылку воды у стойки.
+На выходе ты решаешь купить на кассе бутылку воды.
 join random [extra_data="set Style/Female"]
 jump sounds/CASH
-random: Вот ваша сдача, сэр.
+random: Ваша сдача.
 random: Кстати...
-random: Не интересует ли тебя подработка?
-protagonist: Трудоустройство? В смысле... работа?
-random: Ага! Мы ищем кого-то, кто заполнит некоторые ранние ночные смены...
-random: Смена довольно короткая... и платят тоже вполне щедро!
-protagonist: Эх...
-protagonist: ...Я не знаю...
+random: Вас случайно не интересует подработка?
+protagonist: Подработка? В смысле... работа?
+random: Ага! Нам нужен человек на ранние ночные смены...
+random: Смена короткая... и платят очень даже неплохо!
+protagonist: Эм...
+protagonist: ...даже не знаю...
 jump sounds/PAGE_FLIP
-Она передаёт тебе бумагу с кучей деталей.
-random: Слушай, никто не заставляет решать сразу...
-random: Только взгляни на эту фотографию, когда будет время.
+Она протягивает тебе листок, исписанный подробностями.
+random: Слушайте, решать прямо сейчас не обязательно...
+random: Просто гляньте на листовку, когда будет время.
 leave random
-Ты бросаешь взгляд на бумагу, которую только что вручил кассир.
+Ты бросаешь взгляд на листок, который тебе дала кассирша.
 jump sounds/PAGE_FLIP
 join decorations center [extra_data="set Items/Letter"]
-protagonist: (Хм... должно быть, они совсем отчаялись.)
+protagonist: (Хм... видимо, им совсем некого взять.)
 protagonist: (...)
-protagonist: (Похоже, мне даже подавать заявку не нужно.)
-protagonist: (Может, взять пару смен, если нужны деньги?)
+protagonist: (Похоже, даже никаких заявлений писать не надо.)
+protagonist: (Может, возьму пару смен, если понадобятся деньги?)
 [signal arg="unlock_convenience_store"]
 [sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
 [color=e5be3e]Теперь ты можешь работать в магазине![/color]
@@ -114,5 +114,5 @@ protagonist: (Может, взять пару смен, если нужны де
 leave decorations
 if {GameVariables.yuna_partnered}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
-	roommate: Пойдём?
+	roommate: Идём?
 return

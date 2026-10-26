@@ -2,11 +2,11 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 set {phase} = "MORNING"
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
 [wait time="1.0"]
-Пожалуйста, выбери, как другие будут к тебе обращаться. #id:2f4
+Выбери, как тебя будут звать остальные. #id:2f4
 label Select Name #id:2f5
 [text_input text="Введи имя персонажа:" var="player_name" default="Nita"]
 set GameVariables.player_name = {player_name}
-Другие персонажи будут называть тебя {GameVariables.player_name}. Так нормально? #id:f7b
+Все будут звать тебя {GameVariables.player_name}. Годится? #id:f7b
 - Да #id:2f7
 - Нет #id:2f8
 	jump Select Name
@@ -24,11 +24,11 @@ jump sounds/RUSTLE
 [wait time="0.8"]
 jump sounds/PHONE_UNLOCK
 [wait time="1.0"]
-protagonist: Уф... #id:2fc
+protagonist: Ммф... #id:2fc
 jump sounds/RUSTLE
 [wait time="0.6"]
-protagonist: Почему солнце уже так высоко? #id:2fd
-protagonist: Такое чувство, что я почти не спал. #id:2fe
+protagonist: Какого хрена солнце уже так высоко? #id:2fd
+protagonist: Ощущение, будто я вообще не спал. #id:2fe
 protagonist: ... #id:2ff
 jump sounds/RUSTLE
 [wait time="0.6"]
@@ -37,73 +37,73 @@ join decorations center [extra_data="set Items/Phone"]
 [wait time="1.0"]
 protagonist: *вздох* #id:300
 protagonist: Слава богу, понедельник... #id:f7c
-protagonist: До сих пор не верю, что мне приходится ходить на занятия на каникулах... #id:f7d
-protagonist: ...ладно. По крайней мере, ещё две недели можно *в основном* поспать подольше. #id:f7e
+protagonist: До сих пор не верится, что меня гонят на пары посреди каникул... #id:f7d
+protagonist: ...ну и ладно. Зато ещё две недели можно *почти* всё время отсыпаться. #id:f7e
 jump sounds/PHONE_UNLOCK
 leave decorations
 jump sounds/THINKING
 protagonist: (Меня зовут {GameVariables.player_name}.) #id:f7f
-protagonist: (Я бедный студент-кинематографист третьего курса.) #id:304
-protagonist: (Сейчас я живу в дотационной квартире вместе с соседями.) #id:305
-protagonist: (Помимо нехватки денег, жизнь, пожалуй, неплоха.) #id:306
+protagonist: (Я нищий студент-киношник, третий курс.) #id:304
+protagonist: (Живу в общажной квартире от универа, вместе с соседями.) #id:305
+protagonist: (Если не считать вечного безденежья, жизнь, в принципе, норм.) #id:306
 protagonist: ... #id:307
-protagonist: Пожалуй, я мог бы встать... #id:308
-protagonist: ...но ещё десять минут сна тоже не помешают. #id:309
+protagonist: Наверное, можно и встать... #id:308
+protagonist: ...но ещё десять минуточек сна никому не повредят. #id:309
 [sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
 [wait time="2.0"]
 [sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
 join roommate center [length="2.0" wait="true"]
-protagonist: Э-э... #id:30a
-protagonist: Я могу помочь? #id:30b
+protagonist: Эм... #id:30a
+protagonist: Тебе что-то нужно? #id:30b
 [sound bus="Cutscene" path="res://audio/se/Thinking.ogg" volume="0.0"]
 protagonist: (Это {roommate_name}.) #id:30c
-protagonist: (Несмотря на отсутствие личного пространства, я на самом деле не так уж хорошо её знаю.) #id:30d
-protagonist: (Все, с кем я живу, были распределены в эту квартиру университетом.) #id:30e
-protagonist: (Обычно молодой здоровый парень вроде меня был бы счастлив жить с девушкой.) #id:30f
-protagonist: (Но наши отношения настолько неловкие, что я не могу ни на чём сосредоточиться.) #id:310
+protagonist: (Мы живём бок о бок, но по-настоящему я её почти не знаю.) #id:30d
+protagonist: (Всех нас в эту квартиру заселил университет.) #id:30e
+protagonist: (Нормальный молодой парень на моём месте прыгал бы от радости, что живёт с девушкой.) #id:30f
+protagonist: (Но между нами всё так неловко, что я больше ни о чём думать не могу.) #id:310
 [sound bus="Cutscene" path="res://audio/voice/konbanwa5_good_evening.mp3"]
-roommate: Йо. #id:311
-roommate: Курьер принёс тебе посылку. #id:312
+roommate: Йоу. #id:311
+roommate: Курьер тебе посылку оставил. #id:312
 update roommate [extra_data="set Expressions/Confused"]
 roommate: ... #id:313
-protagonist: ...я могу чем-то помочь? #id:f80
+protagonist: ...что-то ещё? #id:f80
 update roommate [extra_data="set Expressions/Default"]
-roommate: Я слышала, тебе пришлось ходить на дополнительные занятия. #id:f81
-protagonist: Как? Кто тебе это сказал? #id:f82
-roommate: Кан мне сказал. #id:f83
-roommate: Как бы то ни было, я думала, не помочь ли тебе с учёбой... #id:f84
-roommate: ...но ты уже кажешься безнадёжным случаем. #id:f85
-roommate: Пока. #id:314
+roommate: Слышала, тебя на занятия для отстающих отправили. #id:f81
+protagonist: Откуда? Кто тебе растрепал? #id:f82
+roommate: Кан сказал. #id:f83
+roommate: Короче, я думала, может, помочь тебе с учёбой... #id:f84
+roommate: ...но, похоже, ты безнадёжен. #id:f85
+roommate: Давай. #id:314
 leave roommate
 [sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
 protagonist: ... #id:315
-protagonist: ...Похоже, она и правда может меня ненавидеть. #id:316
+protagonist: ...по-моему, она меня реально ненавидит. #id:316
 jump sounds/BOX
 join decorations center [extra_data="set Items/Box"]
-protagonist: Интересно, кто это прислал? #id:317
+protagonist: Интересно, от кого это? #id:317
 jump sounds/BOX_2
 leave decorations
 [wait time="2.5"]
 join decorations center [extra_data="set Items/Camera"]
-protagonist: ...это камера. #id:318
-protagonist: Странно, я никогда не видел такого раньше. #id:319
+protagonist: ...камера? #id:318
+protagonist: Странная. Никогда таких не видел. #id:319
 leave decorations
-protagonist: О? Похоже, тут ещё и записка. #id:31a
+protagonist: О, тут ещё и записка. #id:31a
 jump sounds/PAGE_FLIP
 join decorations center [extra_data="set Items/Letter"]
 [color=e5be3e]Дорогой(ая) {GameVariables.player_name}.[/color] #id:f86
 [color=e5be3e]К сожалению, из-за недавних изменений в правилах мы вынуждены сообщить...[/color] #id:31c
-[color=e5be3e]...что ты больше не подходишь под программу студенческих субсидий на жильё.[/color] #id:31d
-[color=e5be3e]С этого момента еженедельные выплаты на счёт прекращаются.[/color] #id:31e
-[color=e5be3e]Приносим извинения за доставленные неудобства.[/color] #id:31f
+[color=e5be3e]...что вы больше не соответствуете требованиям программы студенческих жилищных субсидий.[/color] #id:31d
+[color=e5be3e]С сегодняшнего дня еженедельные выплаты на ваш счёт прекращаются.[/color] #id:31e
+[color=e5be3e]Приносим извинения за возможные неудобства.[/color] #id:31f
 leave decorations
 [sound bus="Cutscene" path="res://audio/se/Hit1.ogg" volume="0.0"]
 [signal arg="shake"]
 [wait time="0.5"]
-protagonist: Да вы издеваетесь, блять?! Аренда уже до [color=e5be3e]следующей пятницы[/color]! #id:f87
-protagonist: И где мне, сука, высрать столько бабок за неделю?! #id:321
+protagonist: Вы издеваетесь, блять?! За квартиру платить [color=e5be3e]в следующую пятницу[/color]! #id:f87
+protagonist: И где я, нахрен, за неделю найду столько денег? #id:321
 protagonist: ... #id:322
-protagonist: ...погоди, есть ещё. #id:323
+protagonist: ...погоди, тут ещё что-то. #id:323
 jump sounds/PAGE_FLIP
 join decorations center [extra_data="set Items/Letter"]
 [color=e5be3e]Смотри вложение в посылке и приложенный QR-код.[/color] #id:324
@@ -114,26 +114,26 @@ join decorations center [extra_data="set Items/Letter"]
 leave decorations
 protagonist: ... #id:329
 protagonist: ...Икс? #id:32a
-protagonist: Что это вообще за хуйня туманная, чёрт побери? #id:32b
-protagonist: И какая альтернативная функция перемотки существует? Есть больше одного типа? #id:32c
+protagonist: Что за мутное письмо, блин? #id:32b
+protagonist: И что ещё за «дополнительная» перемотка? Их там что, несколько видов? #id:32c
 protagonist: ... #id:32d
-protagonist: ...что ж, по крайней мере, есть способ вернуть эти деньги. #id:32e
-protagonist: Придётся мне отсканировать этот QR-код. #id:32f
+protagonist: ...ну, по крайней мере, есть способ заработать эти деньги. #id:32e
+protagonist: Ладно, отсканирую этот QR-код. #id:32f
 jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
 [sound bus="Cutscene" path="res://audio/se/Focusing.ogg"]
 Ты сканируешь QR-код камерой телефона. #id:330
-Затем код перенаправляет тебя на сайт. #id:331
-protagonist: Что это такое? #id:332
+Код перекидывает тебя на какой-то сайт. #id:331
+protagonist: Это ещё что? #id:332
 [sound path="res://audio/se/Thinking.ogg" volume="0.0"]
 [color=e5be3e]Добро пожаловать в PeepTube![/color] #id:333
 [color=e5be3e]Если ты видишь эту страницу — значит, тебя выбрали для нашей партнёрской программы![/color] #id:334
 [color=e5be3e]Это значит, что тебе бесплатно предоставили одну из наших ПипКам.[/color] #id:335
 leave decorations
 protagonist: ПипКам? #id:336
-protagonist: ...ах. #id:337
+protagonist: ...а. #id:337
 join decorations center [extra_data="set Items/Camera"]
-protagonist: Полагаю, они имеют в виду это. #id:338
+protagonist: Видимо, это они про неё. #id:338
 [color=e5be3e]С этой камерой достаточно направить её на того, кого хочешь снять![/color] #id:339
 [color=e5be3e]...и нажать запись![/color] #id:33a
 [color=e5be3e]Затем весь материал обработают и загрузят прямо на наши серверы.[/color] #id:33b
@@ -145,57 +145,57 @@ protagonist: Полагаю, они имеют в виду это. #id:338
 leave decorations
 protagonist: ... #id:340
 jump sounds/PHONE_UNLOCK
-protagonist: Какой странный сайт. #id:341
+protagonist: Какой-то стрёмный сайт. #id:341
 join decorations center [extra_data="set Items/Camera"]
-protagonist: То есть мне просто нужно записывать, и мне будут платить за записи? #id:342
-protagonist: Это кажется почти слишком хорошо, чтобы быть правдой... #id:343
+protagonist: То есть я просто снимаю, а мне за это платят? #id:342
+protagonist: Звучит слишком хорошо, чтобы быть правдой... #id:343
 leave decorations
-protagonist: Тогда давай посмотрим, какие видео сейчас популярны. #id:344
+protagonist: Ладно, глянем, какие видео тут в топе. #id:344
 jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
-Ты листаешь некоторые видео с главной страницы в телефоне. #id:345
-Они кажутся странно знакомыми. #id:346
-protagonist: «Подглядывать ночью в окно соседки»? #id:347
-protagonist: «Смотреть, как соседка по комнате занимается сексом, часть 2»? #id:348
-protagonist: «Красть трусики по темноте»? #id:349
+Ты листаешь видео с главной страницы. #id:345
+Почему-то они кажутся смутно знакомыми. #id:346
+protagonist: «Подглядываю ночью в окно к соседке»? #id:347
+protagonist: «Смотрю, как трахается моя соседка, часть 2»? #id:348
+protagonist: «Ворую трусики после заката»? #id:349
 [sound bus="Cutscene" path="res://audio/se/Hit1.ogg" volume="0.0"]
 [signal arg="shake"]
-protagonist: Какого чёрта? Это порносайт! #id:34a
+protagonist: Какого хуя? Это же порносайт! #id:34a
 [sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
-protagonist: Чёрт! #id:34b
+protagonist: Блять! #id:34b
 jump sounds/PHONE_UNLOCK
 leave decorations
 [wait time="0.5"]
-protagonist: Да, входи. #id:34c
+protagonist: Да, заходи. #id:34c
 [sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
 join manager center
-manager: Йо. #id:34d
+manager: Йоу. #id:34d
 [sound path="res://audio/se/Thinking.ogg" volume="0.0"]
 protagonist: (Это {manager_name}.) #id:34e
-protagonist: (Он мой второй сосед по комнате.) #id:34f
-protagonist: (Он управляет жилым комплексом, так что {manager_name} намного старше меня и {roommate_name}.) #id:350
-protagonist: (Я знаю, что он хочет как лучше, но иногда он страшно действует мне на нервы.) #id:351
-protagonist: (Это немного похоже на то, будто рядом родитель...) #id:352
-manager: Я слышал об отмене студенческих выплат. Облом, чувак. #id:353
-protagonist: Да, отстой. #id:354
-protagonist: Пока не уверен, что с этим делать. #id:355
-manager: Извини, если лезу не в своё дело, но если тебе нужна поддержка, просто скажи. #id:356
-manager: Если хочешь, я, пожалуй, могу отложить сбор оплаты на несколько дней. #id:357
-protagonist: Всё в порядке. #id:358
-protagonist: Ценю твою заботу, но с этим мне нужно справиться самому. #id:359
+protagonist: (Мой второй сосед.) #id:34f
+protagonist: (Он управляет нашим жилым комплексом, так что {manager_name} заметно старше, чем я и {roommate_name}.) #id:350
+protagonist: (Знаю, что он хочет как лучше, но иногда он меня жутко бесит.) #id:351
+protagonist: (Как будто с родителем живёшь...) #id:352
+manager: Слышал, студентам выплаты урезали. Хреново, чувак. #id:353
+protagonist: Ага, полная жопа. #id:354
+protagonist: Пока без понятия, что с этим делать. #id:355
+manager: Извини, что лезу, но если нужна помощь, просто скажи. #id:356
+manager: Если хочешь, могу на пару дней подождать с оплатой. #id:357
+protagonist: Да всё нормально. #id:358
+protagonist: Спасибо, что переживаешь, но с этим я должен разобраться сам. #id:359
 protagonist: ... #id:35a
-protagonist: ...кстати, ты случайно не заказывал камеру? #id:35b
-manager: Камера? #id:35c
-manager: Нет... а что? #id:35d
-protagonist: Вообще, забудь. #id:35e
-manager: ...ладно. #id:35f
-manager: Что ж, моя дверь всегда открыта, если понадобится. #id:360
+protagonist: ...кстати, ты случайно камеру не заказывал? #id:35b
+manager: Камеру? #id:35c
+manager: Не-а... а что? #id:35d
+protagonist: Да ничего, забей. #id:35e
+manager: ...ну ладно. #id:35f
+manager: В общем, если что, моя дверь всегда открыта. #id:360
 protagonist: Спасибо. #id:361
 [sound bus="Cutscene" path="res://audio/se/Open4.ogg" volume="0.0"]
 leave manager
 protagonist: ... #id:362
-protagonist: ...Надо было попросить ту отсрочку. #id:363
-protagonist: Да ну. Я возвращаюсь спать. #id:364
+protagonist: ...надо было соглашаться на отсрочку. #id:363
+protagonist: Да ну нахер. Пойду досыпать. #id:364
 [sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
 [music channel="2" fade="0.0" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="1.0"]
@@ -211,21 +211,21 @@ jump sounds/PHONE_UNLOCK
 [wait time="1.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="1.0"]
 [wait time="1.0"]
-protagonist: Который час? #id:365
+protagonist: Сколько времени? #id:365
 jump sounds/STOMACH
 protagonist: ... #id:366
-protagonist: Мне стоит чем-нибудь перекусить. #id:367
-protagonist: А, точно. #id:368
-protagonist: Сейчас я даже не могу себе этого позволить. #id:369
+protagonist: Надо бы чего-нибудь пожрать. #id:367
+protagonist: А, ну да. #id:368
+protagonist: Мне сейчас даже на еду не хватает. #id:369
 protagonist: ... #id:36a
 join decorations center [extra_data="set Items/Camera"]
 protagonist: ... #id:36b
-protagonist: Возможно, это одна из худших идей за всю историю. #id:36c
-protagonist: Мне правда заплатят за запись пикантного видео с помощью этой штуки? #id:36d
+protagonist: Возможно, это худшая идея в истории человечества. #id:36c
+protagonist: Мне правда заплатят за то, что я сниму на эту штуку что-то пошлое? #id:36d
 protagonist: ... #id:36e
-protagonist: Но когда у меня ещё будет такая возможность? #id:36f
+protagonist: Но когда ещё мне так повезёт? #id:36f
 protagonist: ... #id:370
-protagonist: ...да пошло оно. #id:371
+protagonist: ...да похуй. #id:371
 leave decorations
 [background arg="res://assets/Cutscene/Backgrounds/Hallway_Night.png" fade="0.6"]
 jump sounds/DOOR_OPEN
@@ -233,14 +233,14 @@ jump sounds/DOOR_OPEN
 [wait time="0.6"]
 [sound bus="Cutscene" path="res://audio/se/Walking.wav" volume="0.0"]
 [wait time="1.0"]
-protagonist: Так. Глубокий вдох. Ты уже отснял кучу всего — чем это отличается? #id:372
-protagonist: Мне нужно всего несколько минут записи... быстро туда и обратно. #id:373
-protagonist: И больше никаких забот об аренде. #id:374
+protagonist: Так. Вдох-выдох. Ты уже наснимал кучу всякого, чем это хуже? #id:372
+protagonist: Пара минут записи, больше не надо... по-быстрому туда и обратно. #id:373
+protagonist: И никаких больше проблем с арендой. #id:374
 [music channel="2" fade="0.0" volume="0.0"]
 [sound bus="Cutscene" path="res://audio/se/Open5.ogg" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="1.0"]
 [wait time="0.6"]
-protagonist: Давай сделаем это. #id:375
+protagonist: Погнали. #id:375
 label END #id:376
 [signal arg="transition_out_game"]
 [wait time="1.0"]

@@ -1,7 +1,7 @@
 label START
 [signal arg="default_style"]
-protagonist: {roommate_name} не со мной... возможно, у меня есть шанс.
-- Сексуальная психопатка | [if {BattleVariables.is_enemy_sexable_by_id("psycho")}]
+protagonist: {roommate_name} сейчас не со мной... кажется, это мой шанс.
+- Секси-психопатка | [if {BattleVariables.is_enemy_sexable_by_id("psycho")}]
 	jump sounds/MUSIC_FADEOUT
 	jump PSYCHO
 - Отмена
@@ -9,22 +9,22 @@ protagonist: {roommate_name} не со мной... возможно, у меня
 label PSYCHO
 [signal arg="reset_enemies"]
 [signal arg="load_enemy_psycho"]
-Пытаясь нащупать другие предметы, ты внезапно чувствуешь, как руку хватает чья-то рука.
+Ты пытаешься нащупать что-нибудь ещё, как вдруг кто-то хватает тебя за запястье.
 jump sounds/SURPRISE
-Огромная сила прижимает тебя к земле.
-Прежде чем ты успеваешь среагировать, ты чувствуешь, как кто-то садится тебе на бёдра.
+Чудовищная сила валит тебя на землю.
+Не успеваешь ты опомниться, как кто-то усаживается на тебя верхом.
 join enemy center [extra_data="set Container/Type/Psycho"]
-enemy: Лежи смирно, щегол, и попробуй только кончить за секунду.
+enemy: Лежи, придурок, и постарайся не спустить слишком быстро.
 jump sounds/CLOTH
-Ты чувствуешь тепло руки на своём члене.
-Ощущение кончиков пальцев щекочет, когда они скользят по твоему стволу.
+Ты чувствуешь на своём члене тёплую ладонь.
+Кончики пальцев щекотно скользят по всей длине.
 leave enemy
-Внезапно ты чувствуешь, как твой стержень обволакивает иное, но знакомое тепло.
+И вдруг твой член обволакивает другое, но такое знакомое тепло.
 join scene [extra_data="set Enemy/Psycho"]
-enemy: Не рыпайся, тебе понравится, сучонок.
+enemy: Не дёргайся, тебе понравится.
 label PSYCHO_SLOW
 [signal arg="play_slow"]
-Она медленно начинает двигаться туда-сюда.
+Она начинает медленно двигаться взад-вперёд.
 protagonist: ...ах!
 [wait time="3.0"]
 - Так же
@@ -33,7 +33,7 @@ protagonist: ...ах!
 	jump PSYCHO_MEDIUM
 label PSYCHO_MEDIUM
 [signal arg="play_medium"]
-protagonist: Продолжай... ещё...!
+protagonist: Ещё... не останавливайся...!
 [wait time="3.0"]
 - Медленнее
 	jump PSYCHO_SLOW
@@ -62,10 +62,10 @@ set GameVariables.lust = 0
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
 [wait time="2.0"]
-Ты чувствуешь, как с каждым толчком пульсация постепенно ослабевает.
-После последней судороги она ослабляет хватку и встаёт.
+Ты чувствуешь, как пульсация понемногу стихает.
+С последним толчком она отпускает тебя и встаёт.
 leave scene
 join enemy center [extra_data="set Container/Type/Psycho"]
-enemy: До скорого, красавчик.
+enemy: До встречи, красавчик.
 leave enemy
 jump adventure/LOOP

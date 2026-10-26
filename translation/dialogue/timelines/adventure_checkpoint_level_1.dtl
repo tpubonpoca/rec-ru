@@ -5,19 +5,19 @@ set BattleVariables.stage = 0
 jump sounds/OUTDOOR_BEACH
 jump sounds/MUSIC_FADEOUT
 jump adventure_backgrounds/LOAD_BACKGROUND
-Ты добрался до следующей зоны — [color=ffce65]пляжа[/color]. #id:e1
-protagonist: Ого. Поверить не могу, что мы зашли так далеко. #id:e2
-protagonist: Здесь довольно спокойно. #id:e3
+Ты добираешься до следующей локации: [color=ffce65]Пляж[/color]. #id:e1
+protagonist: Ого. Не верится, что мы забрались так далеко. #id:e2
+protagonist: А тут даже как-то умиротворённо. #id:e3
 if {GameVariables.has_skill('relentless')} == false:
 	jump sounds/GOT_SKILL
-	Ты получил особый навык\: [color=e5be3e]Неутомимый[/color]! #id:e4
+	Ты получаешь особый навык\: [color=e5be3e]Неутомимый[/color]! #id:e4
 	[signal arg="unlock_relentless"]
-protagonist: Похоже, здесь автобусная остановка. #id:e5
-protagonist: Я смогу мгновенно вернуться сюда, если воспользуюсь [color=ffce65]автобусным проездным[/color]. #id:e6
-protagonist: Мне стоит пойти домой? #id:e7
-- Отправиться домой #id:e8
+protagonist: Похоже, тут есть автобусная остановка. #id:e5
+protagonist: С [color=ffce65]проездным[/color] я смогу сразу возвращаться сюда. #id:e6
+protagonist: Может, домой? #id:e7
+- Домой #id:e8
 	jump adventure/GO_HOME
-- Взять «перерыв» | [if {GameVariables.yuna_partnered} == true and {Cutscenes.IsSceneSeen("event_relationship_80")}] #id:1033
+- Устроить «перерыв» | [if {GameVariables.yuna_partnered} == true and {Cutscenes.IsSceneSeen("event_relationship_80")}] #id:1033
 	jump SEX
 - Продолжить #id:e9
 	jump START_ADVENTURE
@@ -27,57 +27,57 @@ set BattleVariables.stage = 0
 jump adventure_backgrounds/LOAD_BACKGROUND
 jump sounds/OUTDOOR_BEACH
 [sound path="res://audio/se/BusArrival.ogg" volume="-6.0"]
-Через несколько минут ты выходишь на своей остановке. #id:68
+Через несколько минут вы выходите на нужной остановке. #id:68
 if {GameVariables.yuna_partnered}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
 	update roommate [extra_data="set Expressions/Happy"]
-	roommate: Ох, какой отличный вид! #id:69
+	roommate: Блин, какой вид! #id:69
 	update roommate [extra_data="set Expressions/Default"]
 label START_ADVENTURE #id:bee
 jump adventure/LOOP
 label SEX #id:1034
 update roommate [extra_data="set Expressions/Confused"]
-roommate: О? Хочешь взять «перерыв»? #id:1035
+roommate: О? Хочешь устроить «перерыв»? #id:1035
 update roommate [extra_data="set Expressions/Happy"]
-roommate: Конечно... давай найдём место. #id:1036
+roommate: Давай... только место найдём. #id:1036
 jump sounds/MOVEMENT_ADVENTURE
-Вы оба идёте вдоль пляжа, пока не находите небольшую прогалину в лесу. #id:1037
+Вы идёте вдоль пляжа, пока не находите укромную полянку на краю леса. #id:1037
 if {BattleVariables.is_night_run()} == false:
 	[background arg="res://assets/Cutscene/Backgrounds/Beach_Rest.png" fade="0.6"]
 else:
 	[background arg="res://assets/Cutscene/Backgrounds/Beach_Night_Rest.png" fade="0.6"]
-protagonist: Ты уверена насчёт этого места? #id:1038
+protagonist: Ты уверена, что здесь можно? #id:1038
 update roommate [extra_data="set Expressions/Confused"]
-{roommate_name} оглядывается на секунду. #id:1039
-roommate: Я никого не слышу и не вижу... #id:103a
-roommate: ...ты просто слишком много волнуешься. #id:103b
-{roommate_name} толкает тебя на ближайшее бревно. #id:103c
+{roommate_name} быстро оглядывается по сторонам. #id:1039
+roommate: Никого не видно и не слышно... #id:103a
+roommate: ...ты слишком много паришься. #id:103b
+{roommate_name} толкает тебя, и ты садишься на поваленное бревно. #id:103c
 leave roommate
 join scene center [extra_data="set Scene/Stroking"]
-{roommate_name} начинает гладить твой член через шорты. #id:ee5
-protagonist: [font_size=13]...ты стал в этом лучше.[/font_size] #id:103d
+{roommate_name} начинает гладить твой член прямо через шорты. #id:ee5
+protagonist: [font_size=13]...а ты в этом поднаторела.[/font_size] #id:103d
 roommate: ...правда? #id:103e
 jump sounds/GULP
 [wait time="1.0"]
-protagonist: Да. #id:103f
-roommate: Тогда как насчёт этого? #id:1040
+protagonist: Правда. #id:103f
+roommate: Тогда как тебе такое? #id:1040
 jump sounds/CLOTH
 [signal arg="play_removal"]
 {roommate_name} стягивает с тебя шорты. #id:1041
 leave scene
 join scene center [extra_data="set Scene/HandjobClothed"]
-protagonist: А! #id:ef4
+protagonist: Ах! #id:ef4
 jump sounds/VOICE_LAUGH
-roommate: О, тебе тоже это нравится, а? #id:1042
+roommate: О, это тебе тоже нравится, да? #id:1042
 [signal arg="play_medium"]
-roommate: Визуальные примеры тоже помогут? #id:1043
+roommate: А если ещё и посмотреть будет на что? #id:1043
 leave scene
 jump sounds/CLOTH
 join scene center [extra_data="set Scene/HandjobExposed"]
-Прежде чем ты успеваешь что-то сказать, {roommate_name} начинает сосать твой член. #id:1044
+Не успеваешь ты и слова сказать, как {roommate_name} берёт твой член в рот. #id:1044
 update scene [extra_data="hide Scene/HandjobExposed, set Scene/Blowjob"]
 label BLOWJOB_SLOW #id:1045
-roommate: Мфф... #id:1046
+roommate: Мм-мф... #id:1046
 [wait time="3.0"]
 - Так же #id:1047
 	jump BLOWJOB_SLOW
@@ -85,7 +85,7 @@ roommate: Мфф... #id:1046
 	jump BLOWJOB_MEDIUM
 label BLOWJOB_MEDIUM #id:1049
 [signal arg="play_medium"]
-roommate: Мфф...! #id:104a
+roommate: Мм-мф...! #id:104a
 [wait time="3.0"]
 - Медленнее #id:104b
 	jump BLOWJOB_SLOW
@@ -93,7 +93,7 @@ roommate: Мфф...! #id:104a
 	jump BLOWJOB_FAST
 label BLOWJOB_FAST #id:104d
 [signal arg="play_fast"]
-roommate: Ммм...мммфф! #id:104e
+roommate: Ммм... мм-мф! #id:104e
 [wait time="3.0"]
 - Медленнее #id:104f
 	jump BLOWJOB_MEDIUM
@@ -108,23 +108,23 @@ set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
-protagonist: А! #id:f19
+protagonist: Ах! #id:f19
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
 [wait time="2.0"]
-Ты чувствуешь, как язык {roommate_name} кружит вокруг твоего ствола... #id:f1a
+{roommate_name} скользит языком по всей длине твоего члена... #id:f1a
 jump sounds/GULP
-...и слышишь последний глоток, когда она проглатывает твою порцию. #id:f1b
+...а потом ты слышишь, как она жадно сглатывает всё до последней капли. #id:f1b
 [signal arg="play_backup"]
-protagonist: ...вау. #id:1052
+protagonist: ...охренеть. #id:1052
 leave scene
 join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/TiredHappy"]
-protagonist: Когда ты научилась делать это так? #id:1053
+protagonist: Где ты так научилась? #id:1053
 jump sounds/VOICE_LAUGH
 roommate: Рада, что тебе понравилось... #id:f20
-roommate: ...ну? #id:1054
-roommate: Тогда пойдём? #id:f3d
+roommate: ...ну как? #id:1054
+roommate: Ну что, идём? #id:f3d
 set GameVariables.stamina = {GameVariables.change_stamina(100)}
 jump stat_change/STAMINA_INCREASE
 jump START_ADVENTURE

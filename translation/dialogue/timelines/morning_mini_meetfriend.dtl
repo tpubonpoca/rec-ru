@@ -3,106 +3,106 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [wait time="0.6"]
 jump sounds/DOOR_CLOSE
 protagonist: Фух. #id:3de
-protagonist: Рад наконец-то быть дома. #id:3df
+protagonist: Наконец-то дома. #id:3df
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 [wait time="0.6"]
 join roommate center
-По дороге к себе ты замечаешь Юну в гостиной. #id:3e0
+По дороге к себе ты видишь, что в гостиной сидит {roommate_name}. #id:3e0
 join friend center
 Похоже, она занимается с подругой. #id:3e1
-protagonist: (Что мне делать?) #id:3e2
-- Поговорить с ними #id:3e3
-	Ты решаешь поговорить с ними. #id:3e4
-- Уйти прочь #id:3e5
-	Ты решаешь уйти. #id:3e6
+protagonist: (Что делать?) #id:3e2
+- Подойти к ним #id:3e3
+	Ты решаешь подойти. #id:3e4
+- Пройти мимо #id:3e5
+	Ты решаешь пройти мимо. #id:3e6
 	leave roommate
 	leave friend
 	jump z_functions/END_TO_UPGRADE
-protagonist: Эй! Как дела? #id:3e7
+protagonist: Привет! Как дела? #id:3e7
 if {GameVariables.relationship} >= 20:
 	update roommate [extra_data="set Expressions/Happy"]
 	[sound bus="Cutscene" path="res://audio/voice/konbanwa5_good_evening.mp3"]
-	roommate: Эй! Мы просто занимаемся. #id:3e8
+	roommate: Привет. Мы вообще-то занимаемся. #id:3e8
 else:
-	roommate: Чего ты хочешь? #id:3e9
-	friend: Кто это? #id:3ea
-	roommate: Уф... именно с этим мне и не хотелось разбираться... #id:3eb
-roommate: {GameVariables.player_name}, это моя подруга Каэда. #id:fbe
+	roommate: Тебе чего? #id:3e9
+	friend: А это кто? #id:3ea
+	roommate: Блин... вот именно этого я и не хотела... #id:3eb
+roommate: {GameVariables.player_name}, это моя подруга, Каэда. #id:fbe
 [sound bus="Cutscene" path="res://audio/voice/hajimemashite3_Pleasure_meeting_you.mp3"]
 friend: Привет! Приятно познакомиться. #id:3ed
 if {GameVariables.get_charisma()} < 3:
 	На секунду ты теряешь дар речи. #id:3ee
-	Они неловко смотрят на тебя. #id:3ef
+	Обе неловко смотрят на тебя. #id:3ef
 	update roommate [extra_data="set Expressions/Default"]
-	roommate: Так, э-э.... #id:3f0
+	roommate: Ну, э-э... #id:3f0
 else:
-	protagonist: Приятно познакомиться! #id:3f1
-	protagonist: Так, что ты изучаешь? #id:3f2
-friend: ...мы просто немного читаем. #id:3f3
+	protagonist: Очень приятно! #id:3f1
+	protagonist: А что вы изучаете? #id:3f2
+friend: ...да так, читаем кое-что. #id:3f3
 friend: Ты читал «Братьев Карамазовых»? #id:3f4
 - Попытаться вспомнить #id:3f5
 	if {GameVariables.get_intelligence()} >= 4:
-		Ты вспоминаешь кое-что из одной из своих книг по Интеллекту. #id:3f6
-		protagonist: О, роман Фёдора Достоевского? #id:3f7
-		protagonist: Слишком философски на мой вкус. Я предпочитаю свои комиксы. #id:3f8
+		Ты вспоминаешь кое-что из книги по Интеллекту. #id:3f6
+		protagonist: А, это роман Достоевского? #id:3f7
+		protagonist: Как по мне, слишком философский. Я больше по комиксам. #id:3f8
 		jump stat_change/INTELLIGENCE
 		update roommate [extra_data="set Expressions/Surprise"]
 		[sound bus="Cutscene" path="res://audio/voice/ee2_surprise.wav"]
-		roommate: Ого, ты уже прочитал? #id:3fc
+		roommate: Ого, ты его уже читал? #id:3fc
 		update roommate [extra_data="set Expressions/Happy"]
 		roommate: Я впечатлена. #id:3fd
 		set GameVariables.relationship_change = 5
 		jump stat_change/RELATIONSHIP_INCREASE
 		jump SUCCESS
-	Ты напрягаешь память, чтобы что-то вспомнить, но Интеллект подводит тебя. #id:3ff
-	protagonist: ...может? Звучит знакомо. #id:400
+	Ты изо всех сил напрягаешь память, но Интеллект тебя подводит. #id:3ff
+	protagonist: ...вроде бы? Что-то знакомое. #id:400
 	jump FAIL
 - Соврать #id:401
 	if {GameVariables.get_charisma()} >= 3:
-		Ты напрягаешь свои обаятельные способности, вдохновенно лжёшь. #id:402
-		protagonist: Да, читал, неплохо. #id:403
-		protagonist: На середине мне стало скучновато, я предпочитаю свои научно-фантастические книги. #id:404
+		Ты включаешь всё своё обаяние и врёшь не краснея. #id:402
+		protagonist: Ага, читал, нормальная книжка. #id:403
+		protagonist: Где-то на середине стало скучновато. Мне больше научная фантастика заходит. #id:404
 		update roommate [extra_data="set Expressions/Confused"]
 		[sound bus="Cutscene" path="res://audio/voice/Hm7.ogg"]
-		roommate: Хмм... #id:405
+		roommate: Хм-м... #id:405
 		update roommate [extra_data="set Expressions/Default"]
-		roommate: Да, пожалуй, я могу с этим согласиться. #id:406
+		roommate: Да, тут я, пожалуй, соглашусь. #id:406
 		jump stat_change/CHARISMA
 		jump SUCCESS
-	Твои слабые обаятельные способности тебя подводят. #id:40a
-	protagonist: «Братья Каратэ»? Да, конечно. #id:40b
+	Обаяния не хватает, и это видно. #id:40a
+	protagonist: «Братья Каратэ»? Ну да, конечно. #id:40b
 	jump FAIL
 label SUCCESS #id:40c
 if {GameVariables.has_skill('sleepover')}:
 	set GameVariables.kaede_sleepover = true
 roommate: Хочешь позаниматься с нами? #id:40d
-protagonist: Не сегодня, мне надо кое к чему подготовиться. #id:40e
-friend: Как жаль. Тогда в следующий раз! #id:40f
-roommate: До встречи. #id:410
+protagonist: Сегодня никак, мне надо кое-что подготовить. #id:40e
+friend: Жаль. Тогда в следующий раз! #id:40f
+roommate: Ещё увидимся. #id:410
 leave roommate
 leave friend
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
-protagonist: Фух. Рад, что не опозорился. #id:411
+protagonist: Фух. Кажется, не опозорился. #id:411
 protagonist: ... #id:412
-protagonist: Так, куда же я положил эту камеру? #id:413
+protagonist: Так, куда я дел камеру? #id:413
 jump z_functions/END_TO_UPGRADE
 label FAIL #id:414
 update roommate [extra_data="set Expressions/Default"]
 [sound bus="Cutscene" path="res://audio/voice/baka4_silly.mp3"]
-roommate: Ладно, ясно, что он не знает. #id:415
-roommate: Думаю, он, вероятно, просто пытается к тебе подкатить. #id:416
-friend: А, понятно. #id:417
-friend: ...как жаль. #id:418
-roommate: Можете оставить нас в покое? Проект сдавать через пару дней, и я не хочу завалить этот предмет. #id:419
+roommate: Ну всё, ясно, он её не читал. #id:415
+roommate: Он, по-моему, просто к тебе клеится. #id:416
+friend: А, вот оно что. #id:417
+friend: ...жаль. #id:418
+roommate: Можно нас оставить в покое? Проект сдавать через пару дней, а я не хочу завалить этот предмет. #id:419
 set GameVariables.relationship_change = 5
 jump stat_change/RELATIONSHIP_DECREASE
 leave roommate
 leave friend
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
-protagonist: Уф. Это было неловко. #id:41b
-protagonist: Наверное, стоит позаниматься ещё. #id:41c
+protagonist: Бля. Вот это я опозорился. #id:41b
+protagonist: Надо, наверное, побольше заниматься. #id:41c
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

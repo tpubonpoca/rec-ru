@@ -1,200 +1,200 @@
 set {GameVariables.party_stage} = 3
 jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
-Каким-то образом ты оказываешься за столом, играя в карты с Каэдой и {roommate_name}. #id:747
+Каким-то образом ты оказываешься за карточным столом. С тобой Каэда, а ещё {roommate_name}. #id:747
 join friend
 join roommate
-friend: Я знаю! Давай сыграем в стрип-покер! #id:748
-{roommate_name} неуютно оглядывается. #id:749
-roommate: Каэда... я не знаю. #id:74a
-friend: Давай, будет весело! #id:74b
-- Согласиться сыграть #id:74c
-	Самым обаятельным голосом ты пытаешься уговорить {roommate_name} сыграть в карты. #id:74d
+friend: Придумала! Давайте сыграем в покер на раздевание! #id:748
+{roommate_name} смущённо оглядывается. #id:749
+roommate: Каэда... даже не знаю. #id:74a
+friend: Да ладно, будет весело! #id:74b
+- Согласиться #id:74c
+	Ты включаешь всё своё обаяние: надо, чтобы {roommate_name} согласилась сыграть. #id:74d
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_CHARISMA
 	if {GameVariables.successful_roll} == false:
-		К сожалению, тебе трудно подобрать слова, чтобы говорить как следует. #id:74e
-		То ли низкая Харизма, то ли алкоголь берёт своё. #id:74f
+		Увы, нужные слова никак не находятся. #id:74e
+		То ли Харизмы не хватает, то ли алкоголь своё берёт. #id:74f
 		jump sounds/GULP
-		Внезапный комок в горле заставляет тебя сглотнуть. #id:750
-		protagonist: Вроде... эм... разве это не звучит весело? #id:751
-		Как только слова слетают с твоих губ, тон в комнате меняется. #id:752
-		friend: Вообще, если подумать, может, сыграем во что-нибудь другое. #id:753
-		friend: Пойду посмотрю, какие у вас есть настольные игры! #id:754
+		К горлу внезапно подкатывает ком, и ты непроизвольно сглатываешь. #id:750
+		protagonist: Ну... эм... а чё, весело же? #id:751
+		Стоит словам сорваться с губ, как атмосфера мгновенно меняется. #id:752
+		friend: Знаете, я тут подумала, давайте лучше во что-нибудь другое. #id:753
+		friend: Пойду гляну, какие у вас есть настолки! #id:754
 		leave friend
-		protagonist: (Это было чертовски неловко.) #id:755
-		protagonist: (Почему мне приспичило глотнуть именно тогда?) #id:756
-		protagonist: (Я вышел таким извращенцем.) #id:757
+		protagonist: (Охренеть, как стыдно.) #id:755
+		protagonist: (Ну почему надо было сглотнуть именно сейчас?) #id:756
+		protagonist: (Выглядел как конченый извращенец.) #id:757
 		set GameVariables.impression -= 1
 		jump stat_change/IMPRESSION_DECREASE
-		roommate: Я схожу за снеками. #id:758
-		roommate: Я быстро! #id:759
-		Ты прячешь голову от стыда и остаёшься так какое-то время. #id:75a
+		roommate: Схожу за закусками. #id:758
+		roommate: Сейчас вернусь! #id:759
+		Ты сгораешь со стыда и ещё долго сидишь, уронив голову на руки. #id:75a
 		jump party_ending/
-- Не играть #id:75b
+- Отказаться #id:75b
 	Ты решаешь не играть в карты. #id:75c
-	protagonist: Нам не обязательно играть, если не хочешь. #id:75d
+	protagonist: Если не хочешь, можем не играть. #id:75d
 	roommate: Видишь, Каэда? #id:75e
-	roommate: Спасибо, что заступился за меня, {GameVariables.player_name}. #id:fd2
+	roommate: Спасибо, что заступился, {GameVariables.player_name}. #id:fd2
 	set GameVariables.relationship_change = 5
 	jump stat_change/RELATIONSHIP_INCREASE
-	friend: Пф. С тобой скучно. #id:760
+	friend: Пф. Зануды. #id:760
 	leave friend
-	roommate: Я схожу за добавкой. #id:761
-	roommate: Хочешь ко мне присоединиться? #id:762
-	protagonist: Звучит неплохо! #id:763
+	roommate: Пойду ещё выпить возьму. #id:761
+	roommate: Пойдёшь со мной? #id:762
+	protagonist: Давай! #id:763
 	leave roommate
 	jump party_ending/
 protagonist: Можем сыграть во что-нибудь другое, если не хочешь в это. #id:764
 protagonist: Каэда, ты же знаешь, что {roommate_name} стесняется своих... достоинств. #id:765
-Каэда поднимает брови. #id:766
-Она быстро понимает, что ты пытаешься сделать. #id:767
+Каэда вскидывает брови. #id:766
+И тут же понимает, что ты задумал. #id:767
 update roommate [extra_data="set Expressions/Surprise"]
-roommate: Э?!? #id:768
+roommate: Чего?! #id:768
 update roommate [extra_data="set Expressions/Annoyed"]
-roommate: Что ты, чёрт возьми, сейчас сказал? #id:769
-friend: Нет, нет. Он прав. Он плохо выразился, но я не думаю, что хотел сказать что-то обидное. #id:76a
-friend: Если ты так волнуешься, можем сыграть во что-нибудь другое. #id:76b
+roommate: Ты что, блин, сейчас сказал? #id:769
+friend: Нет-нет. Он прав. Выразился, конечно, коряво, но, по-моему, он не хотел тебя обидеть. #id:76a
+friend: Если ты так переживаешь, давай сыграем во что-нибудь другое. #id:76b
 update roommate [extra_data="set Expressions/Confused"]
-roommate: Ты тоже, Каэда? #id:76c
+roommate: И ты туда же, Каэда? #id:76c
 roommate: ... #id:76d
 jump sounds/GULP
-Возмущённая {roommate_name} залпом допивает остаток напитка. #id:76e
+Возмущённая {roommate_name} залпом допивает свой стакан. #id:76e
 update roommate [extra_data="set Expressions/Default"]
-roommate: ...вот и всё. #id:76f
+roommate: ...ну всё. #id:76f
 update roommate [extra_data="set Expressions/Annoyed"]
-roommate: Я покажу вам обоим, кто тут на самом деле стесняется! #id:770
-roommate: Сядь, чёрт побери, и давай играть! #id:771
+roommate: Сейчас я вам обоим покажу, кто тут стесняется! #id:770
+roommate: Сели, блин, и играем! #id:771
 Каэда улыбается и подмигивает тебе. #id:772
-friend: Ладно! Теперь назад дороги нет! #id:773
-Все трое садитесь вокруг стола в гостиной. #id:774
+friend: Ура! Теперь назад дороги нет! #id:773
+Вы втроём рассаживаетесь вокруг стола в гостиной. #id:774
 jump sounds/RIFFLE
-Каэда достаёт игральные карты и начинает тасовать колоду. #id:775
-friend: Ладно, значит, правила\: #id:776
-friend: Обычные правила покера. Вопросов нет. #id:777
-friend: Однако победитель раздачи может потребовать одну вещь одежды у любого другого игрока. #id:778
-friend: Какие-нибудь вопросы? #id:779
+Каэда достаёт колоду и начинает тасовать. #id:775
+friend: Так, правила\: #id:776
+friend: Обычный покер. Тут всё понятно. #id:777
+friend: Но победитель раздачи может потребовать с любого игрока снять одну вещь. #id:778
+friend: Вопросы есть? #id:779
 roommate: Нет! #id:77a
-protagonist: Я тоже. #id:77b
-friend: Ладно, тогда я раздам. #id:77c
+protagonist: У меня тоже. #id:77b
+friend: Отлично, тогда сдаю. #id:77c
 jump sounds/CARD
 update roommate [extra_data="set Expressions/Default"]
-Каэда раздаёт всем карты. #id:77e
+Каэда раздаёт карты. #id:77e
 jump sounds/CHIPS
-После нескольких кругов ставок флоп, тёрн и ривер уже открыты. #id:780
-У тебя неплохая рука. #id:781
-...но ты мог бы и схитрить, чтобы получить преимущество. #id:782
-При достаточной Ловкости ты мог бы подсунуть одну-две карты, чтобы улучшить свою руку. #id:783
-protagonist: (Но если меня поймают, у меня, скорее всего, будут большие неприятности.) #id:784
-- Схитрить #id:785
+Несколько кругов торговли, и вот уже открыты флоп, тёрн и ривер. #id:780
+Карты у тебя неплохие. #id:781
+...но можно и смухлевать, чтобы получить преимущество. #id:782
+Если хватит Ловкости, можно незаметно подменить пару карт и улучшить руку. #id:783
+protagonist: (Но если спалюсь, мне конец.) #id:784
+- Смухлевать #id:785
 	set GameVariables.cheated = true
-	Ты пытаешься незаметно стащить несколько карт... #id:786
+	Ты пытаешься незаметно стащить пару карт... #id:786
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_DEXTERITY
 	if {GameVariables.successful_roll} == false:
 		jump FAILED_CHEATING
 	jump sounds/CARD
-	...и успешно подменяешь их на несколько карт в своей руке! #id:787
+	...и ловко подменяешь ими карты в руке! #id:787
 	jump stat_change/DEXTERITY
-- Не хитрить #id:788
+- Играть честно #id:788
 	set GameVariables.cheated = false
-	Ты решаешь не хитрить. #id:789
+	Ты решаешь играть честно. #id:789
 jump sounds/CARD
 Все открывают карты. #id:78a
 protagonist: ... #id:78b
 if {GameVariables.cheated} == true || {GameVariables.get_random_number(4)} == 1:
 	set GameVariables.won_first_round = true
 	protagonist: Я выиграл! #id:78c
-	protagonist: Так, посмотрим на эти сись— #id:78d
+	protagonist: Так, давайте-ка посмотрим на эти сись... #id:78d
 	protagonist: ...*кхм* #id:78e
-	protagonist: Так, Каэда, будь добра, сними, пожалуйста, свой топ? #id:78f
-	Каэда смотрит на тебя с усмешкой. #id:790
-	friend: Я думала, мы подшучиваем над {roommate_name}? #id:fd3
+	protagonist: Так, Каэда, будь добра, сними, пожалуйста, топ. #id:78f
+	Каэда ухмыляется. #id:790
+	friend: Я думала, мишень у нас {roommate_name}? #id:fd3
 	friend: ...ладно. #id:792
 	leave friend
 	jump sounds/CLOTH
 	Каэда снимает свитер... #id:793
 	join scene [extra_data="set Scene/StripKaede"]
-	...открывая очень эротичный чёрный кружевной бюстгальтер. #id:794
-	Все в комнате одобрительно кивают твоему успеху. #id:acb
+	...а под ним оказывается очень откровенный чёрный кружевной лифчик. #id:794
+	Все вокруг одобрительно кивают: ты отлично справился. #id:acb
 	[signal arg="unlock_party_cutscene"]
 	jump stat_change/IMPRESSION_INCREASE
 	roommate: Ого. #id:795
-	roommate: Очень... зрело. #id:796
-	friend: Тебе нравится? #id:797
-	Тебе трудно оторвать взгляд от её нижнего белья. #id:acc
+	roommate: Очень... по-взрослому. #id:796
+	friend: Нравится? #id:797
+	Ты никак не можешь оторвать взгляд от её белья. #id:acc
 	leave scene
-	roommate: Ладно, хватит пялиться. #id:799
+	roommate: Так, хватит пялиться. #id:799
 	join friend
-	roommate: Играем ещё раунд или как? #id:79a
+	roommate: Ещё раунд играем или как? #id:79a
 else:
 	set GameVariables.won_first_round = false
-	protagonist: ...Я проиграл. #id:79b
-	У Каэды была выигрышная рука. #id:79c
-	friend: Хмм... и кого же мне выбрать? #id:79d
-	friend: Как насчёт... #id:79e
-	protagonist: (Пожалуйста, только не я. Пожалуйста, только не я.) #id:79f
+	protagonist: ...я проиграл. #id:79b
+	Выиграла Каэда. #id:79c
+	friend: Хм-м... кого бы выбрать? #id:79d
+	friend: Может... #id:79e
+	protagonist: (Только не меня. Только не меня.) #id:79f
 	friend: ...{GameVariables.player_name}? #id:fd4
-	protagonist: (Чёрт.) #id:7a1
-	friend: Сними, пожалуйста, штаны. #id:7a2
+	protagonist: (Блять.) #id:7a1
+	friend: Снимай штаны, пожалуйста. #id:7a2
 	protagonist: ...ладно. #id:7a3
 	jump PANTS_REMOVAL
-После нескольких мгновений унижения вы все переходите ко второму раунду. #id:7a4
+После пары мгновений позора вы переходите ко второму раунду. #id:7a4
 jump sounds/CARD
-Каэда раздаёт всем карты. #id:7a6
+Каэда раздаёт карты. #id:7a6
 jump sounds/CHIPS
-Ещё через несколько мгновений все карты уже открыты. #id:7a8
-У тебя снова приличная рука, но ты мог бы и схитрить, чтобы получить преимущество. #id:7a9
-- Схитрить #id:7aa
+Проходит ещё немного времени, и все карты уже на столе. #id:7a8
+Карты у тебя снова неплохие, но можно и смухлевать. #id:7a9
+- Смухлевать #id:7aa
 	set GameVariables.cheated = true
-	Ты пытаешься незаметно стащить несколько карт... #id:7ab
+	Ты пытаешься незаметно стащить пару карт... #id:7ab
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_DEXTERITY
 	if {GameVariables.successful_roll} == false:
 		jump FAILED_CHEATING
-	...и успешно подменяешь их на несколько карт в своей руке! #id:7ac
+	...и ловко подменяешь ими карты в руке! #id:7ac
 	jump stat_change/DEXTERITY
-- Не хитрить #id:7ad
+- Играть честно #id:7ad
 	set GameVariables.cheated = false
-	Ты решаешь не хитрить. #id:7ae
+	Ты решаешь играть честно. #id:7ae
 jump sounds/CARD
 Все открывают карты. #id:7af
 protagonist: ... #id:7b0
 if {GameVariables.cheated} || {GameVariables.get_random_number(4)} == 1:
 	protagonist: Я выиграл! #id:7b1
-	protagonist: Посмотрим... #id:7b2
-	protagonist: {roommate_name}, будь так добра, сними рубашку? #id:7b3
-	{roommate_name} хмурится на тебя. #id:7b4
+	protagonist: Так-так... #id:7b2
+	protagonist: {roommate_name}, не будешь ли ты так любезна снять кофточку? #id:7b3
+	{roommate_name} хмуро смотрит на тебя. #id:7b4
 	roommate: ...ладно. #id:7b5
 	leave roommate
 	jump sounds/CLOTH
-	{roommate_name} снимает свитер... #id:7b6
+	{roommate_name} стягивает свитер... #id:7b6
 	join scene [extra_data="set Scene/StripYuna"]
-	...открывая её обычный комплект нижнего белья. #id:7b7
-	friend: Ты купила это специально? #id:7b8
-	Несмотря на замечание Каэды, остальным в комнате, похоже, нравится вид. #id:acd
+	...а под ним её обычное бельё. #id:7b7
+	friend: Ты специально такое купила? #id:7b8
+	Несмотря на подколку Каэды, остальным, похоже, вид очень нравится. #id:acd
 	jump stat_change/IMPRESSION_INCREASE
 	leave scene
 	roommate: Эй! #id:7b9
 	join roommate [extra_data="set Expressions/Annoyed"]
 	roommate: И ты! Хватит пялиться. #id:7ba
-	roommate: Забудь, с меня хватит этой игры. #id:7bb
+	roommate: Всё, с меня хватит этой игры. #id:7bb
 	leave roommate
 	jump sounds/MOVE_INDOORS
-	{roommate_name} уходит в ярости. #id:7bc
+	{roommate_name} в сердцах вылетает из комнаты. #id:7bc
 	friend: ...упс. #id:7bd
-	friend: Похоже, я слишком сильно её задела. #id:ace
-	friend: Пойду проверю, всё ли с ней в порядке. #id:7bf
-	protagonist: Звучит неплохо. #id:7c0
+	friend: Кажется, я её слишком сильно задела. #id:ace
+	friend: Пойду гляну, как она там. #id:7bf
+	protagonist: Давай. #id:7c0
 	leave friend
 	jump party_ending/
 else:
-	protagonist: ...Я проиграл. #id:7c1
-	У {roommate_name} была выигрышная рука. #id:7c2
+	protagonist: ...я проиграл. #id:7c1
+	Выигрышная рука у неё. {roommate_name} торжествует. #id:7c2
 	update roommate [extra_data="set Expressions/Annoyed"]
 	roommate: Я выбираю {GameVariables.player_name}! #id:fd5
 	friend: Ого. #id:7c4
-	friend: Ты даже не колебалась. #id:7c5
+	friend: Ты даже не задумалась. #id:7c5
 	roommate: Снимай! #id:7c6
 	protagonist: (Тьфу.) #id:7c7
 	protagonist: ...ладно. #id:7c8
@@ -202,66 +202,66 @@ else:
 	if {GameVariables.won_first_round} == true:
 		jump PANTS_REMOVAL
 	else:
-		protagonist: (Ах, чёрт.) #id:7c9
-		Ты и так уже сидишь в одном нижнем белье. #id:acf
+		protagonist: (Ну пиздец.) #id:7c9
+		Ты и так уже сидишь в одних трусах. #id:acf
 		roommate: Чего ждёшь? Снимай. #id:7cb
 		protagonist: ... #id:7cc
 		protagonist: ...секунду. #id:7cd
 		jump sounds/GULP
-		Ты хватаешь стопку со стола и опрокидываешь её. #id:7ce
+		Ты хватаешь со стола рюмку и опрокидываешь её. #id:7ce
 		jump stat_change/DRUNK_INCREASE
 		jump passout/CHECK_PASSOUT
-		friend: Эй! Это было моё! #id:7cf
-		protagonist: Да какая разница! Погнали! #id:7d0
-		Ты спускаешь бельё и показываешься всей комнате. #id:7d1
-		Волна шока прокатывается по толпе. #id:7d2
+		friend: Эй! Это моя была! #id:7cf
+		protagonist: Да пофиг! Поехали! #id:7d0
+		Ты стягиваешь трусы и светишь всем вокруг своим хозяйством. #id:7d1
+		По толпе прокатывается потрясённый вздох. #id:7d2
 		friend: Впечатляет. #id:7d3
-		Несмотря на слова Каэды, остальные в комнате, похоже, сникают. #id:7d4
+		Несмотря на слова Каэды, публика как-то сникает. #id:7d4
 		set GameVariables.impression -= 1
 		jump stat_change/IMPRESSION_DECREASE
-roommate: Я видела достаточно. #id:7d5
-roommate: Давай сыграем во что-нибудь другое. #id:7d6
-friend: Хмм... #id:7d7
-friend: Как насчёт... #id:7d8
-friend: Голый твистер? #id:7d9
+roommate: Я насмотрелась. #id:7d5
+roommate: Давайте во что-нибудь другое. #id:7d6
+friend: Хм-м... #id:7d7
+friend: Может... #id:7d8
+friend: Твистер голышом? #id:7d9
 update roommate [extra_data="set Expressions/Annoyed"]
 roommate: КАЭДА! #id:7da
 jump party_ending/
 
 label FAILED_CHEATING #id:7db
-...но случайно роняешь их на обратном пути. #id:7dc
+...но на обратном пути случайно роняешь их. #id:7dc
 jump sounds/RIFFLE
-Карты падают на стол на всеобщее обозрение. #id:7dd
+Карты падают на стол у всех на виду. #id:7dd
 set GameVariables.impression -= 1
 jump stat_change/IMPRESSION_DECREASE
 protagonist: ... #id:7de
-protagonist: ...чёрт. #id:7df
-friend: Ты... пытался схитрить? #id:7e0
+protagonist: ...блять. #id:7df
+friend: Ты что... мухлевал? #id:7e0
 update roommate [extra_data="set Expressions/Confused"]
 {roommate_name} смотрит на тебя с отвращением. #id:7e1
 roommate: Серьёзно? #id:7e2
-roommate: ...ты ужасен. #id:7e3
+roommate: ...ты отвратителен. #id:7e3
 set GameVariables.random_name = "???"
-Кто-то из толпы кричит тебе. #id:ad0
-random: Киньте в этого мудака кирпичом! #id:7e4
-Ты сидишь в неловкой тишине, пока все переваривают то, что ты сделал. #id:7e5
-protagonist: Думаю... эм... я ненадолго пойду к себе. #id:7e6
-friend: Это, наверное, хорошая идея. #id:7e7
+Кто-то из толпы кричит тебе: #id:ad0
+random: Кирпичом его, мудака! #id:7e4
+Ты сидишь в неловкой тишине, пока все переваривают, что ты устроил. #id:7e5
+protagonist: Я, пожалуй... эм... пойду к себе ненадолго. #id:7e6
+friend: Да, это, наверное, правильно. #id:7e7
 jump party_ending/
 
 label PANTS_REMOVAL #id:7e8
 jump sounds/CLOTH
 Ты снимаешь штаны. #id:7e9
-Твои ноги приковывают взгляды всех в комнате. #id:7ea
+Все в комнате уставились на твои ноги. #id:7ea
 if {GameVariables.stamina_limit} < 250:
 	set GameVariables.impression -= 1
 	jump stat_change/IMPRESSION_DECREASE
-	friend: Теперь мне просто не по себе... #id:7eb
+	friend: Мне аж неловко стало... #id:7eb
 else:
 	set GameVariables.impression += 1
 	jump stat_change/IMPRESSION_INCREASE
-	friend: Ого! Кто-то тут набегался. #id:7ec
-protagonist: Уф. Можем просто продолжить? #id:7ed
+	friend: Ого! А кто-то много бегает. #id:7ec
+protagonist: Тьфу. Может, просто продолжим? #id:7ed
 friend: Конечно. Секунду. #id:7ee
 jump sounds/PHOTO
 [signal arg="screenshot"]

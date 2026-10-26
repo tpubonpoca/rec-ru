@@ -41,13 +41,13 @@ return
 label GUARD_MESSAGE #id:c10
 if {BattleVariables.player_is_defending}:
 	[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
-	Твоя защита поднята! Все входящие эффекты снижены. #id:107c
+	Ты в защите! Все входящие эффекты ослаблены. #id:107c
 return
 
 label LOAD_ENEMY #id:c12
 [signal arg="load_random_enemy"]
 if {BattleVariables.enemies.size()} > 1:
-	Ты встретил [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] и [color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color]!
+	На пути: [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] и [color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color]!
 	if {BattleVariables.enemies[1].EnemyId} == "bro":
 		join enemy_2 center [extra_data="set Container/Type/Dude"]
 	if {BattleVariables.enemies[1].EnemyId} == "cop":
@@ -81,7 +81,7 @@ if {BattleVariables.enemies.size()} > 1:
 	if {BattleVariables.enemies[1].EnemyId} == "student":
 		join enemy_2 center [extra_data="set Container/Type/Student"]
 else:
-	Ты встретил [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color]!
+	На пути: [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color]!
 if {BattleVariables.enemies[0].EnemyId} == "bro":
 	join enemy center [z_index="1" extra_data="set Container/Type/Dude"]
 if {BattleVariables.enemies[0].EnemyId} == "cop":
@@ -123,7 +123,7 @@ label SUMMON_ENEMY #id:1080
 if {BattleVariables.summon_index} == -1:
 	[wait time="1.0"]
 	[sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
-	Никто не пришёл! #id:1081
+	Никто не появился! #id:1081
 	return
 [color=ff3f49]{BattleVariables.enemies[BattleVariables.summon_index].GetName()}[/color] появляется!
 jump sounds/MOVEMENT_ADVENTURE
@@ -213,30 +213,30 @@ label PLAYER_DEBUFF_TICKS #id:f9
 [signal arg="begin_player_turn"]
 if {BattleVariables.player_is_confused} && {BattleVariables.player_is_confused_duration} <= 0:
 	set {BattleVariables.player_is_confused} = false
-	Ты больше не в замешательстве.
+	Замешательство прошло.
 if {BattleVariables.player_is_jammed} && {BattleVariables.player_is_jammed_duration} <= 0:
 	set {BattleVariables.player_is_jammed} = false
-	Ты больше не заблокирован.
+	Блокировка способности снята.
 if {BattleVariables.player_is_charmed} && {BattleVariables.player_is_charmed_duration} <= 0:
 	set {BattleVariables.player_is_charmed} = false
-	Ты больше не очарован. #id:c17
+	Очарование прошло. #id:c17
 if {BattleVariables.player_is_feared} && {BattleVariables.player_is_feared_duration} <= 0:
 	set {BattleVariables.player_is_feared} = false
-	Ты больше не в страхе. #id:c18
+	Страх прошёл. #id:c18
 if {BattleVariables.player_is_enraged} && {BattleVariables.player_is_enraged_duration} <= 0:
 	set {BattleVariables.player_is_enraged} = false
-	Ты больше не в ярости. #id:c19
+	Ярость прошла. #id:c19
 jump adventure_calculations/POISON_TICK
 if {BattleVariables.player_is_stunned} && {BattleVariables.player_is_stunned_duration} > 0:
 	[signal arg="vision_red"]
 	[signal arg="shake"]
 	jump sounds/BATTLE_STUN
 	Ты оглушён! #id:100
-	protagonist: Я... не могу... двигаться... #id:101
+	protagonist: Я... не могу... пошевелиться... #id:101
 	set {BattleVariables.player_is_stunned_duration} -= 1
 	jump adventure_battle/ENEMY_TURN
 elif {BattleVariables.player_is_stunned} && {BattleVariables.player_is_stunned_duration} == 0:
-	Ты больше не оглушён. #id:102
+	Оглушение прошло. #id:102
 	set {BattleVariables.player_is_stunned} = false
 if {GameVariables.stamina} <= 0:
 	jump adventure/COLLAPSE
@@ -271,19 +271,19 @@ if {BattleVariables.yuna_is_stunned} && {BattleVariables.yuna_is_stunned_duratio
 	[signal arg="shake"]
 	jump sounds/BATTLE_STUN
 	Юна оглушена!
-	roommate: Не могу... двигаться...
+	roommate: Не могу... пошевелиться...
 	set {BattleVariables.yuna_is_stunned_duration} -= 1
 	return
 elif {BattleVariables.yuna_is_stunned} && {BattleVariables.yuna_is_stunned_duration} == 0:
 	update roommate [extra_data="hide Decorations/Sweat"]
-	Юна больше не оглушена.
+	Оглушение у Юны прошло.
 	set {BattleVariables.yuna_is_stunned} = false
 set BattleVariables.yuna_decision = {BattleVariables.decide_yuna_action()}
 if {BattleVariables.yuna_decision} == "none"
 	return
 if {BattleVariables.yuna_decision} == "heal_small":
 	update roommate [extra_data="set Expressions/Happy"]
-	roommate: На, используй это! #id:70
+	roommate: На, держи! #id:70
 	[signal arg="yuna_give"]
 	jump sounds/BRANDISH
 	{roommate_name} протягивает тебе бутылку воды. #id:71
@@ -301,8 +301,8 @@ if {BattleVariables.yuna_decision} == "throw_brick":
 	roommate: С дороги, {GameVariables.player_name}! #id:c20
 	jump sounds/WHOOSH
 	[signal arg="yuna_throw"]
-	roommate: Держи! #id:75
-	{roommate_name} бросает кирпич в [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:108b
+	roommate: Получай! #id:75
+	{roommate_name} швыряет кирпич в [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:108b
 	[sound bus="Cutscene" path="res://audio/se/Brick.ogg"]
 	[signal arg="enemy_shake"]
 	if {BattleVariables.target_index} == 0:
@@ -310,7 +310,7 @@ if {BattleVariables.yuna_decision} == "throw_brick":
 	if {BattleVariables.target_index} == 1:
 		enemy_2: {BattleVariables.get_target().BrickDialogue} #id:108d
 	set BattleVariables.target_enemy.CurrentHealth = {BattleVariables.target_enemy.TakeDamage(BattleVariables.get_brick_damage())}
-	Юна наносит [color=ff3f49]{BattleVariables.get_target_name()}[/color] урон в [color=ff3f49]{BattleVariables.last_player_damage}[/color]! #id:108e
+	Юна попадает! [color=ff3f49]{BattleVariables.get_target_name()}[/color] получает [color=ff3f49]{BattleVariables.last_player_damage}[/color] урона! #id:108e
 	if {BattleVariables.brick_selected} == "cheese_brick":
 		jump stat_change/STAMINA_INCREASE
 		set GameVariables.stamina = {GameVariables.change_stamina(2)}
@@ -319,32 +319,32 @@ if {BattleVariables.yuna_decision} == "remove_debuff":
 	roommate: Очнись, {GameVariables.player_name}! #id:c23
 	[signal arg="yuna_give"]
 	jump sounds/SLAP_CARTOON
-	{roommate_name} даёт тебе пощёчину, приводя в себя! #id:c24
+	{roommate_name} отвешивает тебе пощёчину, и ты приходишь в себя! #id:c24
 	if {BattleVariables.player_is_confused}:
-		Ты больше не в замешательстве!
+		Замешательство прошло!
 		set BattleVariables.player_is_confused = false
 		set BattleVariables.player_is_confused_duration = 0
 	if {BattleVariables.player_is_jammed}:
-		Ты больше не в замешательстве!
+		Замешательство прошло!
 		set BattleVariables.player_is_jammed = false
 		set BattleVariables.player_is_jammed_duration = 0
 	if {BattleVariables.player_is_charmed}:
-		Ты больше не очарован! #id:c25
+		Очарование прошло! #id:c25
 		set BattleVariables.player_is_charmed = false
 		set BattleVariables.player_is_charmed_duration = 0
 	if {BattleVariables.player_is_enraged}:
-		Ты больше не в ярости! #id:c26
+		Ярость прошла! #id:c26
 		set BattleVariables.player_is_enraged = false
 		set BattleVariables.player_is_enraged_duration = 0
 	if {BattleVariables.player_is_feared}:
-		Ты больше не в страхе! #id:c27
+		Страх прошёл! #id:c27
 		set BattleVariables.player_is_feared = false
 		set BattleVariables.player_is_feared_duration = 0
 	if {BattleVariables.player_is_mad}:
-		Ты больше не в безумии!
+		Бешенство прошло!
 		set BattleVariables.player_is_mad = false
 	if {BattleVariables.player_is_stunned}:
-		Ты больше не оглушён! #id:c28
+		Оглушение прошло! #id:c28
 		set BattleVariables.player_is_stunned = false
 		set BattleVariables.player_is_stunned_duration = 0
 jump adventure_functions/CHECK_ENEMY_DEFEAT
@@ -357,7 +357,7 @@ if {dice} > 5:
 set BattleVariables.target_index = {BattleVariables.auto_target_index()}
 [sound path="res://audio/battle/GunCock.ogg" bus="Cutscene" volume="3.0"]
 [wait time="0.3"]
-yosuke: <Моя очередь./Нужна помощь?/Йо.> #id:1090
+yosuke: <Моя очередь./Подсобить?/Йоу.> #id:1090
 if {GameVariables.yuna_partnered}:
 	leave roommate
 jump sounds/CLOAKING
@@ -366,7 +366,7 @@ join yosuke [extra_data="set Style/Partner"]
 [signal arg="shoot"]
 [wait time="1.0"]
 [signal arg="enemy_shake"]
-Ёсуке наносит по [color=ff3f49]{BattleVariables.get_target_name()}[/color] урон в [color=ff3f49]{BattleVariables.yosuke_shot()}[/color]! #id:1091
+Ёсуке попадает! [color=ff3f49]{BattleVariables.get_target_name()}[/color] получает [color=ff3f49]{BattleVariables.yosuke_shot()}[/color] урона! #id:1091
 leave yosuke
 if {GameVariables.yuna_partnered} and {BattleVariables.yuna_is_stunned}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Tired, show Decorations/Sweat"]
@@ -378,17 +378,17 @@ return
 label REWARDS #id:c29
 if {GameVariables.yuna_partnered}:
 	update roommate [extra_data="set Expressions/Happy, hide Decorations/Sweat"]
-	roommate: <Фух. Отлично!/Хех. Я ни секунды в тебе не сомневалась./Я устала просто смотреть!> #id:12a
+	roommate: <Фух. Красава!/Хех. Я в тебе ни секунды не сомневалась./Я устала, просто глядя на это!> #id:12a
 jump sounds/GOT_CREDITS
-Ты нашёл [color=e5be3e]{BattleVariables.get_credit_rewards()} кредитов[/color]! #id:1092
-protagonist: Хммм, что это? #id:65e
+Ты находишь [color=e5be3e]{BattleVariables.get_credit_rewards()} кредитов[/color]! #id:1092
+protagonist: Хм-м, а это что? #id:65e
 if {BattleVariables.enemies.size()} >= 1:
 	if {BattleVariables.enemies[0].RanAway} == false:
 		set GameVariables.enemies_defeated += 1
 		jump sounds/GOT_ITEM
-		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(0)}[/color]! #id:1093
+		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(0)}[/color]! #id:1093
 		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте есть описание... #id:1094
+			protagonist: На обороте какое-то описание... #id:1094
 			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1095
 		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
 			update roommate [extra_data="set Expressions/Happy"]
@@ -397,9 +397,9 @@ if {BattleVariables.enemies.size()} >= 2:
 	if {BattleVariables.enemies[1].RanAway} == false:
 		set GameVariables.enemies_defeated += 1
 		jump sounds/GOT_ITEM
-		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(1)}[/color]! #id:1097
+		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(1)}[/color]! #id:1097
 		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте есть описание... #id:1098
+			protagonist: На обороте какое-то описание... #id:1098
 			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1099
 		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
 			update roommate [extra_data="set Expressions/Happy"]
@@ -408,9 +408,9 @@ if {BattleVariables.enemies.size()} >= 3:
 	if {BattleVariables.enemies[2].RanAway} == false:
 		set GameVariables.enemies_defeated += 1
 		jump sounds/GOT_ITEM
-		Ты также нашёл [color=e5be3e]{BattleVariables.get_item_reward(2)}[/color]! #id:109b
+		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(2)}[/color]! #id:109b
 		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте есть описание... #id:109c
+			protagonist: На обороте какое-то описание... #id:109c
 			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:109d
 		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
 			update roommate [extra_data="set Expressions/Happy"]

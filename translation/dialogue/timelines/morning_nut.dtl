@@ -2,9 +2,9 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
 [wait time="0.6"]
-Вставая с кровати, ты чувствуешь, что-то не так.
+Вставая с кровати, ты чувствуешь: что-то не так.
 jump sounds/RUSTLE
-Ты проверяешь под простынями.
+Ты заглядываешь под одеяло.
 protagonist: ...
 [sound path="res://audio/se/Thinking.ogg" volume="0.0"]
 [color=e5be3e]У тебя случилась ночная поллюция![/color]

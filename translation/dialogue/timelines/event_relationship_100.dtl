@@ -1,216 +1,216 @@
 jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.0"]
 jump sounds/DOOR_CREAK
-Ты пробираешься в комнату {roommate_name}, как и в любую другую обычную ночь. #id:dca
+Как и в любую другую ночь, ты прокрадываешься в комнату, где спит {roommate_name}. #id:dca
 jump sounds/DOOR_CLOSE_QUIET
 [background arg="res://assets/Cutscene/Backgrounds/Bedroom_Yuna.png" fade="0.6"]
 [wait time="1.0"]
 join scene [extra_data="set Scene/Sleeping"]
 jump sounds/BREATH
-protagonist: (Странно. У неё ещё горит свет.) #id:dcb
-protagonist: (Похоже, она вырубилась ещё до того, как переоделась в пижаму.) #id:dcc
-protagonist: (То, что я ей дал, видимо, действительно сработало, а?) #id:dcd
-На мгновение ты думаешь не продолжать свои обычные ночные занятия... #id:dce
+protagonist: (Странно. У неё ещё свет горит.) #id:dcb
+protagonist: (Похоже, она вырубилась, даже не переодевшись в пижаму.) #id:dcc
+protagonist: (Видимо, то, что я ей дал, реально сработало, а?) #id:dcd
+На мгновение ты даже думаешь сегодня не браться за своё обычное ночное дело... #id:dce
 jump sounds/BREATH
-...но вид {roommate_name} в полураздетом состоянии будит в тебе что-то. #id:dcf
+...но {roommate_name} лежит полураздетая, и от этого вида в тебе всё переворачивается. #id:dcf
 jump sounds/GULP
-protagonist: (...почему я сегодня так нервничаю?) #id:dd0
-protagonist: (Как и любая другая ночь, верно?) #id:dd1
+protagonist: (...и чего я сегодня так нервничаю?) #id:dd0
+protagonist: (Ночь как ночь, разве нет?) #id:dd1
 [signal arg="play_reaching"]
-Когда ты тянешься за её одеждой, по спине пробегает дрожь. #id:dd2
-protagonist: (Что-то очень, очень не так.) #id:dd3
+Ты тянешься к её одежде, и по спине пробегает холодок. #id:dd2
+protagonist: (Что-то тут очень, очень не так.) #id:dd3
 leave scene
 jump sounds/SURPRISE
 protagonist: Ай! #id:dd4
 join scene [extra_data="set Scene/Caught"]
-Прежде чем ты успеваешь среагировать, {roommate_name} прижимает тебя к кровати. #id:dd5
+Не успеваешь ты и глазом моргнуть, как {roommate_name} прижимает тебя к кровати. #id:dd5
 jump sounds/VOICE_IDIOT
-roommate: Что, по-твоему, ты делаешь? #id:dd6
-protagonist: (Блять...) #id:dd7
-roommate: Ну? Ты собираешься объясниться? #id:dd8
-Тебе удаётся выдавить несколько слов. #id:dd9
-protagonist: Я- я э-э.. ну... понимаешь... #id:dda
-protagonist: Ты... эм... выглядела холодно, и я пришёл укрыть тебя одеялом? #id:ddb
-Она прищуривается, услышав твоё оправдание. #id:ddc
-roommate: ...ты пробрался в мою комнату, потому что мне было холодно? #id:ddd
+roommate: И что это ты, по-твоему, делаешь? #id:dd6
+protagonist: (Ой, бля.) #id:dd7
+roommate: Ну? Объяснишься? #id:dd8
+Тебе с трудом удаётся выдавить пару слов. #id:dd9
+protagonist: Я... я, э-э... ну... понимаешь... #id:dda
+protagonist: Ты... эм... выглядела так, будто тебе холодно, вот я и пришёл укрыть тебя одеялом? #id:ddb
+Услышав эту отмазку, она прищуривается. #id:ddc
+roommate: ...ты пролез ко мне в комнату, потому что мне было холодно? #id:ddd
 jump sounds/VOICE_SIGH
 roommate: Ты меня совсем за дуру держишь? #id:dde
 protagonist: Эм... #id:ddf
-Миллион разных идей проносится у тебя в голове, пока ты пытаешься придумать выход из ситуации. #id:de0
-Тебе удаётся найти один возможный выход из этого фиаско. #id:de1
-protagonist: (Мне нужно как можно скорее перемотать эту петлю.) #id:de2
+В голове проносится миллион мыслей: ты лихорадочно ищешь выход. #id:de0
+И наконец находишь единственный способ выпутаться из этой задницы. #id:de1
+protagonist: (Надо как можно скорее перемотать петлю.) #id:de2
 protagonist: (...где моя камера?) #id:de3
-Ты оглядываешь комнату, пытаясь найти свою волшебную камеру. #id:de4
-{roommate_name} замечает, как ты оглядываешь комнату. #id:de5
+Ты шаришь глазами по комнате в поисках своей волшебной камеры. #id:de4
+{roommate_name} замечает, как бегают твои глаза. #id:de5
 roommate: Алло? Я с тобой разговариваю. #id:de6
-roommate: Куда, по-твоему, ты смотришь? #id:de7
-protagonist: Я ни на что не смотрю! #id:de8
-protagonist: ...Я просто нервничаю. #id:de9
+roommate: Ты куда вообще смотришь? #id:de7
+protagonist: Никуда я не смотрю! #id:de8
+protagonist: ...я просто нервничаю. #id:de9
 join decorations center [extra_data="set Items/Camera"]
-Краем глаза ты замечаешь свою камеру на ковре рядом с кроватью. #id:dea
-protagonist: (Должно быть, она выбила её у меня из рук, когда поймала.) #id:deb
-protagonist: (Мне нужно всего лишь убедить её ненадолго меня отпустить, и я смогу это схватить.) #id:dec
+Краем глаза ты замечаешь камеру на ковре возле кровати. #id:dea
+protagonist: (Видимо, она выбила её у меня из рук, когда поймала.) #id:deb
+protagonist: (Надо только уговорить её отпустить меня на секунду, и я её схвачу.) #id:dec
 leave decorations
-roommate: Ну? Ты собираешься объясниться? #id:ded
+roommate: Ну? Объяснишься? #id:ded
 protagonist: ... #id:dee
-protagonist: (Мне просто стоит сказать правду.) #id:def
-protagonist: (В любом случае, это не будет иметь значения, когда я перемотаю петлю.) #id:df0
+protagonist: (Скажу как есть.) #id:def
+protagonist: (Всё равно после перемотки это будет неважно.) #id:df0
 jump sounds/GULP
-Ты сглатываешь комок в горле и начинаешь говорить. #id:df1
-protagonist: ...Я... пробирался в твою комнату по ночам. #id:df2
+Ты сглатываешь ком в горле и начинаешь говорить. #id:df1
+protagonist: ...я... по ночам пробирался к тебе в комнату. #id:df2
 roommate: И? #id:df3
-protagonist: ...и я, э-э... занимался другими вещами... #id:df4
+protagonist: ...и, э-э... делал всякое... #id:df4
 jump sounds/SURPRISE
-Она тянет тебя за рубашку и на секунду придушивает. #id:df5
-roommate: Другими вещами? Какими другими вещами? #id:df6
-protagonist: Э-э... вроде... #id:df7
-roommate: Вроде чего? #id:df8
+Она хватает тебя за ворот и на секунду встряхивает. #id:df5
+roommate: Всякое? Это какое ещё «всякое»? #id:df6
+protagonist: Э-э... ну... #id:df7
+roommate: Ну что? #id:df8
 jump sounds/GULP
 [wait time="1.0"]
-protagonist: ...касания? #id:df9
+protagonist: ...трогал? #id:df9
 jump sounds/SURPRISE
 [wait time="0.5"]
 roommate: Ты серьёзно? #id:dfa
 {roommate_name} на мгновение задумывается. #id:dfb
-roommate: ...я правда всё это время крепко спала и ничего не замечала? #id:dfc
+roommate: ...и я всё это проспала и ничего не заметила? #id:dfc
 jump sounds/GULP
-protagonist: ...да, так и было. #id:dfd
-Вы сидите в неловком молчании, пока она обдумывает это неожиданное открытие. #id:dfe
-Через некоторое время {roommate_name} снова начинает говорить. #id:dff
+protagonist: ...ага, проспала. #id:dfd
+Вы сидите в неловкой тишине, пока она переваривает услышанное. #id:dfe
+Через какое-то время {roommate_name} снова заговаривает. #id:dff
 [signal arg="play_stop"]
-roommate: Так, э-э... и что ты планировал сделать со мной этой ночью? #id:e00
+roommate: Так, э-э... и что ты собирался сделать со мной сегодня? #id:e00
 protagonist: А? #id:e01
 jump sounds/VOICE_IDIOT
 roommate: Не прикидывайся дурачком. #id:e02
 roommate: Что ты собирался со мной сделать, пока я тебя не поймала? #id:e03
 protagonist: Ну... э-э... #id:e04
-protagonist: Сначала... я хотел раздеть тебя... #id:e05
-roommate: О? #id:e06
+protagonist: Сначала... я хотел тебя раздеть... #id:e05
+roommate: Да? #id:e06
 leave scene
 jump sounds/CLOTH
-{roommate_name} меняет позу и уверенно садится на тебя сверху. #id:e07
+{roommate_name} перемещается и усаживается на тебя сверху. #id:e07
 join scene [extra_data="set Scene/CowgirlFront"]
-roommate: Сверху или снизу? #id:e08
-protagonist: Что? #id:e09
-roommate: Что ты собирался снять с меня первым? #id:e0a
-protagonist: (Она... что, вошла во вкус? Ей самой этого хочется?!) #id:e0b
+roommate: Верх или низ? #id:e08
+protagonist: А? #id:e09
+roommate: С чего бы ты начал снимать? #id:e0a
+protagonist: (Ей что... это нравится?) #id:e0b
 if {GameVariables.player_name} == "Spectra" || {GameVariables.player_name} == "danny":
-	protagonist: Я тебя уже по кругу трахал, честно, эта киска просто отпад. #id:e0c
+	protagonist: Я тебя уже раз сто трахнул, отвечаю, киска просто огонь. #id:e0c
 else:
-	protagonist: Ну... не могу оторвать взгляд от твоей груди... так сильно хотелось увидеть её снова. #id:e0d
-roommate: О, ты про это? #id:e0e
+	protagonist: Ну, не могу не любоваться твоей голой грудью... очень хотел снова её увидеть. #id:e0d
+roommate: О, ты про эти? #id:e0e
 jump sounds/CLOTH
 [signal arg="play_front_strip"]
 [wait time="1.0"]
 jump sounds/GULP
-protagonist: Да... именно... #id:e0f
+protagonist: Да... про них самых. #id:e0f
 roommate: Так... #id:e10
-roommate: А что ещё ты хотел сделать? #id:e11
-protagonist: Ну... потом... #id:e12
-protagonist: Дальше я бы стянул с тебя трусики... #id:e13
-roommate: И что потом? #id:e14
-protagonist: Ну... тогда я бы избавился и от своих штанов. #id:e15
+roommate: А что ещё ты собирался сделать? #id:e11
+protagonist: Потом... ну... #id:e12
+protagonist: Потом я бы снял с тебя низ. #id:e13
+roommate: А дальше? #id:e14
+protagonist: Ну... дальше я бы, наверное, снял свои штаны. #id:e15
 leave scene
 jump sounds/UNBUCKLE
 [wait time="0.7"]
 jump sounds/ZIP
 [wait time="0.7"]
 jump sounds/CLOTH
-Одним уверенным движением {roommate_name} стягивает с себя свитер, бельё и помогает тебе избавиться от штанов. #id:e16
-Она отбрасывает вещи в сторону и снова опускается на тебя. #id:e17
+Одним махом {roommate_name} стягивает с себя свитер и трусики, а с тебя штаны. #id:e16
+Она отбрасывает одежду в сторону и снова садится на тебя. #id:e17
 join scene [extra_data="set Scene/CowgirlBack"]
-{roommate_name} медленно опускается на тебя, сладострастно покачивая бёдрами в миллиметре от твоего каменного стояка. #id:e18
-roommate: Ну что... в своих грязных фантазиях ты представлял себе что-то подобное?~ #id:e19
-protagonist: Ну... обычно сверху был я. #id:e1a
-roommate: О? #id:e1b
-roommate: Так ты никогда раньше не делал ничего подобного? #id:e1c
+{roommate_name} прижимается промежностью к твоему члену и дразняще покачивает бёдрами. #id:e18
+roommate: Так... дальше было бы что-то такое? #id:e19
+protagonist: Ну, обычно сверху был я. #id:e1a
+roommate: Да? #id:e1b
+roommate: То есть так ты ещё никогда не пробовал? #id:e1c
 protagonist: Ну... нет. #id:e1d
-{roommate_name} снова на мгновение замирает. #id:e1e
-roommate: И как тебе... лучше или хуже? #id:e1f
+{roommate_name} снова на секунду замолкает. #id:e1e
+roommate: Лучше или хуже? #id:e1f
 protagonist: В смысле? #id:e20
 roommate: Так лучше или хуже, чем обычно? #id:e21
-protagonist: Пожалуй... немного лучше? #id:e22
-{roommate_name} раздражается от этих слов. #id:e23
+protagonist: Ну... чуть-чуть лучше? #id:e22
+{roommate_name}, похоже, задета таким ответом. #id:e23
 jump sounds/VOICE_IDIOT
-roommate: Только «немного»? #id:e24
-Подстёгнутая твоим откликом, она начинает тереться о тебя быстрее. #id:e25
+roommate: Всего лишь «чуть-чуть»? #id:e24
+Раззадоренная твоим ответом, она начинает тереться о тебя быстрее. #id:e25
 [signal arg="play_back_tease"]
 jump sounds/GULP
-protagonist: В-вау. #id:e26
-Между движениями {roommate_name} отвечает. #id:e27
-roommate: Это ощущается всего лишь «немного» лучше? #id:e28
-В голову приходит идея. #id:e29
-protagonist: Ладно... я понял, что ты хочешь сказать... #id:e2a
-protagonist: Но если честно?... #id:e2b
+protagonist: О-ого. #id:e26
+Не прекращая двигаться, {roommate_name} спрашивает: #id:e27
+roommate: А так всё ещё «чуть-чуть» лучше? #id:e28
+В голову тебе приходит идея. #id:e29
+protagonist: Ладно... я понял, к чему ты клонишь... #id:e2a
+protagonist: Но если честно?.. #id:e2b
 jump sounds/GULP
-protagonist: ...Было лучше, когда ты спала. #id:e2c
+protagonist: ...когда ты спала, было лучше. #id:e2c
 jump sounds/SURPRISE
-roommate: Прошу прощения?! #id:e2d
-Ты изо всех сил стараешься не выдать своих истинных чувств. #id:e2e
+roommate: Чего-о?! #id:e2d
+Ты изо всех сил стараешься не выдать, что на самом деле чувствуешь. #id:e2e
 protagonist: ...д-да. #id:e2f
-Вспышка гнева — и она опускается на твой член. #id:e30
+Вспыхнув от злости, она резко насаживается на твой член. #id:e30
 [signal arg="play_back_slow"]
-От её обжигающей, невероятной тесноты у тебя мгновенно перехватывает дыхание — её горячая киска сжимает твой член до предела. #id:e31
-Твоя реакция не осталась незамеченной. #id:e32
+Её горячая теснота так внезапно обхватывает тебя, что ты не можешь сдержать громкий вздох. #id:e31
+От неё это не ускользает. #id:e32
 jump sounds/VOICE_MOAN_QUICK
-roommate: И это... ах... тоже всего лишь «немного» лучше? #id:e33
-Ты с трудом выдавливаешь слова сквозь сладкую истому. #id:e34
-protagonist: Я... подтверждаю... своё предыдущее... заявление... #id:e35
-protagonist: ...всего лишь... «немного»... #id:e36
+roommate: А это... ах... тоже только «чуть-чуть» лучше? #id:e33
+Слова даются тебе с трудом. #id:e34
+protagonist: Я... настаиваю... на своём... мнении... #id:e35
+protagonist: ...всего... «чуть-чуть»... #id:e36
 [signal arg="play_back_fast"]
-Как только {roommate_name} слышит слово «немного», она с дерзкой, похотливой улыбкой ускоряет темп. #id:e37
+Едва {roommate_name} слышит «чуть-чуть», как ускоряет темп. #id:e37
 jump sounds/VOICE_MOAN_QUICK
-roommate: А как... ах... насчёт... сейчас...? #id:e38
-Между чувственными стонами она дразнит тебя. #id:e39
+roommate: А... теперь...? #id:e38
+Под звонкие шлепки тел ей удаётся выдавить фразу. #id:e39
 jump sounds/VOICE_MOAN_QUICK
-roommate: Это... всё ещё... «немного»... лучше? #id:e3a
-Ты открываешь рот, пытаясь возразить... #id:e3b
+roommate: Всё ещё... только... чуть-чуть... лучше? #id:e3a
+Ты открываешь рот, чтобы ответить... #id:e3b
 protagonist: Э-э... #id:e3c
-...но сейчас решительно невозможно связать и двух слов. #id:e3d
-Всё твоё существо охвачено накатывающим удовольствием, и ты изо всех сил пытаешься не сорваться сразу. #id:e3e
+...но связать хоть пару слов сейчас невозможно. #id:e3d
+Все твои силы уходят на то, чтобы не кончить слишком быстро. #id:e3e
 jump sounds/VOICE_MOAN_QUICK
-roommate: Больше... нечего... сказать, да...? #id:e3f
+roommate: Что... нечего... сказать... да? #id:e3f
 jump sounds/VOICE_MOAN_QUICK
-roommate: Хочешь... чтобы я... ещё ускорилась...? #id:e40
-Ты внезапно понимаешь, что она собирается сделать. #id:e41
-protagonist: Погоди... секунд— #id:e42
+roommate: А так... ты... заговоришь? #id:e40
+Внезапно ты понимаешь, что она задумала. #id:e41
+protagonist: Погоди... се... #id:e42
 [signal arg="play_back_faster"]
-Внутренние мышцы {roommate_name} жадно сжимаются вокруг твоего пульсирующего члена. #id:e43
-Каждое плавное опускание её бёдер отзывается электрической волной по всему телу. #id:e44
-Громкие, влажные шлепки её сочных ягодиц о твои бёдра наполняют спальню. #id:e45
-protagonist: Если ты... продолжишь... #id:e46
+{roommate_name} туго сжимает тебя изнутри. #id:e43
+Каждое её движение вниз, с поворотом бёдер, прошивает тебя волной до самых кончиков пальцев. #id:e44
+И каждый раз, когда она опускается, комнату наполняет звонкий шлепок. #id:e45
+protagonist: Если ты... будешь... #id:e46
 protagonist: Двигаться... так... быстро... #id:e47
-{roommate_name} лишь кокетливо прикусывает губу, упиваясь своей властью над тобой. #id:e48
-Она вошла в азарт, горя желанием заставить тебя молить о пощаде. #id:e49
+{roommate_name} тебя будто не слышит. #id:e48
+Она целиком отдалась своей цели: доказать, что ты неправ. #id:e49
 protagonist: Стой... я... сейчас... #id:e4a
-protagonist: А! #id:e4b
+protagonist: Ах! #id:e4b
 [signal arg="play_climax"]
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
-Ты чувствуешь, как из паха выходит горячая волна и устремляется в её тело. #id:e4c
+Тебя накрывает горячей волной, и ты кончаешь прямо в неё. #id:e4c
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
-protagonist: А! #id:e4d
+protagonist: Ах! #id:e4d
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
 [wait time="2.0"]
-На несколько секунд, в этом времени и пространстве, ты чувствуешь себя абсолютно, полностью счастливым. #id:e4e
+На несколько секунд время и пространство исчезают, и ты чувствуешь себя абсолютно, бесконечно счастливым. #id:e4e
 protagonist: ... #id:e4f
-protagonist: ...{roommate_name}? Эй? #id:e50
-protagonist: Ты ведь не уснула, а? #id:e51
-roommate: [font_size=13]...ещё... хочу ещё...[/font_size] #id:e52
+protagonist: ...{roommate_name}? Ты тут? #id:e50
+protagonist: Ты же не уснула, нет? #id:e51
+roommate: [font_size=13]...ещё.[/font_size] #id:e52
 protagonist: Что? #id:e53
-roommate: Трахни меня ещё раз! Давай! #id:e54
-protagonist: Погоди! Нет! #id:e55
-protagonist: Он же ещё слишком чувств— #id:e56
+roommate: Ещё! #id:e54
+protagonist: Стой! Нет! #id:e55
+protagonist: Он ещё слишком чувстви... #id:e56
 jump sounds/SURPRISE
 [signal arg="play_back_faster"]
 protagonist: Погоди... не... так быстро... пожалуйста... #id:e57
-protagonist: Мой член... сейчас... нахуй взорвётся!... #id:e58
+protagonist: Он же... сейчас... отвалится!.. #id:e58
 leave --All-- 
 jump sounds/CUCKOO
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
@@ -220,77 +220,77 @@ jump sounds/MUSIC_FADEOUT_ALL
 set {GameVariables.stamina} = 1
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Bedroom_Yuna_Day.png" fade="2.0"]
-Ты просыпаешься от звуков утреннего транспорта за окном. #id:e5a
-Требуется мгновение, чтобы понять: это не твоя комната. #id:e5b
-protagonist: (Значит, прошлая ночь была не сном?) #id:e5c
+Ты просыпаешься от шума утренних машин за окном. #id:e5a
+Не сразу доходит, что это не твоя комната. #id:e5b
+protagonist: (Значит, ночью это был не сон?) #id:e5c
 jump sounds/RUSTLE
-Ты переворачиваешься лицом к {roommate_name}. #id:e5d
+Ты переворачиваешься на другой бок. {roommate_name} лежит рядом. #id:e5d
 join scene [extra_data="set Scene/Snoozing"]
 jump sounds/BREATH
-protagonist: (Похоже, она мирно спит.) #id:e5e
-protagonist: (Погоди-ка...) #id:e5f
+protagonist: (Кажется, она мирно спит.) #id:e5e
+protagonist: (Так, минуточку...) #id:e5f
 jump sounds/WIGGLE
-Ты мягко тыкаешь её в руку пальцем. #id:e60
+Ты легонько тыкаешь её пальцем в руку. #id:e60
 protagonist: Ты ведь не притворяешься, что спишь? #id:e61
 [wait time="1.0"]
 jump sounds/BREATH
-Единственный ответ от {roommate_name} — храп. #id:e62
+В ответ {roommate_name} только тихонько посапывает. #id:e62
 protagonist: Видимо, нет. #id:e63
-Ты решаешь потратить несколько минут, просто любуясь {roommate_name}. #id:e64
+Ты решаешь пару минут просто полюбоваться: {roommate_name} так мирно спит. #id:e64
 jump sounds/PHONE_ALARM
-К сожалению, тебя внезапно прерывает звонок будильника Юны. #id:e65
+Увы, идиллию внезапно прерывает будильник Юны. #id:e65
 protagonist: (Только не сейчас!) #id:e66
 join decorations center [extra_data="set Items/Phone"]
-Ты быстро хватаешь её телефон и нажимаешь «отложить». #id:e67
+Ты хватаешь её телефон и жмёшь «отложить». #id:e67
 jump sounds/PHONE_UNLOCK
 leave decorations
-Однако от шума {roommate_name} начинает шевелиться. #id:e68
+Но от шума {roommate_name} начинает ворочаться. #id:e68
 [signal arg="play_waking_up"]
 jump sounds/VOICE_MMM
-roommate: Ещё несколько минут... пожалуйста... #id:e69
-protagonist: Спи, сколько хочешь. #id:e6a
-Услышав твой голос, она начинает шевелиться чуть активнее. #id:e6b
+roommate: Ещё пять минуточек... пожалуйста... #id:e69
+protagonist: Спи сколько хочешь. #id:e6a
+Услышав твой голос, она начинает просыпаться. #id:e6b
 jump sounds/VOICE_GOOD_MORNING
 roommate: А. Утро... #id:e6c
-roommate: Как ты уже не спишь... так рано... #id:e6d
+roommate: Как ты уже не спишь... рань же такая... #id:e6d
 protagonist: ...уже почти полдень. #id:e6e
 roommate: ...правда? #id:e6f
-{roommate_name} берёт телефон и смотрит время. #id:e70
+{roommate_name} тянется к телефону и смотрит на время. #id:e70
 jump sounds/PHONE_UNLOCK
-roommate: ...Похоже, мы засиделись дольше, чем я думала. #id:e71
-Она смахивает остатки сна и смотрит на тебя. #id:e72
+roommate: ...похоже, мы легли позже, чем я думала. #id:e71
+Она моргает, прогоняя остатки сна, и смотрит на тебя. #id:e72
 [signal arg="play_awake"]
 jump sounds/VOICE_LAUGH
-roommate: Прошлая ночь была... просто незабываемой, правда? #id:e73
-protagonist: ...да, это было невероятно. #id:e74
+roommate: Ночка была... что надо, да? #id:e73
+protagonist: ...да, ещё как. #id:e74
 [signal arg="play_awake_blush"]
-roommate: Всё ещё планируешь тайком пробираться в мою спальню? #id:e75
-Ты чувствуешь, как к лицу приливает жар. #id:e76
+roommate: Всё ещё собираешься тайком лазить ко мне по ночам? #id:e75
+Ты чувствуешь, как к щекам приливает жар. #id:e76
 protagonist: Эм... #id:e77
 jump sounds/VOICE_LAUGH
-roommate: Я просто дразню тебя. #id:e78
+roommate: Да шучу я. #id:e78
 jump sounds/VOICE_UM
 roommate: Так... #id:e79
-roommate: ...прошлая ночь была всего лишь «немного» лучше обычного? #id:e7a
+roommate: ...ночью было только «чуть-чуть» лучше, чем обычно? #id:e7a
 protagonist: ...прости за это. #id:e7b
-protagonist: Я просто пытался тебя поддеть. #id:e7c
-protagonist: Честно говоря, это, возможно, было лучшее, что я испытывал. #id:e7d
+protagonist: Я просто хотел тебя раззадорить. #id:e7c
+protagonist: Если честно, это было, наверное, лучшее, что со мной вообще случалось. #id:e7d
 jump sounds/VOICE_LAUGH
 {roommate_name} хихикает над твоей честностью. #id:e7e
 jump sounds/RUSTLE
-Она наклоняется так, что её лицо оказывается вплотную к твоему. #id:e7f
-Ты чувствуешь тепло её дыхания на своей щеке. #id:e80
+Она наклоняется так близко, что её лицо оказывается вплотную к твоему. #id:e7f
+Ты чувствуешь её тёплое дыхание на щеке. #id:e80
 jump sounds/KISS
-{roommate_name} быстро чмокает тебя в щёку и шепчет на ухо. #id:e81
+{roommate_name} быстро чмокает тебя в щёку и шепчет на ухо: #id:e81
 jump sounds/VOICE_LAUGH
-roommate: ...может, в следующий раз всю ночь напролёт будем кувыркаться?~ #id:e82
+roommate: ...может, в следующий раз не будем спать всю ночь? #id:e82
 jump sounds/GULP
 [wait time="1.0"]
 jump sounds/GOT_LEVEL
-[color=e5be3e]Твои отношения с {roommate_name} достигли максимума![/color] #id:e83
-[color=e5be3e]Теперь ты можешь будить {roommate_name} ночью![/color] #id:e84
-[color=e5be3e]Если да — до конца ночи ты не получишь очки за съёмку.[/color] #id:e85
-[color=e5be3e]Осторожно: если Кан тебя поймает, игра всё ещё может закончиться![/color] #id:e86
+[color=e5be3e]{roommate_name}: отношения на максимуме![/color] #id:e83
+[color=e5be3e]{roommate_name}: теперь её можно будить во время ночной вылазки![/color] #id:e84
+[color=e5be3e]Но тогда до конца ночи очки за съёмку начисляться не будут.[/color] #id:e85
+[color=e5be3e]Осторожно: если Кан тебя застукает, игра всё равно закончится![/color] #id:e86
 leave --All-- 
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

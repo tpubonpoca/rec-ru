@@ -8,10 +8,10 @@ if {BattleVariables.poison_turns} > 0:
 	jump sounds/BATTLE_ATTACK_HIT
 	[signal arg="shake"]
 	set GameVariables.stamina = {GameVariables.change_stamina(BattleVariables.poison_tick_damage * -1)}
-	Ты потерял [color=ff3f49]{BattleVariables.poison_tick_damage}[/color] [color=ffce65]выносливости[/color]. #id:bd8
+	Ты теряешь [color=ff3f49]{BattleVariables.poison_tick_damage}[/color] [color=ffce65]выносливости[/color]. #id:bd8
 	if {BattleVariables.poison_turns} <= 0:
 		set {BattleVariables.poison_tick_damage} = 0
-		Ты больше не отравлен. #id:37
+		Отравление прошло. #id:37
 	if {GameVariables.stamina} <= 0:
 		jump adventure/COLLAPSE
 return
@@ -53,18 +53,18 @@ if {BattleVariables.is_successful_hit("enemy")}:
 	[signal arg="shake"]
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] наносит тебе удар!
 	jump adventure_functions/GUARD_MESSAGE
-	Ты потерял [color=ff3f49]{BattleVariables.take_damage()}[/color] выносливости. #id:be2
+	Ты теряешь [color=ff3f49]{BattleVariables.take_damage()}[/color] выносливости. #id:be2
 	if {BattleVariables.acting_enemy.IsAttackPoisonous()}:
 		if {BattleVariables.poison_turns} == 0:
-			protagonist: Уф. Что вообще было на этом оружии? #id:be3
+			protagonist: Тьфу. Чем, блин, было намазано это оружие? #id:be3
 		jump sounds/BATTLE_POISON
 		[signal arg="shake"]
-		Теперь ты отравлен! #id:c5
+		Тебя отравили! #id:c5
 		set {BattleVariables.poison_tick_damage} += {BattleVariables.acting_enemy.GetPoisonTickDamage()}
 		set {BattleVariables.poison_turns} += {BattleVariables.acting_enemy.GetPoisonTickDuration()}
 else:
 	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
-	Ты уклонился от атаки [color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]!
+	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] атакует, но ты уворачиваешься!
 if {BattleVariables.acting_enemy.WeakenedByDefending} && {BattleVariables.player_is_defending} && {BattleVariables.acting_enemy.IsWeakened} == false:
 	set BattleVariables.acting_enemy.IsWeakened = true
 	set BattleVariables.target_index = {BattleVariables.enemy_turn_index}

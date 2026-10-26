@@ -11,29 +11,29 @@ if {Calendar.IsDayInKitchen()}:
 		update roommate [extra_data="set Expressions/Happy"]
 		roommate: Доброе утро! #id:f89
 	elif {GameVariables.relationship} >= 20:
-		roommate: ...доброе утро. #id:f8a
-	{roommate_name} сейчас тоже на кухне. #id:f8b
-protagonist: Интересно, что мне приготовить... #id:f8c
+		roommate: ...утро. #id:f8a
+	{roommate_name} тоже сейчас на кухне. #id:f8b
+protagonist: Что бы такого приготовить... #id:f8c
 label CHOICES #id:f8d
-- Готовить в одиночку #id:f8e
+- Готовить себе #id:f8e
 	set GameVariables.yuna_partnered = false
-	protagonist: Ладно, посмотрим, что я могу сообразить. #id:f8f
+	protagonist: Ладно, посмотрим, что можно сварганить. #id:f8f
 	jump z_functions/END_TO_KITCHEN
 - Готовить на двоих | [if {Calendar.IsDayInKitchen()} == true] #id:f90
 	set GameVariables.yuna_partnered = true
-	protagonist: Эй, ты голодна? Могу приготовить что-нибудь для тебя... #id:f91
-	roommate: Хмм... #id:1b0
+	protagonist: Слушай, есть хочешь? Могу и на тебя что-нибудь приготовить... #id:f91
+	roommate: Хм-м... #id:1b0
 	if {GameVariables.suspicion} >= 50:
 		update roommate [extra_data="set Expressions/Confused"]
 		[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
 		roommate: Я уже поела... #id:f92
 		roommate: ...извини. #id:f93
-		protagonist: (Похоже, она [color=ff3f49]относится ко мне с подозрением[/color].) #id:1b2
-		protagonist: (Ночью стоит быть осторожнее.) #id:1b3
+		protagonist: (Похоже, она меня [color=ff3f49]подозревает[/color].) #id:1b2
+		protagonist: (Надо быть аккуратнее по ночам.) #id:1b3
 		update roommate [extra_data="set Expressions/Default"]
 		jump CHOICES
 	else:
-		roommate: ...конечно! Что вкусненького приготовишь? #id:f94
+		roommate: ...давай! А что будешь готовить? #id:f94
 		jump z_functions/END_TO_KITCHEN
 - Назад #id:f95
 	leave roommate
@@ -41,116 +41,116 @@ label CHOICES #id:f8d
 	jump morning/START
 label REACTION #id:f96
 jump sounds/DISHES
-Ты закончил готовить блюдо. #id:f97
+Готово. #id:f97
 if {GameVariables.yuna_partnered} == true
 	set GameVariables.scene_unlocked = {Cutscenes.UnlockCutscene("event_relationship_20")}
 	join roommate [extra_data="set Expressions/Default"]
-	{roommate_name} терпеливо сидит за кухонным столом. #id:f98
+	{roommate_name} терпеливо ждёт за кухонным столом. #id:f98
 	update roommate [extra_data="set Expressions/Happy"]
 	jump sounds/VOICE_LETS_EAT
-	roommate: <Давай поедим!/Не могу дождаться, когда попробую!/Пахнет вкусно!> #id:f99
+	roommate: <Налетаем!/Не терпится попробовать!/Пахнет обалденно!> #id:f99
 if {GameVariables.recipe_rating} == 0:
-	protagonist: (В итоге я ничего не приготовил...) #id:f9a
+	protagonist: (В итоге у меня ничего не вышло...) #id:f9a
 else:
-	Ты подал [color=e5be3e]{GameVariables.recipe_name}[/color]. #id:f9b
+	Ты подаёшь на стол: [color=e5be3e]{GameVariables.recipe_name}[/color]. #id:f9b
 	jump sounds/DISHES
-	Ты откусываешь от еды. #id:f9c
+	Ты пробуешь. #id:f9c
 if {GameVariables.recipe_rating} == 0:
 	if {GameVariables.yuna_partnered} == true
 		update roommate [extra_data="set Expressions/Default"]
 		jump sounds/VOICE_UM
-		roommate: ...здесь ничего нет... #id:f9d
+		roommate: ...тут же пусто... #id:f9d
 		set GameVariables.relationship_change = 15
 		jump stat_change/RELATIONSHIP_DECREASE
 if {GameVariables.recipe_rating} == 1:
-	protagonist: (Не думаю, что смогу это съесть...) #id:f9e
+	protagonist: (Кажется, я не смогу это есть...) #id:f9e
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
-		{roommate_name} берёт кусочек со своей тарелки. #id:f9f
+		{roommate_name} пробует со своей тарелки. #id:f9f
 		update roommate [extra_data="set Expressions/Default"]
-		Ты видишь, как по её лицу пробегает гримаса... #id:fa0
-		Но она быстро берёт себя в руки... #id:fa1
-		roommate: Это... нормально. #id:fa2
-		protagonist: Можешь не приукрашивать... #id:fa3
-		protagonist: Довольно ужасно, да? #id:fa4
-		roommate: Да... так и есть... #id:fa5
-		roommate: ...по крайней мере, есть куда расти? #id:fa6
+		На её лице на мгновение мелькает гримаса... #id:fa0
+		Но она тут же берёт себя в руки... #id:fa1
+		roommate: Ну... съедобно. #id:fa2
+		protagonist: Можешь не подслащивать пилюлю... #id:fa3
+		protagonist: Гадость редкостная, да? #id:fa4
+		roommate: Да... если честно, да... #id:fa5
+		roommate: ...зато есть куда расти? #id:fa6
 		set GameVariables.relationship_change = 1
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 2:
-	protagonist: (По крайней мере, это съедобно...) #id:fa7
+	protagonist: (Ну, хотя бы съедобно...) #id:fa7
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
-		{roommate_name} берёт кусочек со своей тарелки. #id:fa8
+		{roommate_name} пробует со своей тарелки. #id:fa8
 		update roommate [extra_data="set Expressions/Default"]
-		Ты видишь, как она медленно жуёт еду, мысленно решая, приемлемо ли это. #id:fa9
+		Она медленно жуёт, будто решая про себя, можно это есть или нет. #id:fa9
 		update roommate [extra_data="set Expressions/Confused"]
-		roommate: Это... неплохо. #id:faa
-		roommate: Может, в следующий раз добавить немного больше соли? #id:fab
-		protagonist: Знаешь, учту на будущее. #id:fac
+		roommate: Ну... неплохо. #id:faa
+		roommate: Может, в следующий раз посолить побольше? #id:fab
+		protagonist: Знаешь, я это засчитаю. #id:fac
 		set GameVariables.relationship_change = 2
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 3:
-	protagonist: (Вообще-то, вполне прилично...) #id:fad
+	protagonist: (А ведь вполне прилично...) #id:fad
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
 		update roommate [extra_data="set Expressions/Default"]
-		{roommate_name} берёт кусочек со своей тарелки. #id:fae
+		{roommate_name} пробует со своей тарелки. #id:fae
 		update roommate [extra_data="set Expressions/Happy"]
-		roommate: Это хорошо! #id:faf
+		roommate: Вкусно! #id:faf
 		protagonist: Правда? #id:fb0
 		roommate: Правда. #id:fb1
 		set GameVariables.relationship_change = 3
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 4:
-	protagonist: (...это вкусно!) #id:10b8
+	protagonist: (...вкусно же!) #id:10b8
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
 		update roommate [extra_data="set Expressions/Default"]
-		{roommate_name} берёт кусочек со своей тарелки. #id:10b9
+		{roommate_name} пробует со своей тарелки. #id:10b9
 		update roommate [extra_data="set Expressions/Happy"]
-		roommate: Ого! Это восхитительно! #id:10ba
-		roommate: Ты довольно хорошо готовишь, а? #id:10bb
+		roommate: Ого! Объедение! #id:10ba
+		roommate: А ты, оказывается, классно готовишь! #id:10bb
 		set GameVariables.relationship_change = 4
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 5:
-	protagonist: (...оу!) #id:10bc
+	protagonist: (...ого!) #id:10bc
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
 		update roommate [extra_data="set Expressions/Default"]
-		{roommate_name} берёт кусочек со своей тарелки. #id:10bd
+		{roommate_name} пробует со своей тарелки. #id:10bd
 		update roommate [extra_data="set Expressions/Happy"]
-		Она на мгновение замирает. #id:10be
-		protagonist: ...и? Хорошо? #id:10bf
-		roommate: Это нехорошо... #id:10c0
-		roommate: ...это потрясающе! #id:10c1
+		Она на секунду замирает. #id:10be
+		protagonist: ...ну? Вкусно? #id:10bf
+		roommate: Не вкусно... #id:10c0
+		roommate: ...а божественно! #id:10c1
 		roommate: Я... ты... Пожалуйста, готовь почаще! #id:10c2
 		set GameVariables.relationship_change = 5
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 6:
-	protagonist: (...это объедение!)
+	protagonist: (...объедение!)
 	if {GameVariables.yuna_partnered} == true
 		jump sounds/DISHES
 		update roommate [extra_data="set Expressions/Default"]
-		{roommate_name} берёт кусочек со своей тарелки. #id:10bd
+		{roommate_name} пробует со своей тарелки. #id:10bd
 		update roommate [extra_data="set Expressions/Happy"]
 		roommate: Ням!
 		roommate: Мои вкусовые рецепторы... кажется, они меня благодарят...
 		set GameVariables.relationship_change = 6
 		jump stat_change/RELATIONSHIP_INCREASE
 if {GameVariables.recipe_rating} == 7:
-	Оргазмическая реакция #id:fb6
+	Гастрономический оргазм #id:fb6
 if {GameVariables.recipe_rating} == 8:
-	Оргазмическая реакция #id:fb7
+	Гастрономический оргазм #id:fb7
 [sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
 [color=1cd5ff]Получено {GameVariables.recipe_dexterity} опыта ловкости![/color]
 if {Cutscenes.IsSceneSeen("yosuke_3")} and not {Cutscenes.IsSceneSeen("yosuke_4")} and {Items.GetQuantity('pizza')} < 1:
 	if {GameVariables.recipe_name} == "Pizza" and {GameVariables.recipe_rating} >= 3:
 		set GameVariables.quantity = {Items.Increment('pizza')}
-		Ты упаковываешь часть [color=e5be3e]пиццы[/color] на потом.
-		protagonist: Мне стоит отнести это [color=e5be3e]Ёсуке[/color] ночью.
+		Ты откладываешь немного [color=e5be3e]пиццы[/color] на потом.
+		protagonist: Надо будет занести это [color=e5be3e]Ёсуке[/color] ночью.
 else:
 	jump sounds/GOT_ITEM
 	set GameVariables.quantity = {Items.Increment('leftovers')}
-	Ты упаковал немного еды на потом.
+	Ты получаешь [color=e5be3e]остатки еды[/color].
 jump z_functions/END_TO_UPGRADE

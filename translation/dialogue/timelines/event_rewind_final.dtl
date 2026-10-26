@@ -2,28 +2,28 @@ set GameVariables.phase = "EVENING"
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.0"]
 [wait time="1.0"]
-Сейчас вечер воскресенья. #id:2e0
+Воскресный вечер. #id:2e0
 join decorations center [extra_data="set Items/CameraBlinking"]
 label choice #id:2e1
-Кнопка на передней панели камеры мигает. #id:2e2
-- Перемотать к понедельнику #id:2e3
+На передней панели камеры мигает кнопка. #id:2e2
+- Перемотать на понедельник #id:2e3
 	Ты нажимаешь кнопку. #id:2e4
-- Завершить игру #id:2e5
-	Ты уверен, что хочешь завершить игру? (Примечание\: эта часть игры не завершена!) #id:2e6
+- Закончить игру #id:2e5
+	Точно хочешь закончить игру? (Внимание\: эта часть игры ещё не доделана!) #id:2e6
 	- Да #id:2e7
 	- Нет #id:2e8
 		jump choice
 	jump sounds/MUSIC_FADEOUT_ALL
 	[background arg="res://assets/Cutscene/Backgrounds/Black.png"]
 	leave decorations
-	Вместо этого ты решаешь лечь спать. #id:2e9
+	Ты решаешь просто лечь спать. #id:2e9
 	jump ending/
 [sound bus="Cutscene" path="res://audio/se/Bling.wav"]
 camera: [color=e5be3e]...*бип*[/color] #id:2ea
-camera: [color=e5be3e]Запрос на перемотку инициирован.[/color] #id:2eb
+camera: [color=e5be3e]Запрос на перемотку получен.[/color] #id:2eb
 [sound bus="Cutscene" path="res://audio/se/Bling.wav"]
 camera: [color=e5be3e]*бип*[/color] #id:2ec
-camera: [color=e5be3e]...запрос подтверждён.[/color] #id:2ed
+camera: [color=e5be3e]...запрос одобрен.[/color] #id:2ed
 [signal arg="start_rewind"]
 [music channel="3" fade="0.0" volume="0.0"]
 [music path="res://audio/se/Rewind.ogg" fade="0.6" volume="0.0"]
@@ -80,11 +80,11 @@ set GameVariables.phase = "MORNING"
 [wait time="2.0"]
 update decorations center [extra_data="set Items/Camera"]
 [sound bus="Cutscene" path="res://audio/se/Bling.wav"]
-camera: [color=e5be3e]Последовательность перемотки завершена.[/color] #id:2ee
-camera: [color=e5be3e]Теперь вы можете покинуть комнату.[/color] #id:2ef
-camera: [color=e5be3e]Следующая перемотка будет готова примерно через 13 дней 12 часов.[/color] #id:2f0
-camera: [color=e5be3e]Надеемся на ваше дальнейшее сотрудничество.[/color] #id:2f1
+camera: [color=e5be3e]Перемотка завершена.[/color] #id:2ee
+camera: [color=e5be3e]Можете покинуть комнату.[/color] #id:2ef
+camera: [color=e5be3e]Следующая перемотка будет доступна примерно через 13 дней 12 часов.[/color] #id:2f0
+camera: [color=e5be3e]Благодарим за то, что остаётесь с нами.[/color] #id:2f1
 leave decorations
 protagonist: Сегодня понедельник! #id:2f2
-protagonist: Давай вернёмся к делу. #id:2f3
+protagonist: Ну что, за дело. #id:2f3
 jump z_functions/END_TO_NEXT_CUTSCENE

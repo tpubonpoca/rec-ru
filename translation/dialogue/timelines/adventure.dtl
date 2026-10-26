@@ -9,14 +9,14 @@ if {GameVariables.yuna_partnered}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
 label BUS #id:25{}
 if {Items.GetQuantity('bus_pass')} > 0 && GameVariables.checkpoint_1_reached == true:
-	protagonist: У меня есть [color=ffce65]автобусный проездной[/color]. #id:100c
-	protagonist: С этим я могу сразу отправиться в следующую зону. #id:27
-	- Использовать автобусный проездной #id:28
+	protagonist: У меня есть [color=ffce65]проездной[/color]. #id:100c
+	protagonist: С ним можно сразу махнуть в следующую локацию. #id:27
+	- Проездной #id:28
 		- Пляж | [if {GameVariables.checkpoint_1_reached} == true] #id:29
 			set GameVariables.quantity = {Items.Decrement('bus_pass')}
-			Ты решаешь воспользоваться своим [color=ffce65]автобусным проездным[/color]. #id:2a
+			Ты достаёшь [color=ffce65]проездной[/color]. #id:2a
 			if {GameVariables.yuna_partnered}:
-				roommate: О, мы на автобусе? #id:2b
+				roommate: О, поедем на автобусе? #id:2b
 				roommate: Тогда погнали. #id:2c
 				leave roommate
 			[sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene"]
@@ -24,9 +24,9 @@ if {Items.GetQuantity('bus_pass')} > 0 && GameVariables.checkpoint_1_reached == 
 			jump adventure_checkpoint_level_1/BUS_LOOP
 		- Деревня | [if {GameVariables.checkpoint_2_reached} == true] #id:bb9
 			set GameVariables.quantity = {Items.Decrement('bus_pass')}
-			Ты решаешь воспользоваться своим [color=ffce65]автобусным проездным[/color]. #id:2a
+			Ты достаёшь [color=ffce65]проездной[/color]. #id:2a
 			if {GameVariables.yuna_partnered}:
-				roommate: О, мы на автобусе? #id:2b
+				roommate: О, поедем на автобусе? #id:2b
 				roommate: Тогда погнали. #id:2c
 				leave roommate
 			[sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene"]
@@ -34,9 +34,9 @@ if {Items.GetQuantity('bus_pass')} > 0 && GameVariables.checkpoint_1_reached == 
 			jump adventure_checkpoint_level_2/BUS_LOOP
 		- Лаборатория | [if {GameVariables.checkpoint_3_reached} == true]
 			set GameVariables.quantity = {Items.Decrement('bus_pass')}
-			Ты решаешь воспользоваться своим [color=ffce65]автобусным проездным[/color]. #id:2a
+			Ты достаёшь [color=ffce65]проездной[/color]. #id:2a
 			if {GameVariables.yuna_partnered}:
-				roommate: О, мы на автобусе? #id:2b
+				roommate: О, поедем на автобусе? #id:2b
 				roommate: Тогда погнали. #id:2c
 				leave roommate
 			[sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene"]
@@ -44,7 +44,7 @@ if {Items.GetQuantity('bus_pass')} > 0 && GameVariables.checkpoint_1_reached == 
 			jump adventure_checkpoint_level_3/BUS_LOOP
 		- Отмена #id:100f
 			jump BUS
-	- Начать с начала #id:2e
+	- С самого начала #id:2e
 label LOOP #id:2f
 [signal arg="default_style"]
 update roommate [extra_data="hide Decorations/Sweat"]
@@ -84,44 +84,44 @@ jump sounds/ADVENTURE_MUSIC
 			jump adventure_event/START
 		jump LOOP
 	else:
-		У тебя недостаточно выносливости, чтобы продолжать. #id:3a
+		Сил идти дальше не осталось: не хватает выносливости. #id:3a
 		jump LOOP
 - Предмет #id:3b
 	- Энергетик | [if {Items.GetQuantity('energy_drink')} > 0] #id:3c
 		set GameVariables.quantity = {Items.Decrement('energy_drink')}
 		[sound bus="Cutscene" path="res://audio/se/Drink.ogg"]
-		Ты решаешь выпить [color=e5be3e]энергетик[/color]. #id:3d
-		protagonist: Ах. Вот это в самый раз. #id:3e
+		Ты выпиваешь [color=e5be3e]энергетик[/color]. #id:3d
+		protagonist: А-ах. То, что доктор прописал. #id:3e
 		jump stat_change/STAMINA_INCREASE
 		set GameVariables.stamina = {GameVariables.change_stamina(40)}
 		if {GameVariables.yuna_partnered}:
-			roommate: Смотри не выпей слишком много! #id:40
+			roommate: Только не налегай на эту дрянь! #id:40
 		jump LOOP
 	- Противоядие | [if {Items.GetQuantity('antidote')} > 0] #id:41
 		set GameVariables.quantity = {Items.Decrement('antidote')}
 		if {BattleVariables.poison_turns} <= 0:
-			protagonist: Мне это не нужно. #id:42
+			protagonist: Мне это сейчас не нужно. #id:42
 			jump LOOP
 		[sound path="res://audio/se/Gulp.ogg" bus="Cutscene"]
-		Ты решаешь принять [color=e5be3e]противоядие[/color]. #id:43
-		protagonist: Хорошо, что оно было под рукой. #id:44
+		Ты выпиваешь [color=e5be3e]противоядие[/color]. #id:43
+		protagonist: Слава богу, оно было под рукой. #id:44
 		jump sounds/GOT_ITEM
-		Ты больше не отравлен! #id:45
+		Отравление прошло! #id:45
 		set {BattleVariables.poison_tick_damage} = 0
 		set {BattleVariables.poison_turns} = 0
 		if {GameVariables.yuna_partnered}:
-			roommate: Похоже, это помогло! Ты уже выглядишь живее. #id:46
+			roommate: О, помогло! Ты уже на человека похож. #id:46
 		jump LOOP
 	- Отмена
 		jump LOOP
 - Домой #id:48
 	label GO_HOME #id:49
-	protagonist: Думаю, на сегодня хватит. #id:4a
-	protagonist: Пора возвращаться домой. #id:4b
+	protagonist: Пожалуй, на сегодня хватит. #id:4a
+	protagonist: Пора домой. #id:4b
 	if {GameVariables.yuna_partnered}:
-		roommate: О, мы уже закончили? #id:4c
+		roommate: О, уже всё? #id:4c
 		if {BattleVariables.stage} >= 2:
-			roommate: Было весело! #id:4d
+			roommate: Было круто! #id:4d
 			set GameVariables.relationship_change = {BattleVariables.level - 1}
 			jump stat_change/RELATIONSHIP_INCREASE
 	jump END
@@ -129,7 +129,7 @@ label COLLAPSE #id:51
 [signal arg="outline_friendly"]
 [signal arg="end_adventure"]
 if {GameVariables.yuna_partnered}:
-	roommate: Эй! Осторожно! #id:52
+	roommate: Эй! Аккуратнее! #id:52
 jump passout/START
 label END #id:63
 [signal arg="end_adventure"]

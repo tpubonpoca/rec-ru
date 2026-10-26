@@ -2,90 +2,90 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.0"]
 [wait time="0.6"]
 jump sounds/DOOR_CLOSE
-protagonist: Уф, ненавижу выходить на улицу. #id:39d
-protagonist: Я просто хочу вернуться к своему компьютеру. #id:39e
+protagonist: Бля, ненавижу выходить на улицу. #id:39d
+protagonist: Хочу обратно к своему компу. #id:39e
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 [wait time="0.6"]
 join manager center
-По дороге к себе ты замечаешь Кана в гостиной. #id:39f
-protagonist: (Тьфу, сейчас мне совсем не хочется с ним говорить.) #id:3a0
-protagonist: (Я мог бы попробовать проскользнуть мимо него.) #id:3a1
-- Попытаться прокрасться #id:3a2
+По дороге к себе ты видишь, что в гостиной сидит {manager_name}. #id:39f
+protagonist: (Блин, вот с ним мне сейчас вообще не хочется болтать.) #id:3a0
+protagonist: (Можно попробовать прошмыгнуть мимо.) #id:3a1
+- Прошмыгнуть мимо #id:3a2
 	if {GameVariables.get_dexterity()} >= 4:
-		Благодаря Ловкости тебе удаётся проскользнуть мимо него без единого звука. #id:3a3
+		Ловкости хватает: ты проскальзываешь мимо, не издав ни звука. #id:3a3
 		jump stat_change/DEXTERITY
 		jump SUCCESS
 	else:
-		Ты пытаешься проскользнуть мимо {manager_name}. #id:3a7
+		Ты пытаешься прошмыгнуть так, чтобы {manager_name} тебя не заметил. #id:3a7
 		[sound bus="Cutscene" path="res://audio/se/Movement.ogg" volume="0.0"]
-		К сожалению, из-за недостатка Ловкости ты спотыкаешься, пытаясь прокрасться. #id:3a8
+		Увы, Ловкости не хватает: на полпути ты запинаешься о собственные ноги. #id:3a8
 		jump TALK
 - Поговорить с ним #id:3a9
-- Дать ему билет | [if {Items.GetQuantity('movie_ticket')} > 0] #id:fbb
+- Отдать билет | [if {Items.GetQuantity('movie_ticket')} > 0] #id:fbb
 	set GameVariables.quantity = {Items.Decrement('movie_ticket')}
 	set GameVariables.kan_at_movies = true
 	protagonist: Привет, {manager_name}! #id:3ab
-	protagonist: У меня для тебя кое-что есть! #id:3ac
-	manager: Эй, {GameVariables.player_name}! #id:fbc
+	protagonist: А у меня для тебя кое-что есть! #id:3ac
+	manager: О, привет, {GameVariables.player_name}! #id:fbc
 	manager: ... #id:3ae
 	manager: Что это? #id:3af
 	manager: [color=ffce65]Билет в кино[/color]? Мне? #id:3b0
 	manager: Спасибо! #id:3b1
-	protagonist: Без проблем. #id:3b2
-	protagonist: Кстати, тебе стоит проверить расписание сеансов. Там в последнее время ОЧЕНЬ людно. #id:3b3
-	manager: О, вот как? #id:3b4
-	manager: Тогда я сразу пойду посмотреть! #id:3b5
+	protagonist: Да не за что. #id:3b2
+	protagonist: Кстати, глянь расписание сеансов заранее. Там в последнее время ПРОСТО толпы. #id:3b3
+	manager: О, правда? #id:3b4
+	manager: Тогда пойду прямо сейчас и посмотрю! #id:3b5
 	manager: Ещё раз спасибо! #id:3b6
 	jump SUCCESS
 label TALK #id:3b7
 manager: О, привет! #id:3b8
-manager: Как дела, {GameVariables.player_name}? #id:fbd
-protagonist: (Чёрт.) #id:3ba
-protagonist: Хорошо, наверное? #id:3bb
-manager: Приятно слышать. #id:3bc
-manager: Я просто пытаюсь понять, как лучше вывести пятна с мебели в гостиной. #id:3bd
-manager: Что думаешь об этом...? #id:3be
-{manager_name} без умолку рассказывает о свойствах разных чистящих порошков. #id:3bf
+manager: Как жизнь, {GameVariables.player_name}? #id:fbd
+protagonist: (Блять.) #id:3ba
+protagonist: Нормально... наверное? #id:3bb
+manager: Вот и отлично. #id:3bc
+manager: А я тут ломаю голову, как лучше вывести пятна с мебели в гостиной. #id:3bd
+manager: Вот как ты думаешь...? #id:3be
+{manager_name} без остановки рассказывает о свойствах разных чистящих порошков. #id:3bf
 set GameVariables.stamina = {GameVariables.change_stamina(-10)}
 jump stat_change/STAMINA_DECREASE
 jump passout/CHECK_PASSOUT
-protagonist: (Это настоящая пытка.) #id:3c1
-protagonist: (Может, мне удастся выкрутиться из этого разговора?) #id:3c2
-- Попытаться остановить его #id:3c3
+protagonist: (Это натуральная пытка.) #id:3c1
+protagonist: (Может, получится как-нибудь слиться?) #id:3c2
+- Перебить его #id:3c3
 	if {GameVariables.get_charisma()} >= 2:
-		Благодаря Харизме ты легко прерываешь разговор. #id:3c4
-		protagonist: Эй, извини, но у меня на самом деле есть работа. #id:3c5
-		protagonist: Может, обсудим это в другой раз? #id:3c6
+		Харизмы хватает: ты легко сворачиваешь разговор. #id:3c4
+		protagonist: Слушай, прости, но у меня вообще-то дела. #id:3c5
+		protagonist: Давай как-нибудь в другой раз? #id:3c6
 		manager: А? #id:3c7
-		manager: О, конечно. #id:3c8
+		manager: А, ну конечно. #id:3c8
 		jump stat_change/CHARISMA
 		jump SUCCESS
 	else:
-		Как бы ты ни старался, кажется, не можешь вклиниться в разговор. #id:3cc
-		Твоей Харизмы слишком мало, чтобы заставить себя слушать. #id:3cd
-- Продолжить разговор #id:3ce
-manager: А лучше всего в этом бренде то, что... #id:3cf
-{manager_name} ещё 20 минут рассказывает о своём любимом средстве для стирки. #id:3d0
+		Как ты ни стараешься, вставить хоть слово не получается. #id:3cc
+		Не хватает Харизмы, чтобы тебя услышали. #id:3cd
+- Слушать дальше #id:3ce
+manager: А самое классное в этой марке то, что... #id:3cf
+{manager_name} ещё минут двадцать рассказывает про своё любимое средство для стирки. #id:3d0
 set GameVariables.stamina = {GameVariables.change_stamina(-10)}
 jump passout/CHECK_PASSOUT
 [sound bus="Cutscene" path="res://audio/se/Powerdown_XP.wav"]
-[color=e5be3e]Потеряна выносливость.[/color] #id:3d1
-manager: О, сколько времени! #id:3d2
-manager: Мне нужно сделать обход. Увидимся позже! #id:3d3
+Ты теряешь [color=e5be3e]выносливость[/color]. #id:3d1
+manager: Ой, сколько уже времени! #id:3d2
+manager: Мне пора на обход. Ещё увидимся! #id:3d3
 leave manager
 protagonist: ... #id:3d4
 protagonist: Это был один из худших моментов в моей жизни. #id:3d5
-protagonist: Я бы не пожелал такого опыта даже злейшему врагу. #id:3d6
-protagonist: ...Кажется, мне сейчас нужен перерыв. #id:3d7
+protagonist: Такого и врагу не пожелаешь. #id:3d6
+protagonist: ...мне срочно нужно вздремнуть. #id:3d7
 jump z_functions/END_TO_UPGRADE
 label SUCCESS #id:3d8
 leave manager
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
 protagonist: ... #id:3d9
-protagonist: Поверить не могу, что это действительно сработало. #id:3da
+protagonist: Не верится, что это прокатило. #id:3da
 protagonist: ...хех. #id:3db
-protagonist: Ладно! Пора готовиться к сегодняшнему вечеру. #id:3dc
+protagonist: Так! Пора готовиться к вечеру. #id:3dc
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

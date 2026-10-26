@@ -14,55 +14,55 @@ jump sounds/DOOR_KNOCK
 [wait time="0.5"]
 protagonist: А?
 protagonist: Погоди минутку!
-Не успеваешь ты заправить стояк обратно в трусы, как в комнату входит {roommate_name}.
+Не успеваешь ты спрятать своё хозяйство, как в комнату входит {roommate_name}.
 join roommate [extra_data="set Body/Default"]
 jump sounds/VOICE_GOOD_MORNING
-roommate: Эй, ты не видел мой учебник? Кажется, я его...
+roommate: Слушай, ты не видел мой учебник? Кажется, я его...
 update roommate [extra_data="set Expressions/Surprise"]
 jump sounds/SURPRISE
-roommate: Упс!
-roommate: Ты что... прямо сейчас дрочишь?...
-protagonist: [pause=0.5].[pause=0.5].[pause=0.5].[pause=0.5]ну да. Как видишь.
+roommate: Ой!
+roommate: Ты что... это самое?..
+protagonist: [pause=0.5].[pause=0.5].[pause=0.5].[pause=0.5]ага. Именно это.
 if {GameVariables.relationship} < 80:
 	set GameVariables.difficulty_class = 7
 	jump stat_change/ROLL_CHARISMA
 	if {GameVariables.successful_roll} == false:
 		update roommate [extra_data="set Expressions/Sad"]
-		roommate: Фу. Отвратительно.
+		roommate: Фу. Мерзость.
 		leave roommate
 		jump sounds/DOOR_CLOSE
 		protagonist: ...
 		set GameVariables.relationship_change = 5
 		jump stat_change/RELATIONSHIP_DECREASE
 	else:
-		protagonist: В смысле... я же сказал подождать минутку...
+		protagonist: Ну... я же говорил подождать минутку...
 		update roommate [extra_data="set Expressions/Confused"]
 		roommate: ...
 		update roommate [extra_data="set Expressions/Sad"]
-		roommate: ...извини.
+		roommate: ...прости.
 		leave roommate
 		jump sounds/DOOR_CLOSE
-	protagonist: Что ж, вернёмся к делу, пожалуй...
+	protagonist: Ладно, продолжим, что ли...
 	jump ENDING
 update roommate [extra_data="set Expressions/Default"]
-roommate: Эм... так...
+roommate: Эм... слушай...
 update roommate [extra_data="set Expressions/TiredHappy"]
-roommate: Тебе... помочь с этим стояком?~
+roommate: А... тебе помочь?
 leave roommate
 jump sounds/BED
 {roommate_name} толкает тебя на кровать.
 jump sounds/CLOTH
 join scene [extra_data="set Scene/HandjobExposingHome"]
-Ты на мгновение ошеломлён напористостью {roommate_name}.
-roommate: Хочешь, чтобы я остановилась?
+{roommate_name} так напирает, что ты на мгновение теряешься.
+roommate: Хочешь, чтобы я перестала?
 jump sounds/GULP
 [wait time="1.0"]
-roommate: Сиди смирно и кайфуй, я сама всё сделаю~
+roommate: Сиди и не дёргайся, я сама всё сделаю.
 leave scene
 join scene [extra_data="set Scene/HandjobClothedHome"]
-protagonist: Ого...
+protagonist: Ох...
 label HANDJOB_SLOW
-roommate: Ну как, приятно, когда я так сжимаю твой ствол?~
+roommate: Ну как тебе?
 [wait time="3.0"]
 - Так же
 	jump HANDJOB_SLOW
@@ -70,7 +70,7 @@ roommate: Ну как, приятно, когда я так сжимаю тво�
 	jump HANDJOB_MEDIUM
 label HANDJOB_MEDIUM
 [signal arg="play_medium"]
-roommate: Так приятно?
+roommate: Так хорошо?
 [wait time="3.0"]
 - Медленнее
 	jump HANDJOB_SLOW
@@ -103,13 +103,13 @@ protagonist: А! #id:f19
 leave scene
 join roommate center [extra_data="set Expressions/TiredHappy, set Decorations/Cum"]
 jump sounds/VOICE_LAUGH
-roommate: Ого... сколько же ты настрелял, весь живот мне залил.
-roommate: Мне сейчас нужно принять душ...
-protagonist: Может, я мог бы к тебе присоединиться?
+roommate: Ого... сколько же ты накопил.
+roommate: Мне теперь в душ надо...
+protagonist: Может, я с тобой?
 jump sounds/VOICE_IDIOT
 roommate: Хорошая попытка.
 roommate: ...
-roommate: Может, в следующий раз.
+roommate: Может, в другой раз.
 leave roommate
 jump sounds/DOOR_CLOSE
 [wait time="1.0"]

@@ -2,100 +2,100 @@ jump sounds/OUTDOOR_CITY
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/City_Running_2.png" fade="0"]
 join roommate [mirrored="true" extra_data="set Body/Workout, set Expressions/Tired"]
-Вы с {roommate_name} на одной из ваших обычных пробежек по городу. #id:e91
-Как обычно, ей удаётся держаться в твоём темпе... #id:e92
-..но сегодня она, похоже, немного запыхалась. #id:e93
-roommate: Ты не против, если мы ненадолго прервёмся? #id:e94
+{roommate_name} снова бежит с тобой по привычному маршруту через город. #id:e91
+Как обычно, она держит твой темп... #id:e92
+...но сегодня заметно запыхалась. #id:e93
+roommate: Может, передохнём немного? #id:e94
 update roommate [extra_data="set Decorations/Sweat"]
-roommate: Сегодня жарче, чем обычно. #id:e95
-protagonist: Конечно. Обычное место? #id:e96
+roommate: Сегодня как-то жарче обычного. #id:e95
+protagonist: Давай. На наше место? #id:e96
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Ага! #id:e97
 update roommate [extra_data="set Expressions/Tired"]
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Park.png" fade="0.6"]
 update roommate [extra_data="hide Decorations/Sweat"]
-Вы оба идёте к одному из ваших обычных мест отдыха. #id:e98
-{roommate_name} садится на парковую скамейку. #id:e99
-protagonist: Отдохни в тени. Я схожу принесу тебе чего-нибудь выпить. #id:e9a
+Вы идёте к одному из ваших привычных мест для передышки. #id:e98
+{roommate_name} садится на скамейку в парке. #id:e99
+protagonist: Посиди в теньке. Я пока схожу возьму тебе попить. #id:e9a
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Спасибо! #id:e9b
 leave roommate
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Outdoor_Bathroom.png" fade="0.6"]
-Ты подходишь к ближайшим уборным. #id:e9c
+Ты идёшь к туалетам неподалёку. #id:e9c
 join decorations [extra_data="set Items/VendingMachine"]
-У стены здания стоит торговый автомат, забитый напитками и снеками. #id:e9d
+Сбоку от здания стоит автомат с напитками и снеками. #id:e9d
 jump sounds/VENDING
 [wait time="5.0"]
-Ты берёшь свои напитки. #id:e9e
-protagonist: (Идеально ледяная. Думаю, ей это очень понравится.) #id:e9f
+Ты берёшь попить. #id:e9e
+protagonist: (Ледяная, как надо. Думаю, она оценит.) #id:e9f
 leave decorations
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Park.png" fade="0.6"]
 [wait time="1.0"]
 join roommate [mirrored="true" extra_data="set Body/Workout, set Expressions/Tired, show Decorations/Sweat"]
-Возвращаясь к {roommate_name}, ты замечаешь рядом с ней кого-то ещё. #id:ea0
+По пути обратно ты замечаешь, что {roommate_name} уже не одна. #id:ea0
 [signal arg="reset_enemies"]
 [signal arg="load_enemy_hobo"]
 join enemy [extra_data="set Container/Type/Hobo"]
 protagonist: (Хм.) #id:ea1
-protagonist: ({roommate_name} разговаривает с одним из бродяг из парка.) #id:ea2
-protagonist: (Похоже, он о чём-то возмущается.) #id:ea3
-enemy: Значит, есть такой сайт, да? #id:ea4
+protagonist: ({roommate_name} болтает с каким-то бомжом из парка.) #id:ea2
+protagonist: (Похоже, он ей что-то втирает.) #id:ea3
+enemy: Короче, есть такой сайт, прикинь? #id:ea4
 roommate: ...и? #id:ea5
-enemy: Это называется PeepTube! И, что ж, тебе платят за загрузку всяких извращённых записей! #id:ea6
-roommate: Порочный? Что ты имеешь в виду? #id:ea7
-roommate: ...можешь привести пример? #id:ea8
-enemy: Вообще-то, я хотел сказать, что ты выглядишь так извращённо— #id:ea9
+enemy: PeepTube называется! Там, короче, платят за всякие извращённые видосы! #id:ea6
+roommate: Извращённые? Это какие? #id:ea7
+roommate: ...можешь пример привести? #id:ea8
+enemy: Вообще-то я как раз хотел сказать, что ты выглядишь прям как... #id:ea9
 update roommate [extra_data="set Expressions/Surprise, hide Decorations/Sweat"]
 jump sounds/SURPRISE
-protagonist: ЧЁРТ, ЭТО БЕЗУМИЕ! #id:eaa
+protagonist: ОХРЕНЕТЬ, ВОТ ЭТО ДА! #id:eaa
 update roommate [extra_data="set Expressions/Default"]
-enemy: ...э? Ты кто? #id:eab
-Ты игнорируешь мужчину и обращаешься напрямую к {roommate_name}. #id:eac
-protagonist: Мне нужно в уборную... #id:ead
-protagonist: ...ты тоже хочешь пойти с нами? #id:eae
-{roommate_name} быстро понимает намёк. #id:eaf
+enemy: ...а? Ты кто такой? #id:eab
+Ты не обращаешь на него внимания и говоришь прямо с ней. {roommate_name} поднимает на тебя глаза. #id:eac
+protagonist: Мне надо в туалет... #id:ead
+protagonist: ...ты со мной? #id:eae
+{roommate_name} мгновенно понимает намёк. #id:eaf
 jump sounds/VOICE_AGREE
 update roommate [extra_data="set Expressions/Happy"]
-roommate: Вообще-то, да! Я хочу. #id:eb0
+roommate: Вообще-то да! Пойду. #id:eb0
 {roommate_name} поворачивается к бомжу. #id:eb1
 jump sounds/VOICE_BYE_UNFRIENDLY
-roommate: Спасибо за интересный разговор! #id:eb2
-roommate: Но, похоже, мне пора идти! #id:eb3
+roommate: Спасибо за интересную беседу! #id:eb2
+roommate: Но мне, похоже, пора! #id:eb3
 update roommate [extra_data="set Expressions/Default"]
-Прежде чем он успевает ответить, вы оба уходите. #id:eb4
+Не дав ему и слова сказать, вы уходите. #id:eb4
 leave enemy
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Outdoor_Bathroom.png" fade="0.6"]
-Ты подходишь к общественным уборным. #id:eb5
-Вы оба на миг замираете, чтобы убедиться, что бродяга за вами не пошёл. #id:eb6
+Вы подходите к общественным туалетам. #id:eb5
+Вы на секунду оглядываетесь, чтобы убедиться, что бомж за вами не увязался. #id:eb6
 update roommate [extra_data="set Expressions/Happy"]
 jump sounds/VOICE_THANK_YOU
-roommate: Спасибо за это. #id:eb7
-roommate: Тот парень действительно не понимал намёков. #id:eb8
-protagonist: Без проблем, я так и думал. #id:eb9
-protagonist: (Просто рад, что успел туда вовремя, прежде чем он разошёлся про PeepTube.) #id:eba
-protagonist: Что ж... #id:ebb
-protagonist: Раз уж мы здесь, я мог бы и в туалет сходить. #id:ebc
-roommate: Конечно! Я подожду прямо здесь. #id:ebd
+roommate: Спасибо, выручил. #id:eb7
+roommate: Этот тип вообще намёков не понимал. #id:eb8
+protagonist: Да не за что, я так и подумал. #id:eb9
+protagonist: (Хорошо, что я успел, пока он не начал рассказывать про PeepTube подробнее.) #id:eba
+protagonist: Ну... #id:ebb
+protagonist: Раз уж мы тут, схожу-ка я и правда в туалет. #id:ebc
+roommate: Давай! Я тут подожду. #id:ebd
 leave roommate
 jump sounds/DOOR_CLOSE
 jump sounds/OUTDOOR_CITY_BATHROOM
 [background arg="res://assets/Cutscene/Backgrounds/Outdoor_Bathroom_Stall.png" fade="0.6"]
-Входя в кабинку, ты закрываешь за собой дверь. #id:ebe
-protagonist: (Здесь тесновато.) #id:ebf
-protagonist: (Что ж, по крайней мере, это чисто.) #id:ec0
+Ты заходишь в кабинку и закрываешь за собой дверь. #id:ebe
+protagonist: (Тесновато тут.) #id:ebf
+protagonist: (Ну, хотя бы чисто.) #id:ec0
 jump sounds/CLOTH
-Ты тянешься вниз, чтобы спустить штаны... #id:ec1
+Ты уже берёшься за штаны... #id:ec1
 jump sounds/DOOR_CLOSE
-...но прежде чем ты успеваешь раздеться, {roommate_name} врывается в кабинку к тебе. #id:ec2
+...но не успеваешь их спустить: {roommate_name} влетает в кабинку следом за тобой. #id:ec2
 join roommate [extra_data="set Body/Workout, set Expressions/Default"]
 [wait time="1.0"]
-protagonist: Э-э, что ты делаешь? #id:ec3
-roommate: Мне послышалось, что кто-то идёт из-за угла... #id:ec4
-roommate: ...а я уж испугалась, что это тот мутный тип из парка. #id:ec5
+protagonist: Эм, ты чего? #id:ec3
+roommate: Мне показалось, кто-то идёт из-за угла... #id:ec4
+roommate: ...и я испугалась, что это тот мужик. #id:ec5
 update roommate [extra_data="show Decorations/Sweat"]
 jump sounds/VOICE_SIGH
 roommate: Я немного запаниковала, прости. #id:ec6
@@ -103,273 +103,273 @@ update roommate [extra_data="hide Decorations/Sweat"]
 protagonist: Понятно. #id:ec7
 leave roommate
 join scene [extra_data="set Scene/LookingUpClothed"]
-Вы стоите, прижавшись друг к другу, в неловком молчании. #id:ec8
-Постепенно ты осознаёшь проблему, формирующуюся в нижней части тела. #id:ec9
+Вы стоите вплотную друг к другу в неловкой тишине. #id:ec8
+И постепенно ты понимаешь, что внизу у тебя назревает проблема. #id:ec9
 jump sounds/WIGGLE
-protagonist: (Блять, только не это...) #id:eca
-protagonist: (Не сейчас, дружище, угомонись нахуй!) #id:ecb
-roommate: Здесь тесновато, да? #id:ecc
+protagonist: (Ой-ой.) #id:eca
+protagonist: (Не сейчас, {GameVariables.player_name}-младший!) #id:ecb
+roommate: Тесновато тут, да? #id:ecc
 jump sounds/VOICE_LAUGH
 Она неловко хихикает. #id:ecd
-С каждым её смешком ты чувствуешь, как её упругая попка в обтягивающих шортиках прижимается прямо к твоему стояку. #id:ece
-Естественно, твоё тело начинает реагировать ещё сильнее. #id:ecf
-Ты изо всех сил стараешься сосредоточиться на чём-то другом. #id:ed0
+С каждым её смешком её попка прижимается к тебе. #id:ece
+Само собой, твоё тело реагирует ещё сильнее. #id:ecf
+Ты изо всех сил пытаешься думать о чём-то другом. #id:ed0
 [sound path="res://audio/se/Dice.ogg" volume="-6.0"]
 [wait time="1.0"]
 [sound path="res://audio/se/RollFailure.mp3" volume="-9.0"]
-Ты не можешь. #id:ed1
+Не выходит. #id:ed1
 jump sounds/WIGGLE
-Вы оба неловко ёрзаете в кабинке. #id:ed2
-protagonist: (Она же сто процентов чувствует, как мой каменный стояк упёрся ей прямо в задницу...) #id:ed3
-protagonist: (...может, она просто пытается меня успокоить?) #id:ed4
+Вы оба неловко переминаетесь в кабинке. #id:ed2
+protagonist: (Тут уж она точно не может не заметить мою... ситуацию.) #id:ed3
+protagonist: (...может, она просто делает вид, чтобы я не смущался?) #id:ed4
 jump sounds/GRAVEL
-Единственные звуки — капли из крана и слабое шарканье кого-то, ждущего снаружи. #id:ed5
-protagonist: (Не думаю, что выдержу ещё...) #id:ed6
-protagonist: (Мне хотя бы стоит извиниться.) #id:ed7
+Слышно только, как капает кран и как кто-то тихо топчется снаружи. #id:ed5
+protagonist: (Я так больше не могу...) #id:ed6
+protagonist: (Надо хотя бы извиниться.) #id:ed7
 Ты открываешь рот... #id:ed8
-...но {roommate_name} перебивает тебя, как только ты собираешься сказать хоть слово. #id:ed9
+...но {roommate_name} опережает тебя. #id:ed9
 jump sounds/VOICE_SIGH
 roommate: Прости... #id:eda
-{roommate_name} смотрит вниз, затем снова на тебя. #id:edb
-roommate: Это выглядит... неудобно. #id:edc
-Ты чувствуешь, как от смущения к лицу приливает жар. #id:edd
-protagonist: ...Прости, я бы хотел это контролировать. #id:ede
+{roommate_name} опускает взгляд вниз, а потом снова смотрит на тебя. #id:edb
+roommate: Тебе, наверное... неудобно. #id:edc
+Ты чувствуешь, как от стыда к лицу приливает жар. #id:edd
+protagonist: ...прости, я бы рад, но он меня не слушается. #id:ede
 jump sounds/VOICE_LAUGH
-roommate: Всё в порядке. #id:edf
-Она на мгновение замирает. #id:ee0
-roommate: Хочешь помочь с этим? #id:ee1
+roommate: Ничего. #id:edf
+Она на секунду замолкает. #id:ee0
+roommate: Хочешь, помогу? #id:ee1
 protagonist: ... #id:ee2
-protagonist: ...э? #id:ee3
+protagonist: ...а? #id:ee3
 leave scene
-Одним быстрым движением она толкает тебя на сиденье унитаза. #id:ee4
+Одним движением она усаживает тебя на крышку унитаза. #id:ee4
 join scene [extra_data="set Scene/Stroking"]
-{roommate_name} начинает гладить твой член через шорты. #id:ee5
-Ты на мгновение ошеломлён её напористостью. #id:ee6
+{roommate_name} начинает гладить твой член прямо через шорты. #id:ee5
+Её напор на мгновение тебя ошарашивает. #id:ee6
 jump sounds/GRAVEL
-Снаружи уборной слышатся новые звуки. #id:ee7
-Кто-то снаружи явно теряет терпение. #id:ee8
-Ты стараешься шептать тихо, чтобы не привлекать их внимания. #id:ee9
+Снаружи снова доносятся звуки. #id:ee7
+Кто-то там явно теряет терпение. #id:ee8
+Ты стараешься говорить шёпотом, чтобы вас не услышали. #id:ee9
 protagonist: [font_size=13]...ты уверена, что это хорошая идея?[/font_size] #id:eea
-roommate: Хочешь, чтобы я остановилась? #id:eeb
+roommate: Хочешь, чтобы я перестала? #id:eeb
 jump sounds/GULP
 [wait time="1.0"]
 protagonist: ...нет. #id:eec
-roommate: Ладно, тогда позволь мне помочь. #id:eed
+roommate: Тогда не мешай мне помогать. #id:eed
 jump sounds/CLOTH
 [signal arg="play_removal"]
-{roommate_name} стягивает шорты ровно настолько, чтобы обнажить твой член. #id:eee
+{roommate_name} приспускает с тебя шорты ровно настолько, чтобы освободить член. #id:eee
 [sound bus="Cutscene" path="res://audio/voice/ee2_surprise.wav"]
 roommate: Ого. #id:eef
-roommate: Это нормально, что уже так? #id:ef0
-protagonist: Что ж... #id:ef1
+roommate: А он всегда такой... уже? #id:ef0
+protagonist: Ну... #id:ef1
 leave scene
-Прежде чем тебе удаётся вымолвить ещё слово, {roommate_name} начинает двигать руками. #id:ef2
+Не успеваешь ты сказать ни слова, как {roommate_name} начинает водить рукой. #id:ef2
 join scene [extra_data="set Scene/HandjobClothed"]
-Непроизвольный вздох вырывается из твоих лёгких. #id:ef3
-protagonist: А! #id:ef4
+У тебя невольно вырывается стон. #id:ef3
+protagonist: Ах! #id:ef4
 jump sounds/VOICE_LAUGH
-Она смеётся над твоей естественной реакцией. #id:ef5
-roommate: О, тебе нравится, а? #id:ef6
+Она тихо смеётся над твоей реакцией. #id:ef5
+roommate: О, нравится, да? #id:ef6
 [signal arg="play_medium"]
-Воодушевлённая твоей реакцией, она двигает руками ещё быстрее. #id:ef7
-protagonist: (Боже.) #id:ef8
-protagonist: (Соберись... соберись!) #id:ef9
-Ты сосредотачиваешь все силы на том, чтобы не кончить слишком быстро. #id:efa
+Раззадоренная, она двигает рукой ещё быстрее. #id:ef7
+protagonist: (Господи.) #id:ef8
+protagonist: (Держись... держись!) #id:ef9
+Ты изо всех сил стараешься не кончить слишком быстро. #id:efa
 Проходит несколько мгновений. #id:efb
 [signal arg="play_default"]
-roommate: Хмм... #id:efc
-roommate: Кажется, это занимает слишком много времени. #id:efd
-roommate: Помогло бы, если бы я показала тебе кое-что для вдохновения?~ #id:efe
+roommate: Хм-м... #id:efc
+roommate: Что-то ты долго. #id:efd
+roommate: Может, тебе нужно немного вдохновения? #id:efe
 leave scene
 jump sounds/CLOTH
-{roommate_name} приподнимает топ спортивного бра, обнажая грудь. #id:eff
+{roommate_name} задирает спортивный топ, открывая обе груди. #id:eff
 join scene [extra_data="set Scene/HandjobExposed"]
 roommate: Ну как? #id:f00
-protagonist: Боже, они просто идеальны... #id:f01
+protagonist: Просто идеально. #id:f01
 jump sounds/GRAVEL
-Шарканье снаружи внезапно становится громче. #id:f02
+Шарканье снаружи вдруг становится громче. #id:f02
 jump sounds/DOOR_KNOCK
 set GameVariables.random_name = "???"
 join alice [extra_data="set Style/Darkened"]
 random: Там кто-то есть? #id:f03
-random: Мне очень, очень, очень надо идти... как думаешь, сколько ты ещё? #id:f04
+random: Мне очень-очень-очень надо... вы там надолго? #id:f04
 protagonist: Э-э... эм... #id:f05
-protagonist: (Чёрт. Сосредоточиться трудно.) #id:f06
-protagonist: Думаю, мне понадобится ещё пара минут! #id:f07
-{roommate_name} секунду смотрит на тебя с недоумением, затем пожимает плечами. #id:f08
-Без колебаний она начинает сосать твой член. #id:f09
+protagonist: (Блин. Как тут сосредоточишься.) #id:f06
+protagonist: Мне ещё пару минут! #id:f07
+{roommate_name} пару секунд недоумённо смотрит на тебя, а потом пожимает плечами. #id:f08
+И, ни секунды не колеблясь, берёт твой член в рот. #id:f09
 update scene [extra_data="hide Scene/HandjobExposed, set Scene/Blowjob"]
-protagonist: А! #id:f0a
-random: Что это было? #id:f0b
-protagonist: Ах... блять, я сейчас кончу... #id:f0c
-random: ...Понятно. #id:f0d
+protagonist: Ах! #id:f0a
+random: Это что было? #id:f0b
+protagonist: Ах... я уже почти... выхожу. #id:f0c
+random: ...ясно. #id:f0d
 leave alice
 [signal arg="play_medium"]
 {roommate_name} начинает двигаться ещё быстрее. #id:f0e
-Ты изо всех сил стараешься подавить нарастающее ощущение под животом. #id:f0f
-protagonist: Продолжай, это так приятно. #id:f10
-Воодушевлённая твоим ответом, {roommate_name} ещё сильнее ускоряется. #id:f11
+Ты изо всех сил сдерживаешь нарастающий жар внизу живота. #id:f0f
+protagonist: Не останавливайся, это так охрененно. #id:f10
+Услышав это, {roommate_name} ускоряется ещё сильнее. #id:f11
 [signal arg="play_fast"]
-protagonist: (Охуеть...!) #id:f12
-protagonist: (Блять, как же это сладко...) #id:f13
+protagonist: (Охренеть!) #id:f12
+protagonist: (Как же хорошо...) #id:f13
 roommate: ... #id:f14
-protagonist: (Не думаю, что продержусь намного дольше.) #id:f15
-Ты пытаешься продержаться как можно дольше... #id:f16
-...но её повторяющиеся движения уже подточили твою стойкость. #id:f17
+protagonist: (Я долго не продержусь.) #id:f15
+Ты держишься из последних сил... #id:f16
+...но её ритмичные движения не оставляют тебе ни шанса. #id:f17
 [signal arg="play_climax"]
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
-Наконец ты отпускаешь огромное давление в своём теле. #id:f18
+И наконец ты сдаёшься и отпускаешь всё, что так долго сдерживал. #id:f18
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
-protagonist: А! #id:f19
+protagonist: Ах! #id:f19
 [wait time="0.5"]
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
 [wait time="2.0"]
-Ты чувствуешь, как язык {roommate_name} кружит вокруг твоего ствола... #id:f1a
+{roommate_name} скользит языком по всей длине твоего члена... #id:f1a
 jump sounds/GULP
-...и слышишь последний глоток, когда она проглатывает твою порцию. #id:f1b
+...а потом ты слышишь, как она сглатывает всё до последней капли. #id:f1b
 [signal arg="play_backup"]
-protagonist: ...вау. #id:f1c
+protagonist: ...охренеть. #id:f1c
 leave scene
 join roommate [mirrored="true" extra_data="set Body/Workout, set Expressions/TiredHappy"]
-Ты сидишь, всё ещё дрожа от накатившего блаженства. #id:f1d
+Ты сидишь, ещё не до конца придя в себя от накатившего блаженства. #id:f1d
 protagonist: Я даже не курю... #id:f1e
-protagonist: ...но, думаю, после такого мне точно нужна сигарета. #id:f1f
+protagonist: ...но после такого, кажется, сигарета нужна. #id:f1f
 jump sounds/VOICE_LAUGH
 [wait time="1.0"]
 roommate: Рада, что тебе понравилось... #id:f20
-roommate: ...но нам пора прибраться. #id:f21
-Ты ещё секунду сидишь в изумлении, затем начинаешь приходить в себя. #id:f22
-Пока ты натягиваешь штаны, {roommate_name} вытирает пол бумажными полотенцами. #id:f23
-protagonist: Можно спросить тебя кое о чём, только честно? #id:f24
+roommate: ...но давай приберёмся. #id:f21
+Ты ещё секунду сидишь, не веря в происходящее, а потом начинаешь приводить себя в порядок. #id:f22
+Пока ты натягиваешь шорты, {roommate_name} вытирает пол бумажными полотенцами. #id:f23
+protagonist: Можно спросить тебя кое о чём? Только серьёзно. #id:f24
 roommate: О чём? #id:f25
-protagonist: Обещаешь не смущаться? #id:f26
-roommate: Просто спроси. #id:f27
-protagonist: Ну... ты правда никогда не делала этого раньше? #id:f28
+protagonist: Обещаешь не обижаться? #id:f26
+roommate: Да спрашивай уже. #id:f27
+protagonist: Ну... ты уже делала это раньше? #id:f28
 jump sounds/VOICE_SIGH_DEPRESSED
 roommate: ...нет. #id:f29
 protagonist: Правда? #id:f2a
 jump sounds/VOICE_AGREE
-roommate: Да... #id:f2b
-roommate: ...это был мой самый первый раз. Каэдэ всегда меня этим подкалывает. #id:f2c
-protagonist: Почему? Она что, делает это постоянно? #id:f2d
+roommate: Ага... #id:f2b
+roommate: ...это был мой первый раз. Каэда вечно меня этим подкалывает. #id:f2c
+protagonist: В смысле? А она что, часто это делает? #id:f2d
 roommate: Понятия не имею. #id:f2e
 jump sounds/VOICE_UM
-roommate: Никогда не поймёшь, шутит она или всерьёз. Ей просто нравится меня смущать. #id:f2f
-protagonist: Серьёзно, это было настолько потрясающе... #id:f30
-protagonist: ...ты точно уверена, что у тебя не было практики? #id:f31
-Она кокетливо улыбается тебе. #id:f32
+roommate: Никогда не поймёшь, врёт она или нет. Иногда ей просто нравится меня доставать. #id:f2f
+protagonist: Просто это было так охрененно... #id:f30
+protagonist: ...ты точно никогда раньше этого не делала? #id:f31
+Она улыбается. #id:f32
 jump sounds/VOICE_LAUGH
 roommate: Иди умойся, дурачок. #id:f33
 leave roommate
 Ты подходишь к раковине. #id:f34
 [sound bus="Cutscene" path="res://audio/se/Sink.ogg"]
-Плеская воду в лицо, ты заново переживаешь каждую секунду в памяти. #id:f35
-protagonist: (Ебать... поверить не могу, что это только что произошло...) #id:f36
-protagonist: (Это был просто лучший минет в моей жизни...) #id:f37
+Плеская в лицо водой, ты снова и снова прокручиваешь в голове то, что только что было. #id:f35
+protagonist: (Не верится, что это сейчас произошло...) #id:f36
+protagonist: (Это было одно из самых охрененных ощущений в моей жизни.) #id:f37
 [wait time="1.0"]
-protagonist: (...как мне убедить её сделать это снова?) #id:f38
-protagonist: (Голова всё ещё кружится...) #id:f39
+protagonist: (...как бы уговорить её повторить?) #id:f38
+protagonist: (Голова до сих пор кружится...) #id:f39
 Ты закрываешь кран и вытираешь лицо. #id:f3a
 join roommate [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
-{roommate_name} встаёт позади тебя, у выхода. #id:f3b
-roommate: Ладно, я закончила уборку. #id:f3c
-roommate: Тогда пойдём? #id:f3d
+{roommate_name} ждёт у выхода за твоей спиной. #id:f3b
+roommate: Так, я всё убрала. #id:f3c
+roommate: Ну что, идём? #id:f3d
 {roommate_name} тянется к дверной ручке. #id:f3e
-protagonist: Погоди! #id:f3f
+protagonist: Стой! #id:f3f
 update roommate [extra_data="set Expressions/Surprise"]
-Она замирает, держа руку на полпути к двери. #id:f40
+Её рука замирает на полпути к двери. #id:f40
 jump sounds/GRAVEL
-protagonist: Другой человек всё ещё снаружи! #id:f41
-protagonist: Мы не можем выйти из уборной вместе... это будет выглядеть странно! #id:f42
+protagonist: Там же всё ещё кто-то ждёт! #id:f41
+protagonist: Нельзя выходить из туалета вдвоём... это будет выглядеть подозрительно! #id:f42
 update roommate [extra_data="set Expressions/Happy"]
-roommate: А, ты права! #id:f43
+roommate: Ой, ты прав! #id:f43
 roommate: ... #id:f44
 update roommate [extra_data="set Expressions/Confused"]
-roommate: ...И что нам тогда делать? #id:f45
-Вы оба сидите в тишине мгновение, размышляя. #id:f46
+roommate: ...и что тогда делать? #id:f45
+Вы оба на минуту замолкаете, соображая. #id:f46
 update roommate [extra_data="set Expressions/Happy"]
-roommate: ...ах! У меня есть идея! #id:f47
-roommate: Что это? #id:f48
-roommate: Ладно, тебе просто нужно выйти туда и поговорить с ней... #id:f49
-roommate: Завяжи разговор... неважно, о чём! #id:f4a
-roommate: Только постарайся отвлекать как можно сильнее! #id:f4b
-protagonist: И потом? #id:f4c
-roommate: Я выберусь, пока вы двое будете болтать! #id:f4d
-protagonist: ...Понятно. #id:f4e
-protagonist: Что ж, получше идей у меня нет. #id:f4f
-protagonist: Тогда давай! #id:f50
-roommate: Тогда быстро, пока она снова на нас не накричала! #id:f51
+roommate: ...а! Придумала! #id:f47
+roommate: Как? #id:f48
+roommate: Короче, ты выходишь и заговариваешь с ней... #id:f49
+roommate: Начни разговор... неважно о чём! #id:f4a
+roommate: Главное, отвлеки её как следует! #id:f4b
+protagonist: А потом? #id:f4c
+roommate: А я выскользну, пока вы болтаете! #id:f4d
+protagonist: ...ясно. #id:f4e
+protagonist: Ну, лучше идей у меня всё равно нет. #id:f4f
+protagonist: Давай! #id:f50
+roommate: Тогда скорее, пока она опять на нас не наорала! #id:f51
 leave roommate
 jump sounds/DOOR_OPEN
-Ты быстро открываешь дверь и выходишь... #id:f52
+Ты быстро открываешь дверь, выходишь... #id:f52
 [background arg="res://assets/Cutscene/Backgrounds/Outdoor_Bathroom.png" fade="0.6"]
 jump sounds/DOOR_CLOSE
 jump sounds/OUTDOOR_CITY
-...и поспешно закрываешь за собой дверь. #id:f53
+...и поспешно захлопываешь её за собой. #id:f53
 jump sounds/CLOTH
-Ты отряхиваешь одежду, пытаясь изобразить невозмутимость. #id:f54
-Тихо ты поднимаешь голову к ожидающей незнакомке и обращаешься к ней. #id:f55
+Ты отряхиваешь одежду, стараясь выглядеть как ни в чём не бывало. #id:f54
+Ты медленно поднимаешь голову и обращаешься к незнакомке. #id:f55
 join scene [extra_data="set Scene/Alice"]
-Перед тобой стоит женщина с белыми волосами в тёмной водолазке. #id:f56
-random: Это, должно быть, был огромный поход в туалет. #id:f57
+Перед тобой стоит беловолосая женщина в тёмной водолазке. #id:f56
+random: Ну и долго же ты срал. #id:f57
 protagonist: А? #id:f58
-protagonist: Почему ты так говоришь? #id:f59
-random: Что ж, звучало так, будто ты... #id:f5a
-protagonist: Я был... что? #id:f5b
-random: ...как будто ты там стонал. #id:f5c
+protagonist: С чего ты взяла? #id:f59
+random: Ну, звучало так, будто ты... #id:f5a
+protagonist: Будто я... что? #id:f5b
+random: ...будто ты там стонал. #id:f5c
 jump sounds/GULP
 [wait time="1.0"]
-protagonist: Думаю, тебе просто послышалось. #id:f5d
+protagonist: Тебе, наверное, послышалось. #id:f5d
 leave scene
 join alice [extra_data="set Style/Normal"]
-random: Как хочешь, чувак. #id:f5e
-Она прищуривается, наблюдая за тобой... #id:f5f
-random: Почему ты так запыхался? #id:f60
+random: Как скажешь, чувак. #id:f5e
+Она прищуривается, разглядывая тебя... #id:f5f
+random: А чего ты так запыхался? #id:f60
 [sound bus="Cutscene" path="res://audio/se/CreakingDoorClose.wav"]
-Ты слышишь, как позади тебя скрипит открывающаяся дверь. #id:f61
-protagonist: (Чёрт!) #id:f62
-protagonist: (Конечно, она должна выбрать худший момент!) #id:f63
+За твоей спиной со скрипом открывается дверь. #id:f61
+protagonist: (Блять!) #id:f62
+protagonist: (Ну конечно, надо было выбрать самый неудачный момент!) #id:f63
 join roommate [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
-random: Погоди... #id:f64
-protagonist: (О нет!) #id:f65
-Беловолосая дама поднимает одну бровь. #id:f66
+random: Погоди-ка... #id:f64
+protagonist: (Только не это!) #id:f65
+Беловолосая женщина приподнимает бровь. #id:f66
 jump sounds/SURPRISE
-random: Вы двое только что вышли из одной и той же уборной? #id:f67
-random: И что вы там, ребята, делали? #id:f68
-Ты опускаешь голову от стыда. #id:f69
-Даже самый умный человек в мире не смог бы придумать оправдание для происходящего здесь. #id:f6a
+random: Вы что, вдвоём из одной кабинки вышли? #id:f67
+random: И чем это вы там занимались? #id:f68
+Ты стыдливо опускаешь голову. #id:f69
+Тут даже самый умный человек на свете не придумал бы оправдания. #id:f6a
 jump sounds/VOICE_UM
 update roommate [extra_data="set Decorations/Sweat"]
-roommate: Эм... что ж... #id:f6b
-roommate: Так, эм... ты с— #id:f6c
-random: Уфффф! #id:f6d
-random: Знаешь что? Да какая разница — впусти меня уже! #id:f6e
+roommate: Эм... ну... #id:f6b
+roommate: Понимаете, эм... вы т... #id:f6c
+random: У-у-ух! #id:f6d
+random: Знаешь что? Да плевать, дай мне уже зайти! #id:f6e
 leave alice
 jump sounds/SURPRISE
-Она грубо отталкивает тебя и вбегает в уборную. #id:f6f
+Она грубо отпихивает тебя и влетает в туалет. #id:f6f
 jump sounds/DOOR_CLOSE
 [wait time="1.0"]
-Неловкая тишина снова повисает в воздухе. #id:f70
+В воздухе снова повисает неловкая тишина. #id:f70
 protagonist: Так... #id:f71
 protagonist: Э-э... #id:f72
-protagonist: ...хочешь повторить? #id:f73
+protagonist: ...повторим как-нибудь? #id:f73
 jump sounds/VOICE_LAUGH
 update roommate [extra_data="hide Decorations/Sweat, set Expressions/Happy"]
-roommate: В следующий раз, хорошо? #id:f74
+roommate: В следующий раз, ладно? #id:f74
 update roommate [extra_data="set Expressions/TiredHappy"]
-roommate: Обязательно прихвачу и сменную одежду. #id:f75
+roommate: И я обязательно возьму с собой сменную одежду. #id:f75
 jump sounds/GULP
 [wait time="1.0"]
 jump sounds/GOT_LEVEL
-[color=e5be3e]Твои отношения с {roommate_name} улучшились.[/color] #id:f76
+[color=e5be3e]{roommate_name}: отношения улучшились.[/color] #id:f76
 [color=e5be3e]Теперь в некоторых сценах с ней можно зайти ещё дальше![/color] #id:f77
-[color=e5be3e]В забегах ты сможешь «отдыхать» с {roommate_name} на чекпоинтах.[/color] #id:f78
+[color=e5be3e]Теперь во время забегов на чекпоинтах можно «отдохнуть» вдвоём: {roommate_name} не против.[/color] #id:f78
 leave roommate
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE

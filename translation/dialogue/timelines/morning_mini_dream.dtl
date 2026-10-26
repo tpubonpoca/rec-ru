@@ -9,86 +9,86 @@ protagonist: Что?
 Ты оборачиваешься на голос.
 [background arg="res://assets/Cutscene/Backgrounds/Beach_Closeup.png" fade="0.6"]
 join scene [extra_data="set Scene/Dream"]
-{roommate_name} лежит перед тобой на одеяле в бикини.
-roommate: Намажешь меня солнцезащитным кремом?
+Перед тобой на покрывале лежит {roommate_name}. На ней только бикини.
+roommate: Намажешь меня кремом от загара?
 protagonist: О...
 protagonist: ...э-э... конечно.
 leave scene
 join scene [extra_data="set Scene/DreamSunscreen"]
 jump sounds/SUNSCREEN
-Ты начинаешь наносить солнцезащитный крем на спину {roommate_name}.
+Ты начинаешь втирать крем в спину. {roommate_name} довольно жмурится.
 jump sounds/SUNSCREEN
-Её упругая кожа почти эластична под твоими ладонями.
+Её кожа под твоими ладонями мягкая и упругая.
 jump sounds/SUNSCREEN
-Двигая пальцами, ты время от времени задеваешь завязку купальника {roommate_name}.
-Похоже, она замечает, что лямка мешает.
+Двигая пальцами, ты то и дело задеваешь завязки купальника. {roommate_name} не возражает.
+Похоже, она замечает, что завязка мешает.
 roommate: Можешь развязать, если хочешь.
-roommate: Я имею в виду бикини.
+roommate: Купальник, в смысле.
 protagonist: О... эм... конечно...
-Ты пытаешься развязать завязку топа {roommate_name}.
+Ты пытаешься развязать завязки верха. {roommate_name} лежит не шевелясь.
 set GameVariables.difficulty_class = 4
 jump stat_change/ROLL_DEXTERITY
 if {GameVariables.successful_roll} == false:
-	Почему-то ты не можешь заставить пальцы двигаться правильно.
+	Почему-то пальцы никак не слушаются.
 	jump sounds/HEARTBEAT
-	Твоя нервозность растёт от собственной неумелости.
+	От собственной неуклюжести ты нервничаешь всё сильнее.
 	jump sounds/HEARTBEAT
-	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	Сердце колотится всё быстрее, и тебя будто утягивает прочь из этого мгновения.
 	jump DREAM_END_FAIL
 [signal arg="play_sunscreen_2"]
 jump sounds/ELASTIC
-Тебе успешно удаётся снять завязки топа бикини.
+Тебе наконец удаётся развязать верх купальника.
 jump sounds/VOICE_MMM
-roommate: Так лучше.
-protagonist: А как насчёт нижней части?
+roommate: Так-то лучше.
+protagonist: А низ?
 roommate: ...а?
-protagonist: Я не могу добраться до области вокруг твоих бёдер — стринги мешают.
+protagonist: Мне до бёдер не добраться, стринги мешают.
 jump sounds/VOICE_UM
-roommate: Хммм...
-roommate: Конечно, это нормально.
-Ты начинаешь развязывать завязку нижней части бикини.
+roommate: Хм-м...
+roommate: Ладно, давай.
+Ты принимаешься развязывать низ купальника.
 set GameVariables.difficulty_class = 6
 jump stat_change/ROLL_DEXTERITY
 if {GameVariables.successful_roll} == false:
-	Почему-то ты не можешь заставить пальцы двигаться правильно.
+	Почему-то пальцы никак не слушаются.
 	jump sounds/HEARTBEAT
-	Твоя нервозность растёт от собственной неумелости.
+	От собственной неуклюжести ты нервничаешь всё сильнее.
 	jump sounds/HEARTBEAT
-	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	Сердце колотится всё быстрее, и тебя будто утягивает прочь из этого мгновения.
 	jump DREAM_END_FAIL
 [signal arg="play_sunscreen_3"]
 jump sounds/ELASTIC
-Тебе успешно удаётся развязать нижнюю часть бикини.
+Тебе наконец удаётся развязать низ купальника.
 jump sounds/VOICE_MMM
 roommate: ...спасибо.
 jump sounds/SUNSCREEN
-Ты выдавливаешь ещё немного солнцезащитного крема на {roommate_name}.
+Ты выдавливаешь ещё немного крема. {roommate_name} вздрагивает от прохлады.
 jump sounds/SUNSCREEN
-Продолжая втирать лосьон, ты чувствуешь растущее беспокойство.
-protagonist: (...это?)
+Ты продолжаешь втирать крем, но тебя всё сильнее охватывает странная тревога.
+protagonist: (...неужели?)
 set GameVariables.difficulty_class = 8
 jump stat_change/ROLL_INTELLIGENCE
 if {GameVariables.successful_roll} == false:
-	Неприятное чувство гложет тебя, но ты не можешь понять почему.
+	Неприятное чувство не отпускает, но откуда оно, ты понять не можешь.
 	jump sounds/HEARTBEAT
-	Твоя нервозность растёт вместе с дискомфортом.
+	Чем сильнее не по себе, тем больше ты нервничаешь.
 	jump sounds/HEARTBEAT
-	С учащением пульса ты чувствуешь, как тебя уносит от этого мгновения.
+	Сердце колотится всё быстрее, и тебя будто утягивает прочь из этого мгновения.
 	jump DREAM_END_FAIL
 jump sounds/THINKING
-protagonist: (...погоди-ка...)
-protagonist: (...это сон!)
-Осознав это, ты чувствуешь, как извращённые мысли наводняют мозг.
-Ты сразу же пробуешь первую пришедшую в голову идею.
-Мгновенно ты вытаскиваешь свой член и вонзаешь его в {roommate_name}.
+protagonist: (...стоп...)
+protagonist: (...это же сон!)
+Стоит это осознать, как в голову лезут самые пошлые мысли.
+Ты тут же хватаешься за первую из них.
+Ты мгновенно достаёшь член и входишь в неё. {roommate_name} вскрикивает.
 leave scene
 join scene [extra_data="set Scene/DreamPenetration"]
 roommate: Эй!
-roommate: Погоди... мгновение!
+roommate: Погоди... секунду!
 [signal arg="play_sex_fast"]
 Ты яростно вбиваешься в неё.
-protagonist: (Быстрее... пока я... не проснулся...!)
-roommate: Что... ты... делаешь?!
+protagonist: (Быстрее... пока... не проснулся...!)
+roommate: Ты... что... делаешь?!
 leave scene
 jump sounds/MUSIC_FADEOUT_ALL
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
@@ -99,7 +99,7 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 protagonist: ...
 jump sounds/RUSTLE
 Ты заглядываешь под одеяло.
-protagonist: ...Наверное, стоит сменить простыни.
+protagonist: ...надо бы поменять простыню.
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE
 label DREAM_END_FAIL
@@ -111,7 +111,7 @@ jump sounds/MUSIC_FADEOUT_ALL
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
 protagonist: ...
-protagonist: ...какой сон...
-protagonist: ...Интересно, смогу ли я зайти дальше в следующий раз?
+protagonist: ...вот это сон...
+protagonist: ...интересно, в следующий раз получится зайти дальше?
 jump stat_change/LUST_INCREASE
 jump z_functions/END_TO_UPGRADE

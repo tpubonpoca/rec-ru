@@ -1,47 +1,47 @@
 set {GameVariables.party_stage} = 3
 jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
-Ты оказываешься в игре в пив-понг с {roommate_name}, Каэдой и ещё одним человеком. #id:990
+Каким-то образом ты оказываешься за столом для бирпонга. Против тебя {roommate_name} с Каэдой, а с тобой ещё один парень. #id:990
 join enemy [extra_data="set Container/Type/Dude" mirrored="true"]
-{roommate_name} и Каэда в одной команде, а ты и качок — в другой. #id:991
+{roommate_name} и Каэда играют вместе, а ты в команде с качком. #id:991
 join friend
 join roommate
 jump sounds/PONG_HIT
 [wait time="1.0"]
 [signal arg="reset_enemies"]
 [signal arg="load_enemy_bro"]
-enemy: В точку! #id:992
+enemy: Есть попадание! #id:992
 enemy: Погнали, бро! #id:993
-roommate: Тебе просто повезло. #id:994
-friend: Хочешь немного разнообразить? #id:995
-protagonist: Что? #id:996
-friend: Ну, у нас осталась всего одна чашка. #id:997
-friend: На этом этапе нам никак не победить... #id:998
-friend: ...особенно с учётом стрельбы моего напарника. #id:999
+roommate: Просто повезло. #id:994
+friend: Может, добавим перчинки? #id:995
+protagonist: Чего? #id:996
+friend: Ну, у нас остался всего один стакан. #id:997
+friend: Нам уже никак не выиграть... #id:998
+friend: ...особенно с тем, как кидает моя напарница. #id:999
 update roommate [extra_data="set Expressions/Sad"]
 roommate: Эй! #id:99a
-friend: Ещё три броска; за каждый промах ты должен выпить. #id:99b
-friend: И если ты не сможешь попасть к трём, мы побеждаем автоматически. #id:99c
-protagonist: Интересно... а что с этого нам? #id:99d
+friend: Ещё три броска. За каждый промах пьёшь. #id:99b
+friend: А если за три броска не попадёшь, мы выигрываем автоматом. #id:99c
+protagonist: Интересно... а нам с этого что? #id:99d
 Каэда наклоняется к тебе. #id:99e
-friend: Если мы проиграем... тогда я пришлю тебе несколько своих... личных фотографий. #id:99f
-Каэда подмигивает тебе и отступает. #id:9a0
-enemy: Что она сказала, бро? #id:9a1
-Ты чувствуешь, как на шее выступает нервный пот. #id:9a2
-protagonist: Договорились. #id:9a3
+friend: Если мы проиграем... я пришлю тебе парочку своих... личных фоточек. #id:99f
+Каэда подмигивает тебе и отстраняется. #id:9a0
+enemy: Чё она сказала, бро? #id:9a1
+Ты чувствуешь, как по шее выступает холодный пот. #id:9a2
+protagonist: Идёт. #id:9a3
 enemy: Бро? #id:9a4
-protagonist: Расскажу потом. Давай сначала победим. #id:9a5
-enemy: Как скажешь, бро. Но лучше бы это было что-то стоящее, бро! #id:9a6
-friend: Так — кто тогда бросает? #id:9a7
+protagonist: Потом расскажу. Сначала давай выиграем. #id:9a5
+enemy: Как скажешь, бро. Но лучше б это было что-то стоящее, бро! #id:9a6
+friend: Так, кто бросает? #id:9a7
 - Бросить самому #id:9a8
-	Используя Ловкость, ты решаешь сам бросить мячик для пинг-понга. #id:9a9
+	Ты решаешь положиться на свою Ловкость и бросить мячик сам. #id:9a9
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_DEXTERITY
 	if {GameVariables.successful_roll} == false:
 		jump sounds/PONG_MISS
-		К сожалению, твой бросок уходит мимо. #id:9aa
-		friend: Ты промахнулся! Выпей. #id:9ab
-		protagonist: Уф. До дна. #id:9ac
+		Увы, бросок уходит мимо. #id:9aa
+		friend: Мимо! Пей. #id:9ab
+		protagonist: Тьфу. До дна. #id:9ac
 		jump sounds/CLINK
 		[wait time="1.0"]
 		jump sounds/GULP
@@ -51,29 +51,29 @@ friend: Так — кто тогда бросает? #id:9a7
 		jump SHOT_2
 	else:
 		jump sounds/PONG_HIT
-		Ты попадаешь мячом прямо в их стакан! #id:9ad
+		Мячик влетает точно в их стакан! #id:9ad
 		jump SUCCESSFUL_SHOT
-- Дать бросить напарнику #id:9ae
-	Ты решаешь дать напарнику бросить мяч. #id:9af
+- Отдать бросок напарнику #id:9ae
+	Ты решаешь, что бросать будет напарник. #id:9af
 	if {GameVariables.get_random_number(100)} < 10:
 		jump SUCCESSFUL_SHOT
 	jump sounds/PONG_MISS
-	К сожалению, он промахивается. #id:9b0
-	enemy: Без проблем. До дна! #id:9b1
+	Увы, он мажет. #id:9b0
+	enemy: Не вопрос. До дна! #id:9b1
 	jump sounds/CLINK
 	[wait time="1.0"]
 	jump sounds/GULP
 label SHOT_2 #id:9b2
-friend: Похоже, кое-кто начинает нервничать. #id:9b3
-Ты делаешь глубокий вдох и собираешься для второго броска. #id:9b4
+friend: Похоже, кто-то начинает нервничать. #id:9b3
+Ты делаешь глубокий вдох и собираешься перед вторым броском. #id:9b4
 - Бросить самому #id:9b5
-	Ты решаешь бросить мячик для пинг-понга сам. #id:9b6
+	Ты решаешь бросать сам. #id:9b6
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_DEXTERITY
 	if {GameVariables.successful_roll} == false:
 		jump sounds/PONG_MISS
-		К сожалению, твой бросок уходит ещё шире. #id:9b7
-		roommate: Ты промахнулся! Выпей ещё! #id:9b8
+		Увы, на этот раз мимо ещё сильнее. #id:9b7
+		roommate: Мимо! Пей ещё! #id:9b8
 		protagonist: Ладно... #id:9b9
 		jump sounds/CLINK
 		[wait time="1.0"]
@@ -84,34 +84,34 @@ friend: Похоже, кое-кто начинает нервничать. #id:9
 		jump SHOT_3
 	else:
 		jump sounds/PONG_HIT
-		Ты попадаешь мячом прямо в их стакан! #id:9ba
+		Мячик влетает точно в их стакан! #id:9ba
 		jump SUCCESSFUL_SHOT
-- Дать бросить напарнику #id:9bb
-	Ты решаешь дать напарнику бросить мяч. #id:9bc
+- Отдать бросок напарнику #id:9bb
+	Ты решаешь, что бросать будет напарник. #id:9bc
 	if {GameVariables.get_random_number(100)} < 10:
 		jump SUCCESSFUL_SHOT
 	jump sounds/PONG_MISS
-	К сожалению, на этот раз он промахивается. #id:9bd
-	enemy: Виноват, чувак. #id:9be
-	Он снова делает глоток из стакана в руке. #id:9bf
+	Увы, на этот раз он мажет. #id:9bd
+	enemy: Сорян, чувак. #id:9be
+	Он делает ещё глоток из своего стакана. #id:9bf
 	jump sounds/CLINK
 	[wait time="1.0"]
 	jump sounds/GULP
 label SHOT_3 #id:9c0
 update roommate [extra_data="set Expressions/Surprise"]
-Глаза {roommate_name} расширяются при мысли о победе в пивном пинг-понге. #id:9c1
+{roommate_name} широко распахивает глаза: победа уже так близко. #id:9c1
 friend: Последний бросок... не промахнись! #id:9c2
 jump sounds/HEARTBEAT
-Ты делаешь глубокий вдох и собираешься для последнего броска. #id:9c3
+Ты делаешь глубокий вдох и собираешься перед последним броском. #id:9c3
 - Бросить самому #id:9c4
-	Ты решаешь бросить мячик для пинг-понга сам. #id:9c5
+	Ты решаешь бросать сам. #id:9c5
 	set GameVariables.difficulty_class = 11
 	jump stat_change/ROLL_DEXTERITY
 	if {GameVariables.successful_roll} == false:
 		jump sounds/PONG_MISS
-		К сожалению, твой бросок уходит ещё шире. #id:9c6
-		friend: Ты промахнулся! Ещё бросок! #id:9c7
-		protagonist: Уф... #id:9c8
+		Увы, мимо, и ещё сильнее прежнего. #id:9c6
+		friend: Мимо! Пей! #id:9c7
+		protagonist: Тьфу... #id:9c8
 		jump sounds/CLINK
 		[wait time="1.0"]
 		jump sounds/GULP
@@ -121,16 +121,16 @@ jump sounds/HEARTBEAT
 		jump LOST
 	else:
 		jump sounds/PONG_HIT
-		Ты попадаешь мячом прямо в их стакан! #id:9c9
+		Мячик влетает точно в их стакан! #id:9c9
 		jump SUCCESSFUL_SHOT
-- Дать бросить напарнику #id:9ca
-	Ты решаешь дать напарнику бросить мяч. #id:9cb
+- Отдать бросок напарнику #id:9ca
+	Ты решаешь, что бросать будет напарник. #id:9cb
 	if {GameVariables.get_random_number(100)} < 10:
 		jump SUCCESSFUL_SHOT
 	jump sounds/PONG_MISS
-	К сожалению, он промахивается последним броском. #id:9cc
-	enemy: Извини за это, мужик. #id:9cd
-	Он опускает голову от стыда и допивает. #id:9ce
+	Увы, последний бросок он тоже мажет. #id:9cc
+	enemy: Сорян, мужик. #id:9cd
+	Он виновато опускает голову и допивает свой стакан. #id:9ce
 	jump sounds/CLINK
 	[wait time="1.0"]
 	jump sounds/GULP
@@ -140,40 +140,40 @@ jump sounds/HEARTBEAT
 	jump sounds/GULP
 label LOST #id:9cf
 update roommate [extra_data="set Expressions/Happy"]
-enemy: Поверить не могу, что мы проиграли! Тьфу. #id:9d0
-enemy: Это отстой! #id:9d1
+enemy: Не верю, что мы продули! Тьфу. #id:9d0
+enemy: Отстой! #id:9d1
 leave enemy
 jump sounds/MOVE_INDOORS
-Мускулистый мужчина уходит в приступе ярости. #id:9d2
-Ты чувствуешь взгляд остальных в комнате. #id:9d3
-Они обрадовались ставке — но теперь все понимают, что этого уже не случится. #id:9d4
+Качок в сердцах уходит прочь. #id:9d2
+Ты чувствуешь на себе взгляды всех вокруг. #id:9d3
+Все уже предвкушали, что будет со ставкой, но теперь понимают: ничего не будет. #id:9d4
 jump stat_change/IMPRESSION_DECREASE
-friend: Жаль. И вы, ребята, были так близки. #id:9d5
-friend: Что ж, может, в следующий раз! #id:9d6
+friend: Жаль. А ведь вы были так близко. #id:9d5
+friend: Ну, может, в следующий раз! #id:9d6
 jump party_ending/
 label SUCCESSFUL_SHOT #id:9d7
-Ты чувствуешь, как волнение в комнате нарастает. #id:9d8
+Ты чувствуешь, как публика оживляется. #id:9d8
 [signal arg="unlock_party_cutscene"]
 jump stat_change/IMPRESSION_INCREASE
-roommate: Нееееет! #id:9d9
-enemy: Погнали, бро! #id:9da
-friend: Что ж, обещание есть обещание. #id:9db
+roommate: Не-е-ет! #id:9d9
+enemy: Есть, бро! #id:9da
+friend: Ну, уговор есть уговор. #id:9db
 Каэда достаёт телефон. #id:9dc
 jump sounds/PHONE_UNLOCK
 roommate: Погоди... погоди секунду... #id:9dd
-roommate: Ты собираешься это всем показать? #id:9de
+roommate: Ты что, всем это покажешь? #id:9de
 jump sounds/PHONE_BUZZ
 [wait time="1.0"]
 jump sounds/PHONE_BUZZ
-Через мгновение твой телефон вибрирует. #id:9df
+Через секунду твой телефон вибрирует. #id:9df
 jump sounds/PHONE_UNLOCK
 join decorations [extra_data="set Items/PhoneAss"]
-Каэда прислала тебе своё фото, судя по всему, из раздевалки. #id:9e0
-Похоже, на фото она примеряет какое-то бельё. #id:9e1
-enemy: Бро, ты покажешь остальным? #id:9e2
+Каэда прислала тебе фото. Похоже, снято в примерочной. #id:9e0
+На снимке она примеряет откровенное кружевное бельё. #id:9e1
+enemy: Бро, а остальным покажешь? #id:9e2
 leave decorations
 protagonist: Эм... #id:9e3
 jump sounds/MOVE_INDOORS
-Ты выбегаешь из комнаты, не закончив фразу. #id:9e4
-enemy: Взять его! #id:9e5
+Не договорив, ты выбегаешь из комнаты. #id:9e4
+enemy: Держи его! #id:9e5
 jump party_ending/

@@ -54,18 +54,18 @@ set GameVariables.intelligence_total_xp += {GameVariables.get_study_gains()}
 return
 label DRUNK_INCREASE #id:886
 [sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
-Твоё опьянение возросло.{GameVariables.take_drink()} #id:ba1
+Ты пьянеешь.{GameVariables.take_drink()} #id:ba1
 {GameVariables.get_drunkenness_text()} #id:ba2
 return
 label IMPRESSION_INCREASE #id:889
 set GameVariables.impression += 1
 [sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
-Твоё Впечатление на других улучшилось! #id:88a
+Ты производишь на окружающих впечатление получше! #id:88a
 return
 label IMPRESSION_DECREASE #id:88b
 set GameVariables.impression -= 1
 [sound path="res://audio/se/Powerdown_XP.wav" volume="-6.0" bus="Cutscene"]
-Твоё Впечатление на других ухудшилось. #id:88c
+Ты производишь на окружающих впечатление похуже. #id:88c
 return
 label LUST_INCREASE
 [sound bus="Cutscene" path="res://audio/se/Thinking.ogg"]
@@ -85,17 +85,17 @@ label STAMINA_LIMIT_INCREASE #id:562
 return
 label STAMINA_DECREASE #id:564
 [sound path="res://audio/se/Powerdown_XP.wav" volume="-6.0" bus="Cutscene"]
-Выносливость потеряна. #id:565
+Выносливость падает. #id:565
 if {GameVariables.stamina} <= 0:
 	set GameVariables.stamina = 0
 return
 label RELATIONSHIP_DECREASE #id:566
 [sound path="res://audio/se/Powerdown_XP.wav" bus="Cutscene"]
-[color=ff3f49]Потеряно {GameVariables.decrease_relationship()} опыта отношений.[/color] #id:ba3
+[color=ff3f49]Отношения: −{GameVariables.decrease_relationship()} опыта.[/color] #id:ba3
 return
 label RELATIONSHIP_INCREASE #id:568
 [sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
-[color=e5be3e]Получено {GameVariables.increase_relationship()} опыта отношений.[/color] #id:ba4
+[color=e5be3e]Отношения: +{GameVariables.increase_relationship()} опыта.[/color] #id:ba4
 return
 label RELATIONSHIP_DOG_INCREASE
 [sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
@@ -104,8 +104,8 @@ return
 label ROLL_CHARISMA #id:ba5
 [sound path="res://audio/se/Dice.ogg" volume="-6.0"]
 [wait time="0.5"]
-Ты выбросил [color=ff934d]{GameVariables.roll_charisma()}[/color]. Твой итог: [color=ff934d]{GameVariables.dice_result_total}[/color]. #id:ba6
-Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:ba7
+Выпало [color=ff934d]{GameVariables.roll_charisma()}[/color]. Итого: [color=ff934d]{GameVariables.dice_result_total}[/color]. #id:ba6
+Для успеха нужно [color=ffce65]{GameVariables.difficulty_class}[/color] или больше. #id:ba7
 if {GameVariables.successful_roll}:
 	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
 	Результат\: [color=ffce65]Успех![/color] #id:ba8
@@ -116,8 +116,8 @@ return
 label ROLL_DEXTERITY #id:baa
 [sound path="res://audio/se/Dice.ogg" volume="-6.0"]
 [wait time="0.5"]
-Ты выбросил [color=1cd5ff]{GameVariables.roll_dexterity()}[/color]. Твой итог: [color=1cd5ff]{GameVariables.dice_result_total}[/color]. #id:bab
-Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:bac
+Выпало [color=1cd5ff]{GameVariables.roll_dexterity()}[/color]. Итого: [color=1cd5ff]{GameVariables.dice_result_total}[/color]. #id:bab
+Для успеха нужно [color=ffce65]{GameVariables.difficulty_class}[/color] или больше. #id:bac
 if {GameVariables.successful_roll}:
 	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
 	Результат\: [color=ffce65]Успех![/color] #id:bad
@@ -128,8 +128,8 @@ return
 label ROLL_INTELLIGENCE #id:baf
 [sound path="res://audio/se/Dice.ogg" volume="-6.0"]
 [wait time="0.5"]
-Ты выбросил [color=d3ff75]{GameVariables.roll_intelligence()}[/color]. Твой итог: [color=d3ff75]{GameVariables.dice_result_total}[/color]. #id:bb0
-Тебе нужен [color=ffce65]{GameVariables.difficulty_class}[/color] или выше, чтобы преуспеть. #id:bb1
+Выпало [color=d3ff75]{GameVariables.roll_intelligence()}[/color]. Итого: [color=d3ff75]{GameVariables.dice_result_total}[/color]. #id:bb0
+Для успеха нужно [color=ffce65]{GameVariables.difficulty_class}[/color] или больше. #id:bb1
 if {GameVariables.successful_roll}:
 	[sound path="res://audio/se/RollSuccess.mp3" volume="-6.0"]
 	Результат\: [color=ffce65]Успех![/color] #id:bb2
