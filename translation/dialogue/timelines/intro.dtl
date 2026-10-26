@@ -44,7 +44,7 @@ leave decorations
 jump sounds/THINKING
 protagonist: (Меня зовут {GameVariables.player_name}.) #id:f7f
 protagonist: (Я нищий студент-киношник, третий курс.) #id:304
-protagonist: (Живу в общажной квартире от универа, вместе с соседями.) #id:305
+protagonist: (Живу в универской квартире вместе с соседями.) #id:305
 protagonist: (Если не считать вечного безденежья, жизнь, в принципе, норм.) #id:306
 protagonist: ... #id:307
 protagonist: Наверное, можно и встать... #id:308
@@ -106,10 +106,10 @@ protagonist: ... #id:322
 protagonist: ...погоди, тут ещё что-то. #id:323
 jump sounds/PAGE_FLIP
 join decorations center [extra_data="set Items/Letter"]
-[color=e5be3e]Смотри вложение в посылке и приложенный QR-код.[/color] #id:324
+[color=e5be3e]Посмотри, что в посылке, и отсканируй QR-код.[/color] #id:324
 [color=e5be3e]Возможно, это поможет в твоей ситуации.[/color] #id:325
 [color=e5be3e]Надеюсь, поможет. —X[/color] #id:326
-[color=e5be3e]P.S. Я встроил в камеру функцию отката, но ей нужно время на зарядку.[/color] #id:327
+[color=e5be3e]P.S. Я встроил в камеру дополнительную функцию перемотки, но ей нужно время на зарядку.[/color] #id:327
 [color=e5be3e]Уверен, ты разберёшься, когда придёт время.[/color] #id:328
 leave decorations
 protagonist: ... #id:329

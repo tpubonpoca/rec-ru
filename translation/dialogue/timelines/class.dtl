@@ -35,7 +35,7 @@ protagonist: А может, даже поем что-нибудь, кроме л
 protagonist: ... #id:17a
 leave decorations
 [sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
-protagonist: (прости, {roommate_name}.) #id:17b
+protagonist: (Прости, {roommate_name}.) #id:17b
 protagonist: (Надеюсь, ты поймёшь.) #id:17c
 jump sounds/THINKING
 Показать обучение? #id:17d
@@ -93,7 +93,7 @@ protagonist: ...а? {roommate_name}? #id:ca7
 protagonist: Ты тоже здесь? После всего, что ты мне наговорила про мои занятия для отстающих? #id:ca8
 update roommate [extra_data="set Expressions/Confused"]
 jump sounds/VOICE_IDIOT
-roommate: Прошу прощения? #id:ca9
+roommate: Чего-чего? #id:ca9
 roommate: Я хожу сюда, потому что САМА так решила... #id:caa
 roommate: ...а ты здесь, потому что заваливаешь почти все предметы. #id:cab
 roommate: Это НЕ одно и то же. #id:cac
@@ -141,7 +141,7 @@ alice: Меня зовут Алиса. На время каникул я ваш 
 alice: В обычное время я преподаю здесь, в Университете Eden, космическую коммерцию. #id:cc4
 Беловолосая преподавательница обводит аудиторию строгим взглядом. #id:cc5
 alice: Однако из-за некоторых... скажем так, «происшествий»... #id:cc6
-alice: ...руководство сочло нужным, чтобы в этом году курс для отстающих вела именно я. #id:cc7
+alice: ...руководство решило, что в этом году курс для отстающих буду вести именно я. #id:cc7
 alice: [font_size=13]Мол, это научит меня «терпению».[/font_size] #id:cc8
 protagonist: (По-моему, ей самой не помешал бы курс управления гневом...) #id:cc9
 alice: Так. Идём дальше. #id:cca

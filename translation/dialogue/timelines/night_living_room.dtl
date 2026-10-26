@@ -95,7 +95,7 @@ label GIVE_ITEM #id:199
 		roommate: Оставь себе, я не хочу пить. #id:1a2
 		protagonist: (Похоже, мы ещё недостаточно близки для такого.) #id:1a3
 		jump GIVE_ITEM
-- Дать обезболивающий бальзам для губ | [if {Items.GetQuantity('numbing_chapstick')} > 0 && {GameVariables.applied_numbing_chapstick} == false] #id:1a4
+- Дать бальзам для губ | [if {Items.GetQuantity('numbing_chapstick')} > 0 && {GameVariables.applied_numbing_chapstick} == false] #id:1a4
 	roommate: Это бальзам для губ? #id:1a5
 	jump POSSIBLE_SUSPICION
 	if {GameVariables.relationship} >= 40:
