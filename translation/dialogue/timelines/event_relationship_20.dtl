@@ -2,7 +2,7 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.0"]
 [sound bus="Cutscene" path="res://audio/se/Dishes.ogg" volume="-6.0"]
 protagonist: ... #id:1bd
-Ты смотришь на миску лапши со вкусом говядины и думаешь, какие жизненные решения тебя к этому привели. #id:1be
+Ты смотришь на миску говяжьей лапши и думаешь, какие жизненные решения привели тебя сюда. #id:1be
 protagonist: Бе-е. #id:1bf
 protagonist: Как же меня задолбала эта лапша. #id:1c0
 protagonist: ... #id:1c1

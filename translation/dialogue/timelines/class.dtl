@@ -93,7 +93,7 @@ protagonist: ...а? {roommate_name}? #id:ca7
 protagonist: Ты тоже здесь? После всего, что ты мне наговорила про мои занятия для отстающих? #id:ca8
 update roommate [extra_data="set Expressions/Confused"]
 jump sounds/VOICE_IDIOT
-roommate: Чего-чего? #id:ca9
+roommate: Что, прости? #id:ca9
 roommate: Я хожу сюда, потому что САМА так решила... #id:caa
 roommate: ...а ты здесь, потому что заваливаешь почти все предметы. #id:cab
 roommate: Это НЕ одно и то же. #id:cac

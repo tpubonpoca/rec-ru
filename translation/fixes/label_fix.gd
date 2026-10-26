@@ -41,6 +41,12 @@ const EXACT := {
 	"recent comments": "последние комментарии",
 	"request accepted": "запрос принят",
 	"served nothing!": "Ничего не подано!",
+	# Strings built in C#
+	"shift over!": "Смена окончена!",
+	"shift ended early!": "Смена завершена досрочно!",
+	"I... can't... move...": "Я... не... могу... двигаться...",
+	"Unlocked all cutscenes!": "Все сцены открыты!",
+	"in 0 days": "сегодня",
 }
 
 const SUB := {
@@ -89,7 +95,7 @@ const SUB := {
 	"DAY#": "ДЕНЬ #",
 	"Times Upgraded:": "Улучшено:",
 	"Current Bonus:": "Текущий бонус:",
-	"secs": " сек.",
+	" secs filmed": " сек. снято",
 	" Rating": " Рейтинг",
 	"stars": "звёзд",
 	"request fulfilled!": "запрос выполнен!",
@@ -122,6 +128,26 @@ const SUB := {
 	"in 5 days": "через 5 дней",
 	"in 6 days": "через 6 дней",
 	"in 7 days": "через 7 дней",
+	"in 8 days": "через 8 дней",
+	"in 9 days": "через 9 дней",
+	"in 10 days": "через 10 дней",
+	"in 11 days": "через 11 дней",
+	"in 12 days": "через 12 дней",
+	"in 13 days": "через 13 дней",
+	"in 14 days": "через 14 дней",
+
+	# Food buff description (StatusEffects.cs)
+	"You ate a hearty meal with extra benefits.": "Ты плотно поел, и это даёт бонусы.",
+	"% stamina recovered from sleeping.": "% к восстановлению выносливости во сне.",
+	"% pleasure increase during sexual activities.": "% к удовольствию при сексе.",
+	"% natural wakefulness decrease during night sequences.": "% к естественному снижению бодрости в ночных сценах.",
+	" base damage increase.": " к базовому урону.",
+	" stamina limit increase per jog cycle.": " к пределу выносливости за круг пробежки.",
+
+	# Quiz texts that do not fit the dialogue window, and a category name
+	"В это время солнечный свет проходит через большую толщу земной атмосферы, что делает его мягче и теплее.": "Свет идёт сквозь толстый слой атмосферы и становится мягче и теплее.",
+	"Фотографы часто гоняются за «золотым часом», потому что качество света в это время естественно льстит...": "Фотографы обожают «золотой час»: свет в это время сам по себе льстит...",
+	"Кино и Фотография": "Кино и фотография",
 
 	# Upgrade requirements & skill names
 	"(Requires: ": "(Требуется: ",
@@ -259,10 +285,37 @@ const DAY_PREFIXES := {
 }
 
 var _t := 0.0
+var _vt := 0.0
+var _rx_rules: Array = []
+
+func _build_rx() -> void:
+	for r in [
+		[r"(\d)\s*secs", "$1 сек."],
+		[r"(\d)\s*Points", "$1 очк."],
+		[r"(\+\d+)s$", "$1 с"],
+		[r"^(\d\d:\d\d) [AP]M$", "$1"],
+	]:
+		var rx := RegEx.new()
+		if rx.compile(r[0]) == OK:
+			_rx_rules.append([rx, r[1]])
 
 func _ready() -> void:
+	_build_rx()
 	_repair_saves()
 	_init_dialogic_vars()
+	_init_player_name()
+	_disable_key_cheat()
+
+# The AMOGUS cheat is applied from Settings only; GameVariables must not read it from raw key presses.
+func _disable_key_cheat() -> void:
+	var gv = get_node_or_null("/root/GameVariables")
+	if gv != null and gv.is_processing_unhandled_input():
+		gv.set_process_unhandled_input(false)
+
+func _init_player_name() -> void:
+	var gv = get_node_or_null("/root/GameVariables")
+	if gv != null and "player_name" in gv and str(gv.player_name) == "Nita":
+		gv.player_name = "Нита"
 
 func _init_dialogic_vars() -> void:
 	var dlg = get_node_or_null("/root/Dialogic")
@@ -307,11 +360,7 @@ func _repair_saves() -> void:
 				w.store_string(JSON.stringify(data))
 				w.close()
 
-func _process(delta: float) -> void:
-	_t += delta
-	if _t < 0.05: return
-	_t = 0.0
-
+func _fix_dialogic_vars() -> void:
 	var dlg = get_node_or_null("/root/Dialogic")
 	if dlg != null and "VAR" in dlg and dlg.VAR != null:
 		if dlg.VAR.has_method("get_variable") and dlg.VAR.has_method("set_variable"):
@@ -319,6 +368,17 @@ func _process(delta: float) -> void:
 				dlg.VAR.set_variable("roommate_name", "Юна")
 			if dlg.VAR.get_variable("manager_name") == "Kan":
 				dlg.VAR.set_variable("manager_name", "Кан")
+
+func _process(delta: float) -> void:
+	_t += delta
+	if _t < 0.05: return
+	_t = 0.0
+
+	_vt += 0.05
+	if _vt >= 1.0:
+		_vt = 0.0
+		_fix_dialogic_vars()
+		_disable_key_cheat()
 
 	var stack := [get_tree().root]
 	var n := 0
@@ -372,6 +432,8 @@ func _process(delta: float) -> void:
 						break
 				for k in SUB.keys():
 					if nt.contains(k): nt = nt.replace(k, SUB[k])
+				for r in _rx_rules:
+					nt = r[0].sub(nt, r[1], true)
 				if nt != txt: nd.text = nt
 
 		if nd.get_child_count() > 0:

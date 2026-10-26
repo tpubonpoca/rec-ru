@@ -198,7 +198,7 @@ protagonist: Ах! #id:e4d
 [signal arg="screenshot"]
 [sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
 [wait time="2.0"]
-На несколько секунд время и пространство исчезают, и ты чувствуешь себя абсолютно, бесконечно счастливым. #id:e4e
+На несколько секунд ты ощущаешь полное, абсолютное умиротворение. #id:e4e
 protagonist: ... #id:e4f
 protagonist: ...{roommate_name}? Ты тут? #id:e50
 protagonist: Ты же не уснула, нет? #id:e51
