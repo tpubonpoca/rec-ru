@@ -369,6 +369,20 @@ func _fix_dialogic_vars() -> void:
 			if dlg.VAR.get_variable("manager_name") == "Kan":
 				dlg.VAR.set_variable("manager_name", "Кан")
 
+# Экран поимки: русские кнопки шире исходного контейнера (152 px), из-за чего
+# они съезжали вправо. Расширяем контейнер вокруг его центра и центрируем кнопки.
+func _fix_gameover_layout(box: VBoxContainer) -> void:
+	if box.has_meta("ru_layout"):
+		return
+	box.set_meta("ru_layout", true)
+	var cx: float = (box.offset_left + box.offset_right) * 0.5
+	var half := 160.0
+	box.offset_left = cx - half
+	box.offset_right = cx + half
+	for c in box.get_children():
+		if c is Control:
+			c.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+
 func _process(delta: float) -> void:
 	_t += delta
 	if _t < 0.05: return
@@ -386,6 +400,9 @@ func _process(delta: float) -> void:
 		var nd = stack.pop_back()
 		n += 1
 		if nd is CanvasItem and not nd.visible: continue
+
+		if nd is VBoxContainer and nd.name == "GameOverOptions":
+			_fix_gameover_layout(nd)
 
 		if nd is Label and nd.name == "Name":
 			nd.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
