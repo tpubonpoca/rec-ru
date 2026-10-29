@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 2
-jump sounds/INDOOR_APARTMENT_PARTY
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 В разгаре вечеринки ты болтаешь с кем-то в гостиной. #id:708
 [signal arg="reset_enemies"]

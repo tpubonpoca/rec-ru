@@ -1,16 +1,25 @@
-label DISPLAY_TARGETS #id:1077
-if {BattleVariables.are_multiple_enemies_alive()}:
-	[signal arg="default_style"]
-	- {BattleVariables.enemies[0].GetName()} | [if {BattleVariables.enemies[0].IsDead()} == false]
-		[signal arg="battle_style"]
-		set BattleVariables.target_index = 0
-	- {BattleVariables.enemies[1].GetName()} | [if {BattleVariables.enemies[1].IsDead()} == false]
-		[signal arg="battle_style"]
-		set BattleVariables.target_index = 1
-	- Отмена #id:107a
-		jump adventure_battle/PLAYER_OPTIONS
-else:
+label DISPLAY_TARGETS
+if {BattleVariables.are_multiple_enemies_alive()} == false:
 	set BattleVariables.target_index = {BattleVariables.auto_target_index()}
+	return
+[signal arg="default_style"]
+if {BattleVariables.get_number_of_alive_enemies()} > 3:
+	[signal arg="double_style"]
+label TARGETS
+- {BattleVariables.get_enemy_name(0)} | [if {BattleVariables.is_enemy_alive(0)}]
+	[signal arg="battle_style"]
+	set BattleVariables.target_index = 0
+- {BattleVariables.get_enemy_name(1)} | [if {BattleVariables.is_enemy_alive(1)}]
+	[signal arg="battle_style"]
+	set BattleVariables.target_index = 1
+- {BattleVariables.get_enemy_name(2)} | [if {BattleVariables.is_enemy_alive(2)}]
+	[signal arg="battle_style"]
+	set BattleVariables.target_index = 2
+- {BattleVariables.get_enemy_name(3)} | [if {BattleVariables.is_enemy_alive(3)}]
+	[signal arg="battle_style"]
+	set BattleVariables.target_index = 3
+- Отмена #id:107a
+	jump adventure_battle/PLAYER_OPTIONS
 return
 
 label RANDOM_ABILITY
@@ -40,13 +49,12 @@ return
 
 label GUARD_MESSAGE #id:c10
 if {BattleVariables.player_is_defending}:
-	[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+	[sound bus="Cutscene" path="res://audio/se/Guard.wav" volume="0.0"]
 	Ты в защите! Все входящие эффекты ослаблены. #id:107c
 return
 
 label LOAD_ENEMY #id:c12
-[signal arg="load_random_enemy"]
-if {BattleVariables.enemies.size()} > 1:
+if {BattleVariables.get_number_of_named_enemies()} > 1:
 	На пути: [color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] и [color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color]!
 	if {BattleVariables.enemies[1].EnemyId} == "bro":
 		join enemy_2 center [extra_data="set Container/Type/Dude"]
@@ -76,6 +84,8 @@ if {BattleVariables.enemies.size()} > 1:
 		join enemy_2 center [extra_data="set Container/Type/Robot"]
 	if {BattleVariables.enemies[1].EnemyId} == "ronin":
 		join enemy_2 center [extra_data="set Container/Type/Ronin"]
+	if {BattleVariables.enemies[1].EnemyId} == "seweress":
+		join boss center [extra_data="set Container/Type/Seweress"]
 	if {BattleVariables.enemies[1].EnemyId} == "slime":
 		join enemy_2 center [extra_data="set Container/Type/Slime"]
 	if {BattleVariables.enemies[1].EnemyId} == "student":
@@ -110,6 +120,8 @@ if {BattleVariables.enemies[0].EnemyId} == "robot":
 	join enemy center [z_index="1" extra_data="set Container/Type/Robot"]
 if {BattleVariables.enemies[0].EnemyId} == "ronin":
 	join enemy center [z_index="1" extra_data="set Container/Type/Ronin"]
+if {BattleVariables.enemies[0].EnemyId} == "seweress":
+	join boss center [extra_data="set Container/Type/Seweress"]
 if {BattleVariables.enemies[0].EnemyId} == "slime":
 	join enemy center [z_index="1" extra_data="set Container/Type/Slime"]
 if {BattleVariables.enemies[0].EnemyId} == "student":
@@ -209,6 +221,11 @@ if {BattleVariables.get_target().CurrentHealth} <= 0:
 		jump REWARDS
 return
 
+label CHECK_PLAYER_DEFEAT
+if {GameVariables.stamina} <= 0:
+	jump adventure/COLLAPSE
+return
+
 label PLAYER_DEBUFF_TICKS #id:f9
 [signal arg="begin_player_turn"]
 if {BattleVariables.player_is_confused} && {BattleVariables.player_is_confused_duration} <= 0:
@@ -290,7 +307,7 @@ if {BattleVariables.yuna_decision} == "heal_small":
 	[signal arg="yuna_healing"]
 	[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
 	jump stat_change/STAMINA_INCREASE
-	if {GameVariables.relationship} >= 60:
+	if {GameVariables.get_relationship()} >= 60:
 		set GameVariables.stamina = {GameVariables.change_stamina(4)}
 	else:
 		set GameVariables.stamina = {GameVariables.change_stamina(2)}
@@ -303,7 +320,7 @@ if {BattleVariables.yuna_decision} == "throw_brick":
 	[signal arg="yuna_throw"]
 	roommate: Получай! #id:75
 	{roommate_name} швыряет кирпич в [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:108b
-	[sound bus="Cutscene" path="res://audio/se/Brick.ogg"]
+	[sound bus="Cutscene" path="res://audio/se/Brick.ogg" volume="0.0"]
 	[signal arg="enemy_shake"]
 	if {BattleVariables.target_index} == 0:
 		enemy: {BattleVariables.get_target().BrickDialogue} #id:108c
@@ -314,6 +331,7 @@ if {BattleVariables.yuna_decision} == "throw_brick":
 	if {BattleVariables.brick_selected} == "cheese_brick":
 		jump stat_change/STAMINA_INCREASE
 		set GameVariables.stamina = {GameVariables.change_stamina(2)}
+	jump adventure_functions/CHECK_ENEMY_DEFEAT
 if {BattleVariables.yuna_decision} == "remove_debuff":
 	update roommate [extra_data="set Expressions/Annoyed"]
 	roommate: Очнись, {GameVariables.player_name}! #id:c23
@@ -347,7 +365,6 @@ if {BattleVariables.yuna_decision} == "remove_debuff":
 		Оглушение прошло! #id:c28
 		set BattleVariables.player_is_stunned = false
 		set BattleVariables.player_is_stunned_duration = 0
-jump adventure_functions/CHECK_ENEMY_DEFEAT
 return
 
 label YOSUKE_TURN #id:108f
@@ -381,40 +398,19 @@ if {GameVariables.yuna_partnered}:
 	roommate: <Фух. Красава!/Хех. Я в тебе ни секунды не сомневалась./Я устала, просто глядя на это!> #id:12a
 jump sounds/GOT_CREDITS
 Ты находишь [color=e5be3e]{BattleVariables.get_credit_rewards()} кредитов[/color]! #id:1092
+if {BattleVariables.rewarded_items.keys().size()} <= 0:
+	jump ENEMY_SEX
 protagonist: Хм-м, а это что? #id:65e
-if {BattleVariables.enemies.size()} >= 1:
-	if {BattleVariables.enemies[0].RanAway} == false:
-		set GameVariables.enemies_defeated += 1
-		jump sounds/GOT_ITEM
-		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(0)}[/color]! #id:1093
-		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте какое-то описание... #id:1094
-			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1095
-		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
-			update roommate [extra_data="set Expressions/Happy"]
-			roommate: {BattleVariables.item_reward.YunaComment} #id:1096
-if {BattleVariables.enemies.size()} >= 2:
-	if {BattleVariables.enemies[1].RanAway} == false:
-		set GameVariables.enemies_defeated += 1
-		jump sounds/GOT_ITEM
-		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(1)}[/color]! #id:1097
-		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте какое-то описание... #id:1098
-			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:1099
-		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
-			update roommate [extra_data="set Expressions/Happy"]
-			roommate: {BattleVariables.item_reward.YunaComment} #id:109a
-if {BattleVariables.enemies.size()} >= 3:
-	if {BattleVariables.enemies[2].RanAway} == false:
-		set GameVariables.enemies_defeated += 1
-		jump sounds/GOT_ITEM
-		А ещё ты находишь: [color=e5be3e]{BattleVariables.get_item_reward(2)}[/color]! #id:109b
-		if {BattleVariables.item_newly_found} && {BattleVariables.item_has_comment}:
-			protagonist: На обороте какое-то описание... #id:109c
-			protagonist: [color=e5be3e]«{BattleVariables.item_description}»[/color] #id:109d
-		if {GameVariables.yuna_partnered} && {BattleVariables.has_item_reaction()}:
-			update roommate [extra_data="set Expressions/Happy"]
-			roommate: {BattleVariables.item_reward.YunaComment} #id:109e
+label REWARD_LOOP
+jump sounds/GOT_ITEM
+Ты находишь: [color=e5be3e]{tr(BattleVariables.get_item_reward())}[/color]!
+if {GameVariables.yuna_partnered} && {BattleVariables.item_has_comment}:
+	update roommate [extra_data="set Expressions/Happy"]
+	roommate: {BattleVariables.item_comment}
+set BattleVariables.reward_counter += 1
+if {BattleVariables.reward_counter} < {BattleVariables.rewarded_items.keys().size()}:
+	jump REWARD_LOOP
+label ENEMY_SEX
 if {BattleVariables.is_enemy_sexable()}:
 	jump adventure_sex/START
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC

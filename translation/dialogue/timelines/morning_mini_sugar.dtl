@@ -1,0 +1,65 @@
+label START
+[signal arg="load_apartment_enemy"]
+[signal arg="load_sugar_item"]
+jump sounds/INDOOR_APARTMENT_ENVIRONMENT
+audio music3 "res://audio/bgs/TV_Background.ogg" [fade="1.0" volume="-9.0" bus="Cutscene"]
+[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.0"]
+jump sounds/DOORBELL
+[wait time="0.5"]
+protagonist: Иду!
+jump sounds/MOVE_INDOORS
+[background arg="res://assets/Cutscene/Backgrounds/Entranceway.png" fade="0.6"]
+[wait time="0.5"]
+jump sounds/DOOR_OPEN
+[wait time="1.0"]
+if {BattleVariables.enemies[0].EnemyId} == "bro":
+	join enemy center [z_index="1" extra_data="set Container/Type/Dude"]
+if {BattleVariables.enemies[0].EnemyId} == "doctor":
+	join enemy center [z_index="1" extra_data="set Container/Type/Doctor"]
+if {BattleVariables.enemies[0].EnemyId} == "hamster":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hamster"]
+if {BattleVariables.enemies[0].EnemyId} == "hobo":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hobo"]
+if {BattleVariables.enemies[0].EnemyId} == "hunter":
+	join enemy center [z_index="1" extra_data="set Container/Type/Hunter"]
+if {BattleVariables.enemies[0].EnemyId} == "lifeguard":
+	join enemy center [z_index="1" extra_data="set Container/Type/Lifeguard"]
+if {BattleVariables.enemies[0].EnemyId} == "lumberjane":
+	join enemy center [z_index="1" extra_data="set Container/Type/Lumberjane"]
+if {BattleVariables.enemies[0].EnemyId} == "nun":
+	join enemy center [z_index="1" extra_data="set Container/Type/Nun"]
+if {BattleVariables.enemies[0].EnemyId} == "psycho":
+	join enemy center [z_index="1" extra_data="set Container/Type/Psycho"]
+if {BattleVariables.enemies[0].EnemyId} == "seweress":
+	join boss center [extra_data="set Container/Type/Seweress"]
+if {BattleVariables.enemies[0].EnemyId} == "student":
+	join enemy center [z_index="1" extra_data="set Container/Type/Student"]
+enemy: Сладость или гадость!
+enemy: <А у тебя, случайно, нет... [color=e5be3e]{tr(GameVariables.sugar_item.Name)}[/color]? Ну, вдруг?/У тебя есть [color=e5be3e]{tr(GameVariables.sugar_item.Name)}[/color]?/Я всё ищу [color=e5be3e]{tr(GameVariables.sugar_item.Name)}[/color]. Может, у тебя найдётся?>
+label GIVE
+- Отдать: {tr(GameVariables.sugar_item.Name)}
+	if {Items.HasItem(GameVariables.sugar_item.GetLowerCaseName())} == false:
+		protagonist: У меня такого нет...
+		jump GIVE
+	enemy: Серьёзно? Спасибо!
+	jump stat_change/CHARISMA
+	enemy: Не верится... я это везде искал(а)...
+	jump stat_change/CHARISMA
+	enemy: Вот, держи взамен.
+	jump sounds/GOT_ITEM
+	set GameVariables.quantity = {Items.Increment('gift')}
+	Получен [color=ffce65]подарок[/color]!
+- Дать конфету
+	if {Items.HasItem("candy")} == false:
+		protagonist: У меня такого нет...
+		jump GIVE
+	protagonist: Извини, больше ничего нет.
+	jump stat_change/CHARISMA
+	enemy: Эх. Ну ладно.
+	enemy: Всё равно спасибо!
+- Ничего не делать
+	enemy: Ну и ладно. Спасибо ни за что.
+jump sounds/DOOR_CLOSE
+leave enemy
+[wait time="1.0"]
+jump z_functions/END_TO_UPGRADE

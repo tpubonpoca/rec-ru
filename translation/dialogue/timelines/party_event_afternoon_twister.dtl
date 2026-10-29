@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 2
-jump sounds/INDOOR_APARTMENT_PARTY
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 Каким-то образом ты оказываешься на коврике для твистера. Напротив тебя {roommate_name}. #id:7f1
 [signal arg="reset_enemies"]

@@ -18,7 +18,7 @@ protagonist: (Можно попробовать прошмыгнуть мимо.
 		jump SUCCESS
 	else:
 		Ты пытаешься прошмыгнуть так, чтобы {manager_name} тебя не заметил. #id:3a7
-		[sound bus="Cutscene" path="res://audio/se/Movement.ogg" volume="0.0"]
+		jump sounds/MOVE_INDOORS
 		Увы, Ловкости не хватает: на полпути ты запинаешься о собственные ноги. #id:3a8
 		jump TALK
 - Поговорить с ним #id:3a9
@@ -69,7 +69,7 @@ manager: А самое классное в этой марке то, что... #
 {manager_name} ещё минут двадцать рассказывает про своё любимое средство для стирки. #id:3d0
 set GameVariables.stamina = {GameVariables.change_stamina(-10)}
 jump passout/CHECK_PASSOUT
-[sound bus="Cutscene" path="res://audio/se/Powerdown_XP.wav"]
+[sound bus="Cutscene" path="res://audio/se/Powerdown_XP.wav" volume="0.0"]
 Ты теряешь [color=e5be3e]выносливость[/color]. #id:3d1
 manager: Ой, сколько уже времени! #id:3d2
 manager: Мне пора на обход. Ещё увидимся! #id:3d3

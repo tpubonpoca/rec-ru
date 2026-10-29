@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 3
-jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 Каким-то образом ты оказываешься за карточным столом. С тобой Каэда, а ещё {roommate_name}. #id:747
 join friend
@@ -25,7 +24,6 @@ friend: Да ладно, будет весело! #id:74b
 		protagonist: (Охренеть, как стыдно.) #id:755
 		protagonist: (Ну почему надо было сглотнуть именно сейчас?) #id:756
 		protagonist: (Выглядел как конченый извращенец.) #id:757
-		set GameVariables.impression -= 1
 		jump stat_change/IMPRESSION_DECREASE
 		roommate: Схожу за закусками. #id:758
 		roommate: Сейчас вернусь! #id:759
@@ -217,7 +215,6 @@ else:
 		По толпе прокатывается потрясённый вздох. #id:7d2
 		friend: Впечатляет. #id:7d3
 		Несмотря на слова Каэды, публика как-то сникает. #id:7d4
-		set GameVariables.impression -= 1
 		jump stat_change/IMPRESSION_DECREASE
 roommate: Я насмотрелась. #id:7d5
 roommate: Давайте во что-нибудь другое. #id:7d6
@@ -232,7 +229,6 @@ label FAILED_CHEATING #id:7db
 ...но на обратном пути случайно роняешь их. #id:7dc
 jump sounds/RIFFLE
 Карты падают на стол у всех на виду. #id:7dd
-set GameVariables.impression -= 1
 jump stat_change/IMPRESSION_DECREASE
 protagonist: ... #id:7de
 protagonist: ...блять. #id:7df
@@ -254,11 +250,9 @@ jump sounds/CLOTH
 Ты снимаешь штаны. #id:7e9
 Все в комнате уставились на твои ноги. #id:7ea
 if {GameVariables.stamina_limit} < 250:
-	set GameVariables.impression -= 1
 	jump stat_change/IMPRESSION_DECREASE
 	friend: Мне аж неловко стало... #id:7eb
 else:
-	set GameVariables.impression += 1
 	jump stat_change/IMPRESSION_INCREASE
 	friend: Ого! А кто-то много бегает. #id:7ec
 protagonist: Тьфу. Может, просто продолжим? #id:7ed

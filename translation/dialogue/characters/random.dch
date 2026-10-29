@@ -21,7 +21,7 @@
 },
 "mirror": false,
 "offset": Vector2(0, -160),
-"scale": 1,
+"scale": 1.0,
 "scene": "res://dialogue/custom_styles/layered_portrait_random.tscn"
 }
 },

@@ -5,7 +5,7 @@ protagonist: {roommate_name} сейчас не со мной... кажется, 
 	jump sounds/MUSIC_FADEOUT
 	jump PSYCHO
 - Отмена
-	jump adventure/LOOP
+	jump adventure/LOOP_W_MUSIC
 label PSYCHO
 [signal arg="reset_enemies"]
 [signal arg="load_enemy_psycho"]
@@ -54,13 +54,13 @@ protagonist: ...ах!
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_1
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_2
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_3
 [wait time="2.0"]
 Ты чувствуешь, как пульсация понемногу стихает.
 С последним толчком она отпускает тебя и встаёт.
@@ -68,4 +68,4 @@ leave scene
 join enemy center [extra_data="set Container/Type/Psycho"]
 enemy: До встречи, красавчик.
 leave enemy
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC

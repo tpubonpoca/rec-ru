@@ -23,7 +23,7 @@ jump sounds/SURPRISE
 roommate: Ой!
 roommate: Ты что... это самое?..
 protagonist: [pause=0.5].[pause=0.5].[pause=0.5].[pause=0.5]ага. Именно это.
-if {GameVariables.relationship} < 80:
+if {GameVariables.get_relationship()} < 80:
 	set GameVariables.difficulty_class = 7
 	jump stat_change/ROLL_CHARISMA
 	if {GameVariables.successful_roll} == false:
@@ -89,16 +89,16 @@ set GameVariables.lust = 0
 [wait time="1.0"]
 [signal arg="play_finish_1"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_1
 [wait time="1.0"]
 [signal arg="play_finish_2"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_2
 protagonist: А! #id:f19
 [wait time="1.0"]
 [signal arg="play_finish_3"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_3
 [wait time="2.0"]
 leave scene
 join roommate center [extra_data="set Expressions/TiredHappy, set Decorations/Cum"]

@@ -17,13 +17,16 @@ if {BattleVariables.poison_turns} > 0:
 return
 
 label PLAYER_TALK #id:a8
+if {BattleVariables.can_be_talked()} == false:
+	На [color=ff3f49]{BattleVariables.get_target_name()}[/color] это не действует.
+	jump adventure_battle/ENEMY_TURN
 if {BattleVariables.is_successful_talk("player")}:
 	if {BattleVariables.target_index} == 0:
 		enemy: {BattleVariables.get_talk_response(true)} #id:1020
 	if {BattleVariables.target_index} == 1:
 		enemy_2: {BattleVariables.get_talk_response(true)} #id:1021
 	[signal arg="enemy_shake"]
-	[sound bus="Cutscene" path="res://audio/battle/TalkHit.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/TalkHit.wav" volume="0.0"]
 	Ты успешно {BattleVariables.get_talk_type(true)} [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1022
 	[color=ff3f49]{BattleVariables.get_target_name()}[/color]{BattleVariables.get_talk_update()} #id:1023
 	if {BattleVariables.get_target().IsWeakToTalkType(BattleVariables.talk_type)} && {BattleVariables.get_target().IsWeakened} == false:
@@ -32,20 +35,20 @@ if {BattleVariables.is_successful_talk("player")}:
 		jump sounds/GLASS
 		{BattleVariables.get_target().GetWeakenedLine()} #id:1024
 else:
-	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav" volume="0.0"]
 	Твоя попытка {BattleVariables.get_talk_type(false)} [color=ff3f49]{BattleVariables.get_target_name()}[/color] оказалась неудачной. #id:1025
 	if {BattleVariables.target_index} == 0:
 		enemy: {BattleVariables.get_talk_response(false)} #id:1026
 	if {BattleVariables.target_index} == 1:
-		enemy_2: {BattleVariables.get_talk_response(true)} #id:1027
+		enemy_2: {BattleVariables.get_talk_response(false)} #id:1027
 jump adventure_battle/ENEMY_TURN
 
 label ENEMY_DEFAULT_ATTACK #id:bd
 if {BattleVariables.acting_enemy.IsCharmed()} && {BattleVariables.is_successful_attack_through_charm()} == false:
-	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav" volume="0.0"]
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] очарован(а)!
 	jump adventure_functions/END_ENEMY_TURN
-[sound bus="Cutscene" path="res://audio/battle/AttackAttemptEnemy.wav"]
+[sound bus="Cutscene" path="res://audio/battle/AttackAttemptEnemy.wav" volume="0.0"]
 [signal arg="enemy_attack"]
 {BattleVariables.acting_enemy.GetAttackLine()} #id:1029
 if {BattleVariables.is_successful_hit("enemy")}:
@@ -63,7 +66,7 @@ if {BattleVariables.is_successful_hit("enemy")}:
 		set {BattleVariables.poison_tick_damage} += {BattleVariables.acting_enemy.GetPoisonTickDamage()}
 		set {BattleVariables.poison_turns} += {BattleVariables.acting_enemy.GetPoisonTickDuration()}
 else:
-	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav" volume="0.0"]
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] атакует, но ты уворачиваешься!
 if {BattleVariables.acting_enemy.WeakenedByDefending} && {BattleVariables.player_is_defending} && {BattleVariables.acting_enemy.IsWeakened} == false:
 	set BattleVariables.acting_enemy.IsWeakened = true
@@ -76,18 +79,23 @@ if {BattleVariables.acting_enemy.IsFeared()} == false
 	if {BattleVariables.enemy_times_attacked_this_turn} < {BattleVariables.acting_enemy.GetAttackTimes()}:
 		[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] атакует снова!
 		jump ENEMY_DEFAULT_ATTACK
+jump adventure_functions/CHECK_PLAYER_DEFEAT
 jump adventure_functions/END_ENEMY_TURN
 
 label ENEMY_TALK #id:c8
 set BattleVariables.talk_type_enemy = {BattleVariables.pick_random_talk_choice()}
-[sound bus="Cutscene" path="res://audio/battle/TalkAttemptEnemy.wav"]
+[sound bus="Cutscene" path="res://audio/battle/TalkAttemptEnemy.wav" volume="0.0"]
 [signal arg="enemy_talk"]
 [color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] пытается {BattleVariables.get_talk_type_enemy(false)} тебя!
 
-if {BattleVariables.target_index} == 0:
-	enemy: {BattleVariables.get_talk_attempt_text()} #id:102f
-if {BattleVariables.target_index} == 1:
-	enemy_2: {BattleVariables.get_talk_attempt_text()} #id:1030
+if {BattleVariables.enemy_turn_index} == 0:
+	enemy: {BattleVariables.get_talk_attempt_text()}
+if {BattleVariables.enemy_turn_index} == 1:
+	enemy_2: {BattleVariables.get_talk_attempt_text()}
+if {BattleVariables.enemy_turn_index} == 2:
+	enemy_3: {BattleVariables.get_talk_attempt_text()}
+if {BattleVariables.enemy_turn_index} == 3:
+	enemy_4: {BattleVariables.get_talk_attempt_text()}
 if {BattleVariables.is_successful_talk("enemy")} && {BattleVariables.player_is_defending} == false:
 	jump sounds/BATTLE_TALK_HIT
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] успешно {BattleVariables.get_talk_type_enemy(true)} тебя!
@@ -95,7 +103,7 @@ if {BattleVariables.is_successful_talk("enemy")} && {BattleVariables.player_is_d
 	jump adventure_functions/END_ENEMY_TURN
 else:
 	jump adventure_functions/GUARD_MESSAGE
-	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/TalkMiss.wav" volume="0.0"]
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color]: попытка {BattleVariables.get_talk_type_enemy(false)} тебя провалилась!
 	protagonist: {BattleVariables.get_response_enemy_talk_unsuccessful()} #id:bec
 	jump adventure_functions/END_ENEMY_TURN

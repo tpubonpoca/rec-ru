@@ -1,0 +1,197 @@
+- Enter Sewers	- Спуститься в канализацию
+protagonist: .[pause=0.5].[pause=0.5].	protagonist: .[pause=0.5].[pause=0.5].
+protagonist: ...it stinks.	protagonist: ...ну и вонь.
+protagonist: Huh... it's actually pretty bright down here...	protagonist: Хм... а тут, вообще-то, довольно светло...
+pup: Woof!	pup: Гав!
+protagonist: Wait... how'd you?	protagonist: Стоп... а ты как сюда?..
+protagonist: You know what... never mind.	protagonist: Знаешь что... неважно.
+protagonist: Can you lead the way to Yosuke, boy?	protagonist: Отведёшь меня к Ёсуке, малыш?
+- Go Normal Route	- Пойти обычным путём
+[color=ff3f49]{BattleVariables.get_target_name()}[/color] can not be {BattleVariables.get_talk_type(true)}.	На [color=ff3f49]{BattleVariables.get_target_name()}[/color] это не действует.
+roommate: I should've brought a sweater...	roommate: Надо было свитер взять...
+- Cancel #id:107a	- Отмена #id:107a
+You are no longer Jammed!	Замешательство прошло!
+You found [color=e5be3e]{BattleVariables.get_item_reward()}[/color]!	Ты находишь: [color=e5be3e]{BattleVariables.get_item_reward()}[/color]!
+- Running Shoes | [if {Items.HasItem('running_shoes')} == false and {Cutscenes.IsSceneSeen("event_relationship_40")} == false]	- Беговые кроссовки | [if {Items.HasItem('running_shoes')} == false and {Cutscenes.IsSceneSeen("event_relationship_40")} == false]
+[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] is now Stunned!	[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] теперь оглушён(а)!
+[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] is immune from being Stunned!	[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] не поддаётся оглушению!
+[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] was empowered!	[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] усиливается!
+[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] is now Stunned!	[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] теперь оглушён(а)!
+[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] is immune from being Stunned!	[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] не поддаётся оглушению!
+[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] was empowered!	[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] усиливается!
+- Name Dog | [if {GameVariables.relationship_dog} >= 20]	- Дать псу имя | [if {GameVariables.relationship_dog} >= 20]
+[text_input text="Enter the name of your pet:" var="dog_name" default="Dog"]	[text_input text="Введи кличку питомца" var="dog_name" default="Пёс"]
+protagonist: How about... [color=e5be3e]{dog_name}[/color]?	protagonist: Как насчёт... [color=e5be3e]{dog_name}[/color]?
+protagonist: I've actually been training consistently for a while now...	protagonist: Вообще-то, я уже давно регулярно тренируюсь...
+[color=1cd5ff]{GameVariables.recipe_dexterity} Dexterity XP Gained![/color]	[color=1cd5ff]Получено {GameVariables.recipe_dexterity} опыта ловкости![/color]
+You received some [color=e5be3e]Leftovers[/color].	Ты получаешь [color=e5be3e]остатки еды[/color].
+roommate: Maybe another time...	roommate: Может, в другой раз...
+protagonist: (Looks like she's [color=ff3f49]Suspicious[/color] of me.)	protagonist: (Похоже, она меня [color=ff3f49]подозревает[/color].)
+protagonist: (I should be more careful at night.)	protagonist: (Надо быть аккуратнее по ночам.)
+protagonist: I don't have anything to jerk off with...	protagonist: Мне даже не на что подрочить...
+protagonist: I think I have a [color=ffce65]Porno Mag[/color] here somewhere...	protagonist: Кажется, где-то тут валялся [color=ffce65]порножурнал[/color]...
+roommate: [font_size=24]WHAT TH-[/font_size]	roommate: [font_size=24]ЧТО ЗА...[/font_size]
+roommate: [font_size=24]WHO SHAVED MY PUBES?[/font_size]	roommate: [font_size=24]КТО МНЕ ПОБРИЛ ЛОБОК?![/font_size]
+Both of them turn from their books to face you.	Обе отрываются от книг и поворачиваются к тебе.
+roommate: Hey! We're just studying for our next quiz.	roommate: Привет! Мы готовимся к следующей контрольной.
+The brown-haired friend smiles as she addresses you.	Подруга с каштановыми волосами улыбается и обращается к тебе.
+friend: {GameVariables.player_name}, right? I'm pretty sure we met at the party.	friend: {GameVariables.player_name}, да? Кажется, мы виделись на вечеринке.
+friend: {GameVariables.player_name}, right? I've seen you around before.	friend: {GameVariables.player_name}, да? Я тебя тут уже видела.
+protagonist: Yep! We've met before. You're Kaede, correct?	protagonist: Ага! Мы уже знакомы. Ты ведь Каэда?
+friend: Yep! That's me.	friend: Ага! Это я.
+friend: Do you want to study with us?	friend: Хочешь позаниматься с нами?
+protagonist: Not today, I've got some of my own stuff to prep.	protagonist: Сегодня никак, мне надо кое-что своё подготовить.
+friend: That's a shame.	friend: Жаль.
+friend: Well, we'll be studying until quite late if you change your mind.	friend: Ну, мы тут до позднего вечера, так что если передумаешь, приходи.
+friend: See you later, then!	friend: Тогда до встречи!
+protagonist: I'm coming!	protagonist: Иду!
+enemy: Trick or treat!	enemy: Сладость или гадость!
+enemy: <I was wondering if you had a... [color=e5be3e]{GameVariables.sugar_item.Name}[/color]? Maybe?/Do you have a [color=e5be3e]{GameVariables.sugar_item.Name}[/color]?/I've been looking around for a [color=e5be3e]{GameVariables.sugar_item.Name}[/color]. I was wondering if you had any?>	enemy: <А у тебя, случайно, нет... [color=e5be3e]{GameVariables.sugar_item.Name}[/color]? Ну, вдруг?/У тебя есть [color=e5be3e]{GameVariables.sugar_item.Name}[/color]?/Я всё ищу [color=e5be3e]{GameVariables.sugar_item.Name}[/color]. Может, у тебя найдётся?>
+- Give {GameVariables.sugar_item.Name}	- Отдать: {GameVariables.sugar_item.Name}
+protagonist: I don't have any of this...	protagonist: У меня такого нет...
+enemy: Seriously? Thanks for this!	enemy: Серьёзно? Спасибо!
+enemy: I can't believe it... I've been looking for this everywhere...	enemy: Не верится... я это везде искал(а)...
+enemy: Here, take this in return.	enemy: Вот, держи взамен.
+Received [color=ffce65]Gift[/color]!	Получен [color=ffce65]подарок[/color]!
+- Give Candy	- Дать конфету
+protagonist: Sorry, this is all I have.	protagonist: Извини, больше ничего нет.
+enemy: Aw. That's fine.	enemy: Эх. Ну ладно.
+enemy: Thanks anyways!	enemy: Всё равно спасибо!
+enemy: Welp. Thanks for nothing, I guess.	enemy: Ну и ладно. Спасибо ни за что.
+roommate: Thanks. I appreciate it.	roommate: Спасибо. Мне приятно.
+roommate: Thanks, I guess.	roommate: Ну... спасибо, что ли.
+protagonist: (If I want to go looking for him, I should head to the Sewers during a run.)	protagonist: (Если хочу его найти, надо будет во время пробежки спуститься в канализацию.)
+protagonist: ...I don't think he's coming.	protagonist: ...похоже, он не придёт.
+protagonist: I wonder if something happened to Yosuke?	protagonist: Может, с Ёсуке что-то случилось?
+protagonist: He has that invisibility cloak...	protagonist: У него же этот плащ-невидимка...
+protagonist: ...so I don't even know where I'd begin [color=e5be3e]looking[/color].	protagonist: ...так что я даже не представляю, где его [color=e5be3e]искать[/color].
+protagonist: Maybe if I had a [color=e5be3e]better sense of smell[/color]?	protagonist: Вот был бы у меня [color=e5be3e]нюх получше[/color]...
+protagonist: ...	protagonist: ...
+protagonist: Guess I'll head back for now.	protagonist: Ладно, пойду пока домой.
+protagonist: How's it going, pup?	protagonist: Как дела, малыш?
+You scratch his head a little bit.	Ты чешешь ему голову.
+protagonist: ...?	protagonist: ...?
+protagonist: What's up?	protagonist: Что такое?
+protagonist: Are you trying to tell me something?	protagonist: Ты что-то хочешь мне сказать?
+The dog starts to walk away.	Пёс отходит в сторону.
+After a little distance, he turns back to face you.	Отойдя немного, он оборачивается к тебе.
+protagonist: Do you want me to... follow you?	protagonist: Ты хочешь, чтобы я... пошёл за тобой?
+You follow the dog to a nearby alley.	Ты идёшь за псом в ближайший переулок.
+After a bit of zig-zagging across the pavement, the dog sits down and looks at you.	Немного покружив по тротуару, пёс садится и смотрит на тебя.
+You walk over and look around.	Ты подходишь и оглядываешься.
+protagonist: ...I don't see anyone here.	protagonist: ...тут никого нет.
+The dog looks towards you, then towards your feet.	Пёс смотрит на тебя, потом тебе под ноги.
+You inspect the ground near yourself.	Ты осматриваешь землю вокруг.
+protagonist: A manhole?	protagonist: Люк?
+protagonist: You want me to go... into the sewers?	protagonist: Ты хочешь, чтобы я полез... в канализацию?
+protagonist: ...gross.	protagonist: ...фу.
+You look downwards into newly uncovered hole, straight into the abyss.	Ты заглядываешь в открытый люк, прямо в бездну.
+protagonist: I do see *some* light down there...	protagonist: Там внизу вроде бы *есть* свет...
+protagonist: Well... here goes nothing.	protagonist: Ну... была не была.
+You finally reach Yosuke's [color=ffce65]Hideout[/color].	Наконец ты добираешься до [color=ffce65]убежища[/color] Ёсуке.
+Torn notes and shattered glass litter the ground of the abandoned room.	Пол заброшенной комнаты усыпан рваными записками и битым стеклом.
+The dog moves into the center of the room, then sits down.	Пёс выходит на середину комнаты и садится.
+protagonist: Was Yosuke here at some point?	protagonist: Ёсуке здесь бывал?
+protagonist: I'm assuming that means yes?	protagonist: Я так понимаю, это «да»?
+You look around the [color=ffce65]Hideout[/color].	Ты осматриваешь [color=ffce65]убежище[/color].
+protagonist: This place looks... terrible.	protagonist: Местечко... жуткое.
+protagonist: How am I supposed to find a clue in any of this?	protagonist: И как мне тут найти хоть какую-то зацепку?
+You casually flip through some of the strewn papers.	Ты лениво перебираешь разбросанные бумаги.
+Most of it is technical jargon - almost impossible to decipher.	Почти всё — технический жаргон, разобрать его почти невозможно.
+However, a few words catch your eye...	Но несколько слов всё же бросаются в глаза...
+"Bacteria", "Antibodies", "Cloning", and "Research" seem to be recurring words throughout the papers.	«Бактерии», «антитела», «клонирование» и «исследование» то и дело повторяются в бумагах.
+protagonist: Seems like they were doing medical research here.	protagonist: Похоже, тут вели медицинские исследования.
+protagonist: Ugh. This is impossible.	protagonist: Тьфу. Это невозможно.
+As you continue reading, it becomes more apparent that pages were removed from these documents.	Чем дальше ты читаешь, тем яснее, что из этих документов вырваны страницы.
+protagonist: Gah!	protagonist: Да блин!
+In anger, you knock over a stack of papers.	Со злости ты опрокидываешь стопку бумаг.
+Amidst where there was previously nothing, a familiar red hoodie appears.	Там, где только что ничего не было, появляется знакомое красное худи.
+protagonist: That's...!	protagonist: Это же...!
+As you pick up the jacket, a book slips out from its pockets.	Когда ты поднимаешь куртку, из кармана выскальзывает книжка.
+It seems to be a journal written by Yosuke.	Похоже, это дневник Ёсуке.
+The early entries seem to be weekly reflections on thoughts, feelings, and general life.	Первые записи — еженедельные размышления о мыслях, чувствах и жизни вообще.
+yosuke: #Entry 206:	yosuke: #Запись 206
+yosuke: My application to Operations got processed today.	yosuke: Сегодня рассмотрели мою заявку в оперативный отдел.
+yosuke: Honestly, it went through much faster than I thought it would.	yosuke: Честно говоря, всё прошло намного быстрее, чем я думал.
+yosuke: Headquarters seems to be in a rush over some recent developments...	yosuke: Похоже, штаб торопится из-за каких-то недавних событий...
+yosuke: ...I have a feeling I'll probably be assigned soon.	yosuke: ...чувствую, меня скоро куда-нибудь направят.
+The handwriting is very, very neat. Every letter is similarly sized, spaced, and aligned.	Почерк очень, очень аккуратный. Все буквы одного размера, с ровными промежутками и по одной линии.
+yosuke: #Entry 207:	yosuke: #Запись 207
+yosuke: Seems my intuition was correct... I'm headed to some remote colony for a reconnaissance op.	yosuke: Похоже, чутьё меня не подвело... Меня отправляют на разведку в какую-то далёкую колонию.
+yosuke: I got reprimanded by the C.O. for suggesting that I wanted to be closer to the frontline systems.	yosuke: Командир сделал мне выговор, когда я намекнул, что хотел бы поближе к прифронтовым системам.
+yosuke: He then lectured me on the astronomical resources that goes into training operatives, like me.	yosuke: А потом прочитал лекцию о том, в какие астрономические суммы обходится подготовка таких оперативников, как я.
+yosuke: It just seems unfair that I get to go to a planet, with an atmosphere...	yosuke: Просто как-то нечестно, что я лечу на планету, где есть атмосфера...
+yosuke: ...while my squadmates are out there fighting in hellscapes.	yosuke: ...пока мои сослуживцы воюют где-то в адских пустошах.
+yosuke: I know it's for the greater good.	yosuke: Знаю, это ради общего блага.
+yosuke: But it feels bad regardless.	yosuke: Но на душе всё равно паршиво.
+Most of the subsequent entries seem to be focused on training for and deploying to this new "mission".	Следующие записи в основном о подготовке к этой новой «миссии» и отправке на неё.
+You skim over more pages until you arrive on something more current.	Ты пролистываешь ещё несколько страниц, пока не доходишь до чего-то посвежее.
+yosuke: #Entry 222:	yosuke: #Запись 222
+yosuke: Arrived to the target system a few Earth-hours ago.	yosuke: Прибыл в целевую систему несколько земных часов назад.
+yosuke: For such an important facility, the security seemed... lacking.	yosuke: Для такого важного объекта охрана показалась мне... слабоватой.
+yosuke: Maybe Eden is having more trouble than I thought in the other systems?	yosuke: Может, у Eden в других системах проблем больше, чем я думал?
+protagonist: (Eden... the space organization?)	protagonist: (Eden... та космическая организация?)
+yosuke: #Entry 223:	yosuke: #Запись 223
+yosuke: I spoke too soon.	yosuke: Рано я обрадовался.
+yosuke: Infiltrating this colony was one of the most difficult things I've had to do in my life.	yosuke: Проникнуть в эту колонию — одно из самых трудных дел в моей жизни.
+yosuke: My ship... my tech... the intel... I lost nearly all of it.	yosuke: Корабль... техника... разведданные... Я потерял почти всё.
+yosuke: The problem, unlike other colonies, is the single elevator connected to the surface.	yosuke: Проблема в том, что, в отличие от других колоний, тут с поверхностью связан всего один лифт.
+yosuke: Enough room for people and supplies, but not enough for ships...	yosuke: Места хватает для людей и грузов, но не для кораблей...
+yosuke: ...and just barely enough to hide.	yosuke: ...а спрятаться можно еле-еле.
+yosuke: At the risk of being scanned, I left everything I deemed non-essential back at the ship.	yosuke: Боясь сканирования, я оставил на корабле всё, что счёл необязательным.
+yosuke: Which means I only have my journal, a pen ...and the clothes on my back.	yosuke: То есть у меня есть только дневник, ручка... и одежда, что на мне.
+yosuke: ...I guess I'm starting to feel some of the pressure of this entire situation.	yosuke: ...кажется, на меня начинает давить вся эта ситуация.
+You flip through a couple more entries.	Ты пролистываешь ещё пару записей.
+yosuke: #Entry 225:	yosuke: #Запись 225
+yosuke: I think I found the target. He goes by the name {GameVariables.player_name}.	yosuke: Кажется, я нашёл цель. Его зовут {GameVariables.player_name}.
+yosuke: He's a bit... odd? But who wouldn't be after growing up in an environment like this.	yosuke: Он немного... странный? Хотя кто бы не стал таким, вырасти он в подобном месте.
+yosuke: Though I still need to confirm it, I'm ninety-nine percent sure he is who I'm looking for.	yosuke: Ещё нужно подтвердить, но я на девяносто девять процентов уверен, что это тот, кого я ищу.
+Most of the subsequent entries are daily observation reports on... you.	Дальше почти всё — ежедневные отчёты о наблюдении за... тобой.
+protagonist: Oh my god...	protagonist: Боже мой...
+protagonist: Here's the time I applied for the university...	protagonist: Вот тут я подаю документы в универ...
+protagonist: ...and this is when I first met Yuna...	protagonist: ...а вот тут я впервые встречаю Юну...
+protagonist: How long has he been watching me?	protagonist: Сколько же он за мной следил?
+You continue flipping the pages, all the way towards the latest entry you can find.	Ты листаешь дальше, до самой последней записи, какую удаётся найти.
+yosuke: Hopefully you're reading this, {GameVariables.player_name}.	yosuke: Надеюсь, ты это читаешь, {GameVariables.player_name}.
+yosuke: Security is pretty much at my doorstep and I can't think of any way of reaching you.	yosuke: Охрана уже почти у моего порога, а как с тобой связаться, я не представляю.
+yosuke: Here's hoping that the batteries on my cloak last long enough before others find this journal.	yosuke: Остаётся надеяться, что батареек в плаще хватит, пока дневник не нашёл кто-нибудь другой.
+The organized handwriting from before has been replaced by a hurried scribbling.	Прежний аккуратный почерк сменяется торопливыми каракулями.
+yosuke: The only direction for me now is deeper into the tunnels.	yosuke: Теперь у меня один путь — глубже в туннели.
+The writing becomes messier as you continue reading.	Чем дальше ты читаешь, тем неразборчивее почерк.
+yosuke: I'm assuming you've read the previous entries, but on the chance you haven't...	yosuke: Думаю, предыдущие записи ты прочитал, но если вдруг нет...
+yosuke: In essence - my job is... was to confirm *your* existence and send a report back to my superiors.	yosuke: Если коротко, моя задача — была — подтвердить *твоё* существование и отправить отчёт начальству.
+yosuke: ...Which I finally accomplished when you acquired me those Transistors.	yosuke: ...И мне это наконец удалось, когда ты достал для меня те транзисторы.
+yosuke: At that point my mission was officially over. My orders are now to exfiltrate.	yosuke: С этого момента моя миссия официально завершена. Теперь мне приказано уходить.
+yosuke: I'd be lying if I said I didn't want to leave this rock as soon as humanly possible.	yosuke: Совру, если скажу, что не хочу как можно скорее свалить с этой глыбы.
+yosuke: ...but the thought of leaving you without any chance for closure bothered me, immensely.	yosuke: ...но мысль, что я брошу тебя без всяких объяснений, ужасно меня мучила.
+You flip the page.	Ты переворачиваешь страницу.
+yosuke: Unfortunately, our last venture into the [color=ffce65]Laboratory[/color] may have raised a few too many alarms.	yosuke: К сожалению, наша последняя вылазка в [color=ffce65]Лабораторию[/color], похоже, наделала слишком много шума.
+yosuke: Thus, I'm headed for the only way off this planet.	yosuke: Поэтому я иду к единственному выходу с этой планеты.
+yosuke: It's a long trek, but if you want to leave, the path should be laid out to you from here.	yosuke: Путь неблизкий, но если ты захочешь уйти, отсюда дорога должна быть понятна.
+yosuke: Unfortunately, it's treacherous, and there won't be any [color=ffce65]Bus Stops[/color].	yosuke: Увы, она опасная, и [color=ffce65]автобусных остановок[/color] там не будет.
+yosuke: ...haha.	yosuke: ...ха-ха.
+protagonist: (...was that ...a joke?)	protagonist: (...это что... была шутка?)
+yosuke: Normally I'd say there's ZERO chance for citizens to escape from the underground domes...	yosuke: Обычно я бы сказал, что у жителей подземных куполов НОЛЬ шансов отсюда сбежать...
+yosuke: But in your case, you might have an actual chance.	yosuke: Но у тебя шанс, возможно, действительно есть.
+yosuke: I've confirmed it months ago....	yosuke: Я убедился в этом ещё несколько месяцев назад...
+yosuke: Everything in the dome... everything underneath this very roof was meant for accommodating you.	yosuke: Всё в этом куполе... всё под этой самой крышей было создано ради тебя.
+yosuke: You are Eden's MOST important asset.	yosuke: Ты — САМОЕ ценное, что есть у Eden.
+protagonist: (...me?)	protagonist: (...я?)
+yosuke: That, combined with the fact that they'll be tearing up this place trying to find me...	yosuke: А раз они ещё и перевернут тут всё вверх дном, пытаясь найти меня...
+yosuke: It's the perfect, and possibly only, opportunity for you to get the hell out of here.	yosuke: ...это идеальный и, возможно, единственный шанс для тебя убраться отсюда к чёрту.
+yosuke: If they found me... well, I'd be killed before I even raised my hands...	yosuke: Если найдут меня... ну, меня убьют раньше, чем я успею поднять руки...
+yosuke: But you? They wouldn't risk anything that could possibly hurt you...	yosuke: А тебя? Они ни за что не станут рисковать тем, что может тебе навредить...
+yosuke: ...even if it meant letting you escape.	yosuke: ...даже если из-за этого ты сбежишь.
+The last sentences are written larger, clearly in emphasis.	Последние строки написаны крупнее, явно с нажимом.
+yosuke: I don't know how long they'll be distracted looking for me.	yosuke: Не знаю, сколько они будут отвлекаться на мои поиски.
+yosuke: All I can say is that you'll have to try to make it through the [color=ffce65]Tunnels[/color] as quickly as possible.	yosuke: Могу сказать одно: постарайся пройти [color=ffce65]Туннели[/color] как можно быстрее.
+yosuke: Good luck...	yosuke: Удачи...
+yosuke: ...and thanks for the pizza.	yosuke: ...и спасибо за пиццу.
+protagonist: ...wow.	protagonist: ...ничего себе.
+protagonist: That's... uh... a lot to process.	protagonist: Это... э-э... многовато, чтобы сразу переварить.
+protagonist: He just wants me to... leave?	protagonist: Он что, просто хочет, чтобы я... ушёл?
+protagonist: I've never even been on a vacation, let alone off-planet!	protagonist: Я даже в отпуске ни разу не был, а тут улететь с планеты!
+protagonist: (If I want to leave... it seems all I have to do is keep running.)	protagonist: (Если я захочу уйти... похоже, мне нужно просто бежать дальше.)
+protagonist: (I don't think there's any shortcuts or rest stops down here...)	protagonist: (Вряд ли тут внизу есть короткие пути или места для отдыха...)
+protagonist: (And I have a feeling it's only going to get more difficult.)	protagonist: (И что-то мне подсказывает, что дальше будет только сложнее.)
+- Head Home	- Пойти домой

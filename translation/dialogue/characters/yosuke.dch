@@ -1,0 +1,30 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "88e",
+&"color": Color(0.592157, 0.741176, 0.337255, 1),
+&"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": ""
+},
+&"default_portrait": "Default",
+&"description": "",
+&"display_name": "Ёсуке",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Default": {
+"export_overrides": {
+"image": ""
+},
+"ignore_char_scale": true,
+"mirror": false,
+"offset": Vector2(0, -160),
+"scale": 1.25,
+"scene": "res://dialogue/custom_styles/layered_portrait_yosuke.tscn"
+}
+},
+&"scale": 1.0
+}

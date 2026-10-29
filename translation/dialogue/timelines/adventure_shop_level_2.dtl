@@ -1,8 +1,8 @@
 label START #id:c2f
 if {BattleVariables.is_night_run()} == false:
-	return
+	jump adventure/LOOP
 if {GameVariables.has_skill('choker')} && {GameVariables.has_skill('cat_ears')} && {GameVariables.has_skill('sweater')}:
-	return
+	jump adventure/LOOP
 set GameVariables.trigger = false
 if {BattleVariables.is_night_run()} == false:
 	[background arg="res://assets/Cutscene/Backgrounds/Beach_Running_1.png" fade="0.6"]
@@ -79,7 +79,7 @@ leave decorations
 label LEAVE #id:c6e
 protagonist: Пожалуй, пока ничего не надо. #id:c6f
 syn: Отлично! Если передумаешь, я всегда тут!
-if {GameVariables.has_skill('choker')} && {GameVariables.has_skill('sweater')}:
+if {GameVariables.has_skill('choker')} && {GameVariables.has_skill('cat_ears')} && {GameVariables.has_skill('sweater')}:
 	syn: Слушай, а ты, похоже, опять скупил всё...
 	if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')} && {Items.HasItem('running_shoes')}:
 		syn: ...снова!
@@ -87,4 +87,4 @@ if {GameVariables.has_skill('choker')} && {GameVariables.has_skill('sweater')}:
 	syn: Спасибо, постоянный клиент! Уверена, мы ещё увидимся.
 	syn: Удачи в странствиях!
 leave syn
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC

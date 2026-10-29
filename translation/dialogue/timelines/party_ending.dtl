@@ -2,7 +2,6 @@ if {GameVariables.is_gallery}:
 	jump z_functions/END_TO_UPGRADE
 leave --All-- 
 join crowd [extra_data="set Size/Large"]
-jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 Полночь. #id:8bd
 Кое-кто уже расходится, но вечеринка всё ещё в самом разгаре. #id:8be

@@ -1,5 +1,4 @@
 set GameVariables.party_stage = 3
-jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 join roommate [mirrored="true"]
 В гостиной вокруг тебя творится чёрт-те что. #id:9e6

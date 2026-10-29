@@ -3,7 +3,7 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [wait time="0.6"]
 jump sounds/DOOR_CLOSE
 protagonist: Блин, всё тело ломит. #id:22d
-[sound bus="Cutscene" path="res://audio/se/Sniff1.ogg"]
+jump sounds/SNIFF
 protagonist: ... #id:22e
 protagonist: ...и в душ бы сейчас очень не помешало. #id:22f
 jump sounds/MOVE_INDOORS
@@ -56,7 +56,7 @@ jump sounds/DOOR_OPEN
 protagonist: (Блять!) #id:24b
 leave scene
 join roommate center [extra_data="set Expressions/Tired, set Body/Naked"]
-[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+jump sounds/VOICE_MMM
 roommate: ...а? #id:24c
 manager: Есть кто дома? #id:24d
 protagonist: (Блин, ответить?) #id:24e
@@ -104,7 +104,7 @@ protagonist: (Вот такого ответа я точно не ждал.) #id
 update roommate center [extra_data="set Expressions/Tired"]
 roommate: Ну, тайком лапать, конечно, жутковато... #id:268
 roommate: Но если по-нормальному... #id:269
-[sound bus="Cutscene" path="res://audio/voice/mo6_Cant_help_it.ogg" volume="-6.0"]
+jump sounds/VOICE_CANT_HELP_IT
 roommate: ...то я, в общем-то, не против... #id:26a
 protagonist: Правда? #id:26b
 protagonist: Эм... так... #id:26c
@@ -122,7 +122,7 @@ roommate: Давай в другой раз продолжим, ладно? #id:
 roommate: ... #id:273
 update roommate center [extra_data="set Expressions/Confused"]
 roommate: ...куда ты дел мою футболку? #id:274
-[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+jump sounds/GOT_LEVEL
 [color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:275
 [color=e5be3e]Теперь в некоторых сценах с ней можно зайти дальше![/color] #id:276
 [color=e5be3e]А ещё {roommate_name} будет лучше помогать тебе в забегах![/color] #id:277

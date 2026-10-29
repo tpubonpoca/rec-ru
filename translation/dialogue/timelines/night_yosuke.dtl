@@ -5,6 +5,8 @@ label START #id:10db
 [background arg="res://assets/Cutscene/Backgrounds/City_Night_Park.png" fade="0.6"]
 Ты приходишь в городской парк. #id:d34
 Почти полночь. #id:d35
+if {Cutscenes.IsScenePlayable("yosuke_6")}:
+	jump MEETING_6
 if {Cutscenes.IsScenePlayable("yosuke_5")}:
 	set boolean = {Cutscenes.MarkSceneSeen("yosuke_5")}
 	jump MEETING_5
@@ -22,6 +24,9 @@ if {Cutscenes.IsScenePlayable("yosuke_1")}:
 	jump MEETING_1
 protagonist: ...похоже, его здесь нет. #id:10dc
 protagonist: Ладно, пойду пока домой. #id:10dd
+if {Cutscenes.IsSceneSeen("yosuke_6")} == true:
+	jump sounds/THINKING
+	protagonist: (Если хочу его найти, надо будет во время пробежки спуститься в канализацию.)
 jump night/RETURN
 label MEETING_1 #id:d36
 protagonist: (Странно.) #id:d37
@@ -461,19 +466,76 @@ protagonist: И хорошенько выспаться.
 jump z_functions/END_TO_UPGRADE
 
 label MEETING_6
-# wind sounds
-protagonist: ...похоже, он не придёт. Может, с Ёсуке что-то случилось?
+jump sounds/WIND
+[wait time="1.0"]
+protagonist: ...похоже, он не придёт.
+protagonist: Может, с Ёсуке что-то случилось?
 protagonist: ...
-protagonist: Я даже не представляю, где его [color=e5be3e]искать[/color]...
-protagonist: ...тем более с этим его плащом-невидимкой или что там у него...
-# dog relationship check
-protagonist: Эх, мне бы [color=e5be3e]нюх получше...[/color]
+if {GameVariables.relationship_dog} < 20:
+	protagonist: У него же этот плащ-невидимка...
+	protagonist: ...так что я даже не представляю, где его [color=e5be3e]искать[/color].
+	protagonist: Вот был бы у меня [color=e5be3e]нюх получше[/color]...
+	protagonist: ...
+	protagonist: Ладно, пойду пока домой.
+	jump night/RETURN
 jump sounds/BARK_1
 protagonist: А?
 join pup [extra_data="set Style/Normal"]
 jump sounds/BARK_2
 pup: Гав!
-set {boolean} = {Cutscenes.MarkSceneSeen("yosuke_6")}
 protagonist: О, это ты...
-protagonist: 
-jump z_functions/END_TO_UPGRADE
+protagonist: Как дела, малыш?
+jump sounds/PANT
+Ты чешешь ему голову.
+jump sounds/BARK_1
+pup: Гав!
+protagonist: ...?
+protagonist: Что такое?
+jump sounds/BARK_1
+pup: Гав!
+protagonist: Ты что-то хочешь мне сказать?
+leave pup
+jump sounds/SNIFF_DOG
+Пёс отходит в сторону.
+Отойдя немного, он оборачивается к тебе.
+join pup [extra_data="set Style/Normal"]
+jump sounds/BARK_1
+pup: Гав!
+protagonist: Ты хочешь, чтобы я... пошёл за тобой?
+jump sounds/BARK_2
+pup: Гав!
+leave pup
+jump sounds/MOVE_OUTDOORS_URBAN
+[background arg="res://assets/Cutscene/Backgrounds/Alleyway.png" fade="0.6"]
+Ты идёшь за псом в ближайший переулок.
+jump sounds/SNIFF_DOG
+Немного покружив по тротуару, пёс садится и смотрит на тебя.
+join pup [extra_data="set Style/Normal"]
+jump sounds/BARK_1
+pup: Гав!
+jump sounds/PANT
+Ты подходишь и оглядываешься.
+protagonist: ...тут никого нет.
+jump sounds/BARK_2
+pup: Гав!
+jump sounds/PANT
+Пёс смотрит на тебя, потом тебе под ноги.
+Ты осматриваешь землю вокруг.
+join decorations [extra_data="set Items/Manhole"]
+protagonist: Люк?
+protagonist: Ты хочешь, чтобы я полез... в канализацию?
+jump sounds/BARK_1
+pup: Гав!
+protagonist: ...фу.
+jump sounds/BARK_2
+pup: Гав!
+[sound path="res://audio/se/Manhole1.ogg" bus="Cutscene" volume="0.0"]
+leave decorations
+Ты заглядываешь в открытый люк, прямо в бездну.
+protagonist: Там внизу вроде бы *есть* свет...
+jump sounds/BARK_1
+pup: Гав!
+protagonist: Ну... была не была.
+leave pup
+[signal arg="start_adventure"]
+jump adventure/ENTER_SEWERS

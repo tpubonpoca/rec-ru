@@ -1,10 +1,13 @@
 label START #id:6b
+[signal arg="load_random_enemy"]
+label START_SKIP_LOAD_ENEMY
 jump adventure_functions/LOAD_ENEMY
 [signal arg="battle_style"]
 if {GameVariables.yuna_partnered}:
 	update roommate [extra_data="set Expressions/Happy"]
 	roommate: <Надери им задницы!/Покажи им, кто тут главный!/Ты справишься!> #id:bc4
 label PLAYER_TURN #id:6e
+jump adventure_functions/CHECK_PLAYER_DEFEAT
 if {GameVariables.yuna_partnered}:
 	jump adventure_functions/YUNA_TURN
 if {GameVariables.yosuke_partnered}:
@@ -28,10 +31,10 @@ label PLAYER_OPTIONS #id:7a
 		Ты вдруг забываешь, что собирался сделать. #id:7d
 		jump ENEMY_TURN
 	if {BattleVariables.player_is_charmed} && {BattleVariables.is_successful_attack_through_charm()} == false:
-		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav" volume="0.0"]
 		Ты очарован! #id:bc5
 		jump ENEMY_TURN
-	[sound bus="Cutscene" path="res://audio/battle/AttackAttempt.wav"]
+	[sound bus="Cutscene" path="res://audio/battle/AttackAttempt.wav" volume="0.0"]
 	Ты бросаешься на [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1014
 	[signal arg="enemy_dodge"]
 	[wait time="0.3"]
@@ -46,7 +49,7 @@ label PLAYER_OPTIONS #id:7a
 			jump sounds/GLASS
 			{BattleVariables.get_target().GetWeakenedLine()} #id:1016
 	else:
-		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav"]
+		[sound bus="Cutscene" path="res://audio/battle/AttackMiss.wav" volume="0.0"]
 		[color=ff3f49]{BattleVariables.get_target_name()}[/color] уворачивается от твоей атаки! #id:1017
 	jump adventure_functions/CHECK_ENEMY_DEFEAT
 	jump ENEMY_TURN
@@ -81,7 +84,7 @@ label PLAYER_OPTIONS #id:7a
 			jump adventure_functions/DISPLAY_TARGETS
 		label CHARM
 		set BattleVariables.talk_type = "charm"
-		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav" volume="0.0"]
 		Ты осыпаешь комплиментами противника: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1019
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
@@ -95,7 +98,7 @@ label PLAYER_OPTIONS #id:7a
 			jump adventure_functions/DISPLAY_TARGETS
 		label ENRAGE
 		set BattleVariables.talk_type = "enrage"
-		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav" volume="0.0"]
 		Ты оскорбляешь противника: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:101a
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
@@ -109,7 +112,7 @@ label PLAYER_OPTIONS #id:7a
 			jump adventure_functions/DISPLAY_TARGETS
 		label FEAR
 		set BattleVariables.talk_type = "fear"
-		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav"]
+		[sound bus="Cutscene" path="res://audio/battle/TalkAttempt.wav" volume="0.0"]
 		Ты угрожаешь противнику: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1018
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
@@ -136,9 +139,10 @@ label PLAYER_OPTIONS #id:7a
 	Ты пытаешься сбежать! #id:101b
 	if {BattleVariables.is_successful_runaway()}:
 		Удалось смыться! #id:101c
+		leave boss
 		leave enemy
 		leave enemy_2
-		jump adventure/LOOP
+		jump adventure/LOOP_W_MUSIC
 	else:
 		Сбежать не вышло! #id:101d
 		jump ENEMY_TURN
@@ -147,11 +151,12 @@ jump adventure_functions/ENEMY_DEBUFF_TICKS
 if {BattleVariables.acting_enemy.CanUseSkill()}:
 	jump adventure_skills/START
 [signal arg="make_enemy_decision"]
-if {BattleVariables.enemy_decision} == "talk"
+if {BattleVariables.enemy_decision} == "talk":
 	jump adventure_calculations/ENEMY_TALK
-else:
+if {BattleVariables.enemy_decision} == "attack":
 	if {BattleVariables.enemy_turn_index} == 0:
 		enemy: {BattleVariables.pick_random_attack_line()}
 	if {BattleVariables.enemy_turn_index} == 1:
 		enemy_2: {BattleVariables.pick_random_attack_line()}
 	jump adventure_calculations/ENEMY_DEFAULT_ATTACK
+jump adventure_functions/END_ENEMY_TURN

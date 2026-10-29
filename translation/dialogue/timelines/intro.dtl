@@ -3,13 +3,13 @@ set {phase} = "MORNING"
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
 [wait time="1.0"]
 Выбери, как тебя будут звать остальные. #id:2f4
-label Select Name #id:2f5
+label ENTER_NAME
 [text_input text="Введи имя персонажа:" var="player_name" default="Нита"]
 set GameVariables.player_name = {player_name}
 Все будут звать тебя {GameVariables.player_name}. Годится? #id:f7b
 - Да #id:2f7
 - Нет #id:2f8
-	jump Select Name
+	jump ENTER_NAME
 Хочешь пропустить вступление? #id:2f9
 - Да #id:2fa
 	jump END
@@ -49,19 +49,19 @@ protagonist: (Если не считать вечного безденежья, 
 protagonist: ... #id:307
 protagonist: Наверное, можно и встать... #id:308
 protagonist: ...но ещё десять минуточек сна никому не повредят. #id:309
-[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+jump sounds/DOOR_KNOCK
 [wait time="2.0"]
-[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+jump sounds/DOOR_OPEN
 join roommate center [length="2.0" wait="true"]
 protagonist: Эм... #id:30a
 protagonist: Тебе что-то нужно? #id:30b
-[sound bus="Cutscene" path="res://audio/se/Thinking.ogg" volume="0.0"]
+jump sounds/THINKING
 protagonist: (Это {roommate_name}.) #id:30c
 protagonist: (Мы живём бок о бок, но по-настоящему я её почти не знаю.) #id:30d
 protagonist: (Всех нас в эту квартиру заселил университет.) #id:30e
 protagonist: (Нормальный молодой парень на моём месте прыгал бы от радости, что живёт с девушкой.) #id:30f
 protagonist: (Но между нами всё так неловко, что я больше ни о чём думать не могу.) #id:310
-[sound bus="Cutscene" path="res://audio/voice/konbanwa5_good_evening.mp3"]
+jump sounds/VOICE_GOOD_EVENING
 roommate: Йоу. #id:311
 roommate: Курьер тебе посылку оставил. #id:312
 update roommate [extra_data="set Expressions/Confused"]
@@ -75,7 +75,7 @@ roommate: Короче, я думала, может, помочь тебе с у
 roommate: ...но, похоже, ты безнадёжен. #id:f85
 roommate: Давай. #id:314
 leave roommate
-[sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
+jump sounds/DOOR_CLOSE
 protagonist: ... #id:315
 protagonist: ...по-моему, она меня реально ненавидит. #id:316
 jump sounds/BOX
@@ -97,7 +97,7 @@ join decorations center [extra_data="set Items/Letter"]
 [color=e5be3e]С сегодняшнего дня еженедельные выплаты на ваш счёт прекращаются.[/color] #id:31e
 [color=e5be3e]Приносим извинения за возможные неудобства.[/color] #id:31f
 leave decorations
-[sound bus="Cutscene" path="res://audio/se/Hit1.ogg" volume="0.0"]
+jump sounds/SURPRISE
 [signal arg="shake"]
 [wait time="0.5"]
 protagonist: Вы издеваетесь, блять?! За квартиру платить [color=e5be3e]в следующую пятницу[/color]! #id:f87
@@ -121,7 +121,7 @@ protagonist: ...ну, по крайней мере, есть способ зар
 protagonist: Ладно, отсканирую этот QR-код. #id:32f
 jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
-[sound bus="Cutscene" path="res://audio/se/Focusing.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Focusing.ogg" volume="0.0"]
 Ты сканируешь QR-код камерой телефона. #id:330
 Код перекидывает тебя на какой-то сайт. #id:331
 protagonist: Это ещё что? #id:332
@@ -158,16 +158,16 @@ join decorations center [extra_data="set Items/Phone"]
 protagonist: «Подглядываю ночью в окно к соседке»? #id:347
 protagonist: «Смотрю, как трахается моя соседка, часть 2»? #id:348
 protagonist: «Ворую трусики после заката»? #id:349
-[sound bus="Cutscene" path="res://audio/se/Hit1.ogg" volume="0.0"]
+jump sounds/SURPRISE
 [signal arg="shake"]
 protagonist: Какого хуя? Это же порносайт! #id:34a
-[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+jump sounds/DOOR_KNOCK
 protagonist: Блять! #id:34b
 jump sounds/PHONE_UNLOCK
 leave decorations
 [wait time="0.5"]
 protagonist: Да, заходи. #id:34c
-[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+jump sounds/DOOR_OPEN
 join manager center
 manager: Йоу. #id:34d
 [sound path="res://audio/se/Thinking.ogg" volume="0.0"]
@@ -191,21 +191,21 @@ protagonist: Да ничего, забей. #id:35e
 manager: ...ну ладно. #id:35f
 manager: В общем, если что, моя дверь всегда открыта. #id:360
 protagonist: Спасибо. #id:361
-[sound bus="Cutscene" path="res://audio/se/Open4.ogg" volume="0.0"]
+jump sounds/DOOR_CLOSE
 leave manager
 protagonist: ... #id:362
 protagonist: ...надо было соглашаться на отсрочку. #id:363
 protagonist: Да ну нахер. Пойду досыпать. #id:364
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+jump sounds/RUSTLE
 [music channel="2" fade="0.0" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="1.0"]
 set {phase} = "NIGHT"
 [wait time="2.0"]
-[sound bus="Cutscene" path="res://audio/se/Ringtone.ogg" volume="-6.0"]
+jump sounds/PHONE_ALARM
 [wait time="1.5"]
-[sound bus="Cutscene" path="res://audio/se/Ringtone.ogg" volume="-6.0"]
+jump sounds/PHONE_ALARM
 [wait time="0.2"]
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+jump sounds/RUSTLE
 [wait time="0.8"]
 jump sounds/PHONE_UNLOCK
 [wait time="1.0"]
@@ -237,7 +237,7 @@ protagonist: Так. Вдох-выдох. Ты уже наснимал кучу 
 protagonist: Пара минут записи, больше не надо... по-быстрому туда и обратно. #id:373
 protagonist: И никаких больше проблем с арендой. #id:374
 [music channel="2" fade="0.0" volume="0.0"]
-[sound bus="Cutscene" path="res://audio/se/Open5.ogg" volume="0.0"]
+jump sounds/DOOR_OPEN
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="1.0"]
 [wait time="0.6"]
 protagonist: Погнали. #id:375

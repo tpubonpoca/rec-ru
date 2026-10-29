@@ -3,10 +3,10 @@ jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [wait time="2.0"]
 protagonist: ...а. #id:278
 protagonist: Сегодня платить за квартиру. #id:279
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
 [color=e5be3e]Дорогой(ая) {GameVariables.player_name}.[/color] #id:f7a
-if {GameVariables.credits} > 10000:
+if {GameVariables.credits} >= 10000:
 	[signal arg="lock_poor_lad"]
 	[color=e5be3e]Поздравляем! Оплата за эту неделю получена.[/color] #id:27b
 	[color=e5be3e]Благодарим за доверие и надеемся на дальнейшее сотрудничество.[/color] #id:27c
@@ -23,12 +23,11 @@ else:
 	[color=e5be3e]Недостающую сумму мы будем удерживать из ваших следующих выплат за съёмки.[/color] #id:281
 	[color=e5be3e]Приносим извинения за возможные неудобства и надеемся на дальнейшее сотрудничество.[/color] #id:282
 	[color=e5be3e]Спасибо и хорошего дня.[/color] #id:283
-	[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+	jump sounds/PHONE_UNLOCK
 	leave decorations
-	[sound bus="Cutscene" path="res://audio/se/Powerdown_XP.wav"]
+	jump sounds/LOST_SKILL
 	До следующей оплаты аренды [color=ff3f49]за съёмки ты будешь получать меньше монет[/color]. #id:284
 	if {GameVariables.has_skill('golden_reel')} == true
-		[sound bus="Cutscene" path="res://audio/se/Powerup_Skill.wav"]
 		Ты теряешь особый навык\: [color=e5be3e]Золотая катушка[/color]! #id:285
 		[signal arg="lock_golden_reel"]
 	set GameVariables.rent_streak = 0

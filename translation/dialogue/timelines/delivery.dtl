@@ -23,21 +23,26 @@ pup: Гав!
 Пёс выжидающе смотрит на тебя.
 - Угостить его | [if {Items.GetQuantity('leftovers')} > 0]
 	set GameVariables.relationship_change = 5
+	set GameVariables.quantity = {Items.Decrement('leftovers')}	
 	jump stat_change/RELATIONSHIP_DOG_INCREASE
 - Погладить его | [if {GameVariables.get_dexterity()} > 2]
 	set GameVariables.relationship_change = 1
 	jump stat_change/RELATIONSHIP_DOG_INCREASE
+- Дать псу имя | [if {GameVariables.relationship_dog} >= 20]
+	[text_input text="Введи кличку питомца" var="dog_name" default="Пёс"]
+	set GameVariables.dog_name = {dog_name}
+	protagonist: Как насчёт... [color=e5be3e]{dog_name}[/color]?
 - Ничего не делать
 jump sounds/BARK_1
 pup: Гав!
 leave pup
 jump sounds/GOT_ITEM
 if {Items.GetDeliveryCount()} == 1:
-	Получено\: [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color]!
+	Получено\: [color=ffce65]{tr(Items.GetDeliveryItems()[0].Name)}[/color]!
 elif {Items.GetDeliveryCount()} == 2:
-	Получено\: [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color] и [color=ffce65]{Items.GetDeliveryItems()[1].Name}[/color]!
+	Получено\: [color=ffce65]{tr(Items.GetDeliveryItems()[0].Name)}[/color] и [color=ffce65]{tr(Items.GetDeliveryItems()[1].Name)}[/color]!
 elif {Items.GetDeliveryCount()} == 3:
-	Получено\: [color=ffce65]{Items.GetDeliveryItems()[0].Name}[/color], [color=ffce65]{Items.GetDeliveryItems()[1].Name}[/color] и [color=ffce65]{Items.GetDeliveryItems()[2].Name}[/color]!
+	Получено\: [color=ffce65]{tr(Items.GetDeliveryItems()[0].Name)}[/color], [color=ffce65]{tr(Items.GetDeliveryItems()[1].Name)}[/color] и [color=ffce65]{tr(Items.GetDeliveryItems()[2].Name)}[/color]!
 else:
 	Ты получаешь посылку от [color=ffce65]PeepTube[/color]!
 [signal arg="delivery"]

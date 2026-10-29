@@ -36,7 +36,7 @@ if {GameVariables.yuna_partnered}:
 	roommate: Как же тут спокойно... #id:bf2
 	update roommate [extra_data="set Expressions/Default"]
 label START_ADVENTURE #id:bf3
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC
 label SEX #id:1056
 update roommate [extra_data="set Expressions/Confused"]
 roommate: О? Хочешь устроить «перерыв»? #id:1057
@@ -107,13 +107,13 @@ protagonist: ...ах!
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_1
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_2
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_3
 [wait time="2.0"]
 Ты кончаешь, и горячая волна изливается глубоко в неё. {roommate_name} крепко сжимает тебя.
 Ещё несколько мгновений вы оба плывёте в блаженстве.

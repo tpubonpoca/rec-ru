@@ -10,9 +10,9 @@ if {BattleVariables.acting_enemy.LoadedSkill.IsPreparing()}:
 	jump adventure_functions/END_ENEMY_TURN
 if {BattleVariables.acting_enemy.LoadedSkill.ShouldDelay()}:
 	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 0:
-		enemy: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color]: навык заряжен.
+		enemy: [color=ff3f49]{tr(BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name)}[/color]: навык заряжен.
 	if {BattleVariables.acting_enemy.LoadedSkill.IsCopycat()} && {BattleVariables.enemy_turn_index} == 1:
-		enemy_2: [color=ff3f49]{BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name}[/color]: навык заряжен.
+		enemy_2: [color=ff3f49]{tr(BattleVariables.acting_enemy.LoadedSkill.LoadCopycatSkill().Name)}[/color]: навык заряжен.
 	jump adventure_functions/END_ENEMY_TURN
 [signal arg="skill_use_sound"]
 if {BattleVariables.acting_enemy.GetLoadedSkill().DelayBeforeEffect}:
@@ -30,7 +30,7 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().UsageShakeEffect}:
 	[signal arg="shake"]
 if {BattleVariables.acting_enemy.GetLoadedSkill().UsageShakeEffectIncludeSound}:
 	[sound bus="Cutscene" volume="-3.0" path="res://audio/se/Hit1.ogg"]
-[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] использует [color=ff3f49]{BattleVariables.acting_enemy.GetLoadedSkill().Name}[/color]!
+[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] использует [color=ff3f49]{tr(BattleVariables.acting_enemy.GetLoadedSkill().Name)}[/color]!
 if {BattleVariables.enemy_turn_index} == 0 && {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} != "":
 	enemy: {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} #id:10a3
 if {BattleVariables.enemy_turn_index} == 1 && {BattleVariables.acting_enemy.GetLoadedSkill().UsageQuote} != "":
@@ -49,7 +49,7 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().CreditPercentageStolen} > 0:
 	[signal arg="shake"]
 	[color=ff3f49]{BattleVariables.acting_enemy.GetName()}[/color] украл(а) у тебя [color=e5be3e]{BattleVariables.steal_money()}[/color] кредитов!
 
-if {BattleVariables.acting_enemy.GetLoadedSkill().Stun} > 0:
+if {BattleVariables.acting_enemy.GetLoadedSkill().GetEffectiveStun()} > 0:
 	if {BattleVariables.player_is_defending}:
 		Тебе удалось не попасть под оглушение! #id:10a8
 	else:
@@ -57,7 +57,7 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().Stun} > 0:
 		[signal arg="shake"]
 		Ты оглушён! #id:14f
 		set BattleVariables.player_is_stunned = true
-		set BattleVariables.player_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().Stun}
+		set BattleVariables.player_is_stunned_duration += {BattleVariables.acting_enemy.GetLoadedSkill().GetEffectiveStun()}
 
 if {BattleVariables.acting_enemy.GetLoadedSkill().StunPartner} > 0 && {GameVariables.yuna_partnered}:
 	jump sounds/BATTLE_STUN
@@ -140,9 +140,10 @@ label PLAYER #id:164
 			[signal arg="stun_enemy"]
 			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] теперь оглушён(а)!
 		else:
-			[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav" volume="0.0"]
 			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] не поддаётся оглушению!
 		if {BattleVariables.enemies[0].EmpoweredByPaparazzi}:
+			[signal arg="empower_0"]
 			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
 			[color=ff3f49]{BattleVariables.enemies[0].GetName()}[/color] усиливается!
 		if {BattleVariables.enemies[0].EmpowermentHeals} > 0:
@@ -158,12 +159,51 @@ label PLAYER #id:164
 			[signal arg="stun_enemy"]
 			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] теперь оглушён(а)!
 		else:
-			[sound bus="Cutscene" path="res://audio/se/Guard.wav"]
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav" volume="0.0"]
 			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] не поддаётся оглушению!
 		if {BattleVariables.enemies[1].EmpoweredByPaparazzi}:
+			[signal arg="empower_1"]
 			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
 			[color=ff3f49]{BattleVariables.enemies[1].GetName()}[/color] усиливается!
 		if {BattleVariables.enemies[1].EmpowermentHeals} > 0:
+			[signal arg="skill_healing"]
+			[signal arg="heal_enemy_empowerment"]
+	
+	if {BattleVariables.is_enemy_alive(2)}:
+		if {BattleVariables.enemies[2].IsPaparazziEffective()}:
+			enemy_2: {BattleVariables.enemies[2].PaparazziResponse} #id:10b1
+			jump sounds/BATTLE_STUN
+			set BattleVariables.target_index = 2
+			[signal arg="enemy_shake"]
+			[signal arg="stun_enemy"]
+			[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] теперь оглушён(а)!
+		else:
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] не поддаётся оглушению!
+		if {BattleVariables.enemies[2].EmpoweredByPaparazzi}:
+			[signal arg="empower_2"]
+			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[2].GetName()}[/color] усиливается!
+		if {BattleVariables.enemies[2].EmpowermentHeals} > 0:
+			[signal arg="skill_healing"]
+			[signal arg="heal_enemy_empowerment"]
+
+	if {BattleVariables.is_enemy_alive(3)}:
+		if {BattleVariables.enemies[3].IsPaparazziEffective()}:
+			enemy_3: {BattleVariables.enemies[3].PaparazziResponse} #id:10b1
+			jump sounds/BATTLE_STUN
+			set BattleVariables.target_index = 3
+			[signal arg="enemy_shake"]
+			[signal arg="stun_enemy"]
+			[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] теперь оглушён(а)!
+		else:
+			[sound bus="Cutscene" path="res://audio/se/Guard.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] не поддаётся оглушению!
+		if {BattleVariables.enemies[3].EmpoweredByPaparazzi}:
+			[signal arg="empower_3"]
+			[sound bus="Cutscene" path="res://audio/se/Powerup_XP.wav" volume="0.0"]
+			[color=ff3f49]{BattleVariables.enemies[3].GetName()}[/color] усиливается!
+		if {BattleVariables.enemies[3].EmpowermentHeals} > 0:
 			[signal arg="skill_healing"]
 			[signal arg="heal_enemy_empowerment"]
 	set BattleVariables.player_skill_charge = 0

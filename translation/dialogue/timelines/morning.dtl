@@ -10,16 +10,24 @@ label CHOICES #id:378
 protagonist: Чем бы заняться... #id:379
 - Пробежка #id:37a
 	protagonist: Пожалуй, сгоняю на пробежку. #id:37b
-	set GameVariables.times_jogged += 1
 	if {Cutscenes.IsSceneSeen("event_relationship_40")}:
 		- Бежать с соседкой ({roommate_name}) #id:37c
-			set GameVariables.times_ran_together += 1
 			Ты решаешь позвать на пробежку соседку. Её зовут {roommate_name}. #id:37d
-			set {GameVariables.yuna_partnered} = true
 			jump sounds/DOOR_OPEN
 			[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 			join roommate center [extra_data="set Expressions/Happy"]
 			protagonist: Не хочешь пробежаться? #id:37e
+			if {GameVariables.suspicion} >= 50:
+				update roommate [extra_data="set Expressions/Confused"]
+				jump sounds/VOICE_UM
+				roommate: Может, в другой раз...
+				protagonist: (Похоже, она меня [color=ff3f49]подозревает[/color].)
+				protagonist: (Надо быть аккуратнее по ночам.)
+				leave roommate
+				jump sounds/DOOR_CLOSE
+				[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.6"]
+				jump CHOICES
+			set GameVariables.yuna_partnered = true
 			roommate: Давай, с удовольствием! #id:37f
 			roommate: Секунду, только переоденусь. #id:380
 			leave roommate
@@ -53,7 +61,7 @@ label USE #id:8a0
 	jump CHOICES
 label STUDY #id:388
 - Изучать Харизму | [if {Items.GetQuantity('book_of_charisma')} > 0] #id:389
-	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	jump sounds/PAGE_FLIP
 	join decorations center [extra_data="set Items/Book"]
 	Ты берёшь книгу о навыках общения. #id:38a
 	В ней есть дельный список тем, которыми можно удержать интерес собеседника. #id:38b
@@ -61,7 +69,7 @@ label STUDY #id:388
 	jump stat_change/CHARISMA_STUDY
 	jump z_functions/END_TO_UPGRADE
 - Изучать Ловкость | [if {Items.GetQuantity('book_of_dexterity')} > 0] #id:38f
-	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	jump sounds/PAGE_FLIP
 	join decorations center [extra_data="set Items/Book"]
 	Ты берёшь книгу по рукоделию. #id:390
 	Раздел про оригами учит складывать журавлика, кошку и слона. #id:391
@@ -69,7 +77,7 @@ label STUDY #id:388
 	jump stat_change/DEXTERITY_STUDY
 	jump z_functions/END_TO_UPGRADE
 - Изучать Интеллект | [if {Items.GetQuantity('book_of_intelligence')} > 0] #id:395
-	[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+	jump sounds/PAGE_FLIP
 	join decorations center [extra_data="set Items/Book"]
 	Ты берёшь книгу с советами по учёбе. #id:396
 	Кое-что из неё может пригодиться, когда в следующий раз сядешь заниматься. #id:397
@@ -85,7 +93,11 @@ label REST
 	jump stat_change/STAMINA_INCREASE
 	jump z_functions/END_TO_UPGRADE
 - Подрочить
-	protagonist: Что-то я весь на взводе...
+	if {Items.GetQuantity('porno_mag')} <= 0
+		protagonist: Мне даже не на что подрочить...
+		jump CHOICES
+	set GameVariables.quantity = {Items.Decrement('porno_mag')}
+	protagonist: Кажется, где-то тут валялся [color=ffce65]порножурнал[/color]...
 	jump morning_jerk/START
 - Назад
 	jump CHOICES

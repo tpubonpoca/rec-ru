@@ -22,7 +22,7 @@
 "mirror": false,
 "offset": Vector2(0, -160),
 "scale": 1,
-"scene": "res://dialogue/characters/layered_portrait_scene.tscn"
+"scene": "res://dialogue/custom_styles/layered_portrait_scene.tscn"
 }
 },
 &"scale": 1.0

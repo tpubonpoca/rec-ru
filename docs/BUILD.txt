@@ -1,20 +1,33 @@
-Версия игры: 0.5.5.2
-Движок: Godot 4.4.1 .NET
-Патчер: dotnet build tools/patcher/patcher.csproj
-Зависимость патчера: dnlib 4.4.0; восстановление требует доступа к пакету
-Таблицы: скопировать translation/tables/keys2.json в tools/scripts/table-project/keys2.json
-Генератор: godot --headless --path tools/scripts/table-project
-Результат: gen_en.translation и gen_ru.translation в каталоге проекта
-Таймлайны: translation/dialogue/timelines; пути соответствуют res://dialogue/timelines
-Персонажи: translation/dialogue/characters
-Подписи: translation/fixes/label_fix.gd; автозагрузка в игре называется ZFix
-Автозагрузка: фрагмент translation/fixes/ZFix.godot; скрипт размещается в res://label_fix.gd
-Патчер: режимы и аргументы определены в Program.cs; сначала проверить Main
-Вход патчера: отдельно предоставленная исходная библиотека игры и GodotSharp
-Шрифты: fonts; для переработки требуется Python с fontTools
-Ограничение: генератор таблиц восстановлен; игровая сборка автоматически не проверена
-Ограничение: скрипты legacy используют внешние ресурсы и исторические абсолютные пути
-Упаковка: использовать локальный инструмент упаковки с ресурсами собственной копии игры
-Конфиденциальность: упаковщики с встроенными закрытыми данными исключены
+Версия игры: 0.6.0.0
+Движок: Godot 4.7.2 .NET (сборка автора; --main-pack в ней отключён)
+Пакет: GDPC v4, каталог и часть файлов зашифрованы AES-256-CFB; ключ в проект не входит
+Рабочий каталог: все скрипты tools/scripts/v0600 запускаются из него; Python 3.11+, запуск с -X utf8
+
+Исходные данные рабочего каталога:
+res/ — распакованный пакет 0.6.0.0 (python pck4.py extract REC.pck key.hex res)
+res_0552_en/ — пакет 0.5.5.2 без перевода, res_0552_ru/ — пакет 0.5.5.2 с переводом
+ru_changed.txt — список файлов, изменённых переводом 0.5.5.2
+tr/ — копия translation/v0600 (dtl_new.tsv, res_new.tsv, table_add.tsv)
+key.hex — ключ пакета, хранить только локально
+
+Шаги:
+1. tsv2json.py — словари новых строк из tr/*.tsv
+2. port_dtl.py — таймлайны 0.6 с русскими репликами в dtl_ru/; остаток в dtl_todo.json
+3. res_map.py, затем port_res.py — пары строк ресурсов и переведённые ресурсы в res_ru/
+4. make_table.py — строки таблицы в runner/rows.json
+5. Таблицы: REC.exe игры копируется в отдельный каталог рядом с пакетом из tools/scripts/v0600/runner
+   (упаковать pck4.py), затем REC.exe --headless -- make rows.json ru <выход>; так же для en
+6. build_ru.py — итоговый REC.pck: таймлайны, персонажи, ресурсы, таблицы, шрифты, label_fix.gd,
+   автозагрузка ZFix в project.binary
+7. REC.dll: strtool.exe dump для исходной и переведённой библиотеки, build_map.py, затем
+   strtool.exe patch REC.dll REC_ru.dll map.tsv GodotSharp.dll
+   "Hint.SetDescription:arg0,NightSequence.AddScore:arg2,EnemyResource.GetName:ret"
+   "SaveUI._Ready:night=5;left_button=4;right_button=4"
+
+strtool: собирается csc.exe из .NET Framework 4 со ссылкой на dnlib.dll (net45)
+Персонажи: translation/dialogue/characters; имена Dialogic, не трогать выражения в фигурных скобках
+Подписи: translation/fixes/label_fix.gd; при запуске включает русский язык, таблицы en и ru одинаковые
+Имена в репликах: {...Name} оборачиваются в {tr(...)}; перевод берётся из таблицы
 Проверка: не заменять внутренние идентификаторы и имена полей сохранений переводом
+Не проверено в игре: подсказки и очки ночной фазы, событие «Сладость или гадость», маршрут Ёсуке
 Права: игра и ресурсы принадлежат их авторам; условия распространения отдельно не проверялись

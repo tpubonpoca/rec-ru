@@ -1,6 +1,6 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.0"]
-[sound bus="Cutscene" path="res://audio/se/Dishes.ogg" volume="-6.0"]
+jump sounds/DISHES
 protagonist: ... #id:1bd
 Ты смотришь на миску говяжьей лапши и думаешь, какие жизненные решения привели тебя сюда. #id:1be
 protagonist: Бе-е. #id:1bf
@@ -38,7 +38,7 @@ protagonist: Я тебе по гроб жизни обязан. #id:1d6
 update roommate [extra_data="set Expressions/Happy"]
 [sound bus="Cutscene" path="res://audio/voice/shinpai2_Theres_nothing_to_worry_about.ogg" volume="0.0"]
 roommate: Да брось. Ешь давай! #id:1d7
-[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+jump sounds/GOT_LEVEL
 [color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:1d8
 [color=e5be3e]Иногда по вечерам она может приносить тебе подарки.[/color] #id:661
 [color=e5be3e]А ещё она охотнее откликается на твои просьбы и действия.[/color] #id:1da

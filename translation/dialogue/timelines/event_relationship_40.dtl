@@ -5,7 +5,7 @@ jump sounds/DOOR_OPEN
 [background arg="res://assets/Cutscene/Backgrounds/Lobby.png" fade="0.6"]
 В холле ты замечаешь знакомое лицо. #id:1dc
 join roommate center [extra_data="set Expressions/Happy"]
-[sound bus="Cutscene" path="res://audio/voice/konnichiwa3_Hello.ogg"]
+jump sounds/VOICE_HELLO
 roommate: Привет! Уходишь? #id:1dd
 protagonist: Ага, как раз собирался немного пробежаться. #id:1de
 roommate: Класс! Подождёшь минутку? #id:1df
@@ -31,19 +31,20 @@ jump sounds/MOVE_OUTDOORS_URBAN
 update roommate [extra_data="set Expressions/Tired, show Decorations/Sweat"]
 {roommate_name} бежит рядом: вы делаете пару кругов вокруг квартала. #id:1ee
 Она держит твой темп, но уже заметно запыхалась. #id:1ef
-if {GameVariables.stamina_limit} >= 110:
+if {GameVariables.stamina_limit} >= 200:
+	protagonist: Ну что, бежим дальше? #id:1f6
+	roommate: Блин, откуда у тебя столько [color=e5be3e]выносливости[/color]? #id:1f7
+	roommate: Если честно, я больше не могу. #id:1f8
+	jump stat_change/CHARISMA
+elif {GameVariables.stamina_limit} >= 150:
 	Ты бегал тут уже не раз, и маршрут даётся тебе легко. #id:1f0
 	roommate: А ты, смотрю, тут всё знаешь, да? #id:1f1
 	protagonist: Ха-ха, думаешь? #id:1f2
 	jump stat_change/CHARISMA
-if {GameVariables.stamina_limit} >= 140:
-	protagonist: Ну что, бежим дальше? #id:1f6
-	roommate: Блин, откуда у тебя столько [color=e5be3e]выносливости[/color]? #id:1f7
-	roommate: Если честно, я больше не могу. #id:1f8
 roommate: Слушай, может, посидим немного на скамейке? #id:1f9
 roommate: Мне надо передохнуть. #id:1fa
 protagonist: Конечно, давай. #id:1fb
-[sound bus="Cutscene" path="res://audio/se/Movement.ogg" volume="0.0"]
+jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Park.png" fade="0.6"]
 Вы находите скамейку в ближайшем парке. #id:1fc
 Ты решаешь взять попить в автомате неподалёку. #id:1fd
@@ -55,26 +56,26 @@ roommate: Спасибо. #id:1ff
 update roommate [extra_data="set Expressions/Tired"]
 protagonist: Давай я. Держи. #id:202
 Ты откручиваешь крышку и протягиваешь ей бутылку. #id:203
-[sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
+jump sounds/GULP
 {roommate_name} делает глоток. #id:204
-[sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
+jump sounds/GULP
 Потом ещё один. #id:205
-[sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
+jump sounds/GULP
 И ещё. #id:206
-[sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
+jump sounds/GULP
 За несколько секунд она осушает бутылку до дна. #id:207
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Ладно, кажется, эта пробежка вымотала меня сильнее, чем мне хотелось бы признавать. #id:208
 protagonist: Не переживай, у меня поначалу было так же. #id:209
 roommate: Ты часто бегаешь? #id:20a
-if {GameVariables.stamina_limit} >= 110:
-	protagonist: Да так, время от времени. #id:20b
-elif {GameVariables.stamina_limit} >= 125:
-	protagonist: Ну, кое-какой опыт есть. #id:20c
-elif {GameVariables.stamina_limit} >= 150:
+if {GameVariables.stamina_limit} >= 500:
+	protagonist: Вообще-то, я уже давно регулярно тренируюсь...
+elif {GameVariables.stamina_limit} >= 400:
 	protagonist: Ага, очень люблю побегать. #id:20d
+elif {GameVariables.stamina_limit} >= 300:
+	protagonist: Ну, кое-какой опыт есть. #id:20c
 elif {GameVariables.stamina_limit} >= 200:
-	protagonist: Ну, я уже довольно давно регулярно тренируюсь. #id:20e
+	protagonist: Да так, время от времени. #id:20b
 else:
 	protagonist: Не, не особо. #id:20f
 	protagonist: Хотя в школе я занимался лёгкой атлетикой. #id:210
@@ -84,7 +85,7 @@ protagonist: Да брось. #id:212
 protagonist: Все с чего-то начинают. #id:213
 roommate: Но за воду спасибо. #id:214
 {roommate_name} открывает вторую бутылку и начинает пить. #id:215
-[sound bus="Cutscene" path="res://audio/se/Gulp.ogg" volume="0.0"]
+jump sounds/GULP
 leave roommate
 join scene [extra_data="set Scene/Running"]
 Пока она пьёт, ты как бы невзначай опускаешь взгляд на её одежду. #id:10b5
@@ -115,7 +116,7 @@ roommate: Не наглей. #id:226
 update roommate center [extra_data="set Expressions/Happy"]
 roommate: ... #id:228
 roommate: Ладно, пойдём обратно? #id:229
-[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+jump sounds/GOT_LEVEL
 [color=e5be3e]{roommate_name}\: отношения улучшились.[/color] #id:22a
 [color=e5be3e]Теперь ты можешь звать её на свидания![/color] #id:22b
 [color=e5be3e]Другие виды свиданий, кроме пробежки, откроются по мере прокачки характеристик.[/color] #id:22c

@@ -10,7 +10,7 @@
 },
 &"default_portrait": "Default",
 &"description": "",
-&"display_name": "{BattleVariables.enemies[0].GetName()}",
+&"display_name": "{BattleVariables.get_enemy_name(0)}",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),

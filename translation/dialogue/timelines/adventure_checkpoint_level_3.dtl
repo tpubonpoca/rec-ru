@@ -60,7 +60,7 @@ label OPTIONS
 		roommate: ...ладно.
 	Ещё секунду ты всматриваешься в тёмный коридор.
 	protagonist: Ну... была не была.
-	jump adventure/LOOP
+	jump adventure/LOOP_W_MUSIC
 label BUS_LOOP #id:bf1
 set BattleVariables.level = 4
 set BattleVariables.stage = 0

@@ -55,15 +55,15 @@ if {GameVariables.shift_rating} == 5:
 [color=ff934d]+{GameVariables.shift_charisma_xp} опыта харизмы![/color]
 set GameVariables.charisma_total_xp += {GameVariables.shift_charisma_xp}
 jump sounds/GOT_CREDITS
-set GameVariables.credits += {GameVariables.shift_wage}
+set GameVariables.credits = {GameVariables.change_credits(GameVariables.shift_wage)}
 Заработано [color=e5be3e]{GameVariables.shift_wage} кредитов[/color]!
 jump z_functions/END_TO_UPGRADE
 
 label APPLICATION
 if {BattleVariables.is_night_run()} == true:
-	return
+	jump adventure/LOOP
 if {GameVariables.has_skill('convenience_store')} == true:
-	return
+	jump adventure/LOOP
 jump sounds/MUSIC_FADEOUT
 jump sounds/STOMACH
 protagonist: Ох... живот...
@@ -80,8 +80,8 @@ set GameVariables.random_name = "Кассир"
 [background arg="res://assets/Cutscene/Backgrounds/Convenience_Store.png" fade="0.6"]
 jump sounds/BELL_CONVENIENCE
 [wait time="2.0"]
-[sound bus="Cutscene" path="res://audio/se/Toilet.ogg"]
-[sound bus="Cutscene" path="res://audio/se/Washing.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Toilet.ogg" volume="0.0"]
+[sound bus="Cutscene" path="res://audio/se/Washing.ogg" volume="0.0"]
 [wait time="3.0"]
 protagonist: Фух... кризис миновал.
 На выходе ты решаешь купить на кассе бутылку воды.
@@ -108,11 +108,11 @@ protagonist: (...)
 protagonist: (Похоже, даже никаких заявлений писать не надо.)
 protagonist: (Может, возьму пару смен, если понадобятся деньги?)
 [signal arg="unlock_convenience_store"]
-[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav" volume="-6.0"]
+jump sounds/GOT_LEVEL
 [color=e5be3e]Теперь ты можешь работать в магазине![/color]
 [color=e5be3e]Вечером теперь можно пропустить ночную смену и поработать в магазине.[/color]
 leave decorations
 if {GameVariables.yuna_partnered}:
 	join roommate center [mirrored="true" extra_data="set Body/Workout, set Expressions/Default"]
 	roommate: Идём?
-return
+jump adventure/LOOP_W_MUSIC

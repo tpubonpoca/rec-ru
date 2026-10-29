@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 1
-jump sounds/INDOOR_APARTMENT_PARTY
 [background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.6"]
 С кухни доносится какой-то шум. #id:afb
 Ты решаешь пойти глянуть. #id:afc

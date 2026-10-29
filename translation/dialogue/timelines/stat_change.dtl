@@ -68,7 +68,7 @@ set GameVariables.impression -= 1
 Ты производишь на окружающих впечатление похуже. #id:88c
 return
 label LUST_INCREASE
-[sound bus="Cutscene" path="res://audio/se/Thinking.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Thinking.ogg" volume="0.0"]
 [color=e5be3e]Похоть выросла![/color]
 return
 label LUST_DECREASE
@@ -90,15 +90,15 @@ if {GameVariables.stamina} <= 0:
 	set GameVariables.stamina = 0
 return
 label RELATIONSHIP_DECREASE #id:566
-[sound path="res://audio/se/Powerdown_XP.wav" bus="Cutscene"]
+[sound path="res://audio/se/Powerdown_XP.wav" bus="Cutscene" volume="0.0"]
 [color=ff3f49]Отношения\: −{GameVariables.decrease_relationship()} опыта.[/color] #id:ba3
 return
 label RELATIONSHIP_INCREASE #id:568
-[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
+[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene" volume="0.0"]
 [color=e5be3e]Отношения\: +{GameVariables.increase_relationship()} опыта.[/color] #id:ba4
 return
 label RELATIONSHIP_DOG_INCREASE
-[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene"]
+[sound path="res://audio/se/Powerup_XP.wav" bus="Cutscene" volume="0.0"]
 [color=e5be3e]Получено {GameVariables.increase_relationship_dog()} опыта дружбы с Псом.[/color]
 return
 label ROLL_CHARISMA #id:ba5

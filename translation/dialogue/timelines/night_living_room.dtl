@@ -1,6 +1,6 @@
 label START #id:fb8
 jump sounds/INDOOR_APARTMENT_NIGHT_ENVIRONMENT
-[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 if {Calendar.IsDayOff()}:
 	protagonist: Хм...
@@ -9,7 +9,7 @@ if {Calendar.IsDayOff()}:
 		jump night/RETURN
 Ты успеваешь застать соседку перед сном. #id:190
 join roommate center
-if {GameVariables.relationship} >= 20 && {GameVariables.suspicion} < 50:
+if {GameVariables.get_relationship()} >= 20 && {GameVariables.suspicion} < 50:
 	roommate: Привет! Чего хотел? #id:197
 else:
 	roommate: Что такое? #id:198
@@ -27,7 +27,7 @@ label GIVE_GIFT #id:d15
 - Поболтать #id:d16
 	protagonist: Как жизнь? Ничего интересного не случилось? #id:d17
 	roommate: А? Ну... #id:d18
-	if {GameVariables.is_relationship_locked()} && {GameVariables.relationship} == 20:
+	if {GameVariables.is_relationship_locked()} && {GameVariables.get_relationship()} == 20:
 		roommate: Я в последнее время слишком часто ем где попало... #id:d19
 		protagonist: Да? #id:d1a
 		roommate: Ага, хотелось бы по утрам иметь побольше времени на себя... #id:d1b
@@ -35,7 +35,7 @@ label GIVE_GIFT #id:d15
 		roommate: Особенно с этой учёбой... #id:d1d
 		protagonist: (Хм... может, как-нибудь приготовить ей поесть...) #id:d1e
 		jump GIVE_GIFT
-	if {GameVariables.is_relationship_locked()} && {GameVariables.relationship} == 40:
+	if {GameVariables.is_relationship_locked()} && {GameVariables.get_relationship()} == 40:
 		roommate: Кажется, я в последнее время поправилась... #id:d1f
 		protagonist: Да ну? По-моему, нет. #id:d20
 		update roommate [extra_data="set Expressions/Happy"]
@@ -56,11 +56,11 @@ label GIVE_GIFT #id:d15
 		set GameVariables.suspicion = 0
 	roommate: ...что это? #id:19b
 	roommate: Ты мне подарок купил? #id:19c
-	if {GameVariables.relationship} > 20:
+	if {GameVariables.get_relationship()} > 20:
 		jump sounds/VOICE_THANK_YOU
-		Спасибо. Очень приятно. #id:19d
+		roommate: Спасибо. Мне приятно.
 	else:
-		Ну... спасибо, что ли. #id:19e
+		roommate: Ну... спасибо, что ли.
 	set GameVariables.relationship_change = 3
 	jump stat_change/RELATIONSHIP_INCREASE
 	if {GameVariables.is_relationship_locked()}:
@@ -85,7 +85,7 @@ label GIVE_ITEM #id:199
 - Дать зелёный чай | [if {Items.GetQuantity('green_tea')} > 0 && {GameVariables.applied_green_tea} == false] #id:19f
 	roommate: Попить? Мне? #id:1a0
 	jump POSSIBLE_SUSPICION
-	if {GameVariables.relationship} >= 20:
+	if {GameVariables.get_relationship()} >= 20:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.quantity = {Items.Decrement('green_tea')}
 		roommate: Спасибо! #id:1a1
@@ -98,7 +98,7 @@ label GIVE_ITEM #id:199
 - Дать бальзам для губ | [if {Items.GetQuantity('numbing_chapstick')} > 0 && {GameVariables.applied_numbing_chapstick} == false] #id:1a4
 	roommate: Это бальзам для губ? #id:1a5
 	jump POSSIBLE_SUSPICION
-	if {GameVariables.relationship} >= 40:
+	if {GameVariables.get_relationship()} >= 40:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.quantity = {Items.Decrement('numbing_chapstick')}
 		roommate: Спасибо! А то у меня последнее время губы по ночам сохнут. #id:1a6
@@ -111,7 +111,7 @@ label GIVE_ITEM #id:199
 - Дать подозрительный лосьон | [if {Items.GetQuantity('suspicious_lotion')} > 0 && {GameVariables.applied_suspicious_lotion} == false] #id:1a9
 	roommate: Это увлажняющий лосьон? #id:1aa
 	jump POSSIBLE_SUSPICION
-	if {GameVariables.relationship} >= 40:
+	if {GameVariables.get_relationship()} >= 40:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.quantity = {Items.Decrement('suspicious_lotion')}
 		roommate: Спасибо! Намажусь перед сном. #id:1ab
@@ -124,7 +124,7 @@ label GIVE_ITEM #id:199
 - Дать колючую траву | [if {Items.GetQuantity('prickly_herb')} > 0 && {GameVariables.applied_prickly_herb} == false] #id:d30
 	roommate: Это что за трава? #id:d31
 	jump POSSIBLE_SUSPICION
-	if {GameVariables.relationship} >= 60:
+	if {GameVariables.get_relationship()} >= 60:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.quantity = {Items.Decrement('prickly_herb')}
 		roommate: Спасибо! Попробую! #id:d32
@@ -140,7 +140,7 @@ label ACCESSORY #id:892
 - Подарить маску для сна | [if {GameVariables.has_skill('blindfold')} && {GameVariables.blindfold_given} == false]
 	jump POSSIBLE_SUSPICION
 	roommate: Маска для сна?
-	if {GameVariables.relationship} >= 20:
+	if {GameVariables.get_relationship()} >= 20:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.blindfold_given = true
 		update roommate [extra_data="set Expressions/Happy"]
@@ -153,7 +153,7 @@ label ACCESSORY #id:892
 - Подарить кошачьи ушки | [if {GameVariables.has_skill('cat_ears')} && {GameVariables.ears_given} == false]
 	jump POSSIBLE_SUSPICION
 	roommate: Ободок?
-	if {GameVariables.relationship} >= 80:
+	if {GameVariables.get_relationship()} >= 80:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.ears_given = true
 		update roommate [extra_data="set Expressions/Happy"]
@@ -166,7 +166,7 @@ label ACCESSORY #id:892
 - Подарить чокер | [if {GameVariables.has_skill('choker')} && {GameVariables.choker_given} == false] #id:893
 	jump POSSIBLE_SUSPICION
 	roommate: Чокер? Серьёзно? #id:894
-	if {GameVariables.relationship} >= 80:
+	if {GameVariables.get_relationship()} >= 80:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.choker_given = true
 		update roommate [extra_data="set Expressions/Happy"]
@@ -181,7 +181,7 @@ label ACCESSORY #id:892
 - Подарить кляп | [if {GameVariables.has_skill('ball_gag')} && {GameVariables.gag_given} == false]
 	jump POSSIBLE_SUSPICION
 	roommate: Кляп-шарик?
-	if {GameVariables.relationship} >= 80:
+	if {GameVariables.get_relationship()} >= 80:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.gag_given = true
 		update roommate [extra_data="set Expressions/Default"]
@@ -197,7 +197,7 @@ label ACCESSORY #id:892
 - Подарить носки | [if {GameVariables.has_skill('socks')} && {GameVariables.socks_given} == false] #id:898
 	jump POSSIBLE_SUSPICION
 	roommate: Это носки? #id:899
-	if {GameVariables.relationship} >= 40:
+	if {GameVariables.get_relationship()} >= 40:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.socks_given = true
 		update roommate [extra_data="set Expressions/Happy"]
@@ -210,7 +210,7 @@ label ACCESSORY #id:892
 - Подарить свитер | [if {GameVariables.has_skill('sweater')} && {GameVariables.sweater_given} == false]
 	jump POSSIBLE_SUSPICION
 	roommate: Это... интересный свитер...
-	if {GameVariables.relationship} >= 100:
+	if {GameVariables.get_relationship()} >= 100:
 		jump sounds/VOICE_THANK_YOU
 		set GameVariables.sweater_given = true
 		update roommate [extra_data="set Expressions/Happy"]
@@ -225,7 +225,7 @@ label ACCESSORY #id:892
 label POSSIBLE_SUSPICION #id:1af
 if {GameVariables.suspicion} >= 50:
 	update roommate [extra_data="set Expressions/Confused"]
-	[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+	jump sounds/VOICE_UM
 	roommate: Хм-м... #id:1b0
 	roommate: Мне, наверное, не надо, извини. #id:1b1
 	protagonist: (Похоже, она меня [color=ff3f49]подозревает[/color].) #id:1b2

@@ -34,7 +34,7 @@ if {GameVariables.yuna_partnered}:
 	roommate: Блин, какой вид! #id:69
 	update roommate [extra_data="set Expressions/Default"]
 label START_ADVENTURE #id:bee
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC
 label SEX #id:1034
 update roommate [extra_data="set Expressions/Confused"]
 roommate: О? Хочешь устроить «перерыв»? #id:1035
@@ -104,14 +104,14 @@ label FINISH #id:1051
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_1
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_2
 protagonist: Ах! #id:f19
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+jump sound/FINISH_3
 [wait time="2.0"]
 {roommate_name} скользит языком по всей длине твоего члена... #id:f1a
 jump sounds/GULP

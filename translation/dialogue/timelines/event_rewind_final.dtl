@@ -18,17 +18,17 @@ label choice #id:2e1
 	leave decorations
 	Ты решаешь просто лечь спать. #id:2e9
 	jump ending/
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]...*бип*[/color] #id:2ea
 camera: [color=e5be3e]Запрос на перемотку получен.[/color] #id:2eb
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]*бип*[/color] #id:2ec
 camera: [color=e5be3e]...запрос одобрен.[/color] #id:2ed
 [signal arg="start_rewind"]
 [music channel="3" fade="0.0" volume="0.0"]
 [music path="res://audio/se/Rewind.ogg" fade="0.6" volume="0.0"]
 [music channel="1" fade="0.0" volume="0.0"]
-[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
 set GameVariables.phase = "MORNING"
 [wait time="1.0"]
@@ -73,13 +73,13 @@ set GameVariables.day_name = "ПН."
 [wait time="0.1"]
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
 [signal arg="stop_rewind"]
-[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg" volume="0.0"]
 set GameVariables.phase = "MORNING"
 [music path="res://audio/bgs/cicadas.ogg" fade="0.6" volume="-12.0"]
 [music path="res://audio/bgs/Traffic.ogg" channel="1" fade="0.6"]
 [wait time="2.0"]
 update decorations center [extra_data="set Items/Camera"]
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]Перемотка завершена.[/color] #id:2ee
 camera: [color=e5be3e]Можете покинуть комнату.[/color] #id:2ef
 camera: [color=e5be3e]Следующая перемотка будет доступна примерно через 13 дней 12 часов.[/color] #id:2f0

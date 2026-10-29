@@ -1,8 +1,9 @@
 label START #id:c2f
 if {BattleVariables.is_night_run()} == false:
-	return
-if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')} && {Items.HasItem('running_shoes')}:
-	return
+	jump adventure/LOOP
+if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks')}:
+	if {Items.HasItem('running_shoes')} or {Cutscenes.IsSceneSeen("event_relationship_40")}
+		jump adventure/LOOP
 set GameVariables.trigger = false
 if {BattleVariables.is_night_run()} == false:
 	[background arg="res://assets/Cutscene/Backgrounds/City_Running_3.png" fade="0.6"]
@@ -73,7 +74,7 @@ leave decorations
 		jump BOUGHT
 	- Нет #id:c5b
 		jump NOT_INTERESTED
-- Беговые кроссовки | [if {Items.HasItem('running_shoes')} == false] #id:c5c
+- Беговые кроссовки | [if {Items.HasItem('running_shoes')} == false and {Cutscenes.IsSceneSeen("event_relationship_40")} == false]
 	join decorations center [extra_data="set Items/Shoes"]
 	syn: А, [color=e5be3e]кроссовки для бега[/color]. #id:c5d
 	syn: Такой расцветки в магазинах больше не найти. #id:c5e
@@ -113,4 +114,4 @@ if {GameVariables.has_skill('cheese_brick')} && {GameVariables.has_skill('socks'
 	syn: Высматривай меня! #id:c74
 	syn: Пока! #id:c75
 leave syn
-jump adventure/LOOP
+jump adventure/LOOP_W_MUSIC

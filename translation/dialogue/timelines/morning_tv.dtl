@@ -1,14 +1,14 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
-[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+jump sounds/PAGE_FLIP
 protagonist: ... #id:4c4
 protagonist: ...глаза уже слезятся. #id:4c5
-[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+jump sounds/PAGE_FLIP
 protagonist: ... #id:4c6
 protagonist: Пора, наверное, сделать перерыв. #id:4c7
 protagonist: Может, перекусить? #id:4c8
-[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
-[music path="res://audio/bgs/TV_Background.ogg" channel="2" fade="1.0" volume="-18.0"]
+jump sounds/MOVE_INDOORS
+audio music3 "res://audio/bgs/TV_Background.ogg" [fade="1.0" volume="-9.0" bus="Cutscene"]
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 protagonist: Ты замечаешь, что соседка смотрит телевизор в гостиной. #id:4c9
 join roommate center
@@ -22,7 +22,7 @@ protagonist: Похоже, она просто щёлкает каналы. #id:
 	jump z_functions/END_TO_UPGRADE
 label TALK #id:4d0
 protagonist: Привет, что смотришь? #id:4d1
-if {GameVariables.relationship} >= 20:
+if {GameVariables.get_relationship()} >= 20:
 	update roommate [extra_data="set Expressions/Happy"]
 	Соседка встречает тебя улыбкой. #id:4d2
 else:
@@ -47,7 +47,7 @@ if {GameVariables.get_charisma()} >= 3:
 	roommate: Ясно. Спасибо. #id:4df
 	set GameVariables.relationship_change = 5
 	jump stat_change/RELATIONSHIP_INCREASE
-	if {GameVariables.relationship} >= 40:
+	if {GameVariables.get_relationship()} >= 40:
 		update roommate [extra_data="hide Decorations/Blush"]
 		roommate: Слушай, а... хочешь посмотреть со мной телик? #id:4e1
 		- Да #id:4e2
@@ -81,13 +81,13 @@ label WATCH #id:4f5
 Если хочешь, можно протянуть руку и приобнять её за плечи.
 - Приобнять её #id:4fb
 	Ты кладёшь руку ей на плечо и притягиваешь чуть ближе. #id:4fc
-	[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+	jump sounds/RUSTLE
 	update roommate [extra_data="set Decorations/Blush"]
 	jump WRAP_ARMS
 - Не трогать её #id:4fd
 	jump PUSSY_OUT
 label WRAP_ARMS #id:4ff
-if {GameVariables.relationship} < 50:
+if {GameVariables.get_relationship()} < 50:
 	jump UNHAPPY
 Похоже, она совсем не против. #id:500
 Кажется, можно зайти и дальше. #id:501
@@ -98,28 +98,28 @@ if {GameVariables.relationship} < 50:
 	jump PUSSY_OUT
 label GROPE #id:506
 join scene [extra_data="set Scene/Groping"]
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+jump sounds/RUSTLE
 Ты прижимаешь её к себе и начинаешь мять её грудь. {roommate_name} даже не пытается отстраниться. #id:507
 [signal arg="play_default"]
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
-if {GameVariables.relationship} < 60:
+jump sounds/RUSTLE
+if {GameVariables.get_relationship()} < 60:
 	jump UNHAPPY
-[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+jump sounds/VOICE_MMM
 Похоже, она совсем не против твоих рук. #id:508
 update roommate [extra_data="show Decorations/HotAir, set Expressions/Pleasure"]
-[sound bus="Cutscene" path="res://audio/voice/un5_yes.ogg"]
+jump sounds/VOICE_AGREE
 Через пару мгновений её дыхание становится тяжелее. #id:509
 leave scene
 Кажется, ей нравится, как ты её трогаешь. #id:50a
 join scene [extra_data="set Scene/Groping"]
 [signal arg="play_fast"]
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+jump sounds/RUSTLE
 Ты сжимаешь её грудь сбоку, глубоко погружая пальцы в мягкую плоть. #id:50b
-[sound bus="Cutscene" path="res://audio/voice/un4_yes.ogg"]
+jump sounds/VOICE_MMM
 Она такая большая, что почти целиком заполняет твои ладони, пока ты продолжаешь её мять. #id:50c
 jump HAPPY
 label HAPPY #id:50d
-[sound bus="Cutscene" path="res://audio/se/rustle.ogg"]
+jump sounds/RUSTLE
 Ещё через мгновение она мягко отталкивает тебя. #id:50e
 leave scene
 update roommate [extra_data="set Expressions/Default"]

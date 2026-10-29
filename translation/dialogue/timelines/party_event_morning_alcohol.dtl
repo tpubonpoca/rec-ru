@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 1
-jump sounds/INDOOR_APARTMENT_PARTY
 [background arg="res://assets/Cutscene/Backgrounds/Kitchen.png" fade="0.6"]
 Ты пробираешься на кухню за закусками. #id:ad1
 jump sounds/DOOR_CLOSE

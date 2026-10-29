@@ -34,7 +34,7 @@ protagonist: Ещё пара ночей съёмок, и к [color=e5be3e]сле
 protagonist: А может, даже поем что-нибудь, кроме лапши. #id:179
 protagonist: ... #id:17a
 leave decorations
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Unlock.ogg" volume="0.0"]
 protagonist: (Прости, {roommate_name}.) #id:17b
 protagonist: (Надеюсь, ты поймёшь.) #id:17c
 jump sounds/THINKING
@@ -60,9 +60,9 @@ protagonist: Блин! Я же опаздываю на занятия! #id:c9a
 protagonist: Надо выходить прямо сейчас. #id:c9b
 jump sounds/MOVE_OUTDOORS_URBAN
 [background arg="res://assets/Cutscene/Backgrounds/Black.png" fade="0.6"]
-[sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene"]
+[sound path="res://audio/se/BusLeaving.ogg" bus="Cutscene" volume="0.0"]
 [wait time="3.0"]
-[sound path="res://audio/se/BusArrival.ogg" bus="Cutscene"]
+[sound path="res://audio/se/BusArrival.ogg" bus="Cutscene" volume="0.0"]
 [music path="res://audio/bgs/Traffic_Unfiltered.ogg" channel="1" fade="1.0" volume="-18.0" bus="Cutscene"]
 [music path="res://audio/bgs/Nature.ogg" channel="2" fade="1.0" volume="-18.0" bus="Cutscene"]
 [music path="" channel="3" fade="1.0" volume="0.0" bus="Cutscene"]
@@ -100,7 +100,7 @@ roommate: Это НЕ одно и то же. #id:cac
 protagonist: ...справедливо. #id:cad
 protagonist: (После вчерашней ночи мне трудно смотреть ей в глаза...) #id:cae
 protagonist: (Хорошо хоть, что она, похоже, ничего не подозревает.) #id:caf
-[sound bus="Cutscene" path="res://audio/se/BellChurch.ogg"]
+[sound bus="Cutscene" path="res://audio/se/BellChurch.ogg" volume="0.0"]
 update roommate [extra_data="set Expressions/Surprise"]
 roommate: ...! #id:cb0
 roommate: Звонок! Мы опаздываем! #id:cb1
@@ -181,10 +181,10 @@ if {GameVariables.day} != 2:
 	if {GameVariables.get_random_number(100)} < 68:
 		set GameVariables.yuna_partnered = true
 		join roommate [mirrored="true"]
-		if {GameVariables.relationship} >= 40:
+		if {GameVariables.get_relationship()} >= 40:
 			update roommate [extra_data="set Expressions/Happy"]
 			roommate: Доброе утро! #id:cdf
-		elif {GameVariables.relationship} >= 20:
+		elif {GameVariables.get_relationship()} >= 20:
 			roommate: ...утро. #id:ce0
 		{roommate_name} тоже сегодня здесь. #id:ce1
 	jump sounds/RULER
@@ -268,7 +268,7 @@ if {GameVariables.selected_question.Explanation5} != "":
 	random: {GameVariables.selected_question.Explanation5}
 if {GameVariables.selected_question.Explanation6} != "":
 	random: {GameVariables.selected_question.Explanation6}
-[sound bus="Cutscene" path="res://audio/se/BellChurch.ogg"]
+[sound bus="Cutscene" path="res://audio/se/BellChurch.ogg" volume="0.0"]
 [music path="res://audio/bgs/Classroom.ogg" channel="3" fade="2.0" volume="-12.0" bus="Cutscene"]
 [wait time="1.0"]
 random: Так, время вышло. Не забудьте прочитать заданное! #id:cfc

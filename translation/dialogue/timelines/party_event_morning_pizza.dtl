@@ -1,6 +1,5 @@
 set {GameVariables.party_stage} = 1
 set GameVariables.got_mega_pizza = false
-jump sounds/INDOOR_APARTMENT_PARTY
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 Ты неловко стоишь посреди гостиной. #id:adf
 jump sounds/DOOR_CLOSE

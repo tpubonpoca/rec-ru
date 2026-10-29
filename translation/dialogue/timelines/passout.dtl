@@ -15,7 +15,7 @@ if {BattleVariables.is_night_run()}:
 	[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="1.0"]
 else:
 	jump sounds/INDOOR_APARTMENT_ENVIRONMENT
-[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
+	[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
 Ты просыпаешься в своей кровати.
 protagonist: ...ох...
 protagonist: Что случилось?

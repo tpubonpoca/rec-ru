@@ -152,25 +152,25 @@ protagonist: ...д-да. #id:e2f
 [signal arg="play_back_slow"]
 Её горячая теснота так внезапно обхватывает тебя, что ты не можешь сдержать громкий вздох. #id:e31
 От неё это не ускользает. #id:e32
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: А это... ах... тоже только «чуть-чуть» лучше? #id:e33
 Слова даются тебе с трудом. #id:e34
 protagonist: Я... настаиваю... на своём... мнении... #id:e35
 protagonist: ...всего... «чуть-чуть»... #id:e36
 [signal arg="play_back_fast"]
 Едва {roommate_name} слышит «чуть-чуть», как ускоряет темп. #id:e37
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: А... теперь...? #id:e38
 Под звонкие шлепки тел ей удаётся выдавить фразу. #id:e39
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: Всё ещё... только... чуть-чуть... лучше? #id:e3a
 Ты открываешь рот, чтобы ответить... #id:e3b
 protagonist: Э-э... #id:e3c
 ...но связать хоть пару слов сейчас невозможно. #id:e3d
 Все твои силы уходят на то, чтобы не кончить слишком быстро. #id:e3e
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: Что... нечего... сказать... да? #id:e3f
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: А так... ты... заговоришь? #id:e40
 Внезапно ты понимаешь, что она задумала. #id:e41
 protagonist: Погоди... се... #id:e42
@@ -188,15 +188,15 @@ protagonist: Ах! #id:e4b
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
+jump sounds/FINISH_1
 Тебя накрывает горячей волной, и ты кончаешь прямо в неё. #id:e4c
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
+jump sounds/FINISH_2
 protagonist: Ах! #id:e4d
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
+jump sounds/FINISH_3
 [wait time="2.0"]
 На несколько секунд ты ощущаешь полное, абсолютное умиротворение. #id:e4e
 protagonist: ... #id:e4f

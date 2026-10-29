@@ -27,7 +27,6 @@ protagonist: Чем бы заняться... #id:379
 			protagonist: Боюсь, на это мне пока не хватит выносливости...
 			jump CHOICES
 		protagonist: Пожалуй, сгоняю на пробежку. #id:37b
-		set GameVariables.times_jogged += 1
 		jump adventure/START
 	- Встретиться с Ёсуке | [if {GameVariables.day} >= 6]
 		protagonist: Ёсуке говорил, что будет в парке... #id:10cf
@@ -43,11 +42,11 @@ protagonist: Чем бы заняться... #id:379
 	jump night_living_room/START
 - Комната Юны #id:10d7
 	if {Calendar.IsDayOff()}:
-		[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+		jump sounds/MOVE_INDOORS
 		[background arg="res://assets/Cutscene/Backgrounds/Hallway_Night.png" fade="0.6"]
 		protagonist: Хм...
 		protagonist: ...похоже, сегодня её тут нет.
-		[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+		jump sounds/MOVE_INDOORS
 		[background arg="res://assets/Cutscene/Backgrounds/Dorm_Room_Night.png" fade="0.6"]
 		jump CHOICES
 	jump z_functions/END_TO_NIGHT_SEQUENCE

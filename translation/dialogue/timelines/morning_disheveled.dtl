@@ -1,11 +1,18 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.0"]
 [wait time="0.6"]
+if {GameVariables.is_shaved_recently}:
+	set GameVariables.is_shaved_recently = false
+	jump sounds/SURPRISE
+	roommate: [font_size=24]ЧТО ЗА...[/font_size]
+	roommate: [font_size=24]КТО МНЕ ПОБРИЛ ЛОБОК?![/font_size]
+	[sound bus="Cutscene" path="res://audio/se/Steps_Approaching_Short.ogg" volume="-6.0"]
+	[wait time="2.0"]
 jump sounds/DOOR_KNOCK
 protagonist: Да, входи. #id:41e
 jump sounds/DOOR_OPEN
 join roommate center
-[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+jump sounds/VOICE_UM
 roommate: Привет... #id:41f
 set GameVariables.disheveled_times += 1
 if {GameVariables.disheveled_times} == 1:

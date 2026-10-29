@@ -158,7 +158,7 @@ roommate: Тогда не мешай мне помогать. #id:eed
 jump sounds/CLOTH
 [signal arg="play_removal"]
 {roommate_name} приспускает с тебя шорты ровно настолько, чтобы освободить член. #id:eee
-[sound bus="Cutscene" path="res://audio/voice/ee2_surprise.wav"]
+jump sounds/VOICE_SURPRISE
 roommate: Ого. #id:eef
 roommate: А он всегда такой... уже? #id:ef0
 protagonist: Ну... #id:ef1
@@ -220,15 +220,15 @@ protagonist: (Я долго не продержусь.) #id:f15
 set GameVariables.lust = 0
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
+jump sounds/FINISH_1
 И наконец ты сдаёшься и отпускаешь всё, что так долго сдерживал. #id:f18
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
+jump sounds/FINISH_2
 protagonist: Ах! #id:f19
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
+jump sounds/FINISH_3
 [wait time="2.0"]
 {roommate_name} скользит языком по всей длине твоего члена... #id:f1a
 jump sounds/GULP
@@ -268,7 +268,7 @@ jump sounds/VOICE_LAUGH
 roommate: Иди умойся, дурачок. #id:f33
 leave roommate
 Ты подходишь к раковине. #id:f34
-[sound bus="Cutscene" path="res://audio/se/Sink.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Sink.ogg" volume="0.0"]
 Плеская в лицо водой, ты снова и снова прокручиваешь в голове то, что только что было. #id:f35
 protagonist: (Не верится, что это сейчас произошло...) #id:f36
 protagonist: (Это было одно из самых охрененных ощущений в моей жизни.) #id:f37
@@ -331,7 +331,7 @@ join alice [extra_data="set Style/Normal"]
 random: Как скажешь, чувак. #id:f5e
 Она прищуривается, разглядывая тебя... #id:f5f
 random: А чего ты так запыхался? #id:f60
-[sound bus="Cutscene" path="res://audio/se/CreakingDoorClose.wav"]
+[sound bus="Cutscene" path="res://audio/se/CreakingDoorClose.wav" volume="0.0"]
 За твоей спиной со скрипом открывается дверь. #id:f61
 protagonist: (Блять!) #id:f62
 protagonist: (Ну конечно, надо было выбрать самый неудачный момент!) #id:f63

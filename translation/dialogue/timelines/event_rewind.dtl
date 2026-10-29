@@ -13,12 +13,12 @@ protagonist: Никогда не слышал, чтобы камера сама 
 protagonist: ...не говоря уже о камере, которая ещё и платит. #id:28d
 leave decorations
 protagonist: Пробовал гуглить, но про эту камеру ничего толком нет. #id:28e
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
 protagonist: И про PeepTube тоже ни слова. #id:28f
 protagonist: Откуда вообще берутся деньги? #id:290
 protagonist: И кто, блин, прислал мне эту камеру? #id:291
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+jump sounds/PHONE_UNLOCK
 leave decorations
 protagonist: ... #id:292
 protagonist: ...? #id:293
@@ -28,10 +28,10 @@ protagonist: На камере мигает кнопка. #id:295
 protagonist: ...нажать? #id:296
 - Нажать кнопку #id:297
 	Ты нажимаешь кнопку. #id:298
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]...*бип*[/color] #id:299
 camera: [color=e5be3e]Запрос на перемотку получен.[/color] #id:29a
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]*бип*[/color] #id:29b
 camera: [color=e5be3e]...запрос одобрен.[/color] #id:29c
 protagonist: Чего? #id:29d
@@ -52,7 +52,7 @@ camera: [color=e5be3e]1...[/color] #id:2a9
 [music channel="3" fade="0.0"]
 [music path="res://audio/se/Rewind.ogg" fade="0.6"]
 [music channel="1" fade="0.0"]
-[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg" volume="0.0"]
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="1.0"]
 set GameVariables.phase = "MORNING"
 [wait time="1.0"]
@@ -97,13 +97,13 @@ set GameVariables.day_name = "ПН."
 [wait time="0.1"]
 [background arg="res://assets/Cutscene/Backgrounds/Dorm_Room.png" fade="0.1"]
 [signal arg="stop_rewind"]
-[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg"]
+[sound bus="Cutscene" path="res://audio/se/TapeLoad.ogg" volume="0.0"]
 set GameVariables.phase = "MORNING"
 [music path="res://audio/bgs/cicadas.ogg" fade="0.6" volume="-12.0"]
 [music path="res://audio/bgs/Traffic.ogg" channel="1" fade="0.6"]
 [wait time="2.0"]
-update camera [extra_data="hide Blinking"]
-[sound bus="Cutscene" path="res://audio/se/Bling.wav"]
+update decorations center [extra_data="set Items/Camera"]
+[sound bus="Cutscene" path="res://audio/se/Bling.wav" volume="0.0"]
 camera: [color=e5be3e]Перемотка завершена.[/color] #id:2aa
 camera: [color=e5be3e]Можете покинуть комнату.[/color] #id:2ab
 camera: [color=e5be3e]Следующая перемотка будет доступна примерно через 13 дней 12 часов.[/color] #id:2ac
@@ -113,12 +113,12 @@ protagonist: ... #id:2ae
 protagonist: ...а? #id:2af
 protagonist: Уже светло? #id:2b0
 protagonist: Мне что, всё это приснилось? #id:2b1
-[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+jump sounds/DOOR_KNOCK
 [wait time="2.0"]
-[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+jump sounds/DOOR_OPEN
 join roommate center [length="2.0" wait="true"]
 protagonist: ...да? #id:2b2
-[sound bus="Cutscene" path="res://audio/voice/konbanwa5_good_evening.mp3"]
+jump sounds/VOICE_GOOD_EVENING
 roommate: Йоу. #id:2b3
 roommate: Курьер тебе посылку оставил. #id:2b4
 roommate: Давай. #id:2b5
@@ -134,19 +134,19 @@ roommate: Сегодня первый будний день каникул. #id:
 roommate: Тебе бы выспаться. Похоже, очень надо. #id:2bf
 leave roommate
 protagonist: ... #id:2c0
-[sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
+jump sounds/DOOR_CLOSE
 protagonist: Да быть такого не может... #id:2c1
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+jump sounds/PHONE_UNLOCK
 join decorations center [extra_data="set Items/Phone"]
 protagonist: ...я что, вернулся в прошлое? #id:2c2
 protagonist: Сегодня всё ещё первый день каникул. #id:2c3
 protagonist: ...как? #id:2c4
-[sound bus="Cutscene" path="res://audio/se/Unlock.ogg"]
+jump sounds/PHONE_UNLOCK
 leave decorations
 [wait time="1.0"]
-[sound bus="Cutscene" path="res://audio/se/Knock.ogg"]
+jump sounds/DOOR_KNOCK
 protagonist: Э-э, входи. #id:2c5
-[sound bus="Cutscene" path="res://audio/se/Open5.ogg"]
+jump sounds/DOOR_OPEN
 join manager center [length="2.0" wait="true"]
 manager: Йоу. #id:2c6
 manager: Зашёл проведать. Как ты? #id:2c7
@@ -162,13 +162,13 @@ protagonist: Я понял, спасибо. Мне сейчас просто н�
 manager: Ну, ладно. #id:2d1
 manager: В общем, если что, моя дверь всегда открыта. #id:2d2
 leave manager
-[sound bus="Cutscene" path="res://audio/se/Open4.ogg"]
+jump sounds/DOOR_CLOSE
 protagonist: Офигеть. #id:2d3
 protagonist: Камера отмотала для меня целую неделю. #id:2d4
 protagonist: Эти двое говорят ровно то же, что и в начале прошлой недели. #id:2d5
 protagonist: ... #id:2d6
 protagonist: Ну уж нет, такой шанс я не упущу! #id:2d7
-[sound bus="Cutscene" path="res://audio/se/Powerup_LVL.wav"]
+jump sounds/GOT_LEVEL
 [color=e5be3e]Теперь в конце каждой недели ты сможешь перемотать её назад.[/color] #id:2d8
 [color=e5be3e]Если согласишься, то вернёшься в понедельник прошлой недели.[/color] #id:2d9
 [color=e5be3e]Характеристики и деньги при этом сохранятся.[/color] #id:2da

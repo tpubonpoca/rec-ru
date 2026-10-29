@@ -5,8 +5,8 @@ jump sounds/DOOR_KNOCK
 protagonist: Да, входи. #id:41e
 jump sounds/DOOR_OPEN
 join roommate center
-[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
-if {GameVariables.relationship} >= 20:
+jump sounds/VOICE_UM
+if {GameVariables.get_relationship()} >= 20:
 	update roommate [extra_data="set Expressions/Happy"]
 roommate: Привет... #id:41f
 roommate: Можешь кое с чем помочь? #id:420
@@ -25,20 +25,20 @@ roommate: Можешь глянуть? #id:423
 	protagonist: Кажется, она обиделась. #id:429
 	jump z_functions/END_TO_UPGRADE
 protagonist: Конечно, давай гляну. #id:42a
-[sound bus="Cutscene" path="res://audio/voice/arigato4_Thank_you.ogg"]
+jump sounds/VOICE_THANK_YOU
 roommate: Спасибо. #id:42b
 leave roommate
 jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Hallway_Day.png" fade="0.6"]
 join roommate
 protagonist: Так, посмотрим. #id:42c
-[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" volume="-6.0"]
+jump sounds/DOOR_JIGGLE
 protagonist: Ага, заперто изнутри. #id:42d
 protagonist: К счастью, такие двери открываются, если просто нажать на штырёк в ручке. #id:42e
 roommate: Да? #id:42f
-[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" vovolume="-6.0"]
+jump sounds/DOOR_JIGGLE
 protagonist: Даже вскрывать ничего не надо, это реально проще простого. #id:430
-[sound bus="Cutscene" path="res://audio/se/DoorJiggling.wav" vovolume="-6.0"]
+jump sounds/DOOR_JIGGLE
 protagonist: Почти... есть... #id:431
 jump sounds/DOOR_OPEN
 protagonist: Вуаля. #id:432

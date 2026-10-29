@@ -1,0 +1,188 @@
+BodyResource	EndClimax	Sexual Activity	Сексуальная активность
+BodyResource	EmitChange	Source: 	Источник: 
+EnemyResource	.ctor	I'm going to fear you!	Я тебя напугаю!
+EnemyResource	.ctor	I'm attempting to fear you!	Я пытаюсь тебя напугать!
+EnemyResource	.ctor	Argh! My eyes!	Ай! Мои глаза!
+EnemyResource	.ctor	I'm attempting to charm you!	Я пытаюсь тебя очаровать!
+EnemyResource	.ctor	I'm not charmed!	Я не очарован!
+EnemyResource	.ctor	I'm enraged!	Я в ярости!
+EnemyResource	.ctor	I'm not enraged!	Я не в ярости!
+EnemyResource	.ctor	Ow! What the hell?	Ай! Какого чёрта?
+EnemyResource	.ctor	I'm going to enrage you!	Я тебя разозлю!
+EnemyResource	.ctor	I'm attempting to enrage you!	Я пытаюсь тебя разозлить!
+EnemyResource	.ctor	I'm going to charm you!	Я тебя очарую!
+EnemyResource	.ctor	I'm attacking! (1)	Я атакую! (1)
+EnemyResource	.ctor	I'm charmed!	Я очарован!
+EnemyResource	.ctor	I'm feared!	Я в страхе
+EnemyResource	.ctor	I'm not feared!	Я не боюсь!
+ItemResource	GetRequirementsString	 Access	 Доступ
+ItemResource	GetRequirementsString	[color=#00ffa8](Requires: 	[color=#00ffa8](Требуется: 
+ItemResource	GetRequirementsString	[color=#96413d](Requires: 	[color=#96413d](Требуется: 
+ItemResource	GetRequirementsString	 Access[/color]	 Доступ[/color]
+QuestionResource	GetCategory	Film & Photography	Кино и фотография
+QuestionResource	GetCategory	Science & Physics	Наука и физика
+RecipeResource	CalculateRating	Missing preparation!	Ингредиенты не подготовлены!
+RecipeResource	CalculateRating	Perfectly cooked!	Идеально приготовлено!
+RecipeResource	CalculateRating	Bonus ingredient!	Бонусный ингредиент!
+RecipeResource	CalculateRating	Missing seasoning.	Не хватает приправы.
+RecipeResource	CalculateRating	Improper order.	Неправильный порядок.
+UpgradeRegularResource	GetRequirementsString	 Access	 Доступ
+UpgradeRegularResource	GetRequirementsString	[color=#00ffa8]CHA 	[color=#00ffa8]ХАР 
+UpgradeRegularResource	GetRequirementsString	[color=#00ffa8]DEX 	[color=#00ffa8]ЛОВ 
+UpgradeRegularResource	GetRequirementsString	STA 	ВЫН 
+UpgradeRegularResource	GetRequirementsString	[color=#00ffa8]STA 	[color=#00ffa8]ВЫН 
+UpgradeRegularResource	GetRequirementsString	DEX 	ЛОВ 
+UpgradeRegularResource	GetRequirementsString	INT 	ИНТ 
+UpgradeRegularResource	GetRequirementsString	[color=#00ffa8]INT 	[color=#00ffa8]ИНТ 
+UpgradeRegularResource	GetRequirementsString	[color=#00ffa8](Requires: 	[color=#00ffa8](Требуется: 
+UpgradeRegularResource	GetRequirementsString	CHA 	ХАР 
+UpgradeRegularResource	GetRequirementsString	[color=#96413d](Requires: 	[color=#96413d](Требуется: 
+UpgradeRegularResource	GetRequirementsString	 Access[/color]	 Доступ[/color]
+BonusManager	ScoreTick10	Nudity	Нагота
+BonusManager	ScoreTick20	Sexual Activity	Сексуальная активность
+BonusManager	ScoreTick20	Interactions	Взаимодействия
+BonusManager	ScoreTick30	Intensity	Интенсивность
+MailDisplay	LoadMail	FROM: 	ОТ: 
+MailDisplay	LoadMail	SUBJECT: 	ТЕМА: 
+MailDisplay	UpdateActionTakenText	Request fulfilled!	Запрос выполнен!
+MailDisplay	UpdateActionTakenText	Request taken!	Запрос принят!
+MailDisplay	UpdateActionTakenText	Request rejected.	Запрос отклонён.
+MailDisplay	UpdateActionTakenText	Request failed.	Запрос не выполнен.
+MailDisplay	UpdateActionTakenText	 days remaining.	 дн. до конца.
+PeepTube	SetDetails	Requires: 	Нужно: 
+PeepTube	SetDetails	You do not meet the requirements for this upgrade.	Ты не соответствуешь требованиям для этого улучшения.
+PeepTube	SetDetails	You've already upgraded this the max number of times.	Ты уже улучшил это максимальное число раз.
+Purchasable	SetLimitReached	Limit Reached	Достигнут предел
+Purchasable	SetLimitReached	Purchase	Купить
+Purchasable	SetPermanentlyPurchased	Purchased	Куплено
+Purchasable	SetPermanentlyPurchased	Purchase	Купить
+PurchasePanel	SetUpgrade	You do not have enough credits for this item.	У тебя недостаточно кредитов для этого предмета.
+PurchasePanel	SetUpgrade	You already have this upgrade.	У тебя уже есть это улучшение.
+PurchasePanel	SetUpgrade	You do not have enough points for this item.	У тебя недостаточно очков для этого предмета.
+PurchasePanel	SetUpgrade	You do not meet the requirements for this upgrade.	Ты не соответствуешь требованиям для этого улучшения.
+PurchasePanel	SetItem	You've purchased the maximum number of this item for today.	Ты уже купил максимум этого предмета на сегодня.
+PurchasePanel	SetItem	You do not meet the requirements for this item.	Ты не соответствуешь требованиям для этого предмета.
+PurchasePanel	SetItem	You do not have enough credits for this item.	У тебя недостаточно кредитов для этого предмета.
+PurchasePanel	SetItem	You do not have enough points for this item.	У тебя недостаточно очков для этого предмета.
+RequestGenerator	GenerateRequest	-------------START OF MESSAGE-------------	-------------НАЧАЛО СООБЩЕНИЯ-------------
+RequestGenerator	GenerateRequest	This is an automated message from the PeepTube system. Please do not reply to this message.	Это автоматическое сообщение системы PeepTube. Пожалуйста, не отвечайте на него.
+RequestGenerator	GenerateRequest	 is willing to send you the following in compensation:	 предлагает тебе следующую награду:
+RequestGenerator	GenerateRequest	We hope you consider this request for your next stream.	Надеемся, ты примешь этот заказ к исполнению на следующем стриме.
+RequestGenerator	GenerateRequest	Best,	С наилучшими пожеланиями,
+RequestGenerator	GenerateRequest	STREAM REQUEST	ЗАПРОС НА СТРИМ
+RequestGenerator	GenerateRequest	PeepTube Staff	Команда PeepTube
+RequestGenerator	GenerateRequest	 Viewer score[/color]	 к рейтингу зрителей[/color]
+RequestGenerator	GenerateRequest	--------------END OF MESSAGE--------------	--------------КОНЕЦ СООБЩЕНИЯ--------------
+RequestGenerator	GenerateRequest	I was wondering if in the next stream you could [color=ffce65]	Не мог(ла) бы ты на следующем стриме [color=ffce65]
+Shop	Update	Credits: 	Кредиты: 
+Statistics	UpdateValues	, Day 	, День 
+Statistics	UpdateValues	times caught	поймано раз
+Statistics	UpdateValues	m	м
+Statistics	UpdateValues	 blowjob	 минет
+Statistics	UpdateValues	Loop 	Круг 
+Statistics	UpdateValues	nights skipped	ночей пропущено
+Statistics	UpdateValues	suspicion	подозрение
+Statistics	UpdateValues	day	день
+Statistics	UpdateValues	times jogged	пробежек
+Statistics	UpdateValues	stamina	выносливость
+Statistics	UpdateValues	orgasms	оргазмов
+Statistics	UpdateValues	 anal	 анальный
+Statistics	UpdateValues	phone mutes	телефон выкл.
+Statistics	UpdateValues	 vaginal	 вагинальный
+Statistics	UpdateValues	semen expelled	семени излито
+Statistics	UpdateValues	 other	 прочее
+Statistics	UpdateValues	 footjob	 стопами
+Statistics	UpdateValues	money	деньги
+Statistics	UpdateValues	creampies	внутрь
+Statistics	UpdateValues	times headpatted	поглаживаний
+Statistics	UpdateValues	like	симпатия
+Statistics	UpdateValues	male climaxes	мужских финалов
+Statistics	UpdateValues	items used	предметы исп.
+Statistics	UpdateValues	 titjob	 грудью
+Statistics	UpdateValues	puzzles failed	загадок сбито
+Statistics	UpdateValues	total earned	всего заработано
+Statistics	UpdateValues	kan checkups	осмотры Кана
+Statistics	UpdateValues	LVL.	УР.
+Statistics	UpdateValues	enemies defeated	враги разбиты
+Statistics	UpdateValues	puzzles completed	загадок решено
+Statistics	UpdateValues	ml	мл
+Statistics	UpdateValues	distance ran	пробежал
+Statistics	UpdateValues	name	имя
+Statistics	UpdateValues	lust	похоть
+Statistics	UpdateValues	events seen	события просм.
+Change	_Process	Putting into till	Кладём в кассу
+Change	_Process	Snapping to tray	Привязка к подносу
+Blender_Top	OnAreaEntered	This isn't fully blended...	Это ещё не до конца смешано...
+Cooking/<>c	<_Ready>b__9_0	Should I stop cooking?	Прекратить готовку?
+Implement	SnapToPlace	Should I toss these ingredients?	Выбросить эти ингредиенты?
+Ingredient	OnAreaEntered	There's nothing to place this in...	Здесь не во что это положить...
+Ingredient	OnAreaEntered	I can't blend this...	Я не могу это смешать...
+Ingredient	OnAreaEntered	There's no water in there...	Там нет воды...
+Ingredient	OnAreaEntered	This ingredient needs preparing first...	Этот ингредиент сначала нужно подготовить...
+Oven	_Ready	off	выкл
+Oven	<_Ready>b__22_0	on	вкл
+Oven	<_Ready>b__22_1	off	выкл
+PortraitYuna	<_Ready>b__13_3	Hmmm...? What's up?	Хмм...? Что такое?
+PortraitYuna/<<_Ready>b__13_0>d	MoveNext	...sure. Why not.	...конечно. Почему бы и нет.
+PortraitYuna/<<_Ready>b__13_1>d	MoveNext	...do it quickly.	...только быстро.
+Rating	_Ready	served dish!	Блюдо подано!
+Rating	_Ready	Base Rating	Базовый рейтинг
+Rating	_Ready	 Rating	 Рейтинг
+Rating	_Ready	served 	Подано: 
+RecipeBox	<_Ready>b__5_0	What should I make today?	Что бы мне сегодня приготовить?
+RecipeBox	<_Ready>b__5_0	What are you planning to make?	Что ты планируешь приготовить?
+Serving/<>c	<_Ready>b__11_2	There's nothing to serve here.	Здесь нечего подавать.
+Serving/<>c	<_Ready>b__11_2	Am I ready to serve this?	Готов подать это?
+Stove	_Ready	off	выкл
+Stove	<_Ready>b__18_0	on	вкл
+Stove	<_Ready>b__18_1	off	выкл
+Gallery	UpdatePagination	Page 	Стр. 
+InteractionManager	Click	Sexual Activity	Сексуальная активность
+Door	OnAnimationFinished	Interactions	Взаимодействия
+Fly	OnFlyDeath	Interactions	Взаимодействия
+Minigames	Succeed	Interactions	Взаимодействия
+Phone	SilencePhone	Interactions	Взаимодействия
+Phone	OnMouseEntered	Silence Phone	Отключить телефон
+Plush/<>c__DisplayClass2_0	<_Ready>b__0	Interactions	Взаимодействия
+Timing	IsSuccess	Perfect touch bonus	Бонус за идеальное касание
+TimingCircle	<_Ready>b__10_1	Interactions	Взаимодействия
+Tracing	Succeed	Quick touch bonus	Бонус за быстрое касание
+NightSequence	AddInteractionScore	Interactions	Взаимодействия
+NightSequence	AddUniqueInteractionScore	Interactions	Взаимодействия
+NightSequence	EndMaleClimax	Sexual Activity	Сексуальная активность
+NightSequence	EndNightSuccessfully	Time Recorded	Время съёмки
+NightSequence	.ctor	Interactions	Взаимодействия
+NightSequence	.ctor	Sexual Activity	Сексуальная активность
+NightSequence	.ctor	Time Recorded	Время съёмки
+NightSequence	.ctor	Nudity	Нагота
+NightSequence	.ctor	Intensity	Интенсивность
+SettingsUI	ApplyCheat	Lotta items!	Много предметов!
+SettingsUI	ApplyCheat	Charisma increased to 6!	Харизма повышена до 6!
+SettingsUI	ApplyCheat	Move forward 14 days!	Перемотка на 14 дней!
+SettingsUI	ApplyCheat	Credits increased by 1000000!	Кредиты увеличены на 1000000!
+SettingsUI	ApplyCheat	Suspicion reduced to 0!	Подозрение Юны сброшено до 0!
+SettingsUI	ApplyCheat	Stamina increased by 1000!	Выносливость увеличена на 1000!
+SettingsUI	ApplyCheat	Invalid code	Неверный код
+SettingsUI	ApplyCheat	Access level set to Diamond!	Уровень доступа: Бриллиант!
+SettingsUI	ApplyCheat	PeepTube Points increased by 10000000!	Очки PeepTube увеличены на 10000000!
+SettingsUI	ApplyCheat	Max time allotted!	Максимум времени!
+SettingsUI	ApplyCheat	No flies!	Без мух!
+SettingsUI	ApplyCheat	No wakeup!	Без пробуждения!
+SettingsUI	ApplyCheat	Dexterity increased to 6!	Ловкость повышена до 6!
+SettingsUI	ApplyCheat	Set relationship to maximum!	Отношения выставлены на максимум!
+SettingsUI	ApplyCheat	Win all dice rolls!	Победа во всех бросках кубиков!
+SettingsUI	ApplyCheat	No checkup!	Без осмотра!
+SettingsUI	ApplyCheat	Kaede will always show up!	Каэда теперь всегда будет приходить!
+SettingsUI	ApplyCheat	Skip minigames!	Пропускать мини-игры!
+SettingsUI	ApplyCheat	Intelligence increased to 6!	Интеллект повышен до 6!
+SummaryScreenUI	GameOverScreen	YOU'VE BEEN CAUGHT!	ТЕБЯ ПОЙМАЛИ!
+SummaryScreenUI	SummaryScreen	Sexual Activity	Сексуальная активность
+SummaryScreenUI	SummaryScreen	Time Recorded	Время съёмки
+SummaryScreenUI	SummaryScreen	 secs filmed	 сек. снято.
+SummaryScreenUI	SummaryScreen	Nudity	Нагота
+SummaryScreenUI	SummaryScreen	Intensity	Интенсивность
+SummaryScreenUI	SummaryScreen	Interactions	Взаимодействия
+SaveTape	UpdateLabels	Night #	Ночь #
+SaveTape	UpdateLabels	Empty	Пусто
+SaveUI	UpdateLabels	Save in	Сохранить в
+Version	_Ready	Version 	ВЕРСИЯ 

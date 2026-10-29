@@ -12,7 +12,7 @@ protagonist: Похоже, кто-то в душе. #id:46c
 Что будешь делать? #id:46d
 label LOCKPICK #id:46e
 - Вскрыть замок #id:46f
-	jump sounds/DOOR_JIGGLE #id:54c
+	jump sounds/DOOR_JIGGLE
 	Ты пытаешься вскрыть замок. #id:470
 	if {GameVariables.get_dexterity()} < 3:
 		Несколько попыток, и всё впустую: замок не поддаётся. #id:471
@@ -20,7 +20,7 @@ label LOCKPICK #id:46e
 		jump stat_change/DEXTERITY
 		jump z_functions/END_TO_UPGRADE
 	else:
-		jump sounds/DOOR_OPEN #id:54a
+		jump sounds/DOOR_OPEN
 		join decorations center [z_index="1" extra_data="set Effects/Steam"]
 		[background arg="res://assets/Cutscene/Backgrounds/Bathroom.png" fade="0.6"]
 		Пара мгновений, и дверь поддаётся. #id:476
@@ -40,7 +40,7 @@ if {dice} == 6:
 	manager: А? Ты что тут забыл? #id:56d
 	manager: Как ты вообще вошёл? #id:56e
 	protagonist: ... #id:56f
-	[sound path="res://audio/se/Hit.ogg" bus="Cutscene"]
+	jump sounds/SURPRISE
 	[signal arg="shake"]
 	protagonist: ...! #id:570
 	protagonist: Э-э... я... #id:571
@@ -81,9 +81,9 @@ if GameVariables.suspicion >= 50 && GameVariables.came_inside == true:
 	join scene [extra_data="set Scene/Rubbing"]
 	[signal arg="play_default"]
 	update roommate [extra_data="set Expressions/Confused"]
-	[sound path="res://audio/se/Brush1.ogg" bus="Cutscene"]
+	[sound path="res://audio/se/Brush1.ogg" bus="Cutscene" volume="0.0"]
 	roommate: Что это такое? #id:577
-	[sound path="res://audio/se/Brush2.ogg" bus="Cutscene"]
+	[sound path="res://audio/se/Brush2.ogg" bus="Cutscene" volume="0.0"]
 	roommate: Сколько ни тру, всё равно липкое... #id:578
 	roommate: ... #id:579
 	roommate: Может, замок на двери поменять... #id:57a
@@ -98,10 +98,10 @@ if GameVariables.suspicion >= 50 && GameVariables.came_inside == true:
 	protagonist: Похоже, вчера ночью я плохо за собой прибрал. #id:57c
 	protagonist: Пока {roommate_name} меня так подозревает, лучше к ней не лезть. #id:57d
 	jump z_functions/END_TO_UPGRADE
-[sound path="res://audio/voice/ee2_surprise.wav" bus="Cutscene"]
+jump sounds/VOICE_SURPRISE
 update roommate [extra_data="set Expressions/Surprise"]
 roommate: Ты что тут делаешь? #id:48a
-if {GameVariables.relationship} >= 60:
+if {GameVariables.get_relationship()} >= 60:
 	- Напроситься в душ #id:57e
 		jump JOIN_SHOWER
 	- Отмазаться #id:57f
@@ -123,7 +123,7 @@ if {GameVariables.relationship} >= 60:
 else:
 	update roommate [extra_data="set Expressions/Mad"]
 	roommate: Ты что, подглядываешь за мной в душе? #id:493
-	[sound path="res://audio/voice/baka_silly.ogg" bus="Cutscene"]
+	[sound path="res://audio/voice/baka_silly.ogg" bus="Cutscene" volume="0.0"]
 	roommate: Ты омерзителен. #id:494
 	roommate: Вон. Отсюда. #id:495
 	set GameVariables.relationship_change = 8
@@ -133,7 +133,7 @@ label JOIN_SHOWER #id:581
 protagonist: Я тут подумал... может, тебе... э-э... спинку потереть? #id:582
 update roommate [extra_data="set Expressions/Confused"]
 roommate: Спинку? #id:583
-[sound path="res://audio/voice/ano3_Um.ogg" bus="Cutscene"]
+jump sounds/VOICE_UM
 roommate: Ну не знаю... #id:584
 protagonist: Я бы мог, э-э... #id:585
 protagonist: ...достать до всяких труднодоступных мест? #id:586
@@ -141,11 +141,11 @@ protagonist: ...достать до всяких труднодоступных 
 roommate: Ну, наверное... #id:588
 {roommate_name} не успевает договорить, а ты уже раздеваешься. #id:589
 jump sounds/CLOTH
-[sound path="res://audio/voice/mo6_Cant_help_it.ogg" bus="Cutscene"]
+jump sounds/VOICE_CANT_HELP_IT
 update roommate [extra_data="set Expressions/Default"]
 roommate: Ладно! Но только спину, понял? #id:58a
 protagonist: Конечно! #id:58b
-[sound path="res://audio/se/Bathtub.ogg" bus="Cutscene"]
+[sound path="res://audio/se/Bathtub.ogg" bus="Cutscene" volume="0.0"]
 Ты быстро забираешься к ней в душ. #id:58c
 join scene [extra_data="set Scene/Washing"]
 {roommate_name} совсем рядом, её кожа светлая, почти белая, и ты еле держишь себя в руках. #id:662
@@ -156,20 +156,20 @@ roommate: Держи. #id:590
 [sound path="res://audio/se/Brush1.ogg" volume="3.0" bus="Cutscene"]
 Ты мягко трёшь щёткой спину, которую подставила тебе {roommate_name}. #id:591
 update roommate [extra_data="set Expressions/TiredHappy, set Decorations/HotAir"]
-[sound path="res://audio/voice/sigh.wav" bus="Cutscene"]
+jump sounds/VOICE_SIGH_DEPRESSED
 roommate: Ах. #id:592
-[sound path="res://audio/se/Water1.ogg" bus="Cutscene"]
+[sound path="res://audio/se/Water1.ogg" bus="Cutscene" volume="0.0"]
 Кажется, {roommate_name} нравится, как щётка скользит по коже. #id:593
-[sound path="res://audio/voice/gomenne3_sorry.ogg" bus="Cutscene"]
+jump sounds/VOICE_SIGH
 roommate: Прости... тут тесновато. #id:594
 protagonist: Да ничего, мне нормально. #id:595
 [sound path="res://audio/se/Brush2.ogg" volume="3.0" bus="Cutscene"]
 Ты ещё какое-то время наслаждаешься моментом. #id:596
 leave scene
-[sound path="res://audio/se/Bathtub.ogg" bus="Cutscene"]
+[sound path="res://audio/se/Bathtub.ogg" bus="Cutscene" volume="0.0"]
 Чуть погодя {roommate_name} отстраняется, чтобы ополоснуться. #id:597
 protagonist: Погоди, я ещё спереди не потёр. #id:598
-[sound path="res://audio/voice/ee2_surprise.wav" bus="Cutscene"]
+jump sounds/VOICE_SURPRISE
 update roommate [extra_data="set Expressions/Surprise, hide Decorations/HotAir"]
 roommate: А? #id:599
 join scene [extra_data="set Scene/Rubbing"]
@@ -178,7 +178,7 @@ roommate: Стой... да подожди ты... #id:59b
 [signal arg="play_with_hands"]
 update roommate [extra_data="set Expressions/Pleasure"]
 Ты опускаешь руку ниже, и {roommate_name} вздрагивает, когда ты начинаешь нежно мыть её между ног. #id:59c
-[sound path="res://audio/voice/a.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_1
 roommate: Подожди... так нельзя... #id:59d
 protagonist: Не волнуйся, это всего на минутку. #id:59e
 Ты ласкаешь пальцами самые чувствительные места, вкладывая в это всю свою Ловкость. #id:59f
@@ -192,49 +192,49 @@ if {GameVariables.get_dexterity()} < 4:
 	protagonist: Ага, ладно. #id:5a6
 	jump LEAVE_SHOWER_EARLY
 update roommate [extra_data="set Decorations/HotAir"]
-[sound path="res://audio/voice/a5.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_4
 Похоже, {roommate_name} это нравится всё больше. #id:5a7
 roommate: Ох... #id:5a8
 roommate: А ты... неожиданно умелый... #id:5a9
 От её слов ты заводишься ещё сильнее и не сбавляешь темп. #id:5aa
-[sound path="res://audio/voice/a.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_1
 roommate: Подожди секунду... #id:5ab
-[sound path="res://audio/voice/a2.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_2
 roommate: Ах! #id:5ac
-[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_4
 [wait time="1"]
-[sound path="res://audio/voice/a.ogg" volume="-6.0" bus="Cutscene"]
+jump sounds/VOICE_MOAN_1
 [wait time="1"]
-[sound path="res://audio/voice/a2.ogg" volume="-3.0" bus="Cutscene"]
+jump sounds/VOICE_MOAN_2
 [wait time="1"]
-[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_4
 [wait time="1"]
-[sound path="res://audio/voice/a5.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_3
 leave scene
 С последним сдавленным стоном {roommate_name} кончает. #id:5ad
 update roommate [extra_data="set Expressions/Tired"]
 Она вздрагивает и обессиленно прижимается к тебе. #id:5ae
-[sound path="res://audio/voice/sigh.wav" bus="Cutscene"]
+jump sounds/VOICE_SIGH_DEPRESSED
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Ох. Это было... нечто... #id:5af
-[sound path="res://audio/voice/ano3_Um.ogg" bus="Cutscene"]
+jump sounds/VOICE_UM
 roommate: Эм... нам, наверное, пора выходить? #id:5b0
 roommate: Я здесь уже долго... {manager_name} может что-то заподозрить. #id:fbf
 - Попросить помыть тебя #id:5b2
 	protagonist: Погоди. #id:5b3
-	[sound path="res://audio/voice/ee2_surprise.wav" bus="Cutscene"]
+	jump sounds/VOICE_SURPRISE
 	update roommate [extra_data="set Expressions/Surprise"]
 	roommate: Хм? #id:5b4
 	protagonist: Ну... мне, кажется, тоже не помешает помыться. #id:5b5
 	update roommate [extra_data="set Expressions/Confused"]
 	roommate: ... #id:5b6
-	if {GameVariables.relationship} < 80:
-		[sound path="res://audio/voice/gomenne3_sorry.ogg" bus="Cutscene"]
+	if {GameVariables.get_relationship()} < 80:
+		jump sounds/VOICE_APOLOGIZE
 		roommate: Прости. #id:5b7
 		roommate: Мне кажется, это плохая идея. #id:5b8
 		roommate: Может, в другой раз? #id:5b9
 		jump LEAVE_SHOWER_EARLY
-	[sound path="res://audio/voice/un4_yes.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MMM
 	update roommate [extra_data="set Expressions/Default"]
 	roommate: Ладно, кажется, я поняла, к чему ты клонишь. #id:5ba
 	roommate: Садись, сейчас я тебя хорошенько отмою. #id:5bb
@@ -262,22 +262,22 @@ protagonist: (...ответить?) #id:5c6
 protagonist: Ах... #id:5c8
 manager: А? Кто там? #id:5c9
 Не успеваешь ты и рта раскрыть, как {roommate_name} отвечает за тебя. #id:5ca
-[sound path="res://audio/voice/gomenne2_sorry.ogg" bus="Cutscene"]
+[sound path="res://audio/voice/gomenne2_sorry.ogg" bus="Cutscene" volume="0.0"]
 roommate: Выйду через десять минут, подождёшь? #id:5cb
 manager: Десять минут? #id:5cc
 manager: Но... #id:5cd
 update roommate [extra_data="set Expressions/Annoyed"]
-[sound path="res://audio/voice/baka2_silly.mp3" bus="Cutscene"]
+[sound path="res://audio/voice/baka2_silly.mp3" bus="Cutscene" volume="0.0"]
 roommate: Можно мне хотя бы спокойно домыться? #id:5ce
 roommate: Тут шагу ступить нельзя, чтобы ты не пристал! #id:5cf
 [signal arg="play_medium"]
 {roommate_name} продолжает его отчитывать, а ты чувствуешь, как внизу всё нарастает. #id:5d0
-[sound path="res://audio/voice/sayonara2_Bye.ogg" bus="Cutscene"]
+[sound path="res://audio/voice/sayonara2_Bye.ogg" bus="Cutscene" volume="0.0"]
 roommate: Дай мне пару минут, и я выйду, ладно? #id:5d1
 manager: Прости... ты права. #id:5d2
 manager: Потом сам заберу. Не торопись! #id:5d3
 leave manager
-[sound path="res://audio/voice/sigh4.mp3" bus="Cutscene"]
+jump sounds/VOICE_SIGH
 roommate: Слава богу. #id:5d4
 roommate: Я уж думала, он никогда не уйдёт. #id:5d5
 protagonist: Слушай... я сейчас... #id:5d6
@@ -289,26 +289,26 @@ label HANDJOB_CLIMAX #id:5d9
 - Потерпеть ещё | [if {GameVariables.stamina} >= 10.0] #id:5da
 	set GameVariables.stamina = {GameVariables.change_stamina(-10)}
 	jump stat_change/STAMINA_DECREASE
-	[sound path="res://audio/voice/e2_Huh.wav" bus="Cutscene"]
+	jump sounds/VOICE_EH
 	roommate: <О? Терпишь?/Ого, всё ещё держишься?/Вечно ты так не протянешь./Это что, соревнование какое-то?> #id:5db
 	jump HANDJOB_CLIMAX
 - Кончить #id:5dc
 protagonist: Я... ах! #id:5dd
 [signal arg="play_finish_1"]
 set GameVariables.lust = 0
-[sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
+jump sounds/FINISH_1
 [signal arg="screenshot"]
 Перед глазами всё белеет, и напряжение наконец вырывается наружу. #id:5de
-[sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
+jump sounds/FINISH_2
 [signal arg="screenshot"]
 [signal arg="play_finish_2"]
 roommate: Давай, не сдерживайся. #id:5df
 [signal arg="play_finish_3"]
-[sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
+jump sounds/FINISH_3
 [signal arg="screenshot"]
 [wait time="0.5"]
 roommate: ... #id:5e0
-[sound path="res://audio/voice/laughter6.ogg" bus="Cutscene"]
+jump sounds/VOICE_LAUGH
 roommate: Ох... сколько же в тебе накопилось. #id:5e1
 {roommate_name} разглядывает сперму на своём теле. #id:5e2
 roommate: ...надо бы тут прибраться. #id:5e3
@@ -317,20 +317,20 @@ roommate: ...надо бы тут прибраться. #id:5e3
 	join roommate [extra_data="set Body/Naked, set Expressions/TiredHappy, set Decorations/Cum"]
 	protagonist: Погоди. #id:5e5
 	update roommate [extra_data="set Expressions/Surprise"]
-	[sound path="res://audio/voice/ee2_surprise.wav" bus="Cutscene"]
+	jump sounds/VOICE_SURPRISE
 	roommate: Хм? #id:5e6
 	protagonist: Я очень хочу продолжить. #id:5e7
 	update roommate [extra_data="set Expressions/Confused"]
 	roommate: ... #id:5e8
-	if {GameVariables.relationship} < 100 || {GameVariables.get_charisma()} < 5:
-		[sound path="res://audio/voice/gomenne3_sorry.ogg" bus="Cutscene"]
+	if {GameVariables.get_relationship()} < 100 || {GameVariables.get_charisma()} < 5:
+		jump sounds/VOICE_APOLOGIZE
 		roommate: Не думаю, что это хорошая идея. #id:5e9
 		roommate: {manager_name} вот-вот вернётся. #id:fc1
 		roommate: Может, в другой раз? #id:5eb
 		protagonist: (Блин. Похоже, уговорить её не выйдет.) #id:5ec
 		protagonist: (Может, будь у меня повыше и Харизма, и отношения, она бы передумала.) #id:5ed
 		jump LEAVE_SHOWER_EARLY
-	[sound path="res://audio/voice/un4_yes.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MMM
 	roommate: Ладно... но быстро, понял? #id:5ee
 	roommate: {manager_name} вот-вот вернётся. #id:fc2
 	jump DOGGYSTYLE
@@ -352,13 +352,13 @@ roommate: Ты вставишь или так и будешь стоять? #id:
 [signal arg="play_insert"]
 Ты медленно водишь головкой члена по её влажным губкам. #id:5f9
 С каждым касанием {roommate_name} вздрагивает всё сильнее. #id:5fa
-[sound path="res://audio/voice/a3.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_3
 roommate: Ах... быстрее! У нас не весь день. #id:5fb
 protagonist: Ладно, ладно. #id:5fc
 Ты погружаешь головку чуть глубже, чем раньше. #id:5fd
 [signal arg="play_insert_2"]
 А затем одним резким движением входишь в неё до упора. #id:5fe
-[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+jump sounds/VOICE_MOAN_4
 roommate: АХ! #id:5ff
 [signal arg="play_piston"]
 Ты начинаешь осторожно двигаться. #id:600
@@ -394,7 +394,7 @@ protagonist: (Что делать?) #id:609
 	manager: А? #id:617
 	protagonist: В смысле... нет... я тут немного голый... #id:618
 	manager: Да брось, мы же оба мужики. Я на секунду. #id:619
-	[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_4
 	roommate: Ах! #id:61a
 	manager: Это что было? #id:61b
 	protagonist: Нет... значит... нет! Уходи! #id:61c
@@ -404,39 +404,39 @@ protagonist: (Что делать?) #id:609
 - Пусть ответит она #id:61f
 	Ты шлёпаешь её по заднице: пусть {roommate_name} отвечает сама. #id:620
 	jump sounds/SLAP
-	[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_4
 	roommate: Ай! #id:621
 	manager: {roommate_name}? Ты всё ещё там? #id:622
 	roommate: Ага! #id:623
 	manager: Долго ещё? #id:624
-	[sound path="res://audio/voice/a.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_1
 	roommate: Я... #id:625
 	Ты ускоряешься. #id:626
-	[sound path="res://audio/voice/a2.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_2
 	roommate: Ещё... долго... не... #id:627
 	manager: А? #id:628
-	[sound path="res://audio/voice/a3.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_3
 	roommate: Не... знаю... #id:629
 	manager: Можешь погромче? Через дверь плохо слышно. #id:62a
 	jump sounds/GULP
 	Всё вокруг сужается до одной точки, а возбуждение волной приливает к паху. #id:62b
 	Ты вжимаешься в её задницу так, будто хочешь войти в неё целиком. #id:62c
-	[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_4
 	roommate: Ах! #id:62d
 	manager: Эм... у тебя там всё нормально? #id:62e
 	roommate: ДА! Я... в порядке! #id:62f
-	[sound path="res://audio/voice/a.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_1
 	roommate: Я же сказала, что выйду через... пару минут... #id:630
 	manager: Но... #id:631
-	[sound path="res://audio/voice/a3.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_3
 	roommate: Просто УЙДИ! #id:632
 	manager: ... #id:633
 	manager: ...ладно. #id:634
-	[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_4
 	roommate: ДА! #id:635
 	manager: А? #id:636
 	update roommate [extra_data="set Expressions/Annoyed"]
-	[sound path="res://audio/voice/a4.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_4
 	roommate: Я СКАЗАЛА, УЙДИ! #id:637
 	manager: Ухожу, ухожу! #id:638
 leave manager
@@ -447,7 +447,7 @@ label DOGGYSTYLE_CLIMAX #id:63a
 - Потерпеть ещё | [if {GameVariables.stamina} >= 15.0] #id:63b
 	set GameVariables.stamina = {GameVariables.change_stamina(-15)}
 	jump stat_change/STAMINA_DECREASE
-	[sound path="res://audio/voice/a3.ogg" bus="Cutscene"]
+	jump sounds/VOICE_MOAN_3
 	roommate: <Боже... мой.../Я больше... не могу.../Ах.../Трахни... меня...> #id:63c
 	jump DOGGYSTYLE_CLIMAX
 - Кончить #id:63d
@@ -456,29 +456,29 @@ jump sounds/WIGGLE
 [signal arg="play_climax"]
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" bus="Cutscene"]
+jump sounds/FINISH_1
 Перед глазами всё белеет, и ты кончаешь прямо в неё. #id:63f
 [signal arg="play_climax"]
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" bus="Cutscene"]
+jump sounds/FINISH_2
 protagonist: Ах! #id:640
 [signal arg="play_climax"]
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" bus="Cutscene"]
+jump sounds/FINISH_3
 [wait time="2.0"]
 jump sounds/WIGGLE
 [signal arg="play_drip_head_forward"]
 roommate: ... #id:641
 [signal arg="play_drip_head_back"]
 roommate: ...! #id:642
-[sound path="res://audio/voice/baka_silly.ogg" bus="Cutscene"]
+jump sounds/VOICE_IDIOT
 roommate: Ах! Ты зачем в меня кончил? #id:643
 protagonist: Ох... прости... #id:644
 join roommate [extra_data="set Body/Naked, set Expressions/TiredHappy"]
 roommate: ... #id:645
-[sound path="res://audio/voice/mo6_Cant_help_it.ogg" bus="Cutscene"]
+jump sounds/VOICE_CANT_HELP_IT
 roommate: Ладно, ничего. #id:646
 roommate: ...значит, придётся купить таблетки. #id:647
 leave scene
@@ -491,7 +491,7 @@ roommate: ...давай приберёмся и уходим отсюда. #id:6
 roommate: Пока {manager_name} не припёрся в третий раз. #id:fc4
 update roommate [extra_data="set Expressions/Tired"]
 protagonist: Дельная мысль. #id:64d
-[sound path="res://audio/voice/ano3_Um.ogg" bus="Cutscene"]
+jump sounds/VOICE_UM
 update roommate [extra_data="set Expressions/TiredHappy"]
 roommate: Но это было... #id:64e
 update roommate [extra_data="set Expressions/Tired"]
@@ -502,7 +502,7 @@ roommate: ...повторим как-нибудь? #id:651
 update roommate [extra_data="set Expressions/Tired"]
 protagonist: Ты даже не представляешь, как я хочу. #id:652
 update roommate [extra_data="set Expressions/TiredHappy"]
-[sound path="res://audio/voice/laughter6.ogg" bus="Cutscene"]
+jump sounds/VOICE_LAUGH
 roommate: Ха-ха, ладно. #id:653
 roommate: Хватит строить глазки, ладно? Тебе пора. #id:654
 jump z_functions/UNLOCK_GALLERY_CUTSCENE

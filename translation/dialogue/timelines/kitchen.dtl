@@ -7,10 +7,10 @@ if {GameVariables.is_recipe_served}:
 if {Calendar.IsDayInKitchen()}:
 	[wait time="1.0"]
 	join roommate
-	if {GameVariables.relationship} >= 40:
+	if {GameVariables.get_relationship()} >= 40:
 		update roommate [extra_data="set Expressions/Happy"]
 		roommate: Доброе утро! #id:f89
-	elif {GameVariables.relationship} >= 20:
+	elif {GameVariables.get_relationship()} >= 20:
 		roommate: ...утро. #id:f8a
 	{roommate_name} тоже сейчас на кухне. #id:f8b
 protagonist: Что бы такого приготовить... #id:f8c
@@ -25,7 +25,7 @@ label CHOICES #id:f8d
 	roommate: Хм-м... #id:1b0
 	if {GameVariables.suspicion} >= 50:
 		update roommate [extra_data="set Expressions/Confused"]
-		[sound bus="Cutscene" path="res://audio/voice/ano3_Um.ogg"]
+		jump sounds/VOICE_UM
 		roommate: Я уже поела... #id:f92
 		roommate: ...извини. #id:f93
 		protagonist: (Похоже, она меня [color=ff3f49]подозревает[/color].) #id:1b2
@@ -52,7 +52,7 @@ if {GameVariables.yuna_partnered} == true
 if {GameVariables.recipe_rating} == 0:
 	protagonist: (В итоге у меня ничего не вышло...) #id:f9a
 else:
-	Ты подаёшь на стол: [color=e5be3e]{GameVariables.recipe_name}[/color]. #id:f9b
+	Ты подаёшь на стол: [color=e5be3e]{tr(GameVariables.recipe_name)}[/color]. #id:f9b
 	jump sounds/DISHES
 	Ты пробуешь. #id:f9c
 if {GameVariables.recipe_rating} == 0:
@@ -142,15 +142,17 @@ if {GameVariables.recipe_rating} == 7:
 	Гастрономический оргазм #id:fb6
 if {GameVariables.recipe_rating} == 8:
 	Гастрономический оргазм #id:fb7
-[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
-[color=1cd5ff]Получено {GameVariables.recipe_dexterity} опыта ловкости![/color]
+if {GameVariables.recipe_dexterity} > 0:
+	[sound path="res://audio/se/Powerup_XP.wav" volume="-6.0" bus="Cutscene"]
+	[color=1cd5ff]Получено {GameVariables.recipe_dexterity} опыта ловкости![/color]
 if {Cutscenes.IsSceneSeen("yosuke_3")} and not {Cutscenes.IsSceneSeen("yosuke_4")} and {Items.GetQuantity('pizza')} < 1:
 	if {GameVariables.recipe_name} == "Pizza" and {GameVariables.recipe_rating} >= 3:
 		set GameVariables.quantity = {Items.Increment('pizza')}
 		Ты откладываешь немного [color=e5be3e]пиццы[/color] на потом.
 		protagonist: Надо будет занести это [color=e5be3e]Ёсуке[/color] ночью.
 else:
-	jump sounds/GOT_ITEM
-	set GameVariables.quantity = {Items.Increment('leftovers')}
-	Ты получаешь [color=e5be3e]остатки еды[/color].
+	if {GameVariables.recipe_rating} > 0:
+		jump sounds/GOT_ITEM
+		set GameVariables.quantity = {Items.Increment('leftovers')}
+		Ты получаешь [color=e5be3e]остатки еды[/color].
 jump z_functions/END_TO_UPGRADE

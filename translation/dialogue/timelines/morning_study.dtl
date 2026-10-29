@@ -1,16 +1,16 @@
 jump sounds/INDOOR_APARTMENT_ENVIRONMENT
 [background arg="res://assets/Cutscene/Backgrounds/Bathroom.png" fade="0.0"]
-[sound bus="Cutscene" path="res://audio/se/Toilet.ogg"]
-[sound bus="Cutscene" path="res://audio/se/Washing.ogg"]
+[sound bus="Cutscene" path="res://audio/se/Toilet.ogg" volume="0.0"]
+[sound bus="Cutscene" path="res://audio/se/Washing.ogg" volume="0.0"]
 [wait time="3.0"]
 protagonist: Так, возвращаемся к делу. #id:498
-[sound bus="Cutscene" path="res://audio/se/Move1.ogg"]
+jump sounds/MOVE_INDOORS
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 join roommate center
 protagonist: ...? #id:499
 По дороге к себе ты замечаешь соседку на диване. #id:49a
 Кажется, она занимается. #id:49b
-[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+jump sounds/PAGE_FLIP
 Ты заглядываешь ей через плечо: похоже, задачи из учебника ей никак не даются. #id:49c
 Если хватит Интеллекта, можно ей помочь. #id:49d
 - Предложить помощь #id:49e
@@ -22,7 +22,7 @@ protagonist: ...? #id:499
 	leave roommate
 	jump z_functions/END_TO_UPGRADE
 label HELP #id:4a5
-if {GameVariables.relationship} < 20:
+if {GameVariables.get_relationship()} < 20:
 	update roommate [extra_data="set Expressions/Confused"]
 	Она смотрит на тебя с подозрением. #id:4a6
 	update roommate [extra_data="set Expressions/Default"]
@@ -34,7 +34,7 @@ else:
 Ты садишься рядом. #id:4aa
 update roommate [extra_data="set Expressions/Default"]
 roommate: Вот, с этой задачей я застряла. #id:4ab
-[sound bus="Cutscene" path="res://audio/se/Book1.ogg"]
+jump sounds/PAGE_FLIP
 Она тычет пальцем в задание в учебнике. #id:4ac
 set GameVariables.difficulty_class = 6
 jump stat_change/ROLL_INTELLIGENCE
@@ -49,7 +49,7 @@ roommate: Спасибо тебе огромное! #id:4b1
 set GameVariables.relationship_change = 2
 jump stat_change/RELATIONSHIP_INCREASE
 jump stat_change/CHARISMA
-[sound path="res://audio/se/PenDrop.ogg" bus="Cutscene"]
+[sound path="res://audio/se/PenDrop.ogg" bus="Cutscene" volume="0.0"]
 update roommate [extra_data="set Expressions/Default"]
 roommate: Ой.
 protagonist: Что такое?
@@ -79,7 +79,7 @@ jump sounds/VOICE_SURPRISE
 roommate: Эй! Ты что творишь?
 [signal arg="play_tease_2"]
 Ты с жадностью хватаешь её за ягодицы обеими руками.
-if {GameVariables.relationship} <= 60:
+if {GameVariables.get_relationship()} <= 60:
 	jump sounds/SURPRISE
 	leave scene
 	[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
@@ -100,7 +100,7 @@ protagonist: (Попробуем кое-что другое.)
 roommate: Эй!
 Ты медленно дразнишь её большим пальцем прямо через трусики.
 [signal arg="play_tease_4"]
-jump sounds/VOICE_MOAN_QUICK
+jump sounds/VOICE_MOAN_4
 roommate: ...да... вот тут...
 С каждым движением пятнышко на ткани становится всё теплее и влажнее.
 protagonist: (Если уж решаться, то сейчас.)
@@ -129,7 +129,7 @@ leave scene
 Желание затмевает всё, и ты пристраиваешься к ней сзади. {roommate_name} вздрагивает.
 Ты поддаёшься инстинктам и начинаешь двигаться.
 join scene [extra_data="set Scene/DoggystyleAlternatePart2"]
-if {GameVariables.relationship} < 100:
+if {GameVariables.get_relationship()} < 100:
 	[wait time="2.0"]
 	jump sounds/SURPRISE
 	leave scene
@@ -175,13 +175,13 @@ protagonist: ...ах!
 [signal arg="play_cum"]
 set GameVariables.lust = 0
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish4.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_1
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish3.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_2
 [wait time="0.5"]
 [signal arg="screenshot"]
-[sound path="res://audio/se/Finish5.ogg" volume="0.0" bus="Cutscene"]
+jump sounds/FINISH_3
 [wait time="2.0"]
 С последним толчком ты выходишь из неё. {roommate_name} тяжело дышит.
 leave scene
@@ -189,7 +189,7 @@ join scene [extra_data="set Scene/DoggystyleAlternatePart3"]
 roommate: ...
 roommate: ...ты что, правда кончил в меня?
 protagonist: Прости...
-[sound path="res://audio/voice/mo6_Cant_help_it.ogg" bus="Cutscene"]
+jump sounds/VOICE_CANT_HELP_IT
 roommate: Ладно, ничего...
 leave scene
 jump sounds/RUSTLE
@@ -200,7 +200,7 @@ roommate: Кто-то не смог сдержаться, а?
 {roommate_name} ненадолго опускает взгляд.
 roommate: Пойду в душ...
 update roommate [extra_data="set Expressions/TiredHappy"]
-[sound path="res://audio/voice/laughter6.ogg" bus="Cutscene"]
+jump sounds/VOICE_LAUGH
 roommate: ...давай ещё как-нибудь «позанимаемся», ладно?
 jump z_functions/UNLOCK_GALLERY_CUTSCENE
 jump z_functions/END_TO_UPGRADE
@@ -208,7 +208,7 @@ label FAILED
 Увы, как решать эту задачу, ты не имеешь ни малейшего понятия. #id:4b8
 Но ты всё равно пытаешься разобраться в ней вместе с соседкой. #id:4b9
 jump stat_change/INTELLIGENCE
-if {GameVariables.relationship} < 20:
+if {GameVariables.get_relationship()} < 20:
 	update roommate [extra_data="set Expressions/Annoyed"]
 	roommate: Если ты сам не знаешь, как решать, на кой чёрт вызвался помогать? #id:4bd
 	roommate: Блин. Только время зря потратили. #id:4be

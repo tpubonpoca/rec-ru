@@ -46,6 +46,7 @@ const EXACT := {
 	"shift ended early!": "Смена завершена досрочно!",
 	"I... can't... move...": "Я... не... могу... двигаться...",
 	"Unlocked all cutscenes!": "Все сцены открыты!",
+	"levelup!": "новый уровень!",
 	"in 0 days": "сегодня",
 }
 
@@ -106,6 +107,7 @@ const SUB := {
 	" secs filmed": " сек. снято",
 	" Rating": " Рейтинг",
 	"stars": "звёзд",
+	"(max ": "(макс. ",
 	"request fulfilled!": "запрос выполнен!",
 	"served dish!": "Блюдо подано!",
 	"served ": "Подано: ",
@@ -312,18 +314,19 @@ func _ready() -> void:
 	_repair_saves()
 	_init_dialogic_vars()
 	_init_player_name()
-	_disable_key_cheat()
-
-# The AMOGUS cheat is applied from Settings only; GameVariables must not read it from raw key presses.
-func _disable_key_cheat() -> void:
-	var gv = get_node_or_null("/root/GameVariables")
-	if gv != null and gv.is_processing_unhandled_input():
-		gv.set_process_unhandled_input(false)
+	# В 0.6 есть выбор языка; при запуске всегда русский, таблицы en и ru одинаковые
+	TranslationServer.set_locale("ru")
 
 func _init_player_name() -> void:
 	var gv = get_node_or_null("/root/GameVariables")
 	if gv != null and "player_name" in gv and str(gv.player_name) == "Nita":
 		gv.player_name = "Нита"
+
+# Кличка пса по умолчанию приходит и из сохранений, поэтому проверяется вместе с переменными Dialogic
+func _fix_dog_name() -> void:
+	var gv = get_node_or_null("/root/GameVariables")
+	if gv != null and "dog_name" in gv and str(gv.dog_name) == "Dog":
+		gv.dog_name = "Пёс"
 
 func _init_dialogic_vars() -> void:
 	var dlg = get_node_or_null("/root/Dialogic")
@@ -400,7 +403,7 @@ func _process(delta: float) -> void:
 	if _vt >= 1.0:
 		_vt = 0.0
 		_fix_dialogic_vars()
-		_disable_key_cheat()
+		_fix_dog_name()
 
 	var stack := [get_tree().root]
 	var n := 0

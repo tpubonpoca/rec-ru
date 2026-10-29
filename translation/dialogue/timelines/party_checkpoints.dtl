@@ -6,23 +6,23 @@ leave --All--
 jump sounds/CUCKOO
 Вечеринка продолжается... #id:665
 if {GameVariables.party_stage} == 1:
-	set {phase} = "MORNING"
 	jump sounds/INDOOR_APARTMENT_PARTY
+	set GameVariables.phase = "MORNING"
 	[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 	join crowd [extra_data="set Size/Small"]
 	Утро перед вечеринкой. #id:666
 	Несколько человек пришли помочь с подготовкой, но в целом квартира пока почти пустая. #id:667
 elif {GameVariables.party_stage} == 2:
-	set {phase} = "NOON"
 	jump sounds/INDOOR_APARTMENT_PARTY
+	set GameVariables.phase = "NOON"
 	[background arg="res://assets/Cutscene/Backgrounds/Living_Room.png" fade="0.6"]
 	join crowd [extra_data="set Size/Medium"]
 	Вечеринка в разгаре дня. #id:668
 	Народу в гостиной прибавилось. #id:669
 	Становится шумновато. #id:66a
 else:
-	set {phase} = "EVENING"
-	jump sounds/INDOOR_APARTMENT_PARTY
+	jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
+	set GameVariables.phase = "EVENING"
 	[background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 	join crowd [extra_data="set Size/Large"]
 	Вечер вечеринки. #id:66b

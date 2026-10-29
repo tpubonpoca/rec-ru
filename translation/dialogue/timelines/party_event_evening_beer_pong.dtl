@@ -1,5 +1,4 @@
 set {GameVariables.party_stage} = 3
-jump sounds/INDOOR_APARTMENT_PARTY_NIGHT
 [background arg="res://assets/Cutscene/Backgrounds/Living_Room_Night.png" fade="0.6"]
 Каким-то образом ты оказываешься за столом для бирпонга. Против тебя {roommate_name} с Каэдой, а с тобой ещё один парень. #id:990
 join enemy [extra_data="set Container/Type/Dude" mirrored="true"]
