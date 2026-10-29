@@ -135,16 +135,16 @@ const SUB := {
 	"in 2 days": "через 2 дня",
 	"in 3 days": "через 3 дня",
 	"in 4 days": "через 4 дня",
-	"in 5 days": "через 5 дней",
-	"in 6 days": "через 6 дней",
-	"in 7 days": "через 7 дней",
-	"in 8 days": "через 8 дней",
-	"in 9 days": "через 9 дней",
-	"in 10 days": "через 10 дней",
-	"in 11 days": "через 11 дней",
-	"in 12 days": "через 12 дней",
-	"in 13 days": "через 13 дней",
-	"in 14 days": "через 14 дней",
+	"in 5 days": "через 5 дн.",
+	"in 6 days": "через 6 дн.",
+	"in 7 days": "через 7 дн.",
+	"in 8 days": "через 8 дн.",
+	"in 9 days": "через 9 дн.",
+	"in 10 days": "через 10 дн.",
+	"in 11 days": "через 11 дн.",
+	"in 12 days": "через 12 дн.",
+	"in 13 days": "через 13 дн.",
+	"in 14 days": "через 14 дн.",
 
 	# Food buff description (StatusEffects.cs)
 	"You ate a hearty meal with extra benefits.": "Ты плотно поел, и это даёт бонусы.",
@@ -394,6 +394,38 @@ func _fix_gameover_layout(box: VBoxContainer) -> void:
 		if c is Control:
 			c.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 
+# Экран статов: русские строки выше английских, нижние строки колонок уходили под панель задач.
+# Пока колонка не влезает, уменьшаем шрифт её подписей на 1 px за проход.
+const STAT_SECTIONS := ["Main Stats", "Social Stats", "Secondary Stats", "Relationship Stats", "Sexual Stats", "Body Part Levels"]
+
+func _fit_stats_column(col: Control) -> void:
+	var bottom: float = get_viewport().get_visible_rect().size.y - 56.0
+	var end := 0.0
+	for c in col.get_children():
+		if c is Control and c.visible:
+			end = max(end, c.get_global_rect().end.y)
+	if end <= bottom:
+		return
+	for l in col.find_children("*", "Label", true, false):
+		var s: int = l.get_theme_font_size("font_size")
+		if s > 9:
+			l.add_theme_font_size_override("font_size", s - 1)
+
+# Подпись срока аренды: одна строка, шрифт уменьшается, пока текст не влезет по ширине
+func _fit_width(l: Label) -> void:
+	l.autowrap_mode = TextServer.AUTOWRAP_OFF
+	var w := l.size.x
+	var p = l.get_parent()
+	if not l.clip_text and p is Control and not (p is Container):
+		w = p.size.x - l.position.x
+	if w <= 0.0:
+		return
+	var f := l.get_theme_font("font")
+	var s := l.get_theme_font_size("font_size")
+	while s > 8 and f.get_string_size(l.text, HORIZONTAL_ALIGNMENT_LEFT, -1, s).x > w:
+		s -= 1
+	l.add_theme_font_size_override("font_size", s)
+
 func _process(delta: float) -> void:
 	_t += delta
 	if _t < 0.05: return
@@ -415,7 +447,11 @@ func _process(delta: float) -> void:
 		if nd is VBoxContainer and nd.name == "GameOverOptions":
 			_fix_gameover_layout(nd)
 
-		if nd is Label and nd.name == "Name":
+		if nd is Control and STAT_SECTIONS.has(str(nd.name)) and nd.get_parent() is Control:
+			_fit_stats_column(nd.get_parent())
+
+		# ники в комментариях PeepTube не переносим
+		if nd is Label and nd.name == "Name" and not nd.get_parent().has_node("Comment"):
 			nd.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			nd.clip_text = false
 
@@ -448,10 +484,16 @@ func _process(delta: float) -> void:
 			nd.text = nd.text.replace("{PLAYERNAME}", pname)
 			txt = str(nd.text)
 
+		# текст с переводом в таблице не трогаем, иначе ключ перестаёт совпадать
+		if txt != "" and not EXACT.has(txt.strip_edges()) and String(nd.atr(txt)) != txt:
+			txt = ""
+
 		if txt != "":
 			var t := txt.strip_edges()
 			if EXACT.has(t):
 				nd.text = EXACT[t]
+				if nd is Label and t.begins_with("in ") and t.contains(" day"):
+					_fit_width(nd)
 			else:
 				var nt := txt
 				for dp in DAY_PREFIXES.keys():

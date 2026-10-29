@@ -14,6 +14,9 @@ for f in glob.glob('dch_ru/*.dch'):
     put('dialogue/characters/' + os.path.basename(f), open(f, 'rb').read())
 for f in [x for x in glob.glob('res_ru/**/*', recursive=True, include_hidden=True) if os.path.isfile(x)]:
     put(os.path.relpath(f, 'res_ru').replace(os.sep, '/'), open(f, 'rb').read())
+for name in ('comments', 'comments_special'):
+    if os.path.exists('tr/%s_ru.txt' % name):
+        put('resources/comments/%s.txt' % name, open('tr/%s_ru.txt' % name, 'rb').read())
 for loc in ('ru', 'en'):
     put('translations/rec_translations.%s.translation' % loc, open('tables/rec_translations.%s.translation' % loc, 'rb').read())
 FONTS = {'Toriko.ttf': 'Toriko.ttf-9d8a733741cf0a7e03818cd52a1c990b.fontdata', 'VCR_OSD_Mono.ttf': 'VCR_OSD_Mono.ttf-45fb8313e03f845b2bc3e59d42d2d129.fontdata'}

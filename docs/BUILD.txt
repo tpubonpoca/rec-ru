@@ -7,7 +7,7 @@
 res/ — распакованный пакет 0.6.0.0 (python pck4.py extract REC.pck key.hex res)
 res_0552_en/ — пакет 0.5.5.2 без перевода, res_0552_ru/ — пакет 0.5.5.2 с переводом
 ru_changed.txt — список файлов, изменённых переводом 0.5.5.2
-tr/ — копия translation/v0600 (dtl_new.tsv, res_new.tsv, table_add.tsv)
+tr/ — копия translation/v0600 (dtl_new.tsv, res_new.tsv, table_add.tsv, comments_*_ru.txt)
 key.hex — ключ пакета, хранить только локально
 
 Шаги:
