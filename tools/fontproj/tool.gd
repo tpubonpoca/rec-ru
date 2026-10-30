@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	var src = ResourceLoader.load("res://imported/Toriko.ttf-9d8a733741cf0a7e03818cd52a1c990b.fontdata")
-	var bytes = FileAccess.get_file_as_bytes("res://out/Toriko_cyr2.ttf")
+	var bytes = FileAccess.get_file_as_bytes("res://out/Toriko_cyr.ttf")
 	var f = FontFile.new()
 	f.data = bytes
 	f.antialiasing = src.antialiasing
