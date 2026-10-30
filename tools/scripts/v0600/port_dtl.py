@@ -35,6 +35,12 @@ for n in sorted(os.listdir(NEW_EN)):
             elif STRUCT.match(ln) and not re.search(r'text="|placeholder="|\[text_input', ln): out.append(ln); stat['struct'] += 1
             else: out.append(ln); todo.append((n, j + 1, ln)); stat['todo'] += 1
     out = [wrap_names(x) for x in out]
+    # Эти значения выбирают иконки в node_choice_button.gd, а не подписи кнопок.
+    if n in ('adventure_battle.dtl', 'adventure_skills.dtl'):
+        for j, ln in enumerate(new):
+            choice = re.split(r' #id:| \|', ln.lstrip()[2:], maxsplit=1)[0]
+            if ln.lstrip().startswith('- ') and choice in {'Attack', 'Defend', 'Talk', 'Special', 'Run', 'Charm', 'Fear', 'Enrage', 'Paparazzi', 'Flashbang', 'Back'}:
+                out[j] = ln
     open(os.path.join(OUT, n), 'w', encoding='utf-8', newline='\n').write('\n'.join(out))
 json.dump(todo, open('dtl_todo.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
 print(stat)

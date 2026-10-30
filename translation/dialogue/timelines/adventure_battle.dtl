@@ -15,7 +15,7 @@ if {GameVariables.yosuke_partnered}:
 jump adventure_functions/PLAYER_DEBUFF_TICKS
 label PLAYER_OPTIONS #id:7a
 [signal arg="battle_style"]
-- Атака #id:7b
+- Attack #id:7b
 	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "attack":
 		Эта способность сейчас заблокирована!
 		jump PLAYER_OPTIONS
@@ -53,7 +53,7 @@ label PLAYER_OPTIONS #id:7a
 		[color=ff3f49]{BattleVariables.get_target_name()}[/color] уворачивается от твоей атаки! #id:1017
 	jump adventure_functions/CHECK_ENEMY_DEFEAT
 	jump ENEMY_TURN
-- Защита #id:83
+- Defend #id:83
 	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "defend":
 		Эта способность сейчас заблокирована!
 		jump PLAYER_OPTIONS
@@ -67,14 +67,14 @@ label PLAYER_OPTIONS #id:7a
 	set GameVariables.stamina = {GameVariables.change_stamina(-5)}
 	Ты поднимаешь руки, прикрываясь. #id:84
 	jump ENEMY_TURN
-- Поговорить #id:85
+- Talk #id:85
 	if {BattleVariables.is_mad()}:
 		[sound bus="Cutscene" path="res://audio/battle/SkillWhispers.ogg" volume="3.0"]
 		[signal arg="vision_red"]
 		Голоса что-то шепчут тебе. #id:86
 		Ты вдруг забываешь, что собирался сделать. #id:87
 		jump ENEMY_TURN
-	- Флирт #id:8d
+	- Charm #id:8d
 		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "charm":
 			Эта способность сейчас заблокирована!
 			jump PLAYER_OPTIONS
@@ -88,7 +88,7 @@ label PLAYER_OPTIONS #id:7a
 		Ты осыпаешь комплиментами противника: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1019
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
-	- Разозлить #id:92
+	- Enrage #id:92
 		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "enrage":
 			Эта способность сейчас заблокирована!
 			jump PLAYER_OPTIONS
@@ -102,7 +102,7 @@ label PLAYER_OPTIONS #id:7a
 		Ты оскорбляешь противника: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:101a
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
-	- Запугать #id:88
+	- Fear #id:88
 		if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "fear":
 			Эта способность сейчас заблокирована!
 			jump PLAYER_OPTIONS
@@ -116,9 +116,9 @@ label PLAYER_OPTIONS #id:7a
 		Ты угрожаешь противнику: [color=ff3f49]{BattleVariables.get_target_name()}[/color]! #id:1018
 		protagonist: {BattleVariables.get_talk_player()}
 		jump adventure_calculations/PLAYER_TALK
-	- Назад #id:97
+	- Back #id:97
 		jump PLAYER_OPTIONS
-- Особое #id:98
+- Special #id:98
 	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "skills":
 		Эта способность сейчас заблокирована!
 		jump PLAYER_OPTIONS
@@ -130,7 +130,7 @@ label PLAYER_OPTIONS #id:7a
 	else:
 		Не хватает заряда. Нужно [color=d3ff75]{int({BattleVariables.player_skill_charge})}/20[/color]. #id:bd1
 		jump PLAYER_OPTIONS
-- Сбежать #id:9a
+- Run #id:9a
 	if {BattleVariables.player_is_jammed} and {BattleVariables.player_jammed_ability} == "run":
 		Эта способность сейчас заблокирована!
 		jump PLAYER_OPTIONS

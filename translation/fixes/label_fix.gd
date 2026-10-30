@@ -462,6 +462,8 @@ func _process(delta: float) -> void:
 		if nd.name == "Label" and nd.get_parent() != null and nd.get_parent().name == "MarginContainer":
 			var p2 = nd.get_parent().get_parent()
 			if p2 != null and p2.name == "Hint":
+				if str(nd.text).begins_with("Deals ") and str(nd.text).ends_with(" damage"):
+					nd.text = "Урон: " + str(nd.text).trim_prefix("Deals ").trim_suffix(" damage")
 				continue
 
 		# Skip choice buttons with battle icons to preserve clean icon display

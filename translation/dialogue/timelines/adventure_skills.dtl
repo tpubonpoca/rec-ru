@@ -121,7 +121,7 @@ if {BattleVariables.acting_enemy.GetLoadedSkill().SummonEnemies.size()} > 0:
 jump adventure_functions/END_ENEMY_TURN
 
 label PLAYER #id:164
-- Папарацци #id:165
+- Paparazzi #id:165
 	if {BattleVariables.player_is_confused}:
 		jump adventure_functions/RANDOM_ABILITY
 	label PAPARAZZI
@@ -208,5 +208,5 @@ label PLAYER #id:164
 			[signal arg="heal_enemy_empowerment"]
 	set BattleVariables.player_skill_charge = 0
 	jump adventure_battle/ENEMY_TURN
-- Назад #id:16a
+- Back #id:16a
 	jump adventure_battle/PLAYER_OPTIONS
